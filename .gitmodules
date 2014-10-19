@@ -1,0 +1,15 @@
+[submodule "Modules/StaticLibraryXIB"]
+	path = Modules/StaticLibraryXIB
+	url = git@github.com:mralexgray/StaticLibraryXIB.git
+[submodule "Modules/AQOptionParser"]
+	path = Modules/AQOptionParser
+	url = git@github.com:mralexgray/AQOptionParser.git
+[submodule "Modules/Objective-C-RegEx-Categories"]
+	path = Modules/Objective-C-RegEx-Categories
+	url = https://github.com/mralexgray/Objective-C-RegEx-Categories.git
+[submodule "Modules/NSTerminal"]
+	path = Modules/NSTerminal
+	url = https://github.com/mralexgray/NSTerminal.git
+[submodule "Modules/CLIMac"]
+	path = Modules/CLIMac
+	url = https://github.com/mralexgray/CLIMac.git
