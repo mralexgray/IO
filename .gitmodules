@@ -13,3 +13,6 @@
 [submodule "Modules/CLIMac"]
 	path = Modules/CLIMac
 	url = https://github.com/mralexgray/CLIMac.git
+[submodule "Modules/GBCli"]
+	path = Modules/GBCli
+	url = git@github.com:mralexgray/GBCli.git

@@ -1,36 +1,36 @@
 
 
-#import <AppKit/AppKit.h>
-#import <AVFoundation/AVFoundation.h>
+@import Darwin;
+@import AppKit;
+@import QuartzCore;
+@import ObjectiveC;
+@import AVFoundation;
 
-#include <stdio.h>
-#include <sys/ioctl.h>
-//@import Darwin;       // needed for winsize, ioctl etc
-//@import AtoZ;
-//#import <getopt.h>
-//#import <stdio.h>
-//#import </a2z/AtoZMacroDefines.h>
+// Imports all source files for GBCli
+#import "GBCommandLineParser.h"
+#import "DDEmbeddedDataReader.h"
 
-/* from atoz
-  @prop_RO BOOL 	inTTY,          /// Seems accurate..
-                  inXcode;
-*/
 @interface AtoZIO : NSObject
 
-+ (instancetype) IO;
-
-+ (NSArray*) args;
++ (NSString*) exePath;
++  (NSArray*) args;     /* OK */
 
 @property NSString *prompt;
 
-/*! TERM info      */
-/*! Read to String */ - (NSString*) readWithPrompt:(NSString*)_;
-/*! Command-K      */ - (void) clearConsole;
++ (BOOL) inTTY;          /// Seems accurate..
++ (BOOL) inXcode;
+
+#pragma mark - TERM info
+
+/// from AtoZ...  @prop_RO BOOL 	inTTY & inXcode;  (Seems accurate..)
+
+/*! Read to String */ + (NSString*) readWithPrompt:(NSString*)_;
+/*! Command-K      */ + (void) clearConsole;  /* OK */
 /*! ie. 80 x 33    */
 
-@property (readonly) NSSize terminalSize;
-+ (int) terminal_width;
-+ (int) terminal_height;
++ (NSSize) terminal_size;
++    (int) terminal_width;
++    (int) terminal_height;
 
 /** -=/><\=-=/><\=-=/><\=-=/><\=-=/><\=-=/><\=-=/><\=-=/><\=-=/><\=-
  Returns the embbedded data for the CURRENT executable from a specific section in a specific segment.
@@ -94,14 +94,19 @@ typedef NS_ENUM(int,FMTOptions){
 @interface NSString (atozio)
 
 @property FMTOptions   options;
-@property        NSColor * color;
-@property (readonly)    const char *   xString;
+@property    NSColor * color;
+@property (readonly)  const char *cChar;
+@property (readonly) NSString * xString;
 
-- (void) xPrint;
-- (void) xPrintX:(NSColor*)c;
+@property (readonly,copy) NSString *red, *orange, *yellow, *green, *blue;
+
+- (void) echo;
+- (void) print;
+- (void) printInColor:(NSColor*)c;
 
 + (instancetype) withColor:(NSColor*)c fmt:(NSString*)fmt,...;
 + (instancetype) scan;
+
 @end
 
 @interface NSNumber (atozio)
@@ -129,8 +134,12 @@ typedef NS_ENUM(int,FMTOptions){
 /*!	char **argv = *_NSGetArgv();
     NSString *commandLineArg = sizeof(argv) > 1 && !!argv[1] ? @(argv[1])
                                                              : @"/tmp/scorecard-pipe";  // No argument specified, using xyz
-*/ extern char ***_NSGetArgv (void);
-   extern int     _NSGetArgc (void);
+extern char ***_NSGetArgv (void);
+extern int     _NSGetArgc (void);
+*/
+
+extern int *_NSGetArgc(void);
+extern char ***_NSGetArgv(void);
 
 /*! mkfifo @code
 
@@ -191,7 +200,6 @@ void   AllColors(void(^)(int color));
 void PrintInRnd(id x,...);
 
 //typedef    int zColor;
-
 //typedef RgbColor zColorRGB;
 
 typedef struct zColorRGB { int r;
@@ -205,3 +213,52 @@ typedef struct zColorRGB { int r;
 
 NSString *define(NSString*);
 
+
+//  NSColor+HSVExtras.h MMPieChart Demo Created by Manuel de la Mata Sáez on 07/02/14.  Copyright (c) 2014 Manuel de la Mata Sáez. All rights reserved.
+
+typedef struct { int hueValue; int saturationValue; int brightnessValue; CGFloat hue; CGFloat saturation; CGFloat brightness; } HsvColor;
+typedef struct { int rVal; int gVal; int bVal; CGFloat r; CGFloat g; CGFloat b; } RgbColor;
+
+@interface NSColor (HSVExtras)
+
++ (HsvColor) hsvColorFromColor:(NSColor*)c;
++ (RgbColor) rgbColorFromColor:(NSColor*)c;
+
+@property (readonly) HsvColor hsvColor;
+@property (readonly) RgbColor rgbColor;
+@property (readonly)      CGFloat hue,
+                  saturation,
+                  brightness,
+                  value,
+                  red, green, blue, white, alpha;
+@end
+
+
+#ifndef XCODE_COLORS_DEFS
+#define XCODE_COLORS_DEFS
+#pragma mark - COLOR LOGGING
+/*	Foreground color: Insert the ESCAPE_SEQ into your string, followed by "fg124,12,255;" where r=124, g=12, b=255.
+ Background color:	 	Insert the ESCAPE_SEQ into your string, followed by "bg12,24,36;" where r=12, g=24, b=36.
+ Reset the foreground color (to default value):	Insert the ESCAPE_SEQ into your string, followed by "fg;"
+ Reset the background color (to default value):	Insert the ESCAPE_SEQ into your string, followed by "bg;"
+ Reset the fground and bground color (to default values) in 1 operation: Insert the ESCAPE_SEQ into your string, followed by ";"
+ */
+#if TARGET_OS_IPHONE
+#define 	XCODE_COLORS_ESCAPE  @"\xC2\xA0["
+#else
+#define 	XCODE_COLORS_ESCAPE  @"\033["
+#define 	CHAR_ESCAPE  "\033["
+#define   CHAR_RESET  CHAR_ESCAPE ";"
+#endif
+#define 	XCODE_COLORS_RESET_FG  	XCODE_COLORS_ESCAPE @"fg;" // Clear any foreground color
+#define 	XCODE_COLORS_RESET_BG  	XCODE_COLORS_ESCAPE @"bg;" // Clear any background color
+#define 	XCODE_COLORS_RESET	 		XCODE_COLORS_ESCAPE @";"   // Clear any foreground or background color
+#define 	COLOR_RESET 					XCODE_COLORS_RESET
+#define 	COLOR_ESC 					XCODE_COLORS_ESCAPE
+
+#endif
+
+
+//@import Darwin;       // needed for winsize, ioctl etc
+//#import <getopt.h>
+//#import </a2z/AtoZMacroDefines.h>

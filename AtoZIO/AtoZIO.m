@@ -1,81 +1,74 @@
 
-#import "AtoZIO.h"
-//@import AtoZ;
-#import <QuartzCore/QuartzCore.h>
+
+#include <stdio.h>
+#include <sys/ioctl.h>
+
 #import <AtoZAutoBox/AtoZAutoBox.h>
 #import "DDEmbeddedDataReader.h"
-#import <AQOptionParser.h>
-#import <objc/runtime.h>
-//@import ObjectiveC;
+#import <AQOptionParser/AQOptionParser.h>
+
+#import "AtoZIO.h"
 
 #define GOT_TO printf("got to %i\n", __LINE__)
 
-//  NSColor+HSVExtras.h MMPieChart Demo Created by Manuel de la Mata Sáez on 07/02/14.  Copyright (c) 2014 Manuel de la Mata Sáez. All rights reserved.
-
-typedef struct { int hueValue; int saturationValue; int brightnessValue; CGFloat hue; CGFloat saturation; CGFloat brightness; } HsvColor;
-typedef struct { int rVal; int gVal; int bVal; CGFloat r; CGFloat g; CGFloat b; } RgbColor;
-
-@interface NSColor (HSVExtras)
-
-+ (HsvColor) hsvColorFromColor:(NSColor*)c;
-+ (RgbColor) rgbColorFromColor:(NSColor*)c;
-
-@property (readonly) HsvColor hsvColor;
-@property (readonly) RgbColor rgbColor;
-@property (readonly)      CGFloat hue,
-                  saturation,
-                  brightness,
-                  value,
-                  red, green, blue, white, alpha;
-@end
-
-
-
 @implementation AtoZIO
 
-+ (void) describeEnv { /* prin */ }
++ (NSString*) exePath { return NSProcessInfo.processInfo.arguments[0]; }
 
-- (NSString*) readWithPrompt:(NSString*)_ { !_ ?: (void)printf("%s", _.UTF8String);
++      (BOOL) inTTY    { return [@(isatty(STDERR_FILENO))boolValue]; }
++      (BOOL) inXcode  { return [NSProcessInfo.processInfo.environment[@"XCODE_COLORS"] isEqual:@YES]; }
 
-  id z = [NSFileHandle.fileHandleWithStandardInput availableData];
-  return [NSString.alloc initWithData:z encoding:NSASCIIStringEncoding];
-}
++       (int) terminal_width   { return [self terminal_size].width;   }
++       (int) terminal_height  { return [self terminal_size].height;  }
++    (NSSize) terminal_size    { char * nterm; struct winsize w;
+
+  if (!(nterm = getenv("TERM"))) return (NSSize){ -1,-1};
+  /* We are running standalone, retrieve the terminal type from the environment. */
+  strcpy(term, nterm); ioctl(0, TIOCGWINSZ, &w); return (NSSize){ w.ws_col, w.ws_row};
+
+} /* OK */
+
++ (NSString*) readWithPrompt:(NSString*)_ {
+
+  !_ ?: (void)fprintf(stderr,"%s", _.UTF8String);
+
+  return [NSString.alloc initWithData:NSFileHandle.fileHandleWithStandardInput.availableData
+                             encoding:NSASCIIStringEncoding];
+} /* OK */
 
 + (void) clearConsole {
 
   NSAppleScript *s = [NSAppleScript.alloc initWithSource:@"tell application \"System Events\" to keystroke \"k\" using command down"];
 
-  NSDictionary *err; id x = [s executeAndReturnError:&err];
-  if (err || x) NSLog(@"err:%@ event:%@",err, x);
+  NSDictionary *err; NSAppleEventDescriptor * x = [s executeAndReturnError:&err];
+  if (err || (x && x.stringValue)) NSLog(@"err:%@ event:%@",err, x.stringValue);
+} /* OK */
 
-}
++ (NSArray*) args {
 
-+ (NSArray*) args { return NSProcessInfo.processInfo.arguments; }
+  NSMutableArray *args = @[].mutableCopy;
+  [NSProcessInfo.processInfo.arguments enumerateObjectsUsingBlock:^(id arg, NSUInteger i, BOOL *s) {
+    !i || ![arg length] ?: [args addObject:arg];
+  }];
+  return args;
+} /* OK */
 
 
-+ (NSData*)embeddedDataFromSegment:(NSString*)seg inSection:(NSString*)sec error:(NSError**)e {
++ (NSData*) embeddedDataFromSegment:(NSString*)seg inSection:(NSString*)sec error:(NSError**)e {
   return [DDEmbeddedDataReader embeddedDataFromSegment:seg inSection:sec error:e];
 }
 
-+ (int) terminal_width      { return [self terminalSize].width;   }
-+ (int) terminal_height     { return [self terminalSize].height; }
-
-+ (NSSize) terminalSize  { char * nterm; struct winsize w;
-
-  return (nterm = getenv("TERM")) ? strcpy(term, nterm), ioctl(0, TIOCGWINSZ, &w), (NSSize){ w.ws_col, w.ws_row} : (NSSize){ -1,-1};
-  /* We are running standalone, retrieve the terminal type from the environment. */
-}
 + (AVAudioPlayer*) playerForAudio:(id)dataOrPath { // lets create an audio player to play the audio.
 
-  NSError *e; AVAudioPlayer *player =          [dataOrPath isKindOfClass:  NSData.class]
-                                           ? [AVAudioPlayer.alloc initWithData:dataOrPath error:&e]
-                                           : [dataOrPath isKindOfClass:   NSURL.class]
-                                          || [dataOrPath isKindOfClass:NSString.class]
-                                           ? [AVAudioPlayer.alloc initWithContentsOfURL:
-                                             [dataOrPath isKindOfClass:NSURL.class]
-                                           ?  dataOrPath
-                                           : [NSURL fileURLWithPath:dataOrPath] error:&e]
-                                           : nil;
+  NSError *e; AVAudioPlayer *player  = [dataOrPath isKindOfClass:  NSData.class]
+                                     ? [AVAudioPlayer.alloc initWithData:dataOrPath error:&e]
+                                     : [dataOrPath isKindOfClass:   NSURL.class]
+                                    || [dataOrPath isKindOfClass:NSString.class]
+                                     ? [AVAudioPlayer.alloc initWithContentsOfURL:
+                                       [dataOrPath isKindOfClass:NSURL.class]
+                                     ?  dataOrPath
+                                     : [NSURL fileURLWithPath:dataOrPath] error:&e]
+                                     : nil;
 
   return !player || e ? NSLog(@"problem making player: %@", e), (id)nil
                       : [player setNumberOfLoops:-1], [player prepareToPlay], player; //prepare the file to play
@@ -167,14 +160,16 @@ typedef struct { int rVal; int gVal; int bVal; CGFloat r; CGFloat g; CGFloat b; 
   }
   return [d copy];
 }
+
 @end
 
 
 #pragma mark - AtoZ Additions
 
-void newline(int n) {
+void newline(int ct) {
 
-  for (int i = 0; i < n; ++i) { //	Telnet requires us to send a specific sequence for a line break (\r\000\n), so let's make it happy.
+  while ( ct-- ) {
+//  for (int i = 0; i < ct; ++i) { //	Telnet requires us to send a specific sequence for a line break (\r\000\n), so let's make it happy.
     if (!telnet) {
       putc('\n', stdout);  continue;  // Send a regular line feed
     }
@@ -196,7 +191,6 @@ void print_with_newlines(char *first,...){
 void reset_cursor() { printf("\033[%s", clear_screen ? "H" : "u"); }
 void   clr_screen() { printf(clear_screen ? "\033[H\033[2J\033[?25l" : "\033[s"); 		/* Clear the screen */ }
 
-
 #pragma mark - XTERM
 
 int    CUBE_STEPS[] = { 0x00, 0x5F, 0x87, 0xAF, 0xD7, 0xFF };
@@ -207,7 +201,7 @@ RgbColor BASIC16[] = {  {   0,   0,   0 }, { 205,   0,   0}, {   0, 205,   0 }, 
 
 RgbColor  COLOR_TABLE[256];
 
-RgbColor  xterm_to_rgb(int x)  { int calc; return
+static RgbColor  xterm_to_rgb(int x)  { int calc; return
 
               x <   16 ? BASIC16[x] :
   232 <= x && x <= 255 ? (calc = 8 + (x - 232) * 0x0A), (RgbColor){ calc,calc,calc} :
@@ -221,17 +215,18 @@ int rgb_to_xterm(int r, int g, int b) { return ({ /** Quantize RGB values to an 
 
   int best_match = 0, smallest_distance = 1000000000, c, d;
 
-  for (c = 16; c < 256; c++) { d = sqr(COLOR_TABLE[c].rVal - r) + sqr(COLOR_TABLE[c].gVal - g) + sqr(COLOR_TABLE[c].bVal - b);
+//  for (c = 16; c < 256; c++) { d = sqr(COLOR_TABLE[c].rVal - r) + sqr(COLOR_TABLE[c].gVal - g) + sqr(COLOR_TABLE[c].bVal - b);
+  for (c = 16; c < 256; c++) { d = sqr(COLOR_TABLE[c].r - r) + sqr(COLOR_TABLE[c].g - g) + sqr(COLOR_TABLE[c].b - b);
 
     if (d < smallest_distance) { smallest_distance = d; best_match = c; } }  best_match; });
 }
 
 @implementation NSColor (atozio) @dynamic bg, fg;
 
-//+ (NSArray*)    x16           { return [@16 mapTimes:^id(NSNumber* c){ return [self xColor:c.intValue]; }]; }
+//+ (NSArray*)    x16         { return [@16 mapTimes:^id(NSNumber* c){ return [self xColor:c.intValue]; }]; }
 + (NSArray*)    x16           { NSMutableArray *x = @[].mutableCopy; for (int c = 0; c < 16; c++) [x addObject:[self xColor:c]]; return x; }
 
-+ (NSColor*) xColor:(int)x    { RgbColor z = xterm_to_rgb(x); return [self colorWithDeviceRed:z.r green:z.g blue:z.b alpha:1]; }
++ (NSColor*) xColor:(int)x    { RgbColor z = xterm_to_rgb(x); return [self colorWithDeviceRed:z.r/255. green:z.g/255. blue:z.b/255. alpha:1]; }
 - (NSNumber*)   x256           { NSColor*x = [self colorUsingColorSpace:NSColorSpace.deviceRGBColorSpace]; return @(rgb_to_xterm(x.redComponent*255, x.greenComponent*255,x.blueComponent*255)); }
 - (NSColor*)     bg           { return !!self.otherColor &&  self.otherColor.isBGColor ? self.otherColor : nil;   }
 - (NSColor*)     fg           { return !!self.otherColor && !self.otherColor.isBGColor ? self.otherColor : self;  }
@@ -259,26 +254,22 @@ int rgb_to_xterm(int r, int g, int b) { return ({ /** Quantize RGB values to an 
 #define FMT_RESET_FG  "39m" // Reset foreground color.
 #define FMT_RESET_BG  "49m" // Reset background color.
 
-@implementation NSString (atozio)
-
-static void* colorKey = "color";
-
-- (void)setColor:(NSColor *)color {
-    @synchronized(self) { objc_setAssociatedObject(self, colorKey, color,
-      OBJC_ASSOCIATION_RETAIN);
-    }
-  }
-  - (NSColor*) color { __block id value = nil;
-
-    @synchronized(self) {
-      value = objc_getAssociatedObject(self, colorKey);
-    }
-    return value;
-  }
-
 //  SYNTHESIZE_ASC_OBJ (  color, setColor                );
+//SYNTHESIZE_ASC_PRIMITIVE_KVO ( options, setOptions, FMTOptions  );
 
-- (void)setOptions:(FMTOptions)options {
+@implementation NSString (atozio) // static void* colorKey = "color";
+
+- (NSString *)red     { self.color = NSColor.redColor;    return self.xString; }
+- (NSString *)orange  { self.color = NSColor.orangeColor; return self.xString; }
+- (NSString *)yellow  { self.color = NSColor.yellowColor; return self.xString; }
+- (NSString *)green   { self.color = NSColor.greenColor;  return self.xString; }
+- (NSString *)blue    { self.color = NSColor.blueColor;   return self.xString; }
+
+- (void)  setColor:(NSColor *)_ { @synchronized(self) { objc_setAssociatedObject(self, @selector(color), _,OBJC_ASSOCIATION_RETAIN); } }
+
+- (NSColor*) color { id c; @synchronized(self) { c = objc_getAssociatedObject(self,_cmd); } return c; }
+
+- (void)    setOptions:(FMTOptions)options {
 
   [self willChangeValueForKey:@"options"];
   objc_setAssociatedObject(self, @selector(options),
@@ -293,25 +284,41 @@ static void* colorKey = "color";
   return value;
 }
 
-//SYNTHESIZE_ASC_PRIMITIVE_KVO ( options, setOptions, FMTOptions  );
 
-- (NSString*) fg       { return !self.color.fg ? @"" : [NSString stringWithFormat:@"38;05;%@;", self.color.fg.x256.stringValue]; }
-- (NSString*) bg       { return !self.color.bg ? @"" : [NSString stringWithFormat:@"48;05;%@;", self.color.bg.x256.stringValue]; }
-- (const char*) xString  { return !self.color ? self.UTF8String : [NSString stringWithFormat:@"" FMT_ESC "%@%@m%@" FMT_ESC FMT_RESET, self.fg, self.bg, self].UTF8String; }
+
+- (NSString*) fg { return self.color.fg ? [NSString stringWithFormat:@"38;05;%@;", self.color.fg.x256.stringValue] : @""; }
+
+- (NSString*) bg { return self.color.bg ? [NSString stringWithFormat:@"48;05;%@;", self.color.bg.x256.stringValue] : @""; }
+
+- (const char*) cChar  { return self.xString.UTF8String; }
+
+- (NSString*) xString {
+
+  return self.color ? [NSString stringWithFormat:@"" FMT_ESC "%@%@m%@" FMT_ESC FMT_RESET, self.fg, self.bg, self] : self; }
+
+//+ (NSString*) _withColor:(NSColor*)c
+//                    fmt:(NSString*)f
+//                   args:(va_list)l { NSString*x = [self.alloc initWithFormat:f arguments:l]; return x ? x.color = c, x : nil; }
 
 + (NSString*) withColor:(NSColor*)c
-               fmt:(NSString*)f
-              args:(va_list)l    { NSString*x = [self.alloc initWithFormat:f arguments:l]; return x ? x.color = c, x : nil; }
-+ (NSString*) withColor:(NSColor*)c
-               fmt:(NSString*)fmt,... {
+                    fmt:(NSString*)fmt,... {
 
-  va_list list; va_start(list,fmt); NSString *new = [self withColor:c fmt:fmt args:list]; va_end(list); return new;
+  NSString *new; va_list list; va_start(list,fmt);
+
+  if ((new = [self.alloc initWithFormat:fmt arguments:list])) new.color = c;
+
+  va_end(list); return new;
+
+  //  new = [self _withColor:c fmt:fmt args:list];
 }
 
-- (void) xPrint               { printf("%s\n", self.xString); }
-- (void) xPrintX:(NSColor*)c  { self.color = c; [self xPrint]; }
+void _put(NSString *x, BOOL cr) { fprintf(stderr,"%s", x.cChar); !cr ?: newline(1); }
 
-+ (instancetype) scan {
+- (void) echo                     { _put(self, YES); }
+- (void) print                    { _put(self,  NO); }
+- (void) printInColor:(NSColor*)c { self.color = c; [self print]; }
+
++ (NSString*) scan {
 
   return  [NSString.alloc initWithData:
           [NSFileHandle.fileHandleWithStandardInput availableData]
@@ -319,17 +326,12 @@ static void* colorKey = "color";
 
 //  char cstring[1024];
 //  scanf("%s", cstring);
-//
 //  return [self stringWithUTF8String:cstring];
-
 //  NSFileHandle *input = NSFileHandle.fileHandleWithStandardInput;
-//while (1)
-//{
+//  while (1) {
 //    NSData* data = input.availableData;
 //    if(data != nil)
-//    {    
 //        NSString* aStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-//    }
 // }
 //  char x[32];
 //  int y = 0;
@@ -380,7 +382,7 @@ NSArray * NumtoArray(int num) {
 
 	double alpha = 0, omega = num, delta = 1;
 	
-	delta = alpha > omega && delta || (alpha < omega && delta < 0) ? -delta : delta;
+	delta = (alpha > omega && delta) || (alpha < omega && delta < 0) ? -delta : delta;
 
 	BOOL (^_)(double) = delta ? ^(double g){ return (BOOL) (g <= omega); }
                             : ^(double g){ return (BOOL) (g >= omega); };
@@ -404,7 +406,6 @@ __attribute__ ((constructor)) static void setupColors (){
 
   for (int c = 0; c < 256; c++) COLOR_TABLE[c] = xterm_to_rgb(c);
 }
-
 
 
 
@@ -564,3 +565,8 @@ foreach($s as $k => $v) { list($hue,$sat,$val) = $v; list($r,$g,$b) = hsvtorgb($
 //int getIntegerFromConsole(NSString* prompt) { return getStringFromConsole(prompt).intValue; }
 //
 //float getDecimalFromConsole(NSString* prompt) { return getStringFromConsole(prompt).floatValue; }
+
+
+//+ (instancetype) IO { static id x; static dispatch_once_t t; dispatch_once(&t, ^{ x = [self.class.alloc init]; }); return x; }
+//
+//+ (void) describeEnv { /* prin */ }

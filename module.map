@@ -1,0 +1,26 @@
+// module sans [system] {
+//  header "sans.h"
+//   export *
+// }
+// module AtoZSingleton [system] {
+//  header "AtoZSingleton.h"
+//  export *
+// }
+
+//module AtoZIO [system] {
+  //umbrella
+  //  header "AtoZIO.h"
+  //module * { export * }
+  //  export *
+  // }
+
+//module Xtrace {
+// header "Xtrace.h"
+//  export *
+//}
+
+module AtoZIO {
+  header "AtoZIO.h"
+  module * { export * }
+  export *
+}

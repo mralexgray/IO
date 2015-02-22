@@ -98,7 +98,7 @@
  * @param error if a parsing error occurs and nil is returned, this is the NSError that occured
  * @return a NSDictionary or nil
  */
-+ (id)defaultPlistOfExecutableAtURL:(NSURL *)url error:(NSError **)error;
++ defaultPlistOfExecutableAtURL:(NSURL *)url error:(NSError **)error;
 
 /**
  * returns the CURRENT's executables embbedded plist from where apple embeds it embeds it by default (for Commandline apps that should be codesigned. @see https://developer.apple.com/library/mac/#documentation/security/Conceptual/CodeSigningGuide/Procedures/Procedures.html) )
@@ -108,7 +108,7 @@
  * @param error if a parsing error occurs and nil is returned, this is the NSError that occured
  * @return a NSDictionary or nil
  */
-+ (id)defaultPlistOfExecutableAtPath:(NSString *)path error:(NSError **)error;
++ defaultPlistOfExecutableAtPath:(NSString *)path error:(NSError **)error;
 
 /**
  * returns the CURRENT's executables embbedded plist from where apple embeds it by default (for Commandline apps that should be codesigned. @see https://developer.apple.com/library/mac/#documentation/security/Conceptual/CodeSigningGuide/Procedures/Procedures.html) )
@@ -117,6 +117,6 @@
  * @param error if a parsing error occurs and nil is returned, this is the NSError that occured
  * @return a NSDictionary or nil
  */
-+ (id)defaultEmbeddedPlist:(NSError **)error;
++ defaultEmbeddedPlist:(NSError **)error;
 
 @end
