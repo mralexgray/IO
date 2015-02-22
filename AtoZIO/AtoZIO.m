@@ -2,10 +2,13 @@
 
 #include <stdio.h>
 #include <sys/ioctl.h>
+@import Darwin;
+@import ObjectiveC;
+@import AVFoundation;
 
 #import <AtoZAutoBox/AtoZAutoBox.h>
-#import "DDEmbeddedDataReader.h"
-#import <AQOptionParser/AQOptionParser.h>
+
+//#import <AQOptionParser/AQOptionParser.h>
 
 #import "AtoZIO.h"
 
@@ -13,18 +16,18 @@
 
 @implementation AtoZIO
 
-+ (NSString*) exePath { return NSProcessInfo.processInfo.arguments[0]; }
++  (NSString*) $0       { return NSProcessInfo.processInfo.arguments[0];      }
++  (NSNumber*) $$       { return @(NSProcessInfo.processInfo.processIdentifier); }
++       (BOOL) isatty   { return [@(isatty(STDERR_FILENO))boolValue];         }
++       (BOOL) isxcode  { return [NSProcessInfo.processInfo.environment[@"XCODE_COLORS"] isEqual:@YES]; }
 
-+      (BOOL) inTTY    { return [@(isatty(STDERR_FILENO))boolValue]; }
-+      (BOOL) inXcode  { return [NSProcessInfo.processInfo.environment[@"XCODE_COLORS"] isEqual:@YES]; }
-
-+       (int) terminal_width   { return [self terminal_size].width;   }
-+       (int) terminal_height  { return [self terminal_size].height;  }
-+    (NSSize) terminal_size    { char * nterm; struct winsize w;
++       (int) width   { return self.size.width;   }
++       (int) height  { return self.size.height;  }
++    (CGSize) size    { char * nterm; struct winsize w;
 
   if (!(nterm = getenv("TERM"))) return (NSSize){ -1,-1};
   /* We are running standalone, retrieve the terminal type from the environment. */
-  strcpy(term, nterm); ioctl(0, TIOCGWINSZ, &w); return (NSSize){ w.ws_col, w.ws_row};
+  strcpy(term, nterm); ioctl(0, TIOCGWINSZ, &w); return (CGSize){ w.ws_col, w.ws_row};
 
 } /* OK */
 
@@ -361,9 +364,9 @@ void      PrintClr (int c)                  { PrintInClr("  ", c); }
 void       ClrPlus (const char* c)          { printf("%s0m%s", FMT_ESC, c); }
 void    FillScreen (int c)                  {
 
-  for (int ctr = 0; ctr < AtoZIO.terminal_height; ctr++){
+  for (int ctr = 0; ctr < IO.height; ctr++){
 
-    PrintInClr([NSString stringWithFormat:@"%*s", AtoZIO.terminal_width, " "].UTF8String, c);
+    PrintInClr([NSString stringWithFormat:@"%*s", IO.width, " "].UTF8String, c);
   }
 }
 void      Spectrum (void)                   {

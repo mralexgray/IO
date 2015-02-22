@@ -1,26 +1,35 @@
 
-
-@import Darwin;
-@import AppKit;
 @import QuartzCore;
-@import ObjectiveC;
-@import AVFoundation;
+ @class AVAudioPlayer;
 
-// Imports all source files for GBCli
-#import "GBCommandLineParser.h"
+#if     TARGET_OS_IPHONE
+@import UIKit.UIColor;
+#else
+@import AppKit.NSColor;
+#endif
+
+#import "GBCommandLineParser.h"     // All source files for GBCli
 #import "DDEmbeddedDataReader.h"
+
+#ifndef     IO
+#define     IO   AtoZIO
+#endif
 
 @interface AtoZIO : NSObject
 
-+ (NSString*) exePath;
-+  (NSArray*) args;     /* OK */
 
-@property NSString *prompt;
++  (NSString*) $0;
++  (NSNumber*) $$;       /* PID */
++   (NSArray*) args;     /* OK */
 
-+ (BOOL) inTTY;          /// Seems accurate..
-+ (BOOL) inXcode;
++ (BOOL) isatty;          /// Seems accurate..
++ (BOOL) isxcde;
 
 #pragma mark - TERM info
++ (CGSize) size;
++    (int) width;
++    (int) height;
+
 
 /// from AtoZ...  @prop_RO BOOL 	inTTY & inXcode;  (Seems accurate..)
 
@@ -28,9 +37,6 @@
 /*! Command-K      */ + (void) clearConsole;  /* OK */
 /*! ie. 80 x 33    */
 
-+ (NSSize) terminal_size;
-+    (int) terminal_width;
-+    (int) terminal_height;
 
 /** -=/><\=-=/><\=-=/><\=-=/><\=-=/><\=-=/><\=-=/><\=-=/><\=-=/><\=-
  Returns the embbedded data for the CURRENT executable from a specific section in a specific segment.
@@ -44,7 +50,10 @@
 
 + (AVAudioPlayer*) playerForAudio:dataOrPath;
 
-+ (NSDictionary*)parseArgs:(char *[])argv andKeys:(NSArray*)keys count:(int)argc;
++ (NSDictionary*) parseArgs:(char *[])argv andKeys:(NSArray*)keys count:(int)argc;
+
+
+@property NSString *prompt;
 
 //+ (NSURL*) namePipe:(NSS*)path withData:(NSData*)d;
 @end

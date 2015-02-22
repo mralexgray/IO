@@ -1,10 +1,13 @@
-#import <Foundation/Foundation.h>
+
+@import Darwin;
+
+//@import Foundation;
 
 // http://www.cs.swarthmore.edu/~newhall/unixhelp/C_cool_utils.html
 
-
+/* getopt: parse command line options */
 /*
-getopt: parse command line options
+
 readline: readin user input, has support for user line editing
 ncurses: terminal user interface library
 getopt
@@ -63,6 +66,10 @@ void process_args(int ac, char *av[]){
   }
 }
 
+*/
+
+/*   readline */
+/*
 
 int main(int argc, char *argv[]) {
 
@@ -80,10 +87,7 @@ int main(int argc, char *argv[]) {
       $ gcc -o myprog  myprog.c -lreadline
       Here is a very simple example program:
 */
-
-@import Darwin;
-//@import edi.readline;
-
+/*
 //#include <stdlib.h>
 //#include <stdio.h>
 #include <readline/readline.h>
@@ -109,14 +113,10 @@ int main(){
 //  CNTRL-k   kill the string from the curser to the end of the line
 //  CNTRL-l   clear the screen and re-print the prompt and input string at the top
 
+*/
 
-
-
-
-
+/* ncurses */
 /*
-  ncurses
-
   ncurses is a library for terminal-independent I/O to character screens. It can be used to create character-based user interfaces to terminal windows.
     See the man page for ncurses for more information. Also, here is an ncurses HOWTO
 
@@ -160,3 +160,79 @@ int main(int argc, const char * argv[]) {
     return 0;
 }
 */
+
+
+/* libedit or editline */
+/*
+  libedit is a replacement or alternative to the GNU readline commandline editing functionality. libedit is released under a BSD style licence, so you can use it in your proprietary code.
+
+I found it difficult to get information on libedit, so I decided to write this page to have a central location for all the information I've found.
+
+Where to get it
+
+The main web site that has the latest version can be found at http://www.thrysoee.dk/editline. This seems to be the location of the most recent version (2.10), though I haven't tested anything past version 2.6. I also found versions at sourceforge (http://sourceforge.net/projects/libedit/ ), but this version is 0.3 and it appears the maintainer simply posted the version and hasn't done any work to update it. I have also found a 1.12 version at http://packages.qa.debian.org/e/editline.htmlwhich implements the readline function, but I haven't been able to compile it (it was made for a 2001 debian system).
+
+libedit vs editline
+
+Editline appears to be the decendent of libedit. In the sourceforge version I've found an implementation of the readline function to provide compatibility with the readline library. Newer versions of libedit don't implement this interface, but still provide much of the same functionality. The man page for libedit is however still referred to as editline.
+
+How to Use libedit
+
+The only documentation comes in a man page without being very informative to how to use it. I was able to piece together a simple program using this man page and code from a package which was developed to use libedit called eltclsh. Most of what I wanted was a history with emacs line editing functionality. Below you will find simple code that sits in a loop and echos the command you entered.
+
+/*
+ cc -g test.c -o test -ledit -ltermcap
+ */
+
+/* This will include all our libedit functions.  If you use C++ don't
+ forget to use the C++ extern "C" to get it to compile.
+ */
+#include <histedit.h>
+
+
+/* To print out the prompt you need to use a function.  This could be
+ made to do something special, but I opt to just have a static prompt.
+ */
+char * prompt(EditLine *e) {
+  return "test> ";
+}
+
+int main(int argc, char *argv[]) {
+
+   HistEvent   ev;            /* Temp variables */
+  const char * line;
+         int   keepreading = 1,
+               count;
+
+/*  This holds all the state for our line editor
+  Initialize the EditLine state to use our prompt function and emacs style editing. */
+
+  EditLine * el = el_init(argv[0], stdin, stdout, stderr);
+
+  el_set(el, EL_PROMPT, &prompt);
+  el_set(el, EL_EDITOR, "emacs");
+
+
+  History * myhistory;   /* This holds the info for our history */
+
+  if (!(myhistory = history_init())) return fprintf(stderr, "history could not be initialized\n"), 1;
+
+  history(myhistory, &ev, H_SETSIZE, 800);   /*! Set the size of the history */
+
+  el_set(el, EL_HIST, history, myhistory);   /*! This sets up the call back functions for history functionality */
+
+  while (keepreading) {                      /*! count is the number of chars. read. */
+
+    line = el_gets(el, &count);              /*! @c line is a `const char*` of our command line WITH the tailing \n */
+
+    if (!count) continue;                   /* In order to use our history we have to explicitly add commands to the history */
+
+    history(myhistory, &ev, H_ENTER, line); printf("You typed \"%s\"\n", line);
+  }
+
+  /* Clean up our memory */
+  history_end(myhistory);
+  el_end(el);
+
+  return 0;
+}

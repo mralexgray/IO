@@ -57,10 +57,13 @@ int main(int argc, const char * argv[]) {
 //    settings.printVersion           ? [opts printVersion],                     0 :
 //    settings.printSettings          ? [opts printValuesFromSettings:settings], 0 : 0; // Print settings if necessary.
 
+//    [@(IO.$$).stringValue print];
+//    [IO readWithPrompt:@"Press return to clear console!"];
+    [AtoZ processInfo];
 
-    [AtoZIO.exePath echo];
+    [IO.$0 echo];
 
-    [AtoZIO readWithPrompt:@"Press return to clear console!"];
+    [IO readWithPrompt:@"Press return to clear console!"];
 
 //    [[@"ArcgV is: " /stringByAppendingFormat:@"%c",_NSGetArgv()] echo];
 
@@ -71,12 +74,12 @@ int main(int argc, const char * argv[]) {
     id answer = @"None Yet!";
     for (NSC* x in [RANDOMPAL withMaxItems:5]) { // NSCL.namedColors) {
 
-      [[x.name paddedTo:AtoZIO.terminal_width] printInColor:[x withBG:x.muchDarker]];
+      [[x.name paddedTo:IO.width] printInColor:[x withBG:x.muchDarker]];
       answer = [AtoZIO readWithPrompt:z];
 
     }
 
-    [AtoZIO clearConsole];
+    [IO clearConsole];
 //    describeEnv  [AtoZ sharedInstance];
 //    XX(rgb_to_xterm(3,4,255));
 //    XX(nsColor_to_xterm(RED));
