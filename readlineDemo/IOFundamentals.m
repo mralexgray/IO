@@ -179,33 +179,29 @@ Editline appears to be the decendent of libedit. In the sourceforge version I've
 How to Use libedit
 
 The only documentation comes in a man page without being very informative to how to use it. I was able to piece together a simple program using this man page and code from a package which was developed to use libedit called eltclsh. Most of what I wanted was a history with emacs line editing functionality. Below you will find simple code that sits in a loop and echos the command you entered.
+*/
 
 /*
- cc -g test.c -o test -ledit -ltermcap
- */
+ // cc -g test.c -o test -ledit -ltermcap
 
-/* This will include all our libedit functions.  If you use C++ don't
- forget to use the C++ extern "C" to get it to compile.
- */
+ // This will include all our libedit functions.  If you use C++ don't forget to use the C++ extern "C" to get it to compile.
 #include <histedit.h>
 
 
-/* To print out the prompt you need to use a function.  This could be
- made to do something special, but I opt to just have a static prompt.
- */
+// To print out the prompt you need to use a function.  This could be made to do something special, but I opt to just have a static prompt.
+
 char * prompt(EditLine *e) {
   return "test> ";
 }
 
 int main(int argc, char *argv[]) {
 
-   HistEvent   ev;            /* Temp variables */
+   HistEvent   ev;            // Temp variables
   const char * line;
          int   keepreading = 1,
                count;
 
-/*  This holds all the state for our line editor
-  Initialize the EditLine state to use our prompt function and emacs style editing. */
+//  This holds all the state for our line editor Initialize the EditLine state to use our prompt function and emacs style editing.
 
   EditLine * el = el_init(argv[0], stdin, stdout, stderr);
 
@@ -213,26 +209,280 @@ int main(int argc, char *argv[]) {
   el_set(el, EL_EDITOR, "emacs");
 
 
-  History * myhistory;   /* This holds the info for our history */
+  History * myhistory;   // This holds the info for our history
 
   if (!(myhistory = history_init())) return fprintf(stderr, "history could not be initialized\n"), 1;
 
-  history(myhistory, &ev, H_SETSIZE, 800);   /*! Set the size of the history */
+  history(myhistory, &ev, H_SETSIZE, 800);   // Set the size of the history
 
-  el_set(el, EL_HIST, history, myhistory);   /*! This sets up the call back functions for history functionality */
+  el_set(el, EL_HIST, history, myhistory);   // This sets up the call back functions for history functionality
 
-  while (keepreading) {                      /*! count is the number of chars. read. */
+  while (keepreading) {                      // count is the number of chars. read.
 
-    line = el_gets(el, &count);              /*! @c line is a `const char*` of our command line WITH the tailing \n */
+    line = el_gets(el, &count);              // @c line is a `const char*` of our command line WITH the tailing \n
 
-    if (!count) continue;                   /* In order to use our history we have to explicitly add commands to the history */
+    if (!count) continue;                   // In order to use our history we have to explicitly add commands to the history
 
     history(myhistory, &ev, H_ENTER, line); printf("You typed \"%s\"\n", line);
   }
 
-  /* Clean up our memory */
+  // Clean up our memory
   history_end(myhistory);
   el_end(el);
 
   return 0;
 }
+
+*/
+
+
+/*
+#define USE_TINFO
+//#include <test.priv.h>
+//#if HAVE_SETUPTERM
+
+#include <time.h>
+#include <term.h>
+#include <curses.h>
+
+#define valid(s) ((s != 0) && s != (char *)-1)
+
+
+#if defined(sun) && !defined(_XOPEN_CURSES) && !defined(NCURSES_VERSION_PATCH)
+#undef TPUTS_ARG
+#define TPUTS_ARG char
+extern char *tgoto(char *, int, int);	// available, but not prototyped
+#endif
+
+#define CATCHALL(handler) { \
+int nsig; \
+for (nsig = SIGHUP; nsig < SIGTERM; ++nsig) \
+if (nsig != SIGKILL) \
+signal(nsig, handler); \
+}
+
+#define tparm3(a,b,c) tparm(a,b,c,0,0,0,0,0,0,0)
+#define tparm2(a,b)   tparm(a,b,0,0,0,0,0,0,0,0)
+
+
+static bool interrupted = FALSE;
+static long total_chars = 0;
+static time_t started;
+
+static int outc(int c)
+{
+  int rc = c;
+
+  if (interrupted) {
+    char tmp = (char) c;
+    if (write(STDOUT_FILENO, &tmp, (size_t) 1) == -1)
+      rc = EOF;
+  } else {
+    rc = putc(c, stdout);
+  }
+  return rc;
+}
+
+static bool outs(const char *s){ return valid(s) ? tputs(s, 1, outc), TRUE : FALSE; }
+
+static void cleanup(void) {
+
+  outs(exit_attribute_mode);
+  outs(orig_colors) ? (void) nil : outs(orig_pair);
+  outs(clear_screen); outs(cursor_normal);
+  printf("\n\n%ld total chars, rate %.2f/sec\n", total_chars, ((double)total_chars/(double)time((time_t *) 0) - started));
+}
+
+static void onsig(int n) { interrupted = TRUE; }
+
+static double ranf(void) { long r = (rand() & 077777); return ((double) r / 32768.); }
+
+int
+main(int argc __unused,
+     char *argv[] __unused)
+{
+  int x, y, z, p;
+  double r;
+  double c;
+  int my_colors;
+
+  CATCHALL(onsig);
+
+  srand((unsigned) time(0));
+  setupterm((char *) 0, 1, (int *) 0);
+  outs(clear_screen);
+  outs(cursor_invisible);
+  my_colors = max_colors;
+  if (my_colors > 1) {
+    if (!valid(set_a_foreground)
+        || !valid(set_a_background)
+        || (!valid(orig_colors) && !valid(orig_pair)))
+      my_colors = -1;
+  }
+
+  r = (double) (lines - 4);
+  c = (double) (columns - 4);
+  started = time((time_t *) 0);
+
+  while (!interrupted) {
+    x = (int) (c * ranf()) + 2;
+    y = (int) (r * ranf()) + 2;
+    p = (ranf() > 0.9) ? '*' : ' ';
+
+    tputs(tparm3(cursor_address, y, x), 1, outc);
+    if (my_colors > 0) {
+      z = (int) (ranf() * my_colors);
+      if (ranf() > 0.01) {
+        tputs(tparm2(set_a_foreground, z), 1, outc);
+      } else {
+        tputs(tparm2(set_a_background, z), 1, outc);
+        napms(1);
+      }
+    } else if (valid(exit_attribute_mode)
+               && valid(enter_reverse_mode)) {
+      if (ranf() <= 0.01) {
+        outs((ranf() > 0.6)
+             ? enter_reverse_mode
+             : exit_attribute_mode);
+        napms(1);
+      }
+    }
+    outc(p);
+    fflush(stdout);
+    ++total_chars;
+  }
+  cleanup();
+  exit(EXIT_SUCCESS);
+}
+
+*/
+/// BEGIN MENU BASICS
+
+#include <curses.h>
+#include <menu.h>
+
+#define ARRAY_SIZE(a) (sizeof(a) / sizeof(a[0]))
+#define CTRLD 	4
+
+
+#include <menu.h>
+
+#define ARRAY_SIZE(a) (sizeof(a) / sizeof(a[0]))
+#define CTRLD 	4
+
+char *choices[] = {
+  "Choice 1",
+  "Choice 2",
+  "Choice 3",
+  "Choice 4",
+  "Choice 5",
+  "Choice 6",
+  "Choice 7",
+  "Exit",
+};
+
+int main() {	ITEM **my_items;
+  int c;
+  MENU *my_menu;
+  int n_choices, i;
+  ITEM *cur_item;
+
+  /* Initialize curses */
+  initscr();
+  start_color();
+  cbreak();
+  noecho();
+  keypad(stdscr, TRUE);
+  init_pair(1, COLOR_RED, COLOR_BLACK);
+  init_pair(2, COLOR_GREEN, COLOR_BLACK);
+  init_pair(3, COLOR_MAGENTA, COLOR_BLACK);
+
+  /* Initialize items */
+  n_choices = ARRAY_SIZE(choices);
+  my_items = (ITEM **)calloc(n_choices + 1, sizeof(ITEM *));
+  for(i = 0; i < n_choices; ++i)
+    my_items[i] = new_item(choices[i], choices[i]);
+  my_items[n_choices] = (ITEM *)NULL;
+  item_opts_off(my_items[3], O_SELECTABLE);
+  item_opts_off(my_items[6], O_SELECTABLE);
+
+  /* Create menu */
+  my_menu = new_menu((ITEM **)my_items);
+
+  /* Set fore ground and back ground of the menu */
+  set_menu_fore(my_menu, COLOR_PAIR(1) | A_REVERSE);
+  set_menu_back(my_menu, COLOR_PAIR(2));
+  set_menu_grey(my_menu, COLOR_PAIR(3));
+
+  /* Post the menu */
+  mvprintw(LINES - 3, 0, "Press <ENTER> to see the option selected");
+  mvprintw(LINES - 2, 0, "Up and Down arrow keys to naviage (F1 to Exit)");
+  post_menu(my_menu);
+  refresh();
+
+  while((c = getch()) != KEY_F(1))
+  {       switch(c)
+    {	case KEY_DOWN:
+        menu_driver(my_menu, REQ_DOWN_ITEM);
+        break;
+      case KEY_UP:
+        menu_driver(my_menu, REQ_UP_ITEM);
+        break;
+      case 10: /* Enter */
+        move(20, 0);
+        clrtoeol();
+        mvprintw(20, 0, "Item selected is : %s",
+                 item_name(current_item(my_menu)));
+        pos_menu_cursor(my_menu);
+        break;
+    }
+  }
+  unpost_menu(my_menu);
+  for(i = 0; i < n_choices; ++i) free_item(my_items[i]); free_menu(my_menu);
+  endwin();
+}
+
+
+/*
+char *choices[] = {
+  "Choice 1",
+  "Choice 2",
+  "Choice 3",
+  "Choice 4",
+  "Exit",
+};
+
+int main()
+{
+
+   int i, c;   ITEM __unused *cur_item;
+
+
+  initscr();
+  cbreak();
+  noecho();
+  keypad(stdscr, TRUE);
+
+  int n_choices = ARRAY_SIZE(choices);
+  ITEM **my_items = (ITEM **)calloc(n_choices + 1, sizeof(ITEM *));
+
+  for(i = 0; i < n_choices; ++i)
+    my_items[i] = new_item(choices[i], choices[i]);
+  my_items[n_choices] = (ITEM *)NULL;
+
+  MENU *my_menu = new_menu((ITEM **)my_items);
+  mvprintw(LINES - 2, 0, "F1 to Exit");
+  post_menu(my_menu);
+  refresh();
+
+  while((c = getch()) != KEY_F(1))
+    c == KEY_DOWN ? menu_driver(my_menu, REQ_DOWN_ITEM) :
+    c == KEY_UP   ? menu_driver(my_menu, REQ_UP_ITEM) : (void)nil;
+
+  free_item(my_items[0]);
+  free_item(my_items[1]);
+  free_menu(my_menu);
+  endwin();
+}
+*//// supers simple
+// END MENU BASICS

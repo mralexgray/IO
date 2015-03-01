@@ -160,11 +160,9 @@ NSError *_BVPOSIXError(NSURL *url) {
                                                       userInfo:nil];
     NSString *errorDescription = [NSString stringWithFormat:@"File %@ could not be opened. %s.",
                                   [url path], strerror(errno)];
-    NSDictionary *userInfo = [NSDictionary dictionaryWithObjectsAndKeys:
-                              errorDescription, NSLocalizedDescriptionKey,
-                              underlyingError, NSUnderlyingErrorKey,
-                              [url path], NSFilePathErrorKey,
-                              nil];
+    NSDictionary *userInfo = @{NSLocalizedDescriptionKey: errorDescription,
+                              NSUnderlyingErrorKey: underlyingError,
+                              NSFilePathErrorKey: [url path]};
     NSError *error = [[NSError alloc] initWithDomain:BVPlistExtractorErrorDomain
                                                 code:BVPlistExtractorErrorOpenFile
                                             userInfo:userInfo];
@@ -173,10 +171,8 @@ NSError *_BVPOSIXError(NSURL *url) {
 
 NSError *_BVGenericError(NSURL *url, NSString *fileQualifier, NSInteger errorCode) {
     NSString *errorDescription = [NSString stringWithFormat:@"File %@ is %@.", [url path], fileQualifier];
-    NSDictionary *userInfo = [NSDictionary dictionaryWithObjectsAndKeys:
-                              errorDescription, NSLocalizedDescriptionKey,
-                              [url path], NSFilePathErrorKey,
-                              nil];
+    NSDictionary *userInfo = @{NSLocalizedDescriptionKey: errorDescription,
+                              NSFilePathErrorKey: [url path]};
     NSError *error = [[NSError alloc] initWithDomain:BVPlistExtractorErrorDomain
                                                 code:errorCode
                                             userInfo:userInfo];
@@ -364,11 +360,10 @@ END_FUNCTION:
     if (_NSGetExecutablePath(ch, &size)!=0) {
         return nil;
     }
-    NSString *s = [NSString stringWithUTF8String:ch];
+    NSString *s = @(ch);
     return [self dataFromSegment:segment inSection:section ofExecutableAtPath:s error:error];
 }
 
-#pragma mark -
 
 + (NSData *)dataFromSection:(NSString *)section ofExecutableAtURL:(NSURL *)url error:(NSError **)error {
     return _BVMachOSection(url, "__TEXT", (char *)[section UTF8String], error);
@@ -384,11 +379,10 @@ END_FUNCTION:
     if (_NSGetExecutablePath(ch, &size)!=0) {
         return nil;
     }
-    NSString *s = [NSString stringWithUTF8String:ch];
+    NSString *s = @(ch);
     return [self dataFromSection:section ofExecutableAtPath:s error:error];
 }
 
-#pragma mark -
 
 + (id)defaultPlistOfExecutableAtURL:(NSURL *)url error:(NSError **)error {
     id plist = nil;
@@ -413,7 +407,7 @@ END_FUNCTION:
     if (_NSGetExecutablePath(ch, &size)!=0) {
         return nil;
     }
-    NSString *s = [NSString stringWithUTF8String:ch];
+    NSString *s = @(ch);
     return [self defaultPlistOfExecutableAtPath:s error:error];
 }
 

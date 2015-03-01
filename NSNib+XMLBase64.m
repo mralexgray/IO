@@ -43,7 +43,7 @@ static char base64EncodingTable[64] = {
 		c = [alphabet rangeOfString:[encoded substringWithRange:NSMakeRange(i + 2, 1)]].location;
 		d = [alphabet rangeOfString:[encoded substringWithRange:NSMakeRange(i + 3, 1)]].location;
 		z = ((UInt32)a << 26) + ((UInt32)b << 20) + ((UInt32)c << 14) + ((UInt32)d << 8);
-		decoded = [decoded stringByAppendingString:[NSString stringWithUTF8String:(char*)&z]];
+		decoded = [decoded stringByAppendingString:@((char*)&z)];
 	}
 	return decoded;
 }

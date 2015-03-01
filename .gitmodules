@@ -16,3 +16,9 @@
 [submodule "Modules/GBCli"]
 	path = Modules/GBCli
 	url = git@github.com:mralexgray/GBCli.git
+[submodule "Modules/DProperty"]
+	path = Modules/DProperty
+	url = git@github.com:kissrobber/DProperty.git
+[submodule "Modules/printfc"]
+	path = Modules/printfc
+	url = https://github.com/dasmithii/printfc.git
