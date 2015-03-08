@@ -1,5 +1,4 @@
 
-@import AtoZAutoBox;
 #import "IO.h"
 
 @implementation NSString (AtoZIO)

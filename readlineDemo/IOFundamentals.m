@@ -1,51 +1,48 @@
 
 @import Darwin;
-
-//@import Foundation;
+@import AtoZIO;
 
 // http://www.cs.swarthmore.edu/~newhall/unixhelp/C_cool_utils.html
 
-/* getopt: parse command line options */
-/*
+/*  getopt: parse command line options */
+/* `getopt` is very useful for writing programs that take optional and/or required command line options.
+    It can be used to parse command line arguments of the form:
 
-readline: readin user input, has support for user line editing
-ncurses: terminal user interface library
-getopt
+  -o opt_arg  -o  ...
 
-getopt is very useful for writing programs that take optional and/or required command line options. It can be used to parse command line arguments of the form:
--o opt_arg  -o  ...
-the man page for getopt has an example (man 3 getopt), also here is an example from one of my programs (it shows one way of handling required command line options):
-// prints out error message when user tries to run with bad command line args or
-// when user runs with the -h command line arg
+  the man page for getopt has an example (man 3 getopt), 
+  also here is an example from one of my programs (it shows one way of handling required command line options):
+  
+  prints out error message when user tries to run with bad command line args or when user runs with the -h command line arg
+*/
+
 void usage(void){
-  fprintf(stderr,
-          " usage:\n"
-          "    ./server -p portnum [-h] [-c] [-f configfile] [-n secs]\n"
-          "       -p  portnum:   use portnum as the listen port for server\n"
-          "       -h:            print out this help message\n"
-          "       -c:            run this server deamon in collector-only mode\n"
-          "       -f conf_file:  run w/conf_file instead of /etc/server.config\n"
-          "       -n secs:  how often damon sends its info to peers (default 5)\n"
-          "\n");
+  fprintf(stderr, " usage:\n"
+                  "    ./server -p portnum [-h] [-c] [-f configfile] [-n secs]\n"
+                  "       -p  portnum:   use portnum as the listen port for server\n"
+                  "       -h:            print out this help message\n"
+                  "       -c:            run this server deamon in collector-only mode\n"
+                  "       -f conf_file:  run w/conf_file instead of /etc/server.config\n"
+                  "       -n secs:  how often damon sends its info to peers (default 5)\n\n");
 }
 
-// parse command line arguments
-//   ac: argc value passed into main
-//   av: argv value passed into main
-// this function may set the value of global vars based on what command line
-// options are present
-//
 void process_args(int ac, char *av[]){
 
-  int c, p=0;  // p is a flag that we set if we get the -p command line option
+/*  parse command line arguments ac: argc value passed into main av: argv value passed into main
+    this function may set the value of global vars based on what command line options are present
+*/
+
+  int c, p=0, sleep_secs;  // p is a flag that we set if we get the -p command line option
+  char * port_num;
 
   while(1){
-    c=getopt(ac, av, "p:chf:n:");   // "p:"  p option has an arg  "c"  does not
+    c = getopt(ac, av, "p:chf:n:");   // "p:"  p option has an arg  "c"  does not
+
     switch(c){
       case 'h': usage(); exit(0); break;
       case 'p': port_num=optarg; p = 1; break;
-      case 'c': collector_only = 1; break;
-      case 'f': config_file=optarg; break;
+//      case 'c': collector_only = 1; break;
+//      case 'f': config_file=optarg; break;
       case 'n':
         sleep_secs=atoi(optarg);  // atoi converts a string to an int
         if(sleep_secs <= 0){	    // (ex) atoi("1234") to int 1234
@@ -65,8 +62,6 @@ void process_args(int ac, char *av[]){
     exit(1);
   }
 }
-
-*/
 
 /*   readline */
 /*
@@ -381,7 +376,9 @@ char *choices[] = {
   "Exit",
 };
 
-int main() {	ITEM **my_items;
+int menu_main() {
+
+  ITEM **my_items;
   int c;
   MENU *my_menu;
   int n_choices, i;
@@ -440,7 +437,15 @@ int main() {	ITEM **my_items;
   unpost_menu(my_menu);
   for(i = 0; i < n_choices; ++i) free_item(my_items[i]); free_menu(my_menu);
   endwin();
+  return 1;
 }
+
+MAIN({
+
+  [@"hello" print];
+
+})
+
 
 
 /*
@@ -485,4 +490,5 @@ int main()
   endwin();
 }
 *//// supers simple
+
 // END MENU BASICS

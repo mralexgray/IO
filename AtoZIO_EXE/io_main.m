@@ -1,51 +1,23 @@
 @import AtoZ;
+@import AtoZIO;
 
-/*
-void(^scrDemo)() = ^{
+@interface CLId : AtoZSingleton <CLIDelegate>
+@end
 
-  char nombre[255];
+@implementation CLId
 
-  // Iniciar
-  IO.tinta = scrYellow;
-  IO.papel = scrBlue;     //  scrSetColors( scrYellow, scrBlue );
+- (void) doSomething { [@"done" printC:RANDOMCOLOR]; }
 
-  [IO clear];   //scrClear();
+@end
 
-  // Mostrar info consola
-  IO.showCursor     = YES;
-  IO.cursorPosition = (scrPosition){0,0};   printf( "scrutil Demo" );
-  IO.cursorPosition = (scrPosition){5,10};  printf( "Max Filas: %d\n", scrGetMaxRows() );
-
-  [IO moveCursorTo:6 column:10];
-
-  [$(@"Max Columnas: %d\n", scrGetMaxColumns()) echo];
-
-  // Pedir el nombre
-  MOVETO(10,10);  [@"Introduce tu nombre:" echo];
-  MOVETO(5,50);
-
-  fgets( nombre, 255, stdin );
-
-  // Mostrar el nombre
-  IO.attributes = (scrAttributes){scrYellow, scrRed};
-  
-  [IO moveCursorTo:scrGetMaxRows() - 7 column:50];
-  printf( "Tu nombre es %s\n", nombre );
-
-  IO.showCursor = NO;
-
-  scrSetColors( scrWhite, scrBlack );
-
-
-
-};
-*/
 AZMAIN({
 
 
 //  scrDemo();
 
   [IO.$0 echo];
+  NSObject <CLIDelegate> *x = [CLId instance];
+  NSLog(@"%@ options", x.className);//, x.options);
 
   [$(@"isatty:%@ isxcode:%@\n", StringFromBOOL(IO.isatty),
                                 StringFromBOOL(IO.isxcode)) printC:RANDOMCOLOR];
@@ -146,26 +118,26 @@ AZMAIN({
  }];
  */
 /* REGISTER DONE */
+/*
+ Initialize command line parser and register it with all options from helper. Then parse command line.
+    GBCommandLineParser *parser = GBCommandLineParser.new;
+    [parser registerSettings:settings];
+    [parser registerOptions:opts];
 
-// Initialize command line parser and register it with all options from helper. Then parse command line.
-//    GBCommandLineParser *parser = GBCommandLineParser.new;
-//    [parser registerSettings:settings];
-//    [parser registerOptions:opts];
-//
-// parseOptionsWithArguments:argv count:argc]) {
-//    if (![parser parse]) return gbprintln(@"Errors in command line parameters!".blue), [opts printHelp], 1;
+ parseOptionsWithArguments:argv count:argc]) {
+    if (![parser parse]) return gbprintln(@"Errors in command line parameters!".blue), [opts printHelp], 1;
 
-// NOTE: from here on, you can forget about GBOptionsHelper or GBCommandLineParser and only deal with GBSettings...
+ NOTE: from here on, you can forget about GBOptionsHelper or GBCommandLineParser and only deal with GBSettings...
 
-// Print help or version if instructed - print help if there's no cmd line argument also...
-//    return  settings.printHelp || argc == 1 ? [opts printHelp],                        0 :
-//    settings.printVersion           ? [opts printVersion],                     0 :
-//    settings.printSettings          ? [opts printValuesFromSettings:settings], 0 : 0; // Print settings if necessary.
+ Print help or version if instructed - print help if there's no cmd line argument also...
+    return  settings.printHelp || argc == 1 ? [opts printHelp],                        0 :
+    settings.printVersion           ? [opts printVersion],                     0 :
+    settings.printSettings          ? [opts printValuesFromSettings:settings], 0 : 0; // Print settings if necessary.
 
-//    [@(IO.$$).stringValue print];
-//    [IO readWithPrompt:@"Press return to clear console!"];
+    [@(IO.$$).stringValue print];
+    [IO readWithPrompt:@"Press return to clear console!"];
 
-
+*/
 
 /*
 
@@ -963,4 +935,45 @@ main(int argc, char *argv[])
      [[@"ArcgC is: " stringByAppendingFormat:@"%d",*_NSGetArgc()] echo];
 
     [AtoZ processInfo];
+*/
+
+/*
+void(^scrDemo)() = ^{
+
+  char nombre[255];
+
+  // Iniciar
+  IO.tinta = scrYellow;
+  IO.papel = scrBlue;     //  scrSetColors( scrYellow, scrBlue );
+
+  [IO clear];   //scrClear();
+
+  // Mostrar info consola
+  IO.showCursor     = YES;
+  IO.cursorPosition = (scrPosition){0,0};   printf( "scrutil Demo" );
+  IO.cursorPosition = (scrPosition){5,10};  printf( "Max Filas: %d\n", scrGetMaxRows() );
+
+  [IO moveCursorTo:6 column:10];
+
+  [$(@"Max Columnas: %d\n", scrGetMaxColumns()) echo];
+
+  // Pedir el nombre
+  MOVETO(10,10);  [@"Introduce tu nombre:" echo];
+  MOVETO(5,50);
+
+  fgets( nombre, 255, stdin );
+
+  // Mostrar el nombre
+  IO.attributes = (scrAttributes){scrYellow, scrRed};
+  
+  [IO moveCursorTo:scrGetMaxRows() - 7 column:50];
+  printf( "Tu nombre es %s\n", nombre );
+
+  IO.showCursor = NO;
+
+  scrSetColors( scrWhite, scrBlack );
+
+
+
+};
 */

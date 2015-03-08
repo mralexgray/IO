@@ -1,27 +1,7 @@
 
-@import AVFoundation;  @import Foundation;   @import Darwin;
-@import AtoZUniversal; @import AtoZAutoBox;  @import ExtObjC;
+@import AVFoundation; @import Darwin; @import AtoZAutoBox;
 
-@protocol Bicolor <NSObject, IndexSet, KeyGet> @concrete
-
-//  @"Apple"[2] -> fg -> 2/256  | color @"Apple"[ORANGE]  -> fgwith ORANGE color
-
-@property id  fclr, bclr;
-@property int ftty, btty;
-@property (readonly) BOOL colored;
-@property (readonly, copy) NSString *x;
-- (id<Bicolor>) withFG:(id)_;
-- (id<Bicolor>) withBG:(id)_;
-@end
-
-@protocol CLI <NSObject> @required
-- (NSString*) :(SEL)_;
-- (NSString*)  longOptForMethod:(SEL)_;
-
-@concrete
-@property (readonly) NSArray *methods;
-@property (readonly, copy) NSString *usage;
-@end
+#import <AtoZIO/IO+Protocols.h>
 
 typedef struct { NSUInteger col; NSUInteger row; } Position;
 
@@ -29,7 +9,7 @@ typedef struct { NSUInteger col; NSUInteger row; } Position;
 
 @property (readonly)  NSString * $0;       /* EXE */
 @property (readonly)  NSNumber * $$;       /* PID */
-@property (readonly)   NSArray * args;
+@property (readonly)   NSArray * stdin, * stdinlines;
 @property (readonly)    CGSize   size;
 @property (readonly)       int   width, height;
 @property (readonly)      BOOL   isatty, isxcode;
@@ -70,8 +50,6 @@ typedef struct { NSUInteger col; NSUInteger row; } Position;
 
 @end
 
-#import <AtoZIO/GBOptionsHelper.h>
-#import <AtoZIO/GBSettings.h>
 
 
 #define IO AtoZIO.io // -=/><\=-=/><\=-=/><\=-=/><\=-=/><\=-=/><\=-=/><\=-=/><\=-=/><\=-

@@ -1,19 +1,18 @@
 
 import AtoZIO
 
-let test = "Boring Grey"
+let test: NSString = "Boring Grey"
 
-test.color = NSColor.redColor()
+let x =  NSColor.redColor()
 
-test.print()
+test.fclr = x
 
-
-
+(test as NSString).echo()
 
 
 (test as NSString).uppercaseString
 
-AtoZIO.terminal_size()
+//IO.width()
 
 //let test: NSString = "123"
 

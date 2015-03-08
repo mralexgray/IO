@@ -5,12 +5,13 @@
 #import <AtoZIO/AtoZIO.h>
 @import ObjectiveC;
 @import QuartzCore;
-
+@import AtoZAutoBox;
 
 #include <stdio.h>
 #include <sys/ioctl.h>
 
 #import <AtoZIO/DDEmbeddedDataReader.h>
+#import <AtoZIO/NSNib+XMLBase64.h>
 
 //#import <AtoZIO/GBCommandLineParser.h>     // GBCli
 

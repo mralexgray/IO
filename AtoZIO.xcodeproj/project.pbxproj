@@ -9,16 +9,13 @@
 /* Begin PBXBuildFile section */
 		7B351F831AA0E06E007D7FE7 /* scrutil.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B351F7E1AA0E007007D7FE7 /* scrutil.m */; };
 		7B351F841AA0E073007D7FE7 /* scrutil.h in Headers */ = {isa = PBXBuildFile; fileRef = 7B351F7F1AA0E007007D7FE7 /* scrutil.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		7B351F881AA105AA007D7FE7 /* AtoZIO_EXE.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B0C495F19A956A20046167F /* AtoZIO_EXE.m */; };
+		7B351F881AA105AA007D7FE7 /* io_main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B0C495F19A956A20046167F /* io_main.m */; };
 		7B3BEEE21A9BB9AA00A8E446 /* example.c in Sources */ = {isa = PBXBuildFile; fileRef = 7B62B2801A9A0D02005BC6BC /* example.c */; };
 		7B3BEEE31A9BB9B100A8E446 /* linenoise.c in Sources */ = {isa = PBXBuildFile; fileRef = 7B62B2821A9A0D02005BC6BC /* linenoise.c */; };
 		7B3BEEE41A9BBBD300A8E446 /* linenoise.c in Sources */ = {isa = PBXBuildFile; fileRef = 7B62B2821A9A0D02005BC6BC /* linenoise.c */; settings = {COMPILER_FLAGS = "-Wno-shorten-64-to-32 -fno-modules"; }; };
 		7B3BEF1B1A9BE1EF00A8E446 /* IO.h in Headers */ = {isa = PBXBuildFile; fileRef = 7B3BEF1A1A9BE1EF00A8E446 /* IO.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		7B3BEF1D1A9BE70500A8E446 /* IO+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B3BEF1C1A9BE70500A8E446 /* IO+Color.m */; };
 		7B3BEF5B1A9BEEEF00A8E446 /* IO+String.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B3BEF5A1A9BEEEF00A8E446 /* IO+String.m */; };
-		7B3BEF5C1A9BF6EA00A8E446 /* GBOptionsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B8D2F4F1A985CAF00D93D95 /* GBOptionsHelper.m */; };
-		7B3BEF5D1A9BF6EE00A8E446 /* GBCommandLineParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B8D2F4D1A985CAF00D93D95 /* GBCommandLineParser.m */; };
-		7B3BEF5E1A9BF6F200A8E446 /* GBSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B8D2F511A985CAF00D93D95 /* GBSettings.m */; };
 		7B3BEF5F1A9BF70500A8E446 /* GBPrint.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B8D2F551A985D4C00D93D95 /* GBPrint.m */; };
 		7B3BEF601A9BF71500A8E446 /* DDEmbeddedDataReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B0C48E819A944660046167F /* DDEmbeddedDataReader.m */; };
 		7B3BEF611A9BF71B00A8E446 /* NSNib+XMLBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B0C48E319A9436F0046167F /* NSNib+XMLBase64.m */; };
@@ -30,13 +27,11 @@
 		7B6E16AF1A9D99C6002E51E5 /* AtoZIO.icns in Resources */ = {isa = PBXBuildFile; fileRef = 7B6E16AE1A9D99C6002E51E5 /* AtoZIO.icns */; };
 		7B8D2F261A98422900D93D95 /* AQOptionParser.framework in Copy Files */ = {isa = PBXBuildFile; fileRef = 7B0C48F119A946560046167F /* AQOptionParser.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7B8D2F291A98467F00D93D95 /* AtoZIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B5E62CB1A9803460001B5F3 /* AtoZIO.framework */; };
-		7B8D2F5A1A985EAE00D93D95 /* GBCommandLineParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 7B8D2F4C1A985CAF00D93D95 /* GBCommandLineParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7B8D2F5C1A985EAE00D93D95 /* GBOptionsHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 7B8D2F4E1A985CAF00D93D95 /* GBOptionsHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7B8D2F5E1A985EAE00D93D95 /* GBSettings.h in Headers */ = {isa = PBXBuildFile; fileRef = 7B8D2F501A985CAF00D93D95 /* GBSettings.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7B8D2F6B1A98614700D93D95 /* GBTester.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B8D2F4A1A985CAF00D93D95 /* GBTester.m */; };
 		7B8D2F6E1A98617500D93D95 /* AtoZIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B5E62CB1A9803460001B5F3 /* AtoZIO.framework */; };
-		7B8D2F701A9863B000D93D95 /* GBSettings+Application.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B8D2F491A985CAF00D93D95 /* GBSettings+Application.m */; };
 		7B8D2F711A987AF900D93D95 /* DDEmbeddedDataReader.h in Headers */ = {isa = PBXBuildFile; fileRef = 7B0C48E719A944660046167F /* DDEmbeddedDataReader.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		7BACF2D11AA3E82E0064F072 /* IO+Protocols.h in Headers */ = {isa = PBXBuildFile; fileRef = 7BACF2CF1AA3E82E0064F072 /* IO+Protocols.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7BACF2D21AA3E82E0064F072 /* IO+Protocols.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BACF2D01AA3E82E0064F072 /* IO+Protocols.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +48,34 @@
 			proxyType = 2;
 			remoteGlobalIDString = 385FFBB2156D461000F3D09E;
 			remoteInfo = AQOptionParserTests;
+		};
+		7B582BE81AA6A57C00C450C3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7B582BE11AA6A57900C450C3 /* AtoZUniversal.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7B582BC51AA6A4F400C450C3;
+			remoteInfo = AtoZUniversal;
+		};
+		7B582BEA1AA6A57C00C450C3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7B582BE11AA6A57900C450C3 /* AtoZUniversal.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7B582BD01AA6A4F800C450C3;
+			remoteInfo = AtoZUniversalTests;
+		};
+		7B582C461AA6E13F00C450C3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7B582BE11AA6A57900C450C3 /* AtoZUniversal.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 7B582BC41AA6A4F300C450C3;
+			remoteInfo = AtoZUniversal;
+		};
+		7B6F03721AAB8C8500AB31C4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7B0C48B119A9400E0046167F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7B5E62CA1A9803460001B5F3;
+			remoteInfo = AtoZIO;
 		};
 		7B8D2F271A98467900D93D95 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -435,15 +458,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		7B0C495819A956A10046167F /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-		};
 		7B3BEED91A9BB99300A8E446 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -493,7 +507,7 @@
 		7B0C48E819A944660046167F /* DDEmbeddedDataReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDEmbeddedDataReader.m; sourceTree = "<group>"; };
 		7B0C48EB19A946560046167F /* AQOptionParser.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AQOptionParser.xcodeproj; path = Modules/AQOptionParser/AQOptionParser.xcodeproj; sourceTree = "<group>"; };
 		7B0C495A19A956A10046167F /* io */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = io; sourceTree = BUILT_PRODUCTS_DIR; };
-		7B0C495F19A956A20046167F /* AtoZIO_EXE.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AtoZIO_EXE.m; path = AtoZIO_EXE/AtoZIO_EXE.m; sourceTree = "<group>"; };
+		7B0C495F19A956A20046167F /* io_main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = io_main.m; path = AtoZIO_EXE/io_main.m; sourceTree = "<group>"; };
 		7B351F111AA0E006007D7FE7 /* annotated.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = annotated.html; sourceTree = "<group>"; };
 		7B351F121AA0E006007D7FE7 /* bc_s.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bc_s.png; sourceTree = "<group>"; };
 		7B351F131AA0E006007D7FE7 /* bdwn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bdwn.png; sourceTree = "<group>"; };
@@ -618,10 +632,11 @@
 		7B3BEF1C1A9BE70500A8E446 /* IO+Color.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "IO+Color.m"; path = "AtoZIO/IO+Color.m"; sourceTree = "<group>"; };
 		7B3BEF1E1A9BE74200A8E446 /* AtoZIO.staging.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AtoZIO.staging.h; path = AtoZIO/AtoZIO.staging.h; sourceTree = "<group>"; };
 		7B3BEF5A1A9BEEEF00A8E446 /* IO+String.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "IO+String.m"; path = "AtoZIO/IO+String.m"; sourceTree = "<group>"; };
+		7B582BE11AA6A57900C450C3 /* AtoZUniversal.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AtoZUniversal.xcodeproj; path = ../../AtoZ.framework/AtoZUniversal/AtoZUniversal.xcodeproj; sourceTree = "<group>"; };
 		7B5E62CB1A9803460001B5F3 /* AtoZIO.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AtoZIO.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B5E62CE1A9803460001B5F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = AtoZIO/Info.plist; sourceTree = "<group>"; };
-		7B5E62DB1A9803470001B5F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7B5E62DC1A9803470001B5F3 /* AtoZIOTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AtoZIOTests.m; sourceTree = "<group>"; };
+		7B5E62DB1A9803470001B5F3 /* AtoZIOTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "AtoZIOTests-Info.plist"; path = "AtoZIOTests/AtoZIOTests-Info.plist"; sourceTree = "<group>"; };
+		7B5E62DC1A9803470001B5F3 /* AtoZIOTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AtoZIOTests.m; path = AtoZIOTests/AtoZIOTests.m; sourceTree = "<group>"; };
 		7B62B1BE1A99A6E3005BC6BC /* IOFundamentals */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = IOFundamentals; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B62B1C01A99A6E4005BC6BC /* IOFundamentals.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = IOFundamentals.m; path = readlineDemo/IOFundamentals.m; sourceTree = "<group>"; };
 		7B62B2801A9A0D02005BC6BC /* example.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = example.c; sourceTree = "<group>"; };
@@ -630,8 +645,6 @@
 		7B62B2841A9A0D02005BC6BC /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
 		7B62B2851A9A0D02005BC6BC /* README.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.markdown; sourceTree = "<group>"; };
 		7B6E16AE1A9D99C6002E51E5 /* AtoZIO.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = AtoZIO.icns; path = AtoZIO/AtoZIO.icns; sourceTree = "<group>"; };
-		7B8D2F481A985CAF00D93D95 /* GBSettings+Application.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GBSettings+Application.h"; sourceTree = "<group>"; };
-		7B8D2F491A985CAF00D93D95 /* GBSettings+Application.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "GBSettings+Application.m"; sourceTree = "<group>"; };
 		7B8D2F4A1A985CAF00D93D95 /* GBTester.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GBTester.m; sourceTree = "<group>"; };
 		7B8D2F4C1A985CAF00D93D95 /* GBCommandLineParser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GBCommandLineParser.h; path = src/GBCommandLineParser.h; sourceTree = "<group>"; };
 		7B8D2F4D1A985CAF00D93D95 /* GBCommandLineParser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = GBCommandLineParser.m; path = src/GBCommandLineParser.m; sourceTree = "<group>"; };
@@ -643,6 +656,8 @@
 		7B8D2F551A985D4C00D93D95 /* GBPrint.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = GBPrint.m; path = src/GBPrint.m; sourceTree = "<group>"; };
 		7B8D2F641A98612F00D93D95 /* GBTester */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = GBTester; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B9D7ABE1A9E79D00043B029 /* _xterm256.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = _xterm256.m; path = AtoZIO/_xterm256.m; sourceTree = "<group>"; };
+		7BACF2CF1AA3E82E0064F072 /* IO+Protocols.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "IO+Protocols.h"; path = "AtoZIO/IO+Protocols.h"; sourceTree = "<group>"; };
+		7BACF2D01AA3E82E0064F072 /* IO+Protocols.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "IO+Protocols.m"; path = "AtoZIO/IO+Protocols.m"; sourceTree = "<group>"; };
 		7BD69AC11A9B86E60084B75F /* AtoZIOTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AtoZIOTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BE58F4A19A97A7000EB4AB1 /* example.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = example.mm; path = Modules/NSTerminal/example.mm; sourceTree = "<group>"; };
 		7BE58F4E19A97B8200EB4AB1 /* LCTerminal.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = LCTerminal.mm; path = Modules/NSTerminal/LCTerminal.mm; sourceTree = "<group>"; };
@@ -701,21 +716,18 @@
 		7B0C48B019A9400E0046167F = {
 			isa = PBXGroup;
 			children = (
-				7B351F851AA0EE81007D7FE7 /* sel.m */,
-				7B3BEF171A9BC1A900A8E446 /* thisandthat */,
-				7B3BEF181A9BC1A900A8E446 /* AtoZIO.playground */,
+				7B582BE11AA6A57900C450C3 /* AtoZUniversal.xcodeproj */,
+				7B0C495F19A956A20046167F /* io_main.m */,
 				7B3BEF1A1A9BE1EF00A8E446 /* IO.h */,
 				7B0C48C519A9400E0046167F /* AtoZIO.h */,
 				7B0C48C619A9400E0046167F /* AtoZIO.m */,
+				7BACF2CF1AA3E82E0064F072 /* IO+Protocols.h */,
+				7BACF2D01AA3E82E0064F072 /* IO+Protocols.m */,
 				7B3BEF1C1A9BE70500A8E446 /* IO+Color.m */,
 				7B3BEF5A1A9BEEEF00A8E446 /* IO+String.m */,
-				7B3BEF1E1A9BE74200A8E446 /* AtoZIO.staging.h */,
-				7B3BEF191A9BE16700A8E446 /* AtoZIO.staging.m */,
-				7B9D7ABE1A9E79D00043B029 /* _xterm256.m */,
-				7B6E16AE1A9D99C6002E51E5 /* AtoZIO.icns */,
 				7B62B1FF1A99B1D3005BC6BC /* Modules */,
-				7BB200D119BBDDEF00816AB9 /* Targets */,
-				7BE58F5219A991BD00EB4AB1 /* cli.xcodeproj */,
+				7BFDEB2C1AA41B0100B62038 /* Products */,
+				7BB200D119BBDDEF00816AB9 /* Support */,
 			);
 			sourceTree = "<group>";
 		};
@@ -907,14 +919,14 @@
 			path = tests;
 			sourceTree = "<group>";
 		};
-		7B5E62D91A9803470001B5F3 /* AtoZIOTests */ = {
+		7B582BE21AA6A57900C450C3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7B5E62DC1A9803470001B5F3 /* AtoZIOTests.m */,
-				7B5E62DB1A9803470001B5F3 /* Info.plist */,
+				7B582BE91AA6A57C00C450C3 /* AtoZUniversal.framework */,
+				7B582BEB1AA6A57C00C450C3 /* AtoZUniversalTests.xctest */,
 			);
-			path = AtoZIOTests;
-			sourceTree = SOURCE_ROOT;
+			name = Products;
+			sourceTree = "<group>";
 		};
 		7B62B1FD1A99B0C1005BC6BC /* LCTerminal */ = {
 			isa = PBXGroup;
@@ -985,27 +997,27 @@
 			isa = PBXGroup;
 			children = (
 				7B8D2F4A1A985CAF00D93D95 /* GBTester.m */,
-				7B8D2F481A985CAF00D93D95 /* GBSettings+Application.h */,
-				7B8D2F491A985CAF00D93D95 /* GBSettings+Application.m */,
 			);
 			name = Demo;
 			sourceTree = "<group>";
 		};
-		7BB200D119BBDDEF00816AB9 /* Targets */ = {
+		7BB200D119BBDDEF00816AB9 /* Support */ = {
 			isa = PBXGroup;
 			children = (
-				7B5E62CE1A9803460001B5F3 /* Info.plist */,
-				7B0C495F19A956A20046167F /* AtoZIO_EXE.m */,
+				7BE58F5219A991BD00EB4AB1 /* cli.xcodeproj */,
+				7B351F851AA0EE81007D7FE7 /* sel.m */,
+				7B3BEF171A9BC1A900A8E446 /* thisandthat */,
+				7B3BEF181A9BC1A900A8E446 /* AtoZIO.playground */,
+				7B3BEF1E1A9BE74200A8E446 /* AtoZIO.staging.h */,
+				7B3BEF191A9BE16700A8E446 /* AtoZIO.staging.m */,
+				7B9D7ABE1A9E79D00043B029 /* _xterm256.m */,
+				7B6E16AE1A9D99C6002E51E5 /* AtoZIO.icns */,
+				7B5E62DC1A9803470001B5F3 /* AtoZIOTests.m */,
 				7B62B1C01A99A6E4005BC6BC /* IOFundamentals.m */,
-				7B5E62D91A9803470001B5F3 /* AtoZIOTests */,
-				7B5E62CB1A9803460001B5F3 /* AtoZIO.framework */,
-				7B0C495A19A956A10046167F /* io */,
-				7B8D2F641A98612F00D93D95 /* GBTester */,
-				7B62B1BE1A99A6E3005BC6BC /* IOFundamentals */,
-				7BD69AC11A9B86E60084B75F /* AtoZIOTests.xctest */,
-				7B3BEEDB1A9BB99300A8E446 /* linenoise_example */,
+				7B5E62CE1A9803460001B5F3 /* Info.plist */,
+				7B5E62DB1A9803470001B5F3 /* AtoZIOTests-Info.plist */,
 			);
-			name = Targets;
+			name = Support;
 			sourceTree = "<group>";
 		};
 		7BE58F5319A991BD00EB4AB1 /* Products */ = {
@@ -1036,7 +1048,7 @@
 				7BE58FB919A991BD00EB4AB1 /* imgsnap */,
 				7BE58FBB19A991BD00EB4AB1 /* imgtext */,
 				7BE58FBD19A991BD00EB4AB1 /* imgview */,
-				7BE58FBF19A991BD00EB4AB1 /* large-type */,
+				7BE58FBF19A991BD00EB4AB1 /* large-type.io */,
 				7BE58FC119A991BD00EB4AB1 /* loginitems */,
 				7BE58FC319A991BD00EB4AB1 /* menu */,
 				7BE58FC519A991BD00EB4AB1 /* nml */,
@@ -1067,6 +1079,19 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		7BFDEB2C1AA41B0100B62038 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7B5E62CB1A9803460001B5F3 /* AtoZIO.framework */,
+				7B0C495A19A956A10046167F /* io */,
+				7B8D2F641A98612F00D93D95 /* GBTester */,
+				7B62B1BE1A99A6E3005BC6BC /* IOFundamentals */,
+				7BD69AC11A9B86E60084B75F /* AtoZIOTests.xctest */,
+				7B3BEEDB1A9BB99300A8E446 /* linenoise_example */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -1075,12 +1100,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				7B62B2001A99B78F005BC6BC /* AtoZIO.h in Headers */,
-				7B8D2F5E1A985EAE00D93D95 /* GBSettings.h in Headers */,
 				7B351F841AA0E073007D7FE7 /* scrutil.h in Headers */,
 				7B3BEF1B1A9BE1EF00A8E446 /* IO.h in Headers */,
+				7BACF2D11AA3E82E0064F072 /* IO+Protocols.h in Headers */,
 				7B8D2F711A987AF900D93D95 /* DDEmbeddedDataReader.h in Headers */,
-				7B8D2F5A1A985EAE00D93D95 /* GBCommandLineParser.h in Headers */,
-				7B8D2F5C1A985EAE00D93D95 /* GBOptionsHelper.h in Headers */,
 				7B62B2021A99B7AB005BC6BC /* NSNib+XMLBase64.h in Headers */,
 				7B62B2011A99B797005BC6BC /* LCTerminal.h in Headers */,
 			);
@@ -1128,7 +1151,6 @@
 			buildConfigurationList = 7B0C496519A956A20046167F /* Build configuration list for PBXNativeTarget "io" */;
 			buildPhases = (
 				7B0C495619A956A10046167F /* Sources */,
-				7B0C495819A956A10046167F /* CopyFiles */,
 				7B90BB3E19F341AE005A69CD /* Frameworks */,
 			);
 			buildRules = (
@@ -1171,6 +1193,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				7B582C471AA6E13F00C450C3 /* PBXTargetDependency */,
 			);
 			name = AtoZIO;
 			productName = AtoZIO;
@@ -1188,6 +1211,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				7B6F03731AAB8C8500AB31C4 /* PBXTargetDependency */,
 			);
 			name = IOFundamentals;
 			productName = readlineDemo;
@@ -1257,6 +1281,10 @@
 					ProjectRef = 7B0C48EB19A946560046167F /* AQOptionParser.xcodeproj */;
 				},
 				{
+					ProductGroup = 7B582BE21AA6A57900C450C3 /* Products */;
+					ProjectRef = 7B582BE11AA6A57900C450C3 /* AtoZUniversal.xcodeproj */;
+				},
+				{
 					ProductGroup = 7BE58F5319A991BD00EB4AB1 /* Products */;
 					ProjectRef = 7BE58F5219A991BD00EB4AB1 /* cli.xcodeproj */;
 				},
@@ -1287,6 +1315,20 @@
 			fileType = wrapper.cfbundle;
 			path = AQOptionParserTests.xctest;
 			remoteRef = 7B0C48F219A946560046167F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7B582BE91AA6A57C00C450C3 /* AtoZUniversal.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = AtoZUniversal.framework;
+			remoteRef = 7B582BE81AA6A57C00C450C3 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7B582BEB1AA6A57C00C450C3 /* AtoZUniversalTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = AtoZUniversalTests.xctest;
+			remoteRef = 7B582BEA1AA6A57C00C450C3 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		7BE58F8D19A991BD00EB4AB1 /* target */ = {
@@ -1464,10 +1506,10 @@
 			remoteRef = 7BE58FBC19A991BD00EB4AB1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		7BE58FBF19A991BD00EB4AB1 /* large-type */ = {
+		7BE58FBF19A991BD00EB4AB1 /* large-type.io */ = {
 			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.executable";
-			path = "large-type";
+			fileType = wrapper.cfbundle;
+			path = "large-type.io";
 			remoteRef = 7BE58FBE19A991BD00EB4AB1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -1685,7 +1727,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7B351F881AA105AA007D7FE7 /* AtoZIO_EXE.m in Sources */,
+				7B351F881AA105AA007D7FE7 /* io_main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1707,12 +1749,10 @@
 				7B3BEF601A9BF71500A8E446 /* DDEmbeddedDataReader.m in Sources */,
 				7B3BEEE41A9BBBD300A8E446 /* linenoise.c in Sources */,
 				7B3BEF5F1A9BF70500A8E446 /* GBPrint.m in Sources */,
-				7B3BEF5E1A9BF6F200A8E446 /* GBSettings.m in Sources */,
-				7B3BEF5C1A9BF6EA00A8E446 /* GBOptionsHelper.m in Sources */,
 				7B351F831AA0E06E007D7FE7 /* scrutil.m in Sources */,
 				7B3BEF5B1A9BEEEF00A8E446 /* IO+String.m in Sources */,
-				7B3BEF5D1A9BF6EE00A8E446 /* GBCommandLineParser.m in Sources */,
 				7B3BEF1D1A9BE70500A8E446 /* IO+Color.m in Sources */,
+				7BACF2D21AA3E82E0064F072 /* IO+Protocols.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1728,7 +1768,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7B8D2F701A9863B000D93D95 /* GBSettings+Application.m in Sources */,
 				7B8D2F6B1A98614700D93D95 /* GBTester.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1736,6 +1775,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		7B582C471AA6E13F00C450C3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = AtoZUniversal;
+			targetProxy = 7B582C461AA6E13F00C450C3 /* PBXContainerItemProxy */;
+		};
+		7B6F03731AAB8C8500AB31C4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7B5E62CA1A9803460001B5F3 /* AtoZIO */;
+			targetProxy = 7B6F03721AAB8C8500AB31C4 /* PBXContainerItemProxy */;
+		};
 		7B8D2F281A98467900D93D95 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 7B5E62CA1A9803460001B5F3 /* AtoZIO */;
@@ -1788,6 +1837,7 @@
 					/usr/local/lib,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -1969,6 +2019,8 @@
 					AVFoundation,
 					"-framework",
 					AtoZAutoBox,
+					"-framework",
+					AtoZUniversal,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = macosx;
@@ -2002,6 +2054,8 @@
 					AVFoundation,
 					"-framework",
 					AtoZAutoBox,
+					"-framework",
+					AtoZUniversal,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = macosx;
