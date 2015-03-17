@@ -1,5 +1,6 @@
 
-#import "NSNib+XMLBase64.h"
+#import <AtoZIO/AtoZIO.h>
+
 
 void *NewBase64Decode(const char * inBuff,	size_t len,               size_t *outLen);
 char *NewBase64Encode(const void * inBuff, size_t len, bool sepLines, size_t *outLen);
@@ -15,8 +16,14 @@ static char base64EncodingTable[64] = {
 
 + (instancetype) nibFromXMLPath:(NSString*)s owner:(id)owner topObjects:(NSArray**)objs {
 
-	NSNib *n = [self.alloc initWithNibData:[self dataFromXMLPath:s] bundle:nil];
-	[n instantiateWithOwner:owner topLevelObjects:objs];
+	NSNib *n =
+#if TARGET_OS_IPHONE
+  [self nibWithData:[self dataFromXMLPath:s] bundle:nil];
+  [n instantiateWithOwner:owner options:nil];
+#else
+  [self.alloc initWithNibData:[self dataFromXMLPath:s] bundle:nil];
+  [n instantiateWithOwner:owner topLevelObjects:objs];
+#endif
 	return n;
 }
 //	NSPredicate *windowPredicate = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
@@ -25,9 +32,11 @@ static char base64EncodingTable[64] = {
 //	NSNib *mainNib = [[NSNib alloc] initWithContentsOfURL:[[NSURL URLWithString:@"../MainMenu.xib"] absoluteURL]];
 //	[NSNib instantiateNibWithOwner:application topLevelObjects:nil];
 
+#define TESTNIB @"/sd/dev/AtoZCodeFactory/AtoZCodeFactory/SomeNib.xml".stringByResolvingSymlinksInPath
+
 + (NSData*) dataFromXMLPath:(NSString*)p {
-	return [NSData.alloc initWithContentsOfFile: p ?:
-			  @"/sd/dev/AtoZCodeFactory/AtoZCodeFactory/SomeNib.xml".stringByResolvingSymlinksInPath];
+
+  return [NSData.alloc initWithContentsOfFile: p ?: TESTNIB];
 }
 
 + (NSString*) xmlFromBase64:(NSString*)p {

@@ -1,6 +1,20 @@
 
-@import Darwin;
 @import AtoZIO;
+
+void usage(void);
+void process_args(int ac, char *av[]);
+int menu_main();
+
+MAIN({
+
+//  process_args(argc, argv);
+  [@"hello" print];
+
+  menu_main();
+
+
+})
+
 
 // http://www.cs.swarthmore.edu/~newhall/unixhelp/C_cool_utils.html
 
@@ -382,7 +396,7 @@ int menu_main() {
   int c;
   MENU *my_menu;
   int n_choices, i;
-  ITEM *cur_item;
+  __unused ITEM *cur_item;
 
   /* Initialize curses */
   initscr();
@@ -440,11 +454,6 @@ int menu_main() {
   return 1;
 }
 
-MAIN({
-
-  [@"hello" print];
-
-})
 
 
 

@@ -29,14 +29,14 @@ nscolor
 
 //@property (readonly,copy) NSString *red, *orange, *yellow, *green, *blue;
 
-//- (void) clear;
+//- _Void_ clear;
 
 //@property (nonatomic) Color tinta, papel;
 //@property (nonatomic) scrAttributes attributes;
 //@property             scrPosition cursorPosition;
 //@property (nonatomic) BOOL showCursor;
 
-//- (void) moveCursorTo:(NSUInteger)fila column:(NSUInteger)columna;
+//- _Void_ moveCursorTo:(NSUInteger)fila column:(NSUInteger)columna;
 
 #define MOVETO(R,C) IO.cursorPosition = (scrPosition){R,C}
 
@@ -70,41 +70,6 @@ nscolor
 extern char ***_NSGetArgv (void);
 extern int     _NSGetArgc (void);
 */
-
-extern int *_NSGetArgc(void);
-extern char ***_NSGetArgv(void);
-
-/*! mkfifo @code
-
-  NSString *pipePath = @"..."
-
-  if ( mkfifo(pipePath.UTF8String, 0666) == -1 && errno !=EEXIST)	NSLog(@"Unable to open the named pipe %@", pipePath);
-	
-	int fd = open(pipePath.UTF8String, O_RDWR | O_NDELAY);
-
-	filehandleForReading = [NSFileHandle.alloc initWithFileDescriptor:fd closeOnDealloc: YES];
-
-	[NSNotificationCenter.defaultCenter     removeObserver:self];
-	[NSNotificationCenter.defaultCenter addObserverForName:NSFileHandleReadCompletionNotification
-                                                  object:filehandleForReading queue:NSOperationQueue.mainQueue
-                                              usingBlock:^(NSNotification *n) {
-
-    NSData *d = n.userInfo[NSFileHandleNotificationDataItem];
-
-    if (d.length) {
-      NSLog(@"dataReady:%lu bytes", d.length);
-      /// .... NSString * dataString = [NSString.alloc initWithData:d encoding:NSASCIIStringEncoding];
-    }
-    [filehandleForReading readInBackgroundAndNotify]; //Tell the fileHandler to asychronusly report back
-
-  }];
-
-	[filehandleForReading readInBackgroundAndNotify];
-*/
-extern int         mkfifo (const char *, mode_t);
-
-
-#define CHAR_FMT(...) [NSString stringWithFormat:@__VA_ARGS__].UTF8String
 
 
 /*	I refuse to include libm to keep this low on external dependencies. Count the number of digits in a number for use with string output.	*/

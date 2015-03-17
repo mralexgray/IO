@@ -5,59 +5,58 @@
 //  Created by Alex Gray on 3/1/15.
 //  Copyright (c) 2015 Alex Gray. All rights reserved.
 //
-
+//#import "AtoZ_IO.h" 
 #import "IO+Protocols.h"
-#import "IO.h"
+#import "_IO.h"
 
 @concreteprotocol(Bicolor)
 
-SYNTHESIZE_ASC_PRIMITIVE_BLOCK (ftty, setFtty, int, ^{ if (!value && self.fclr) value = [self.fclr tty]; },
-                                                    ^{ value = MID(value, 0, 255);                         } )
+//SYNTHESIZE_ASC_PRIMITIVE_BLOCK (ftty, setFtty, _UInt, ^{ if (!value && self.fclr) value = self.fclr.tty; },
+//                                                      ^{ self.fclr = [Colr fromTTY:value = MID(value, 0, 255)];                     })
+//
+//SYNTHESIZE_ASC_PRIMITIVE_BLOCK (btty, setBtty, _UInt, ^{ if (!value && self.bclr) value = self.bclr.tty; },
+//                                                      ^{ self.bclr = [Colr fromTTY:value = MID(value, 0, 255)];                     })
+// if (!value && self.ftty) self.fclr = value = [Colr fromTTY:self.ftty]; },
+// if(value) self.ftty = [value tty]; })
+// if(value) self.btty = [value tty]; }) // if (!value && self.ftty) self.fclr = value = [Colr fromTTY:self.ftty]; },// }, // if (!value && self.btty) self.bclr = (value = [Colr fromTTY:self.btty]);},
 
-SYNTHESIZE_ASC_PRIMITIVE_BLOCK (btty, setBtty, int, ^{ if (!value && self.bclr) value = [self.bclr tty]; },
-                                                   ^{ value = MID(value, 0, 255);               } )
+#define MAKENORMALIZEDCOLOR  if (ISA(value,Numb)) { _UInt k = [value uIV]; while (k > 255) k -= 255; value = [Colr fromTTY:MID(k,0,255)]; }
 
-SYNTHESIZE_ASC_OBJ_BLOCK ( fclr, setFclr, ^{}, ^{ if(value) self.ftty = [value tty]; } )
-SYNTHESIZE_ASC_OBJ_BLOCK ( bclr, setBclr, ^{}, ^{ if(value) self.btty = [value tty]; } )
+SYNTHESIZE_ASC_OBJ_BLOCK (fclr, setFclr, ^{ MAKENORMALIZEDCOLOR }, ^{})
 
 
-- (BOOL) colored { return self.bclr || self.fclr; }
+SYNTHESIZE_ASC_OBJ_BLOCK (bclr, setBclr, ^{ MAKENORMALIZEDCOLOR }, ^{})
 
-- (NSString*) x { NSString *colorize = [self isKindOfClass:NSString.class] ? (id)self : self.description;
 
-  return !self.colored ? colorize : ({ NSMutableString *p = @"".mutableCopy;
 
-        IO.isxcode ? ({
+- _IsIt_ colored { return self.bclr || self.fclr; }
 
-          !self.fclr ?: [p appendFormat:@"%sfg%@;",       CSI, [self.fclr xcTuple]];
-          !self.bclr ?: [p appendFormat:@"%sbg%@;",       CSI, [self.bclr xcTuple]];
-                        [p appendFormat:@"%@"     XCODE_RESET, colorize];
+- _Text_ escape  { return !self.colored ? @"" :
 
-  }) :  IO.isatty ? ({  [p appendString:@""          ANSI_ESC];
-          !self.fclr ?: [p appendFormat:@"%s%i",      ANSI_FG, [self.fclr tty]];
-          !self.bclr ?: [p appendFormat:@"%s%i",      ANSI_BG, [self.fclr tty]];
-                        [p appendFormat:@"m%@"     ANSI_RESET, colorize];   }) : nil; [p copy]; });
+  $(@"%@%@%@", !self.fclr ? @"" : [self.fclr fgEsc], !self.bclr ? @"" : [self.bclr bgEsc], !IO.isatty ? @"" : @"m");
 }
 
-- objectAtIndexedSubscript:(NSUInteger)i { self.ftty = i; return self; }
--  objectForKeyedSubscript:(CopyObject)_   { [self setFclr:_]; return self; }
+- _Text_ x { return !self.colored ? self.stringRep :
+
+  [self.escape stringByAppendingFormat:@"%@%s", self.stringRep, IO.isxcode ? XCODE_RESET : ANSI_RESET ];
+}
+
+- objectAtIndexedSubscript: _SInt_ i { [self setFclr:@(i)]; return self; }
+
+-  objectForKeyedSubscript: _Copy_ _  { [self setFclr:(id)_]; return self; }
 
 
-- (id<Bicolor>) withFG:(id)_ { [self setFclr:_]; return self; }
-- (id<Bicolor>) withBG:(id)_ { self.bclr = _; return self; }
+- _BICOLOR_ withFG:_ObjC_ _ { self.fclr = _; return self ; }
+- _BICOLOR_ withBG:_ObjC_ _ { self.bclr = _; return self; }
 
 @end
 
-//  id x = ((id(*)(id,SEL))objc_msgSend)((id)NSColor.class, NSSelectorFromString(@"yellowColor"));
-
-//  if (x && [x isKindOfClass:NSColor.class]) self.fclr = _;
-//  return self;
-//}
-
+//  id x = ((id(*)(id,SEL))objc_msgSend)((id)NSColor.class, NSSelectorFromString(@"yellowColor")); \
+  if (x && [x isKindOfClass:NSColor.class]) self.fclr = _; return self; }
 
 @concreteprotocol(CLIDelegate)
 
-- (NSArray*) _options {
+- _List_ _options {
 
     unsigned int methodCount = 0;
     Method *methods = class_copyMethodList(self.class, &methodCount);

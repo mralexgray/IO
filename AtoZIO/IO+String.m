@@ -1,21 +1,29 @@
 
-#import "IO.h"
+#import "_IO.h"
 
 @implementation NSString (AtoZIO)
+
+- _Void_ print256 {
+
+  int c = 24;
+  for (id x in [self componentsSeparatedByString:@" "]) {
+    [[x stringByAppendingString:@" "] printC:[Colr fromTTY:c]]; c = c < 255 ? (c + 1) : 24;
+  }
+}
 
 
 //SYNTHESIZE_ASC_PRIMITIVE_BLOCK(xfg, setXfg, int, ^{}, ^{ value = MAX(MIN(value,256),0) ?: 15; });
 //SYNTHESIZE_ASC_PRIMITIVE_BLOCK(xbg, setXbg, int, ^{}, ^{ value = MAX(MIN(value,256),0) ?: 15; });
 
-//- (void) setXbg:(int)b  { [self setXbg:b]; }
-//- (void) setXfg:(int)f  { [self setXfg:f]; }
+//- _Void_ setXbg:(int)b  { [self setXbg:b]; }
+//- _Void_ setXfg:(int)f  { [self setXfg:f]; }
 //- (int) xfg             { return self.fg ? self.fg.tty : ; }
 //- (int) xbg             { return self.bg.tty; }
 
 #pragma mark - COLOR
 
-//- (void) setFg:(NSColor*)f { [self setXbg:f.tty]; }
-//- (void) setBg:(NSColor*)b { [self setXfg:b.tty]; }
+//- _Void_ setFg:(NSColor*)f { [self setXbg:f.tty]; }
+//- _Void_ setBg:(NSColor*)b { [self setXfg:b.tty]; }
 //- (Clr) fg { return [Clr_ fromTTY:self.xfg]; }
 //- (Clr) bg { return [Clr_ fromTTY:self.xbg]; }
 
@@ -39,12 +47,12 @@
 //}
 
 
-+ (NSString*) withColor:(Clr)c fmt:(NSString*)fmt,... { NSString *new; va_list list; va_start(list,fmt);
++ _Text_ withColor:_Colr_ c fmt:_Text_ fmt,... { _Text new; va_list list; va_start(list,fmt);
 
   if ((new = [self.alloc initWithFormat:fmt arguments:list])) new.fclr = c; va_end(list); return new;
 }
 
-void newline(int ct) { BOOL telnet = NO;
+_Void newline(int ct) { BOOL telnet = NO;
 
   while (ct--) { //	Telnet requires us to send a specific sequence for a line break (\r\000\n).
 
@@ -61,16 +69,17 @@ void newline(int ct) { BOOL telnet = NO;
 
 //    fprintf(stderr,"%s", x.UTF8String); !cr ?: newline(1); }
 
-- (void) echo     { fprintf(stderr,"%s", self.cChar); newline(1); }
-- (void) print    { fprintf(stderr,"%s", self.cChar);             }
-- (void) printC:c { self.fclr = c; [self print];                  }
-- (void) print256 {
+@end
 
-  int c = 24;
-  for (id x in [self componentsSeparatedByString:@" "]) {
-    [[x stringByAppendingString:@" "] printC:[Clr_ fromTTY:c]]; c = c < 255 ? (c + 1) : 24;
-  }
-}
+@Impl NObj (AtoZIO)
+
+- _Text_ stringRep { return ISA(self,Text) ? _Text_ self :
+                            ISA(self,List) ? (
+                            _List_ self).joined :
+                            ISA(self,Numb) ? [Colr fromTTY:(_Numb_ self).iV] : self.description; }
+- _Void_ echo     { fprintf(stderr,"%s", self.stringRep.cChar); newline(1); }
+- _Void_ print    { fprintf(stderr,"%s", self.stringRep.cChar);             }
+- _Void_ printC:c { id x = self.stringRep; [x setFclr:c]; [x print];        }
 
 //- (NSString *)red     { self.fg = NSColor.redColor;    return self.xString; }
 //- (NSString *)orange  { self.fg = NSColor.orangeColor; return self.xString; }
@@ -91,7 +100,7 @@ typedef NS_ENUM(int,FMTOptions){
   FMT_NO_RESET  = 0x11111111
 };
 
-- (void) setOptions:(FMTOptions)options {
+- _Void_ setOptions:(FMTOptions)options {
 
   [self willChangeValueForKey:@"options"];
   objc_setAssociatedObject(self, @selector(options), [NSValue value:&options withObjCType:@encode(FMTOptions)], OBJC_ASSOCIATION_RETAIN);
@@ -108,18 +117,26 @@ typedef NS_ENUM(int,FMTOptions){
 
 @end
 
+void FillLineClr(int c) {
 
-void    PrintInClr (const char*s, int c)    { printf("%s\n", [NSString withColor:[NSColor fromTTY:c] fmt:@"%s",s].UTF8String);  }
-void      PrintClr (int c)                  { PrintInClr("  ", c); }
+  _Text x = [@"" stringByPaddingToLength:IO.width withString:@" " startingAtIndex:0];
+//  [x setBclr:[NSC fromTTY:c]];
+  [x setBclr:@(c)];//[NSC fromTTY:c]];
+  [x print];
+}
+
+//void    PrintInClr (const char*s, int c)    { ;  }
+//void      PrintClr (int c)                  { PrintInClr("  ", c); }
 void       ClrPlus (const char* c)          { printf("%s0m%s", ANSI_ESC, c); }
 void      Spectrum (void)                   {
 
-  for(int r = 0; r < 6; r++) {
-    for(int g = 0; g < 6; g++) {
-      for(int b = 0; b < 6; b++) PrintClr( 16 + (r * 36) + (g * 6) + b );  ClrPlus("  ");
-    }
-    printf("\n");
-  }
+  for(int r = 0; r < 600; r++) { FillLineClr(r); }
+//  for(int r = 0; r < 6; r++) {
+//    for(int g = 0; g < 6; g++) {
+//      for(int b = 0; b < 6; b++) FillLineClr( 16 + (r * 36) + (g * 6) + b );  ClrPlus("  ");
+//    }
+//    printf("\n");
+//  }
 }
 
 

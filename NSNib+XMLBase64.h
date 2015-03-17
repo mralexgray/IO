@@ -1,8 +1,11 @@
 
 /*  NSNib+XMLBase64.h  *  AtoZCodeFactory */
 
-#import <Cocoa/Cocoa.h>
-
+#if TARGET_OS_IPHONE
+@import UIKit;
+#else
+@import AppKit;
+#endif
 
 @interface			             NSNib (XMLBase64)
 +      (NSData*)   dataFromXMLPath:(NSString*)p;

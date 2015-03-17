@@ -3,9 +3,6 @@
 #define AtoZIO_IO_h
 
 #import <AtoZIO/AtoZIO.h>
-@import ObjectiveC;
-@import QuartzCore;
-@import AtoZAutoBox;
 
 #include <stdio.h>
 #include <sys/ioctl.h>
@@ -15,23 +12,17 @@
 
 //#import <AtoZIO/GBCommandLineParser.h>     // GBCli
 
+#define sqr(x) ((x) * (x))
 
 typedef struct { int r; int g; int b; } rgb;
 
-#define sqr(x) ((x) * (x))
+#if MAC_ONLY
+#define DEVICECLR(X) [X colorUsingColorSpace:NSColorSpace.deviceRGBColorSpace]
+#else
+#define DEVICECLR(X)  X
+#endif
 
-#define DEVICECLR(X) [X colorUsingColorSpace:[NSColorSpace deviceRGBColorSpace]]
 #define COLOR_NUM(color) lroundf(c.color##Component*255)
-
-//extern int rgb_2_tty (rgb c);
-//extern int clr_2_tty (Clr c);
-//
-//extern Clr rgb_2_clr (rgb c);
-//extern Clr tty_2_clr (int c);
-//
-//extern rgb clr_2_rgb (Clr c);
-//extern rgb tty_2_rgb (int c);
-
 
 #pragma mark -  NOT XcodeColors Escapes
 
@@ -77,35 +68,38 @@ typedef struct { int r; int g; int b; } rgb;
 
 #endif
 
+_CAT( Colr, AtoZIO,
 
-#if TARGET_OS_IPHONE
-@import UIKit.UIColor;
-#define NSColor UIColor
-#define MakeColor(r, g, b) [UIColor colorWithRed:r/255. green:g/255. blue:b/255. alpha:1.]
-#else
-@import AppKit.NSColor;
-typedef      NSColor * Clr;
-#define Clr_ NSColor
-#define MakeColor(r, g, b) [Clr_ colorWithCalibratedRed:r/255. green:g/255. blue:b/255. alpha:1.]
-#endif
+  + _Colr_ fromTTY: _UInt_ c;
 
-@interface NSColor  (AtoZIO)
+  @prop_RO _UInt tty;
 
-+ (Clr) fromTTY:(int)c;
+  @prop_RC _Text xcTuple, bgEsc, fgEsc
+)
 
-@property (readonly) int tty;
+extern  int *_NSGetArgc(void);
+extern char ***_NSGetArgv(void);
 
-@property (readonly, copy) NSString* xcTuple;
-
-@end
+//typedef struct { int argc; char ** argv; } IOMain;
 
 extern id IOrun	(id cmd);
 
-//@interface NSNumber (AtoZIO)
-//
-//+ (instancetype) scan;
-//
-//@end
-//
+@interface IONotifier : NSO // <NSUserNotificationCenterDelegate>
 
+- initWithNotification:(NSNOT*)n;
+@end
+
+//@interface NSNumber (AtoZIO)
+//+ (instancetype) scan;
+//@end
+
+//extern int rgb_2_tty (rgb c);
+//extern int clr_2_tty (Clr c);
 //
+//extern Clr rgb_2_clr (rgb c);
+//extern Clr tty_2_clr (int c);
+//
+//extern rgb clr_2_rgb (Clr c);
+//extern rgb tty_2_rgb (int c);
+
+

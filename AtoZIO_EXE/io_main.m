@@ -1,26 +1,46 @@
-@import AtoZ;
-@import AtoZIO;
 
-@interface CLId : AtoZSingleton <CLIDelegate>
-@end
+@import AtoZ;
+
+@Desc CLId : AtoZSingleton <CLIDelegate> @end
 
 @implementation CLId
 
-- (void) doSomething { [@"done" printC:RANDOMCOLOR]; }
+- _Void_ doSomething { [@"done" printC:RANDOMCOLOR]; }
 
 @end
 
-AZMAIN({
+MAIN({
+
+   id img = [NSIMG contactSheetWith:[[FM pathsForItemsMatchingExtension:@"png" inFolder:@"/Users/localadmin/Desktop"] map:^id(id p){
+        return [NSIMG withFile:p]; }] inFrame:AZScreenFrame()];
+
+//      [@"i'm here, girl" print];
+      _Text xx = [img  base64EncodingWithFileType:NSPNGFileType];/// [scaledToMax:AZScreenWidth()/2] base64EncodingWithFileType:NSPNGFileType];
+      // withPath:[p lastPathComponent]]
+      // [IO imageString:p];
+
+//      [xx writeToFile:@"/tmp/testfile.png" atomically:YES encoding:NSUTF8StringEncoding error:nil];
+//[p lastPathComponent].UTF8Data.base64Encoded
+      puts($(@"]1337;File=inline=1:%@\a\n",xx).UTF8String);
+
+      //)[xx UTF8String]);
+
+      /// : "noworking");
+
+//  }]
+
+  IO[@"whatever  is a prompt:"] = ^(id outp){ NSLog(@"well, i got %@", outp); };
+
+  IO.io = @[@"sandy", @22, @"vajajay"];
 
 
-//  scrDemo();
-
+//  [[Pict swatchWithColors:RANDOMPAL size:AZSizeFromDim(600) oriented:AZOrientGrid]
+//                                                                    openInPreview];
   [IO.$0 echo];
   NSObject <CLIDelegate> *x = [CLId instance];
   NSLog(@"%@ options", x.className);//, x.options);
 
-  [$(@"isatty:%@ isxcode:%@\n", StringFromBOOL(IO.isatty),
-                                StringFromBOOL(IO.isxcode)) printC:RANDOMCOLOR];
+  [$(@"isatty:%@ isxcode:%@\n", $B(IO.isatty), $B(IO.isxcode)) printC:RANDOMCOLOR];
 
   [[@"Thanks " withString:[IO prompt:@"Press return to clear console!"]] echo];
 
@@ -42,6 +62,8 @@ AZMAIN({
   [IO clearConsole];
 
   [NSS.dicksonisms.joinedByNewlines print256]; // do:^(id x){  PrintInRnd(x); }];
+
+//  scrDemo();
 
   //  AZSizer * x = [AZSizer forQuantity:256 inRect:(NSRect){0,0,AtoZ.terminal_width,AtoZ.terminal_height}];
   //  [x.rects eachWithIndex:^(id obj, NSInteger idx) {

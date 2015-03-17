@@ -22,3 +22,6 @@
 [submodule "Modules/printfc"]
 	path = Modules/printfc
 	url = https://github.com/dasmithii/printfc.git
+[submodule "Modules/RunLoopController"]
+	path = Modules/RunLoopController
+	url = https://github.com/trojanfoe/RunLoopController.git

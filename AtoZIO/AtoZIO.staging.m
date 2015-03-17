@@ -520,7 +520,7 @@ int rgb_to_xterm(int r, int g, int b) { /** Quantize RGB values to an xterm 256-
 
 @implementation NSColor (AtoZIO)
 
-- (void) getRed:(CGFloat *)rPtr green:(CGFloat *)gPtr blue:(CGFloat *)bPtr {
+- _Void_ getRed:(CGFloat *)rPtr green:(CGFloat *)gPtr blue:(CGFloat *)bPtr {
 
 #if TARGET_OS_IPHONE // iOS
 
@@ -602,17 +602,17 @@ int rgb_to_xterm(int r, int g, int b) { /** Quantize RGB values to an xterm 256-
 
 
 
-//- (void) clear { scrClear(); }
+//- _Void_ clear { scrClear(); }
 
-//- (void) setTinta:(Color)tinta { scrSetColors(_tinta = tinta, _papel); }
-//- (void) setPapel:(Color)papel { scrSetColors(_tinta, _papel = papel); }
+//- _Void_ setTinta:(Color)tinta { scrSetColors(_tinta = tinta, _papel); }
+//- _Void_ setPapel:(Color)papel { scrSetColors(_tinta, _papel = papel); }
 //
 /**
  Indica los colores del texto a escribir
  @param color Color de la tinta y el papel
  @see scrAttributes
  */
-//- (void) setAttributes:(scrAttributes)attributes {
+//- _Void_ setAttributes:(scrAttributes)attributes {
 //
 //  scrSetColorsWithAttr(_attributes = attributes);
 //}
@@ -637,7 +637,7 @@ int rgb_to_xterm(int r, int g, int b) { /** Quantize RGB values to an xterm 256-
  @param fila La fila en la que colocar el cursor
  @param columna La columna en la que colocar el cursor
  */
-//- (void) moveCursorTo:(NSUInteger)fila column:(NSUInteger) columna {
+//- _Void_ moveCursorTo:(NSUInteger)fila column:(NSUInteger) columna {
 //
 //  scrMoveCursorTo(fila,columna);
 //}
@@ -645,7 +645,7 @@ int rgb_to_xterm(int r, int g, int b) { /** Quantize RGB values to an xterm 256-
 
 //- (scrPosition) cursorPosition { return scrGetCursorPosition(); }
 
-//- (void) setCursorPosition:(scrPosition)c {   scrMoveCursorToPos(c); }
+//- _Void_ setCursorPosition:(scrPosition)c {   scrMoveCursorToPos(c); }
 
-//- (void) setShowCursor:(BOOL)_ {scrShowCursor(_showCursor = _); }
+//- _Void_ setShowCursor:(BOOL)_ {scrShowCursor(_showCursor = _); }
 

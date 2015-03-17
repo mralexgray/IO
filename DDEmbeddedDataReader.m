@@ -384,7 +384,7 @@ END_FUNCTION:
 }
 
 
-+ (id)defaultPlistOfExecutableAtURL:(NSURL *)url error:(NSError **)error {
++ defaultPlistOfExecutableAtURL:(NSURL *)url error:(NSError **)error {
     id plist = nil;
     NSData *data = _BVMachOSection(url, "__TEXT", "__info_plist", error);
     if (data) {
@@ -397,11 +397,11 @@ END_FUNCTION:
     return plist;
 }
 
-+ (id)defaultPlistOfExecutableAtPath:(NSString *)path error:(NSError **)error {
++ defaultPlistOfExecutableAtPath:(NSString *)path error:(NSError **)error {
     return [self defaultPlistOfExecutableAtURL:[NSURL fileURLWithPath:path] error:error];
 }
 
-+ (id)defaultEmbeddedPlist:(NSError **)error {
++ defaultEmbeddedPlist:(NSError **)error {
     uint32_t size = MAXPATHLEN * 2;
     char ch[size];
     if (_NSGetExecutablePath(ch, &size)!=0) {
