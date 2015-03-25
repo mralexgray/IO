@@ -1,18 +1,20 @@
 
-@import Darwin; @import Foundation;
+
+
 
 #ifndef SCRUTIL_H_INCLUDED
 #define SCRUTIL_H_INCLUDED
 
-#include <stdbool.h>
+@import AtoZUniversal;
+
+//#include <stdbool.h>
 
 /** Colores */
-typedef enum _Color {
+_Type NS_ENUM(_UInt,scrColor) {
 
-    scrBlack, scrBlue, scrRed, scrMagenta,
-    scrGreen, scrCyan, scrYellow, scrWhite,
-    scrUndefinedColor
-} Color;
+    scrBlack = 0, scrBlue, scrRed, scrMagenta,
+    scrGreen,     scrCyan, scrYellow, scrWhite, scrUndefinedColor
+};
 
 /**
     Describe una pos. en la pantalla
@@ -25,8 +27,8 @@ typedef struct _scrPosition {
 
 
 typedef struct _scrAttributes {
-    Color paper;
-    Color ink;
+    scrColor paper;
+    scrColor ink;
 } scrAttributes;
 
 /**
@@ -44,7 +46,7 @@ void scrClear();
      see scrAttributes
 
 */
-void scrSetColors(Color tinta, Color papel);
+void scrSetColors(scrColor tinta, scrColor papel);
 
 /**
     Indica los colores del texto a escribir
@@ -73,7 +75,7 @@ scrAttributes scrGetCurrentAttributes();
     @param fila La fila en la que colocar el cursor
     @param columna La columna en la que colocar el cursor
 */
-void scrMoveCursorTo(NSUInteger fila, NSUInteger columna);
+void scrMoveCursorTo(_UInt fila, _UInt columna);
 
 /**
     Mover el cursor a una pos. determinada

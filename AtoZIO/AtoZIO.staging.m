@@ -12,7 +12,8 @@ void print_with_newlines(char *first,...){
   }            va_end(list);
 }
 void reset_cursor() { printf("\033[%s", clear_screen ? "H" : "u"); }
-void   clr_screen() { printf(clear_screen ? "\033[H\033[2J\033[?25l" : "\033[s"); 		/* Clear the screen */ }
+void   clr_screen() { printf(clear_screen ? "
+H\033[2J\033[?25l" : "\033[s"); 		/* Clear the screen */ }
 
 
 

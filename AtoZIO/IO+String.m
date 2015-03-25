@@ -1,7 +1,15 @@
 
 #import "_IO.h"
 
-@implementation NSString (AtoZIO)
+@XtraPlan(Text,AtoZIO)
+
++ _Text_ withColor:_Colr_ c fmt:_Text_ fmt,... { _Text new; va_list list; va_start(list,fmt);
+
+  if ((new = [self.alloc initWithFormat:fmt arguments:list])) new.fclr = c; va_end(list); return new;
+}
+
+
+- (const char*) cChar { return self.x.UTF8String; }
 
 - _Void_ print256 {
 
@@ -10,6 +18,19 @@
     [[x stringByAppendingString:@" "] printC:[Colr fromTTY:c]]; c = c < 255 ? (c + 1) : 24;
   }
 }
+
+@XtraStop(Text,AtoZIO)
+
+@XtraPlan(NObj,AtoZIO)
+
+- _Text_ stringRep { return ISA(self,Text) ?  _ObjC_ self :
+                            ISA(self,List) ? (_List_ self).description :  //joinedWithSpaces :
+                            ISA(self,Numb) ? [Colr fromTTY:(_Numb_ self).iV] : self.description; }
+- _Void_ echo     { printf("%s\n", self.stringRep.cChar); }
+- _Void_ print    { printf("%s",   self.stringRep.cChar);             }
+- _Void_ printC:c { [[self stringRep][c] print];                        }
+
+@XtraStop()
 
 
 //SYNTHESIZE_ASC_PRIMITIVE_BLOCK(xfg, setXfg, int, ^{}, ^{ value = MAX(MIN(value,256),0) ?: 15; });
@@ -31,7 +52,6 @@
 //                                     ^{ value = DEVICECLR(value); });
 //SYNTHESIZE_ASC_OBJ_BLOCK(bg, setBg, ^{ }, ^{ value = DEVICECLR(value); });
 
-- (const char*) cChar { return self.x.UTF8String; }
 
 // rgb a;   (a = clr_2_rgb(c)).r, a.g, a.b];
 //id ansiEsc (int c,BOOL fg) { return !c ? @"" : [NSString stringWithFormat:@"%s%i",fg ? ANSI_FG : ANSI_BG, c]; }
@@ -46,11 +66,6 @@
 //
 //}
 
-
-+ _Text_ withColor:_Colr_ c fmt:_Text_ fmt,... { _Text new; va_list list; va_start(list,fmt);
-
-  if ((new = [self.alloc initWithFormat:fmt arguments:list])) new.fclr = c; va_end(list); return new;
-}
 
 _Void newline(int ct) { BOOL telnet = NO;
 
@@ -69,17 +84,8 @@ _Void newline(int ct) { BOOL telnet = NO;
 
 //    fprintf(stderr,"%s", x.UTF8String); !cr ?: newline(1); }
 
-@end
 
-@Impl NObj (AtoZIO)
-
-- _Text_ stringRep { return ISA(self,Text) ? _Text_ self :
-                            ISA(self,List) ? (
-                            _List_ self).joined :
-                            ISA(self,Numb) ? [Colr fromTTY:(_Numb_ self).iV] : self.description; }
-- _Void_ echo     { fprintf(stderr,"%s", self.stringRep.cChar); newline(1); }
-- _Void_ print    { fprintf(stderr,"%s", self.stringRep.cChar);             }
-- _Void_ printC:c { id x = self.stringRep; [x setFclr:c]; [x print];        }
+@XtraPlan(NSO, pther)
 
 //- (NSString *)red     { self.fg = NSColor.redColor;    return self.xString; }
 //- (NSString *)orange  { self.fg = NSColor.orangeColor; return self.xString; }
@@ -119,7 +125,7 @@ typedef NS_ENUM(int,FMTOptions){
 
 void FillLineClr(int c) {
 
-  _Text x = [@"" stringByPaddingToLength:IO.width withString:@" " startingAtIndex:0];
+  _Text x = [@(c).strV stringByPaddingToLength:IO.w withString:@" " startingAtIndex:0];
 //  [x setBclr:[NSC fromTTY:c]];
   [x setBclr:@(c)];//[NSC fromTTY:c]];
   [x print];
@@ -130,13 +136,13 @@ void FillLineClr(int c) {
 void       ClrPlus (const char* c)          { printf("%s0m%s", ANSI_ESC, c); }
 void      Spectrum (void)                   {
 
-  for(int r = 0; r < 600; r++) { FillLineClr(r); }
-//  for(int r = 0; r < 6; r++) {
-//    for(int g = 0; g < 6; g++) {
-//      for(int b = 0; b < 6; b++) FillLineClr( 16 + (r * 36) + (g * 6) + b );  ClrPlus("  ");
-//    }
-//    printf("\n");
-//  }
+//  for(int r = 0; r < 600; r++) { FillLineClr(r); }
+  for(int r = 0; r < 6; r++) {
+    for(int g = 0; g < 6; g++) {
+      for(int b = 0; b < 6; b++) FillLineClr( 16 + (r * 36) + (g * 6) + b );  ClrPlus("  ");
+    }
+    printf("\n");
+  }
 }
 
 

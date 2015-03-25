@@ -1,18 +1,21 @@
 /*  
-  CDDIR="/sd/dev/AtoZIO/Modules/scrutil_cpuro/test"
-  clang -o "$CDDIR/test" "$CDDIR/main.m" "$CDDIR/../src/scrutil.m" -I"$CDDIR/../src" -fmodules
-  ".$CDDIR/test"
+  CDDIR="/sd/dev/AtoZIO/Modules/scrutil_cpuro/test"; \
+  clang -o "$CDDIR/test" -fmodules -F $USER_FWKS "$CDDIR/main.m" -std=c11; \
+  "$CDDIR/test"
 
+  "$CDDIR/main.m" "$CDDIR/../src/scrutil.m" -I"$CDDIR/../src" -fmodules; \
   aka
     clang -o test main.m ../src/scrutil.m -I../src -fmodules
 
 */
 
-#include <stdio.h>
-#include "scrutil.h"
+@import AtoZIO;
 
-int main()
-{
+//#include <stdio.h>
+//#include "scrutil.h"
+
+MAIN(
+  
     char nombre[255];
 
     // Iniciar
@@ -26,8 +29,12 @@ int main()
 //    sleep(1);
     fgets( nombre, 255, stdin );
 
-    scrSetColors(scrBlue, scrYellow);
-    scrClear();
+    scrSetColors(scrGreen, scrWhite);
+
+      scrMoveCursorTo( 10, 10 );
+      printf( "Tu nombre es %s\n", nombre );
+
+//      scrClear();
 
 //
 //    // Mostrar info consola
@@ -40,8 +47,7 @@ int main()
 //    printf( "Max Columnas: %d\n", scrGetMaxColumns() );
 //
 //    // Pedir el nombre
-//    scrMoveCursorTo( 10, 10 );
-//    printf( "Introduce tu nombre:" );
+//  //    printf( "Introduce tu nombre:" );
 //    scrMoveCursorTo( 10, 50 );
     fgets( nombre, 255, stdin );
 
@@ -53,4 +59,4 @@ int main()
 
     scrSetColors( scrWhite, scrBlack );
     return 0;
-}
+)

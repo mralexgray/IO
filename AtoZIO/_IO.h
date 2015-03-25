@@ -1,4 +1,5 @@
 
+
 #ifndef AtoZIO_IO_h
 #define AtoZIO_IO_h
 
@@ -7,8 +8,8 @@
 #include <stdio.h>
 #include <sys/ioctl.h>
 
-#import <AtoZIO/DDEmbeddedDataReader.h>
-#import <AtoZIO/NSNib+XMLBase64.h>
+#import "DDEmbeddedDataReader.h"
+#import "NSNib+XMLBase64.h"
 
 //#import <AtoZIO/GBCommandLineParser.h>     // GBCli
 
@@ -17,6 +18,7 @@
 typedef struct { int r; int g; int b; } rgb;
 
 #if MAC_ONLY
+@import ScriptingBridge;
 #define DEVICECLR(X) [X colorUsingColorSpace:NSColorSpace.deviceRGBColorSpace]
 #else
 #define DEVICECLR(X)  X
@@ -25,6 +27,7 @@ typedef struct { int r; int g; int b; } rgb;
 #define COLOR_NUM(color) lroundf(c.color##Component*255)
 
 #pragma mark -  NOT XcodeColors Escapes
+
 
 #define ANSI_ESC "\x1b[0;"
 #define ANSI_FG "38;05;"
@@ -82,12 +85,11 @@ extern char ***_NSGetArgv(void);
 
 //typedef struct { int argc; char ** argv; } IOMain;
 
-extern id IOrun	(id cmd);
 
-@interface IONotifier : NSO // <NSUserNotificationCenterDelegate>
-
-- initWithNotification:(NSNOT*)n;
-@end
+@Vows IONotifier <NSO> // <NSUserNotificationCenterDelegate>
+@optional - initWithNotification:(NSNOT*)n;  // IN USE in AtoZIO.m
+￭
+@Kind(IONotifier,<IONotifier>) ￭
 
 //@interface NSNumber (AtoZIO)
 //+ (instancetype) scan;

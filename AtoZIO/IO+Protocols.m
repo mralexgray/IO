@@ -1,12 +1,4 @@
-//
-//  AtoZIO+Protocols.m
-//  AtoZIO
-//
-//  Created by Alex Gray on 3/1/15.
-//  Copyright (c) 2015 Alex Gray. All rights reserved.
-//
-//#import "AtoZ_IO.h" 
-#import "IO+Protocols.h"
+
 #import "_IO.h"
 
 @concreteprotocol(Bicolor)
@@ -28,10 +20,9 @@ SYNTHESIZE_ASC_OBJ_BLOCK (fclr, setFclr, ^{ MAKENORMALIZEDCOLOR }, ^{})
 SYNTHESIZE_ASC_OBJ_BLOCK (bclr, setBclr, ^{ MAKENORMALIZEDCOLOR }, ^{})
 
 
-
 - _IsIt_ colored { return self.bclr || self.fclr; }
 
-- _Text_ escape  { return !self.colored ? @"" :
+- _Text_  escape { return !self.colored ? @"" :
 
   $(@"%@%@%@", !self.fclr ? @"" : [self.fclr fgEsc], !self.bclr ? @"" : [self.bclr bgEsc], !IO.isatty ? @"" : @"m");
 }
@@ -43,11 +34,11 @@ SYNTHESIZE_ASC_OBJ_BLOCK (bclr, setBclr, ^{ MAKENORMALIZEDCOLOR }, ^{})
 
 - objectAtIndexedSubscript: _SInt_ i { [self setFclr:@(i)]; return self; }
 
--  objectForKeyedSubscript: _Copy_ _  { [self setFclr:(id)_]; return self; }
+-  objectForKeyedSubscript: _Copy_ k  { [self setFclr:_ObjC_ k]; return self; }
 
+- _BICOLOR_ withFG:_ObjC_ fg { self.fclr = fg; return self ; }
 
-- _BICOLOR_ withFG:_ObjC_ _ { self.fclr = _; return self ; }
-- _BICOLOR_ withBG:_ObjC_ _ { self.bclr = _; return self; }
+- _BICOLOR_ withBG:_ObjC_ bg { self.bclr = bg; return self; }
 
 @end
 

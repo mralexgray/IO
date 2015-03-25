@@ -3,7 +3,7 @@ import AtoZIO
 
 let test: NSString = "Boring Grey"
 
-let x =  NSColor.redColor()
+let x =  NSColor.greenColor()
 
 test.fclr = x
 
@@ -12,7 +12,10 @@ test.fclr = x
 
 (test as NSString).uppercaseString
 
-//IO.width()
+let io = AtoZIO.io()
+
+
+
 
 //let test: NSString = "123"
 

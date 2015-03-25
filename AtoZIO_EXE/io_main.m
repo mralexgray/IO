@@ -1,7 +1,7 @@
 
-@import AtoZ;
+#import <AtoZ/AtoZ.h>
 
-@Desc CLId : AtoZSingleton <CLIDelegate> @end
+@Kind_(CLId,AtoZSingleton,<CLIDelegate>) ￭
 
 @implementation CLId
 
@@ -9,10 +9,11 @@
 
 @end
 
-MAIN({
+MAIN(
 
-   id img = [NSIMG contactSheetWith:[[FM pathsForItemsMatchingExtension:@"png" inFolder:@"/Users/localadmin/Desktop"] map:^id(id p){
-        return [NSIMG withFile:p]; }] inFrame:AZScreenFrame()];
+   id img = [NSIMG contactSheetWith:
+    [[[FM pathsForItemsMatchingExtension:@"png" inFolder:@"/Users/localadmin/Desktop"].shuffeled withMaxItems:10]
+        map:^id(id p){ return [NSIMG withFile:p]; }] inFrame:AZScaleRect(AZScreenFrame(),.5)];
 
 //      [@"i'm here, girl" print];
       _Text xx = [img  base64EncodingWithFileType:NSPNGFileType];/// [scaledToMax:AZScreenWidth()/2] base64EncodingWithFileType:NSPNGFileType];
@@ -36,7 +37,7 @@ MAIN({
 
 //  [[Pict swatchWithColors:RANDOMPAL size:AZSizeFromDim(600) oriented:AZOrientGrid]
 //                                                                    openInPreview];
-  [IO.$0 echo];
+  [IO.０ echo];
   NSObject <CLIDelegate> *x = [CLId instance];
   NSLog(@"%@ options", x.className);//, x.options);
 
@@ -54,7 +55,7 @@ MAIN({
 
     for (NSC* x in [RANDOMPAL withMaxItems:5]) { // NSCL.namedColors) {
 
-      id p = [x.name paddedTo:IO.width]; [p setBclr:x.muchDarker]; [p printC:x];
+      id p = [x.name paddedTo:IO.cols]; [p setBclr:x.muchDarker]; [p printC:x];
 
       answer = [IO prompt:z];
 
@@ -103,7 +104,7 @@ MAIN({
   //    8; color < 16; color++) {     printf("\x1b[48;5;%dm  ",color); }
 
 
-})
+)
 
 /*
  GBOptionsHelper * opts = GBOptionsHelper.new;

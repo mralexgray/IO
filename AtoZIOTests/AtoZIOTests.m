@@ -6,35 +6,39 @@
 //  Copyright (c) 2015 Alex Gray. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+@import AtoZIO;
 #import <XCTest/XCTest.h>
 
 @interface AtoZIOTests : XCTestCase
-
+{
+ id x;
+}
 @end
 
 @implementation AtoZIOTests
 
-- _Void_ setUp {
-    [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+- (void) setUp      { [@"Well Hello!"[RED] echo]; [super setUp]; }
+
+- (void) tearDown   { [super tearDown]; }
+
+- (void) testExample {
+
+  id z = IO.args;
+  [z print];
+  XCTAssertNotNil(z, @"We shall have arggs!, %@",z);
+  XCTAssert(＃== [z count] + 1, @"Should find %lu args, got %lu", [z count] + 1, ＃);
 }
 
-- _Void_ tearDown {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
-    [super tearDown];
-}
-
-- _Void_ testExample {
-    // This is an example of a functional test case.
-    XCTAssert(YES, @"Pass");
-}
-
-- _Void_ testPerformanceExample {
+- (void) testPerformanceExample {
     // This is an example of a performance test case.
     [self measureBlock:^{
         // Put the code you want to measure the time of here.
     }];
 }
 
+- (void) testImageNamed {
+
+//  XCTAssertNotNil(x = AZIMGNamed(AZIMG_checkmark));
+
+}
 @end

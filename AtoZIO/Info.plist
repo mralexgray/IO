@@ -2,12 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>CFBundleIconFile</key>
-	<string>AtoZIO.icns</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIconFile</key>
+	<string>AtoZIO.icns</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.mrgray.$(PRODUCT_NAME:rfc1034identifier)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
@@ -26,5 +26,7 @@
 	<string>Copyright © 2015 Alex Gray. All rights reserved.</string>
 	<key>NSPrincipalClass</key>
 	<string>AtoZIO</string>
+	<key>__TIMESTAMP__</key>
+	<string>Sat Mar 21 02:53:04 EDT 2015</string>
 </dict>
 </plist>
