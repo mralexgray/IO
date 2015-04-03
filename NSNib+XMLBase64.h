@@ -1,24 +1,22 @@
 
 /*  NSNib+XMLBase64.h  *  AtoZCodeFactory */
 
-#if TARGET_OS_IPHONE
-@import UIKit;
-#else
-@import AppKit;
-#endif
+@Xtra(NSNib,XMLBase64)
 
-@interface			             NSNib (XMLBase64)
-+      (NSData*)   dataFromXMLPath:(NSString*)p;
-+    (NSString*) base64FromXMLPath:(NSString*)p;
-+    (NSString*)     xmlFromBase64:(NSString*)p;
-+ (instancetype)    nibFromXMLPath:(NSString*)s
-														 owner:(id)owner
-												topObjects:(NSArray**)objs;
-@end
++ _Data_   dataFromXMLPath:_Text_ p _
++ _Text_ base64FromXMLPath:_Text_ p _
++ _Text_     xmlFromBase64:_Text_ p _
++ _Kind_    nibFromXMLPath:_Text_ s
+                     owner:owner
+                topObjects:(_List*)o _
 
-@interface NSData (Base64)
-+   (NSData*)      dataFromInfoKey:(NSString*)k;
-+   (NSData*) dataFromBase64String:(NSString*)s;
-- (NSString*)  base64EncodedString;
-- (NSString*) base64EncodedStringWithSeparateLines:(BOOL)separateLines; // added by Hiroshi Hashiguchi
-@end
+@XtraStop(XMLBase64)
+
+@Xtra(NSData,Base64)
+
++ _Data_      dataFromInfoKey:_Text_ k _
++ _Data_ dataFromBase64String:_Text_ s _
+- _Text_  base64EncodedString _
+- _Text_ base64EncodedStringWithSeparateLines:_IsIt_ separateLines _ // added by Hiroshi Hashiguchi
+
+@XtraStop(Base64)

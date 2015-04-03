@@ -1,12 +1,21 @@
 
-#import "_IO.h"
+#import "IO_.h"
 
 
-@Plan AtoZIO { AVAudioPlayer *playa; } UNO(_IO); // AVAudioPlayerDelegate
+@Plan AtoZIO { P(_IO) runner; AVAudioPlayer *playa; } UNO(___IO); // AVAudioPlayerDelegate
 
 @synthesize isxcode = _isxcode; @dynamic hideCursor, io, cursorLocation;
 
-+ _Void_ load {   [$(@"isatty:%@ isxcode:%@\n", $B(IO.isatty), $B(IO.isxcode)) printC:RANDOMCOLOR]; }
+- (P(_IO)) dispatch:(Class<_IO>)k,... _ { SEL def = NULL;
+
+  runner = [k.alloc init]; va_list args; va_start(args, k); def = va_arg(args, SEL); va_end(args);
+
+  if (!def && [runner respondsToSelector:@selector(defaultMethod)]) def = runner.defaultMethod _
+
+//  if (def && [runner respondsToSelector:def])
+  return runner;
+
+}
 
 - _List_ － { return @[] _ }
 - _List_ ﹫ { return @[] _ }
@@ -15,21 +24,27 @@
 - (_Char**) argv  { return          _NSGetArgv(); }
 - ( _SInt*) argc  { return (_SInt*) _NSGetArgc(); }
 
-- _Text_ ０       { return   PROCINFO.arguments[0];       } /*$0*/
-- _Numb_ ＄       { return @(PROCINFO.processIdentifier); } /*$$*/
 - _IsIt_ isatty   { return @(isatty(STDERR_FILENO)).bV;   }
 - _IsIt_ isxcode  { return dispatch_uno(  _isxcode  =
 
-  [[self run:$(@"ps -p %@",[self run:$(@"ps -xc -o ppid= -p %@", IO.＄)])] containsString:@"Xcode"];
+  [[self run:$(@"ps -p %@",[self run:$(@"ps -xc -o ppid= -p %i",＄)])] containsString:@"Xcode"];
 
   ), _isxcode;
 }
 - _Void_ clearConsole           { puts("\e[2J"); }
 - _Void_ setHideCursor:_IsIt_ b { printf("\e[?25%c", b ? 'h' : 'l'); }
 
-- _Rect_ frame { struct winsize ws;
+- _Text_ env:_Text_ var {  return $(@"%s",getenv(var.UTF8String)?:""); }
 
-  ioctl(STDOUT_FILENO, TIOCSWINSZ, &ws); return _Rect_ {0,0,ws.ws_col, ws.ws_row};
+
+- _Rect_ frame { struct winsize ws; ioctl(STDOUT_FILENO, TIOCGWINSZ, &ws);
+
+
+  return ws.ws_col ? _Rect_ {0,0,ws.ws_col ?: 100, ws.ws_row?: 80} :
+
+  ({ id r = [self env:@"ROWS"], c = [self env:@"COLUMNS"];
+    _Rect_ {0,0,r ? [r fV] : 66, c ? [c fV] : 11 };
+  });
 }
 //- _Size_ pixels { return _Size_ {_Flot_ self.ws.ws_xpixel, _Flot_ ws.ws_ypixel}; }
 
@@ -126,7 +141,7 @@
 
   [[lines reduce:@"".mC withBlock:^id(id sum, id obj) { return
 
-    [sum appendString: ISA(obj,Text) ? $(@"%@%@%@",(_Text_ obj).x, [self resetFX], zNL)
+    [sum appendString: ISA(obj,Text) ? $(@"%@%@%@",(_Text_ obj).ioString, [self resetFX], zNL)
                      : ISA(obj,Colr) ? [[obj bgEsc]    withString:self.isxcode ? @"" : @"m"]  : @""], sum;
   }] print];
 }

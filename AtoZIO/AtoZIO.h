@@ -2,41 +2,85 @@
 @import AtoZUniversal;
 #import <AtoZIO/IO+Protocols.h>
 
-@Kind(AtoZIO, <Subscriptable, RectLike>)
+/*    ___                       ___           ___
+     /  /\          ___        /  /\         /  /\    
+    /  /::\        /  /\      /  /::\       /  /::|   
+   /  /:/\:\      /  /:/     /  /:/\:\     /  /:/:|   
+  /  /:/~/::\    /  /:/     /  /:/  \:\   /  /:/|:|__ 
+ /__/:/ /:/\:\  /  /::\    /__/:/ \__\:\ /__/:/ |:| /\
+ \  \:\/:/__\/ /__/:/\:\   \  \:\ /  /:/ \__\/  |:|/:/
+  \  \::/      \__\/  \:\   \  \:\  /:/      |  |:/:/ 
+   \  \:\           \  \:\   \  \:\/:/       |  |::/  
+    \  \:\           \__\/    \  \::/        |  |:/   
+     \__\/                     \__\/         |__|/
 
-_Type struct { _SInt argc; _Char * argv; } _Main _
+          _____                   _______         
+         /\    \                 /::\    \        
+        /::\    \               /::::\    \       
+        \:::\    \             /::::::\    \
+         \:::\    \           /::::::::\    \     
+          \:::\    \         /:::/~~\:::\    \    
+           \:::\    \       /:::/    \:::\    \   
+           /::::\    \     /:::/    / \:::\    \  
+  ____    /::::::\    \   /:::/____/   \:::\____\ 
+ /\   \  /:::/\:::\    \ |:::|    |     |:::|    |
+/::\   \/:::/  \:::\____\|:::|____|     |:::|    |
+\:::\  /:::/    \::/    / \:::\    \   /:::/    / 
+ \:::\/:::/    / \/____/   \:::\    \ /:::/    /  
+  \::::::/    /             \:::\    /:::/    /   
+   \::::/____/               \:::\__/:::/    /    
+    \:::\    \                \::::::::/    /     
+     \:::\    \                \::::::/    /      
+      \:::\    \                \::::/    /       
+       \:::\____\                \::/____/        
+        \::/    /                 ~~              
+         \/____/                                 */
 
-_RO _Main main _           // argc + argv
-_P  _ObjC io _             // R/W stream
 
-- _Void_ run _             // Runloop
+@Vows _IO <NObj>
+@Optn _RO SEL defaultMethod _ ￭
 
-- _ObjC_ run:_ObjC_ cmd _  // Run command, get result.
+@Kind (AtoZIO) <RectLike, Subscriptable>
 
+- (P(_IO)) dispatch:(Class<_IO>)k, ... _
+
+#define IO_MAIN int main(int argc, const char **argv
+#define －(...) _
+
+_RO  _Main main       －( argc + argv )
 _RO  _IsIt isatty,
            isxcode    _
 _RO  _List args,
            stdinlines _
 
-_P   _IsIt hideCursor _
+_NC  _ObjC io         －( stdin + stdout )
 
+_AT  _IsIt hideCursor －( peek-a-boo )
 
 _RC  _Text scan,
            resetFX    _
+
 _RC  _Dict infoPlist  _
 _NA  _Text prompt     _
 
-#define ＃ IO.main.argc
-#define ﹗ AZPROCINFO.processIdentifier
+- _Text_ env:_Text_ var _
+- _Void_ run            _  // Runloop
+
+- _ObjC_ run:_ObjC_ cmd _  // Run command, get result.
+
+#define ＃ (_UInt_ IO.main.argc)  //
+//#define ﹗ (_UInt_ AZPROCINFO.processIdentifier) // like $!, pid of last job run in background
 #define ﹡ @[]
-                          //               PID (process ID) of last job run in background
+#define ＄ (_UInt_ AZPROCINFO.processIdentifier) // Process ID (PID) of the script itself.
+#define ０ (_Text_ AZPROCINFO.arguments[0])
+
 //- _UInt_  _                // argc
 //- _List_ ﹫ _              // whoknows, lets make this LINES
 //- _List_ ﹡ _              // whoknows, i'm making this an array of word params
 - _List_ － _              // flags?  lets make it something better
 - _SInt_ ﹖ _              // Exit status of a command, function, or the script itself
-- _Text_ ０ _              // EXE path
-- _Numb_ ＄ _              // Process ID (PID) of the script itself.
+//- _Text_ ０ _              // EXE path
+
 
                                                                        /*
   keyget  id x = IO[@"prompt>"] (scan)
@@ -81,8 +125,8 @@ _P _Cell cursorLocation; /// dynamic
 
 - _Void_ justPlay:path _
 
-#define IO AtoZIO._IO
-+ _Kind_ _IO;
+#define IO ((AtoZIO*)[AtoZIO ___IO])
++ _Kind_ ___IO;
 
 @end
 
@@ -136,13 +180,13 @@ _RO _Text stringRep _
 
 @end
 
-#define $Bx(b) [[$B(b) withFG:b?GREEN:RED]x]
+#define $Bx(b) [[$B(b) withFG:b?GREEN:RED]ioString]
 
 
 // -=/><\=-=/><\=-=/><\=-=/><\=-=/><\=-=/><\=-=/><\=-=/><\=-=/><\=-
 
 #define UNO(INSTNAME) + (INST) INSTNAME { static id uno__; dispatch_uno( uno__ = [self alloc]; uno__ = [uno__ init]; ); return uno__; }
-#define PROCINFO NSProcessInfo.processInfo
+#define PROCINFO [NSProcessInfo processInfo]
 #define _Cell_ (_Cell)
 
 

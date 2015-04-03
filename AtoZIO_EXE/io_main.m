@@ -1,16 +1,42 @@
 
-#import <AtoZ/AtoZ.h>
+//@import AtoZ;
+@import AtoZIO;
 
-@Kind_(CLId,AtoZSingleton,<CLIDelegate>) ￭
+//@Kind_(CLId,AtoZSingleton,<CLIDelegate>) ￭
 
-@implementation CLId
-
-- _Void_ doSomething { [@"done" printC:RANDOMCOLOR]; }
-
-@end
+//@implementation CLId
+//
+//- _Void_ doSomething { [@"done" printC:RANDOMCOLOR]; }
+//
+//@end
 
 MAIN(
 
+    if (IO.args.count == 1 && [IO respondsToString:IO.args[0]]) { [IO performString:IO.args[1]]; return 0; }
+
+    struct winsize w;
+    ioctl(0, TIOCGWINSZ, &w);
+
+    printf("lines %d\n", w.ws_row);
+    printf("columns %d\n", w.ws_col);
+
+//  XX([IO conformsToProtocol:@protocol(RectLike)]);
+
+  [NSStringFromRect(IO.frame) print256];
+//  XX([IO w]);
+
+  [IO.instanceMethodNames echo];
+  
+  ProgressBar *a = [ProgressBar.alloc initWithLabel:Text.randomDicksonism max:100];
+
+  while (a.value < 100) {
+
+    [a increment]; usleep(400000);
+
+  }
+)
+
+/*
    id img = [NSIMG contactSheetWith:
     [[[FM pathsForItemsMatchingExtension:@"png" inFolder:@"/Users/localadmin/Desktop"].shuffeled withMaxItems:10]
         map:^id(id p){ return [NSIMG withFile:p]; }] inFrame:AZScaleRect(AZScreenFrame(),.5)];
@@ -37,7 +63,7 @@ MAIN(
 
 //  [[Pict swatchWithColors:RANDOMPAL size:AZSizeFromDim(600) oriented:AZOrientGrid]
 //                                                                    openInPreview];
-  [IO.０ echo];
+  [０ echo];
   NSObject <CLIDelegate> *x = [CLId instance];
   NSLog(@"%@ options", x.className);//, x.options);
 
@@ -55,7 +81,7 @@ MAIN(
 
     for (NSC* x in [RANDOMPAL withMaxItems:5]) { // NSCL.namedColors) {
 
-      id p = [x.name paddedTo:IO.cols]; [p setBclr:x.muchDarker]; [p printC:x];
+      id p = [x.name paddedTo:IO.w]; [p setBclr:x.muchDarker]; [p printC:x];
 
       answer = [IO prompt:z];
 
@@ -105,8 +131,6 @@ MAIN(
 
 
 )
-
-/*
  GBOptionsHelper * opts = GBOptionsHelper.new;
 
  opts.applicationVersion          = ^{ return @"1.0"; };
@@ -993,10 +1017,7 @@ void(^scrDemo)() = ^{
   printf( "Tu nombre es %s\n", nombre );
 
   IO.showCursor = NO;
-
   scrSetColors( scrWhite, scrBlack );
+ */
 
 
-
-};
-*/

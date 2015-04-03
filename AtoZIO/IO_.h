@@ -11,13 +11,10 @@
 #import "DDEmbeddedDataReader.h"
 #import "NSNib+XMLBase64.h"
 
-//#import <AtoZIO/GBCommandLineParser.h>     // GBCli
-
 #define sqr(x) ((x) * (x))
-
 typedef struct { int r; int g; int b; } rgb;
 
-#if MAC_ONLY
+#if     MAC_ONLY
 @import ScriptingBridge;
 #define DEVICECLR(X) [X colorUsingColorSpace:NSColorSpace.deviceRGBColorSpace]
 #else
@@ -26,16 +23,24 @@ typedef struct { int r; int g; int b; } rgb;
 
 #define COLOR_NUM(color) lroundf(c.color##Component*255)
 
-#pragma mark -  NOT XcodeColors Escapes
+
+#pragma mark -  Escapes
+
+#define CSI "\033["
+
+#define XCODE_FG    CSI "fg;" // Clear any foreground color
+#define XCODE_BG    CSI "bg;" // Clear any background color
+#define XCODE_RESET CSI ";"   // Clear any foreground or background color
 
 
 #define ANSI_ESC "\x1b[0;"
 #define ANSI_FG "38;05;"
 #define ANSI_BG "48;05;"
 
-#define ANSI_RESET     ANSI_ESC "0m"  // Reset all SGR options.
+#define ANSI_RESET ANSI_ESC "0m"  // Reset all SGR options.
 #define ANSI_RESET_FG  "39m" // Reset foreground color.
 #define ANSI_RESET_BG  "49m" // Reset background color.
+
 
 
 /*! Xcode does NOT natively support colors in the Xcode debugging console.
@@ -63,13 +68,6 @@ typedef struct { int r; int g; int b; } rgb;
 //static const char *CSI = "\33[",
 //       *CmdClearScreen = "2J";
 
-#define CSI "\033["
-
-#define XCODE_FG    CSI "fg;" // Clear any foreground color
-#define XCODE_BG    CSI "bg;" // Clear any background color
-#define XCODE_RESET CSI ";"   // Clear any foreground or background color
-
-#endif
 
 _CAT( Colr, AtoZIO,
 
@@ -104,4 +102,5 @@ extern char ***_NSGetArgv(void);
 //extern rgb clr_2_rgb (Clr c);
 //extern rgb tty_2_rgb (int c);
 
+#endif
 

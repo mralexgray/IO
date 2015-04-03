@@ -1,5 +1,5 @@
 
-#import "_IO.h"
+#import "IO_.h"
 
 @XtraPlan(Text,AtoZIO)
 
@@ -8,8 +8,7 @@
   if ((new = [self.alloc initWithFormat:fmt arguments:list])) new.fclr = c; va_end(list); return new;
 }
 
-
-- (const char*) cChar { return self.x.UTF8String; }
+- (_CChr) cChar { return self.ioString.UTF8String; }
 
 - _Void_ print256 {
 

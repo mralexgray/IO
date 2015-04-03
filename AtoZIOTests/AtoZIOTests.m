@@ -1,40 +1,32 @@
-//
-//  AtoZIOTests.m
-//  AtoZIOTests
-//
-//  Created by Alex Gray on 2/20/15.
-//  Copyright (c) 2015 Alex Gray. All rights reserved.
-//
 
 @import AtoZIO;
-#import <XCTest/XCTest.h>
 
-@interface AtoZIOTests : XCTestCase
-{
- id x;
-}
-@end
+_Case(AtoZIOTests, [@"Well Hello!"[RED] echo]; )
 
-@implementation AtoZIOTests
+_Test(Example,
 
-- (void) setUp      { [@"Well Hello!"[RED] echo]; [super setUp]; }
+  id z = IO.args; [z printC:RANDOMCOLOR];
 
-- (void) tearDown   { [super tearDown]; }
-
-- (void) testExample {
-
-  id z = IO.args;
-  [z print];
   XCTAssertNotNil(z, @"We shall have arggs!, %@",z);
-  XCTAssert(＃== [z count] + 1, @"Should find %lu args, got %lu", [z count] + 1, ＃);
-}
+//  XCTAssert(＃== [z count] + 1, @"Should find %lu args, got %lu", [z count] + 1, ＃);
 
-- (void) testPerformanceExample {
+)
+
+_Test(TTYCharacteristics,
+
+  XCTAssert(IO.isatty, @"SHould be a tty")_
+  XCTAssert(IO.isxcode, @"SHould be xcode!")_
+  XCTAssertFalse( NSEqualRects(NSZeroRect, IO.frame), @"Need a frame!")_
+
+)
+
+_Test(PerformanceExample, {
+
     // This is an example of a performance test case.
     [self measureBlock:^{
         // Put the code you want to measure the time of here.
     }];
-}
+})
 
 - (void) testImageNamed {
 

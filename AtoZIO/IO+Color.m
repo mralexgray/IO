@@ -1,5 +1,5 @@
 
-#import "_IO.h"
+#import "IO_.h"
 
 
          rgb COLOR_TABLE[256];
@@ -13,12 +13,12 @@ static   rgb     BASIC16[] = {{  0,   0,   0}, {205, 0,   0}, { 0, 205,   0}, { 
 
 @implementation Colr (AtoZIO)
 
-- _Text_ bgEsc { return IO.isxcode  ? $(@"" CSI              "bg%@;", self.xcTuple) :
-                        IO.isatty   ? $(@"" ANSI_ESC ANSI_BG "%lu",   self.tty) : @"";
+- _Text_ bgEsc { return IO.isxcode  ? $(@"%sbg%@;", CSI, self.xcTuple) :
+                        IO.isatty   ? $(@"%s%s%lu", ANSI_ESC, ANSI_BG, self.tty) : @"";
 }
 
-- _Text_ fgEsc { return IO.isxcode  ? $(@"" CSI              "fg%@;", self.xcTuple) :
-                        IO.isatty   ? $(@"" ANSI_ESC ANSI_FG "%lu",   self.tty) : @"";
+- _Text_ fgEsc { return IO.isxcode  ? $(@"%sfg%@;",  CSI, self.xcTuple) :
+                        IO.isatty   ? $(@"%s%s%lu", ANSI_ESC, ANSI_FG, self.tty) : @"";
 }
 
 - _Flot_ component:(_UInt)rgorb {
