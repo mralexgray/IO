@@ -34,9 +34,9 @@ Text * const     TerminalNotifierBundleID = @"nl.superalloy.oss.terminal-notifie
 
 #if !TARGET_OS_IPHONE
 
-_S _IsIt isMavericks() { return !(floor(NSAppKitVersionNumber) <= NSAppKitVersionNumber10_8); /* MO On a 10.8 - 10.8.x system, YES on 10.9 or later system */ }
+static _IsIt isMavericks() { return !(floor(NSAppKitVersionNumber) <= NSAppKitVersionNumber10_8); /* MO On a 10.8 - 10.8.x system, YES on 10.9 or later system */ }
 
-_S _IsIt InstallFakeBundleIdentifierHook() {
+static _IsIt InstallFakeBundleIdentifierHook() {
 
   Class class; if (!(class = objc_getClass("NSBundle"))) return NO;
 

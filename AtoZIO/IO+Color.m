@@ -1,7 +1,6 @@
 
 #import "IO_.h"
 
-
          rgb COLOR_TABLE[256];
 
 static _UInt  CUBE_STEPS[] =  { 0x00, 0x5F, 0x87, 0xAF, 0xD7, 0xFF };
@@ -14,11 +13,11 @@ static   rgb     BASIC16[] = {{  0,   0,   0}, {205, 0,   0}, { 0, 205,   0}, { 
 @implementation Colr (AtoZIO)
 
 - _Text_ bgEsc { return IO.isxcode  ? $(@"%sbg%@;", CSI, self.xcTuple) :
-                        IO.isatty   ? $(@"%s%s%lu", ANSI_ESC, ANSI_BG, self.tty) : @"";
+                        IO.isatty   ? $(@"%s%s%lu", CSI, ANSI_BG, self.tty) : @"";
 }
 
-- _Text_ fgEsc { return IO.isxcode  ? $(@"%sfg%@;",  CSI, self.xcTuple) :
-                        IO.isatty   ? $(@"%s%s%lu", ANSI_ESC, ANSI_FG, self.tty) : @"";
+- _Text_ fgEsc { return IO.isxcode  ? $(@"%sfg%@;", CSI, self.xcTuple) :
+                        IO.isatty   ? $(@"%s%s%lu", CSI, ANSI_FG, self.tty) : @"";
 }
 
 - _Flot_ component:(_UInt)rgorb {
@@ -81,3 +80,4 @@ __attribute__((constructor)) static _Void init() { for (int c = 0; c < 256; c++)
   //  NSNumber *x = @(clr_2_tty((rgb){me.redComponent*255, me.greenComponent*255, me.blueComponent*255}));
   //  objc_setAssociatedObject(self, _cmd, x, OBJC_ASSOCIATION_RETAIN_NONATOMIC);  x; }) intValue];
   //}
+

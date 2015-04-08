@@ -22,12 +22,15 @@
 
 @XtraPlan(NObj,AtoZIO)
 
-- _Text_ stringRep { return ISA(self,Text) ?  _ObjC_ self :
-                            ISA(self,List) ? (_List_ self).description :  //joinedWithSpaces :
-                            ISA(self,Numb) ? [Colr fromTTY:(_Numb_ self).iV] : self.description; }
+- _Text_ stringRep { return
+
+  ISA(self,Text) ? (_Text_ self) :
+  ISA(self,List) ? (_List_ self).description :
+  ISA(self,Numb) ?  _Text_ [Colr fromTTY:(_Numb_ self).iV] : self.description; }
+
 - _Void_ echo     { printf("%s\n", self.stringRep.cChar); }
-- _Void_ print    { printf("%s",   self.stringRep.cChar);             }
-- _Void_ printC:c { [[self stringRep][c] print];                        }
+- _Void_ print    { printf("%s",   self.stringRep.cChar); }
+- _Void_ printC:c { [self.stringRep[c] print];                        }
 
 @XtraStop()
 
@@ -125,17 +128,17 @@ typedef NS_ENUM(int,FMTOptions){
 void FillLineClr(int c) {
 
   _Text x = [@(c).strV stringByPaddingToLength:IO.w withString:@" " startingAtIndex:0];
-//  [x setBclr:[NSC fromTTY:c]];
+  //  [x setBclr:[NSC fromTTY:c]];
   [x setBclr:@(c)];//[NSC fromTTY:c]];
   [x print];
 }
 
 //void    PrintInClr (const char*s, int c)    { ;  }
 //void      PrintClr (int c)                  { PrintInClr("  ", c); }
-void       ClrPlus (const char* c)          { printf("%s0m%s", ANSI_ESC, c); }
+void       ClrPlus (const char* c)          { printf("%s0m%s", CSI, c); }
 void      Spectrum (void)                   {
 
-//  for(int r = 0; r < 600; r++) { FillLineClr(r); }
+  //  for(int r = 0; r < 600; r++) { FillLineClr(r); }
   for(int r = 0; r < 6; r++) {
     for(int g = 0; g < 6; g++) {
       for(int b = 0; b < 6; b++) FillLineClr( 16 + (r * 36) + (g * 6) + b );  ClrPlus("  ");

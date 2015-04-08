@@ -1,25 +1,117 @@
 
 #import "IO_.h"
+#import "scrutil.h"
+
+JREnumDefine(ConsoleColors);
+
+
+int getch(void) {
+
+	static int ch = -1, fd = 0;
+	struct termios neu, alt;
+	fd = fileno(stdin);
+	tcgetattr(fd, &alt);
+	neu = alt;
+	neu.c_lflag &= ~(ICANON | ECHO);
+	tcsetattr(fd, TCSANOW, &neu);
+	ch = getchar();
+	tcsetattr(fd, TCSANOW, &alt);
+	return ch;
+}
+
+int kbhit(void) {
+	struct termios term, oterm;
+	int fd = 0;
+	int c = 0;
+	tcgetattr(fd, &oterm);
+	memcpy(&term, &oterm, sizeof (term));
+	term.c_lflag = term.c_lflag & (!ICANON);
+	term.c_cc[VMIN] = 0;
+	term.c_cc[VTIME] = 1;
+	tcsetattr(fd, TCSANOW, &term);
+	c = getchar();
+	tcsetattr(fd, TCSANOW, &oterm);
+	if (c != -1)
+		ungetc(c, stdin);
+	return ((c != -1) ? 1 : 0);
+}
+
+void clearConsole(void) {
+	/*char a[80];*/
+	printf("\033[2J"); /* Clear the entire screen.		*/
+	printf("\033[0;0f"); /* Move cursor to the top left hand corner */
+}
+
+void consoleGotoXY(short x, short y) { printf("\033[%i;%if", y, x); }
+
+void setConsoleColor(ConsoleColors clr)  {
+
+  const char * c =
+    clr == xBLACK ? "0;30m" :       clr == xRED ? "0;31m" :  clr == xGREEN ? "0;32m" :
+    clr == xDARK_YELLOW ? "0;33m" : clr == xBLUE ? "0;34m" :      clr == xPURPLE ? "0;35m" :
+    clr == xCYAN ? "0;36m" :        clr == xGRAY ? "0;37m" :      clr == xDARK_GRAY ? "1;30m" :
+	clr == xLIGHT_RED ? "1;31m" :   clr == xLIGHT_GREEN ? "1;32m" : clr == xYELLOW ? "1;33m" :
+	clr == xLIGHT_BLUE ? "1;34m" :   clr == xLIGHT_PURPLE ? "1;35m" : clr == xLIGHT_CYAN ? "1;36m" :
+	clr == xWHITE ? "1;37m" : ""; printf("\033[%s",c);
+}
+
+void setConsoleSize(short xsize, short ysize)   {
+	char rcmd[32];
+	sprintf(rcmd, "resize -s %i %i > /dev/null", ysize, xsize);
+	system(rcmd);
+}
+
+void getConsoleSize(short *xsize, short *ysize) {
+	FILE *pipe = popen("stty size", "r");
+	fscanf(pipe, "%hi%hi", ysize, xsize);
+	pclose(pipe);
+}
 
 
 @Plan AtoZIO { P(_IO) runner; AVAudioPlayer *playa; } UNO(___IO); // AVAudioPlayerDelegate
 
 @synthesize isxcode = _isxcode; @dynamic hideCursor, io, cursorLocation;
 
-- (P(_IO)) dispatch:(Class<_IO>)k,... _ { SEL def = NULL;
+#pragma mark - Console
 
-  runner = [k.alloc init]; va_list args; va_start(args, k); def = va_arg(args, SEL); va_end(args);
+_VD setTitle:(_Text)title { printf("\033]0;%s\007", [_title = title UTF8String]); }
 
-  if (!def && [runner respondsToSelector:@selector(defaultMethod)]) def = runner.defaultMethod _
 
-//  if (def && [runner respondsToSelector:def])
-  return runner;
+
+#pragma mark - Commandline
+
+_VD repl {
+
+  id class = [self prompt:@"Create instance of class:"];
+  Class k = NSClassFromString(class);
+  if (!k) return [$(@"can't create class \"%@\"!", k) echo];
+  id method = [self prompt:@"Via method:"];
+  id x = [(id)k performString:method];
+  id act = [self prompt:@"No what:"];
+  id res = [x performString:act];
+
+  [res echo];
+
+}
+_VD help {
+
+  printf("      --example       Just help a nigger out\n"
+         " 	-a, --another       Is anybody goig to eat that cake\n");
 
 }
 
-- _List_ － { return @[] _ }
-- _List_ ﹫ { return @[] _ }
-- _SInt_ ﹖ { return 0   _ }
+- _Dict_ getOpts { return ParseArgs(); }
+
+- (P(_IO)) dispatch:(Class<_IO>)k,... { SEL def = NULL;
+
+  runner = [k.alloc init]; va_list args; va_start(args, k); def = va_arg(args, SEL); va_end(args);
+
+  if (!def && [runner respondsToSelector:@selector(defaultMethod)]) def = runner.defaultMethod ___
+
+//  if (def && [runner respondsToSelector:def])
+  return runner;
+}
+
 
 - (_Char**) argv  { return          _NSGetArgv(); }
 - ( _SInt*) argc  { return (_SInt*) _NSGetArgc(); }
@@ -32,17 +124,16 @@
   ), _isxcode;
 }
 - _Void_ clearConsole           { puts("\e[2J"); }
+
 - _Void_ setHideCursor:_IsIt_ b { printf("\e[?25%c", b ? 'h' : 'l'); }
 
-- _Text_ env:_Text_ var {  return $(@"%s",getenv(var.UTF8String)?:""); }
-
+- _Text_ getenv:_Text_ var {  return $(@"%s",getenv(var.UTF8String)?:""); }
 
 - _Rect_ frame { struct winsize ws; ioctl(STDOUT_FILENO, TIOCGWINSZ, &ws);
 
-
   return ws.ws_col ? _Rect_ {0,0,ws.ws_col ?: 100, ws.ws_row?: 80} :
 
-  ({ id r = [self env:@"ROWS"], c = [self env:@"COLUMNS"];
+  ({ id r = [self getenv:@"ROWS"], c = [self getenv:@"COLUMNS"];
     _Rect_ {0,0,r ? [r fV] : 66, c ? [c fV] : 11 };
   });
 }
@@ -71,17 +162,20 @@
   return outP;
 }
 
-- _Void_ setObject:_ObjC_ x forKeyedSubscript:_Copy_ k { (_ObjBlk_ x)([self prompt:_ObjC_ k]) _ /*  ISA(k,Text) ? [k echo] : [_List_ k */ }
+- _Void_ setObject:_ObjC_ x forKeyedSubscript:_Copy_ k {
 
-- _Void_ setIo:_ObjC_ io { [io print] _ }
+  (_ObjBlk_ x)([self prompt:_ObjC_ k])___ /*  ISA(k,Text) ? [k echo] : [_List_ k */
+}
 
-- _ObjC_              io { return [self scan] _ }
+- _Void_ setIo:_ObjC_ io { [io print]___ }
 
-- _Text_ prompt:_Text_ t { return [self prompt:t c:7] _ } /* OK */
+- _ObjC_              io { return [self scan]___ }
 
-- _Text_ prompt:_Text_ t c:_SInt_ c { t.fclr = @(c)_ [t print]_
+- _Text_ prompt:_Text_ t { return [self prompt:t c:7]___ } /* OK */
 
-  return NSFileHandle.fileHandleWithStandardInput.availableData.UTF8String _
+- _Text_ prompt:_Text_ t c:_SInt_ c { t.fclr = @(c)___ [t print]___
+
+  return NSFileHandle.fileHandleWithStandardInput.availableData.UTF8String ___
 }
 
 - _Void_ setCursorLocation: _Cell_ c { printf("%s%ld;%ldH", CSI, c.row + 1, c.col + 1); }
@@ -96,10 +190,11 @@
 } /* OK */
 #endif
 
-- _List_ args { return NSProcessInfo.processInfo.arguments.shifted; } /* OK */
+- _List_ args { return [_PI.arguments subarrayWithRange:(NSRange){1,_PI.arguments.count-1}]; } //  subarrayFromIndex:1]; } // .shifted; } /* OK */
 
-- _Data_ section:_Text_ __TEXTsection { return [DDEmbeddedDataReader embeddedDataFromSection:__TEXTsection error:nil];
-}
+- _Data_ section:_Text_ __TEXTsection { return [DDEmbeddedDataReader embeddedDataFromSection:__TEXTsection error:nil]; }
+
++ _Dict_ infoPlist: _Text_ path { return [DDEmbeddedDataReader defaultPlistOfExecutableAtPath:path error:nil]; }
 
 - _Dict_ infoPlist { return [DDEmbeddedDataReader defaultEmbeddedPlist:nil]; }
 
@@ -146,11 +241,9 @@
   }] print];
 }
 
-- _Text_ resetFX { AZSTATIC_OBJ(Text, r, ({ self.isxcode ? $UTF8(XCODE_RESET) : $UTF8(ANSI_RESET); })); return r; }
+- _Text_ resetFX { AZSTATIC_OBJ(Text, r, ({ self.isxcode ? $UTF8(XC_RESET) : $UTF8(ANSI_RESET); })); return r; }
 
-- _Void_ fill:_Rect_ r color:_ObjC_ c {
-
-}
+- _Void_ fill:_Rect_ r color:_ObjC_ c { }
 
 - _Text_ imageString:_ObjC_ pathOrImage { _Pict image; _Text name, x;
 
@@ -162,9 +255,7 @@
   });
 
 #if MAC_ONLY
-                                    //([NSScreen.mainScreen vFK:@"bounds"]?:
-    _Rect r = [[NSScreen.mainScreen vFK:@"frame"] rV];
-
+    _Rect r = NSScreen.mainScreen.frame;
     CGFloat multi = MAX(image.size.width, r.size.width / 2.) / image.size.width;
     [image setSize:AZScaleSize(image.size, multi)];
     x = [image.TIFFRepresentation base64EncodedStringWithOptions:0];
@@ -175,6 +266,8 @@
 #endif
 
   return $(@"\033]1337;File=name=%@;inline=1:%@\a\n",name.UTF8Data.base64EncodedString,image);//[Data dataWithContentsOfFile:path].base64EncodedString);
+}
+￭
 
 ///  \033]1337;File=name=" stringByAppendingFormat:@"%@;inline=1;%@\a\n",path.UTF8Data.base64EncodedString,
 // CGSizeMake(image.size.width * multi, image.size.height * multi)];
@@ -187,11 +280,12 @@
 //  [[ -r "$fn" ]] && print_image "$fn" 1 "$(base64 < "$fn")" || printf "imgcat: $fn: No such file or directory\n" && exit 1
 
 //#endif
-}
 //- _Void_ colorTest { for (int i = 0; i <256; i++) { [Text stringWithFormat:@"%]
-￭
 
 
+//- _List_ － { return @[] ___ }
+//- _List_ ﹫ { return @[] ___ }
+//- _SInt_ ﹖ { return 0   ___ }
 
 //- _UInt_ width    { return self.size.width;   }
 //- _UInt_ height   { return self.size.height;  }
@@ -205,15 +299,6 @@
 //
 //}
 //@prop_RO  _Size size;       // WIN dims
-
-
-
-
-
-
-
-
-
                          // if (!value && self.ftty) [self setFclr:value = [NSColor fromTTY: self.ftty]]; },
                          // if (!value && self.btty) [self setBclr:value = [NSColor fromTTY: self.btty]]; },
 
@@ -230,3 +315,42 @@
 //- (struct winsize) ws { // int fd;
 
 //  return ((fd = open("/dev/tty",O_WRONLY)) < 0) ? ws : ({ ioctl(fd,TIOCGWINSZ,&ws); close(fd); ws; });
+
+
+int APConsoleLibmain()
+{
+	int i;
+	short xsize;
+	short ysize;
+	char *text = "HelloworldABCDEF";
+	char key = 0;
+
+	IO.title = @"Console Lib Test";
+  IO.size = _Size_ {50, 15};
+//	setConsoleSize(50, 15);
+	clearConsole();
+
+	for (i = 0; i < 16; i++) {
+		setConsoleColor(i);
+		printf("%c", text[i]);
+	}
+
+	getConsoleSize(&xsize, &ysize);
+	consoleGotoXY(10, 10);
+	printf("Terminal size:%ix%i\n", xsize, ysize);
+
+	while (key != 'q') {
+		key = 0;
+		if (kbhit())
+			key = getch();
+		if (key != 'q' && key != 0) {
+			consoleGotoXY(10, 10);
+			printf("You pressed: %c (%i)\n", key, key);
+		}
+	}
+
+	printf("Input: ");
+	int ix;
+	scanf("%i", &ix);
+	return 0;
+}

@@ -12,10 +12,15 @@ SYNTHESIZE_ASC_OBJ_BLOCK (bclr, setBclr, ^{ MAKENORMALIZEDCOLOR }, ^{})
 
 - _Text_  escape { return !self.colored ? @"" :
 
-  $(@"%@%@%@", !self.fclr ? @"" : [self.fclr fgEsc], !self.bclr ? @"" : [self.bclr bgEsc], !IO.isatty ? @"" : @"m");
+  $(@"%@%@%@",  self.fclr ? [self.fclr fgEsc] : zNIL,
+                self.bclr ? [self.bclr bgEsc] : zNIL,
+                IO.isxcode ? zNIL : @"m");
 }
 
-- _Text_ ioString { return !self.colored ? self.stringRep : $(@"%@%@%s", self.escape, self.stringRep, IO.isxcode ? XCODE_RESET : ANSI_RESET); }
+- _Text_ ioString { return !self.colored ? self.stringRep :
+
+  $(@"%@%@%s", self.escape, self.stringRep, IO.isxcode ? XC_RESET : ANSI_RESET);
+}
 
 - objectAtIndexedSubscript: _SInt_ i { [self setFclr:@(i)]; return self; }
 
@@ -72,10 +77,10 @@ SYNTHESIZE_ASC_OBJ_BLOCK (bclr, setBclr, ^{ MAKENORMALIZEDCOLOR }, ^{})
 
 - initWithLabel:_Text_ label max:_UInt_ max format: _Text_ fmt { SUPERINIT;
 
-  _max        = max _
-  _start      = time(NULL) _
-  _format     = [fmt.letters withMaxItems:3] _
-  self.label = label _
+  _max        = max ___
+  _start      = time(NULL) ___
+  _format     = [fmt.letters withMaxItems:3] ___
+  self.label = label ___
 
 //  memset(new->progress_str,' ', PROGRESSBAR_WIDTH);
 //  new->progress_str[new->steps] = 0;
@@ -157,7 +162,7 @@ SYNTHESIZE_ASC_OBJ_BLOCK (bclr, setBclr, ^{ MAKENORMALIZEDCOLOR }, ^{})
 
   unsigned int h = timeleft/3600,
                m = timeleft/60,
-               s = timeleft _
+               s = timeleft ___
 
   timeleft -= h*3600;
   timeleft -= m*60;

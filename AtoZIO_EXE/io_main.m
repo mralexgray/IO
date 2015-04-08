@@ -1,32 +1,35 @@
 
-//@import AtoZ;
-@import AtoZIO;
-
-//@Kind_(CLId,AtoZSingleton,<CLIDelegate>) ￭
-
-//@implementation CLId
-//
-//- _Void_ doSomething { [@"done" printC:RANDOMCOLOR]; }
-//
-//@end
+#import <AtoZIO/AtoZIO.h>
 
 MAIN(
 
-    if (IO.args.count == 1 && [IO respondsToString:IO.args[0]]) { [IO performString:IO.args[1]]; return 0; }
+  [$(@"isatty:%@ isxcode:%@\n", $B(IO.isatty), $B(IO.isxcode)) printC:RANDOMCOLOR];
 
-    struct winsize w;
-    ioctl(0, TIOCGWINSZ, &w);
+  [IO.infoPlist echo];
+  
+  [IO.instanceMethodNames echo];
 
-    printf("lines %d\n", w.ws_row);
-    printf("columns %d\n", w.ws_col);
+  [[NSBundle bundleForClass:AtoZIO.class].bundlePath echo];
+  [IO repl];
+
+//  objswitch
+
+// [IO help]; return 0; APConsoleLibmain();
+
+  if (IO.args.count == 1 && [IO respondsToString:IO.args[0]]) { [IO performString:IO.args[1]]; return 0; }
+
+  struct winsize w;
+  ioctl(0, TIOCGWINSZ, &w);
+
+  printf("lines %d\n", w.ws_row);
+  printf("columns %d\n", w.ws_col);
 
 //  XX([IO conformsToProtocol:@protocol(RectLike)]);
 
   [NSStringFromRect(IO.frame) print256];
 //  XX([IO w]);
 
-  [IO.instanceMethodNames echo];
-  
+
   ProgressBar *a = [ProgressBar.alloc initWithLabel:Text.randomDicksonism max:100];
 
   while (a.value < 100) {
@@ -67,7 +70,6 @@ MAIN(
   NSObject <CLIDelegate> *x = [CLId instance];
   NSLog(@"%@ options", x.className);//, x.options);
 
-  [$(@"isatty:%@ isxcode:%@\n", $B(IO.isatty), $B(IO.isxcode)) printC:RANDOMCOLOR];
 
   [[@"Thanks " withString:[IO prompt:@"Press return to clear console!"]] echo];
 

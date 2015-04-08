@@ -3,7 +3,7 @@
 #ifndef AtoZIO_IO_h
 #define AtoZIO_IO_h
 
-#import <AtoZIO/AtoZIO.h>
+#import <AtoZIO.h>
 
 #include <stdio.h>
 #include <sys/ioctl.h>
@@ -23,23 +23,24 @@ typedef struct { int r; int g; int b; } rgb;
 
 #define COLOR_NUM(color) lroundf(c.color##Component*255)
 
-
 #pragma mark -  Escapes
 
-#define CSI "\033["
+#define CSI "["        // Control Sequence Initiator
 
-#define XCODE_FG    CSI "fg;" // Clear any foreground color
-#define XCODE_BG    CSI "bg;" // Clear any background color
-#define XCODE_RESET CSI ";"   // Clear any foreground or background color
+#define XC_FG     CSI "fg;" // Clear any foreground color
+#define XC_BG     CSI "bg;" // Clear any background color
+#define XC_RESET  CSI ";"   // Clear any foreground or background color
+
+#define ANSI_FG     CSI "0;38;05;"
+#define ANSI_BG     CSI "0;48;05;"
+#define ANSI_RESET  CSI "m"  // Reset all SGR options.
+
+#define RESET_FX IO.isxcode ? ";" : "m"
 
 
-#define ANSI_ESC "\x1b[0;"
-#define ANSI_FG "38;05;"
-#define ANSI_BG "48;05;"
-
-#define ANSI_RESET ANSI_ESC "0m"  // Reset all SGR options.
-#define ANSI_RESET_FG  "39m" // Reset foreground color.
-#define ANSI_RESET_BG  "49m" // Reset background color.
+//#define ANSI_RESET_FG  "39m" // Reset foreground color.
+//#define ANSI_RESET_BG  "49m" // Reset background color.
+//#define ANSI_ESC "\x1b["
 
 
 
@@ -101,6 +102,34 @@ extern char ***_NSGetArgv(void);
 //
 //extern rgb clr_2_rgb (Clr c);
 //extern rgb tty_2_rgb (int c);
+
+
+NS_INLINE NSDictionary * __ParseArgs(NSArray*cmdline) { id opts = @{}.mutableCopy, flag = nil;
+
+  for (NSString *argv in cmdline) { BOOL argIsFlag = [argv hasPrefix:@"-"];
+
+    id arg = !argIsFlag ? argv : ({ id newFlag = argv.copy; while ([newFlag hasPrefix:@"-"])
+                                       newFlag = [newFlag substringFromIndex:1]; newFlag; });
+
+    flag ? ({ argIsFlag && ![opts objectForKey:flag = arg] ? ({ opts[flag] = NSNull.null; }) : ({
+
+        id existing = opts[flag]; // doesn't have - prefix ... adding or creating a value.
+
+        opts[flag] = !existing || [existing isKindOfClass: NSNull.class] ? arg :
+                                  [existing isKindOfClass:NSArray.class] ?
+                                  [existing arrayByAddingObject:arg]     : @[existing, arg]; });
+
+    }) : ({ argIsFlag && !opts[flag = arg] ? ({ opts[flag] = NSNull.null; })  // no current flag. save value.. create new flag capture.
+
+       : ({ opts[@"?"] = [opts[@"?"] ?: @[] arrayByAddingObject:arg]; flag = nil; }); // No '-', add to unnamed array.
+
+    });
+
+  }  return [opts copy];
+}
+
+NS_INLINE NSDictionary * ParseArgs() { return __ParseArgs([_PI.arguments subarrayWithRange:(NSRange){1,_PI.arguments.count-1}]); }
+
 
 #endif
 
