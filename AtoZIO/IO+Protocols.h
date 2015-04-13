@@ -1,22 +1,18 @@
 
 #import <AtoZUniversal/AtoZUniversal.h>
+@class   AVAudioPlayer;
 
-@class AVAudioPlayer;
-
-// ___
-//@Incl          Darwin ___
+// ___ @Incl Darwin ___
 
 
-@Vows          IOOpts
-@Optn
+@Vows          IOOpts @Optn
 
 _RC  _Dict    getOpts ___
 _RO  _IsIt  wantsHelp ___
 _RC  _Text       help ___
 _RO  mDict      rules ___
 
-_VD getOpt __Text_ usge
-      with __Text_ key __ ... ___ // alternates for key
+_VD getOpt __Text_ usageThenKeyThenShortOpts __ ... ___ // alternates for key
 
 _VD   test __List_ args ___
 

@@ -24,7 +24,7 @@
 
 - _Text_ stringRep { return
 
-  ISA(self,Text) ? (_Text_ self) :
+  ISA(self,Text) ? (_Text_ self) : [self respondsToStringThenDo:NSStringValue] ?:
   ISA(self,List) ? (_List_ self).description :
   ISA(self,Numb) ?  _Text_ [Colr fromTTY:(_Numb_ self).iV] : self.description; }
 
