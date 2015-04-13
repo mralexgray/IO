@@ -1,80 +1,52 @@
 
-/*    ___                       ___           ___
-     /  /\          ___        /  /\         /  /\    
-    /  /::\        /  /\      /  /::\       /  /::|   
-   /  /:/\:\      /  /:/     /  /:/\:\     /  /:/:|   
-  /  /:/~/::\    /  /:/     /  /:/  \:\   /  /:/|:|__ 
- /__/:/ /:/\:\  /  /::\    /__/:/ \__\:\ /__/:/ |:| /\
- \  \:\/:/__\/ /__/:/\:\   \  \:\ /  /:/ \__\/  |:|/:/
-  \  \::/      \__\/  \:\   \  \:\  /:/      |  |:/:/ 
-   \  \:\           \  \:\   \  \:\/:/       |  |::/  
-    \  \:\           \__\/    \  \::/        |  |:/   
-     \__\/                     \__\/         |__|/
 
-          _____                   _______         
-         /\    \                 /::\    \        
-        /::\    \               /::::\    \       
-        \:::\    \             /::::::\    \
-         \:::\    \           /::::::::\    \     
-          \:::\    \         /:::/~~\:::\    \    
-           \:::\    \       /:::/    \:::\    \   
-           /::::\    \     /:::/    / \:::\    \  
-  ____    /::::::\    \   /:::/____/   \:::\____\ 
- /\   \  /:::/\:::\    \ |:::|    |     |:::|    |
-/::\   \/:::/  \:::\____\|:::|____|     |:::|    |
-\:::\  /:::/    \::/    / \:::\    \   /:::/    / 
- \:::\/:::/    / \/____/   \:::\    \ /:::/    /  
-  \::::::/    /             \:::\    /:::/    /   
-   \::::/____/               \:::\__/:::/    /    
-    \:::\    \                \::::::::/    /     
-     \:::\    \                \::::::/    /      
-      \:::\    \                \::::/    /       
-       \:::\____\                \::/____/        
-        \::/    /                 ~~              
-         \/____/                                 */
+#import <AtoZIO/IO+Protocols.h>
 
-@import AtoZUniversal;
+@Kind (AtoZIO) <RectLike, Subscriptable, IOOpts>
 
-#import "IO+Protocols.h"
 
-@Kind (AtoZIO) <RectLike, Subscriptable>
+_RO  _Main main         // argc + argv
+___
+_RC  _Dict infoPlist    // embdded plist | long/short opts, parsed
+___
+_RO  ioEnv env          // where we runnin at'
+___
+_RO  _List args         // JUST the args, maam'
+__         stdinlines   // readline?'
+___
+_NC  _ObjC stream           // stdin + stdout'
+___
 
-_RO  _Main      main    －( 'argc + argv' )
-_RC  _Dict   getOpts,
-           infoPlist    －( 'embdded plist | long/short opts, parsed' )
-_RO  _IsIt    isatty,
-             isxcode    －( 'Where we at?' )
-_RO  _List      args,
-          stdinlines    －( 'JUST the args | readline' )
+_TT preprocess __Text_ t ___
 
-_NC  _ObjC io                 －( 'stdin + stdout' )
+_AT  _IsIt hideCursor   ｜( peek-a-boo                                 )
 
-_AT  _IsIt hideCursor         －( 'peek-a-boo' )
+_NA  _Text title        ｜( console window title                       )
 
-_NA  _Text title ___
 
-_RC  _Text scan,
-           resetFX    ___
+_RC  _Text scan
+__         resetFX      ｜( 'needs doc'                                  )
 
-+ _Dict_ infoPlist: _Text_ path ___
+_NA  _Text prompt       ｜( 'settable greeting for input' )
 
-_NA  _Text prompt     ___
 
--    _Text_ getenv _ _Text_ var ___
-
-_VD run ___        // Runloop
+_VD run       ___  // Runloop
 -   run _ cmd ___  // Run command, get result.
 
+
+_VD echo _ _Text_ fmt, ... ___
 
 _VD repl ___
 
 _P _Cell cursorLocation; /// dynamic
 
 - _Text_       prompt:(id<Bicolor>)string; /*! Read to String */    //- (NSString*) prompt:(NSString*)_ c:(int)c;
-- _Void_   fillScreen: _Colr_ colr ___
-- _Void_       notify: _Note_ note ___
-- _Void_        print: _List_ lyns ___
-- _Text_  imageString: _ObjC_ iOrP ___  // iterm
+
+_VD   fillScreen __Colr_ colr ___
+_VD       notify __Note_ note ___
+_VD        print __List_ lins ___
+_TT  imageString __ObjC_ iOrP ___  // iterm
+
 
 #if MAC_ONLY
 - _Void_ clearMacConsole; /*! Command-K */
@@ -93,12 +65,17 @@ _P _Cell cursorLocation; /// dynamic
 
 - _SndP_ playerForAudio:dataOrPath ___
 
-- _Void_ justPlay:path ___
+- _Void_ justPlay _ path ___
 
-#define IO ((AtoZIO*)[AtoZIO ___IO])
-+ _Kind_ ___IO ___
+#define IO ((AtoZIO*)[AtoZIO io])
++ _Kind_ io ___
+
+// deprecate
+
++ _Dict_ infoPlist __Text_ path ___
 
 @end
+
 
 @Vows _IO <NObj>
 
@@ -212,3 +189,43 @@ JREnumDeclare(ConsoleColors,  xBLACK, xDARK_GRAY, xGRAY, xWHITE,
 //           cols       ___
 //_RO  _Size size,           // WIN dims
 //           pixels     _    // WIN dims
+
+
+/*    ___                       ___           ___
+     /  /\          ___        /  /\         /  /\
+    /  /::\        /  /\      /  /::\       /  /::|   
+   /  /:/\:\      /  /:/     /  /:/\:\     /  /:/:|   
+  /  /:/~/::\    /  /:/     /  /:/  \:\   /  /:/|:|__ 
+ /__/:/ /:/\:\  /  /::\    /__/:/ \__\:\ /__/:/ |:| /\
+ \  \:\/:/__\/ /__/:/\:\   \  \:\ /  /:/ \__\/  |:|/:/
+  \  \::/      \__\/  \:\   \  \:\  /:/      |  |:/:/ 
+   \  \:\           \  \:\   \  \:\/:/       |  |::/  
+    \  \:\           \__\/    \  \::/        |  |:/   
+     \__\/                     \__\/         |__|/
+
+            _____                   _______         
+           /\    \                 /::\    \        
+          /::\    \               /::::\    \       
+          \:::\    \             /::::::\    \
+           \:::\    \           /::::::::\    \     
+            \:::\    \         /:::/~~\:::\    \    
+             \:::\    \       /:::/    \:::\    \   
+             /::::\    \     /:::/    / \:::\    \  
+    ____    /::::::\    \   /:::/____/   \:::\____\ 
+   /\   \  /:::/\:::\    \ |:::|    |     |:::|    |
+  /::\   \/:::/  \:::\____\|:::|____|     |:::|    |
+  \:::\  /:::/    \::/    / \:::\    \   /:::/    / 
+   \:::\/:::/    / \/____/   \:::\    \ /:::/    /  
+    \::::::/    /             \:::\    /:::/    /   
+     \::::/____/               \:::\__/:::/    /    
+      \:::\    \                \::::::::/    /     
+       \:::\    \                \::::::/    /      
+        \:::\    \                \::::/    /       
+         \:::\____\                \::/____/        
+          \::/    /                 ~~              
+           \/____/    
+*/
+
+
+//_RO  _IsIt isatty       ￤('nothing will happen')
+//        __ isxcode      ｜( 'Where we at?' )

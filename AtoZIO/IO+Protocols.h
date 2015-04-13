@@ -1,8 +1,37 @@
 
+#import <AtoZUniversal/AtoZUniversal.h>
 
-@import Darwin; @import AVFoundation.AVAudioPlayer;
+@class AVAudioPlayer;
+
+// ___
+//@Incl          Darwin ___
 
 
+@Vows          IOOpts
+@Optn
+
+_RC  _Dict    getOpts ___
+_RO  _IsIt  wantsHelp ___
+_RC  _Text       help ___
+_RO  mDict      rules ___
+
+_VD getOpt __Text_ usge
+      with __Text_ key __ ... ___ // alternates for key
+
+_VD   test __List_ args ___
+
+￭
+#define Ⅲ JREnumDeclare
+
+Ⅲ ( ioEnv, io_UNSET
+         __ io_TTY        = 0x00000001
+         __ io_XCODE      = 0x00000010
+         __ io_ASL        = 0x00000100
+         __ io_COLOR      = 0x00001000
+         __ io_DUMB       = 0x00010000
+         __ io_OTHER      = 0x11111111)
+//         __ io_XCODE_CLR  = io_XCODE |  io_COLOR
+//         __ io_TTY_CLR    = io_COLOR & ~io_XCODE)
 
 _Type struct { _UInt  col ___ _UInt    row ___ } _Cell ___
 _Type struct { _SInt argc ___ _Char * argv ___ } _Main ___
@@ -13,11 +42,12 @@ _Type struct { _SInt argc ___ _Char * argv ___ } _Main ___
 _PRTO Bicolor < IndexSet,      // id x = @"Apple"[2];      x == @"Apple" with fg -> 2/256
                   KeyGet >  // id x = @"Apple"[ORANGE]; x == @"Apple" with fg -> ORANGE
 _REAL
-_RO _IsIt  colored ___
-_RC _Text ioString __
-            escape ___            // ansi esaped "string"
-_AT _ObjC     fclr __
-              bclr ___            // NS/UIColor or 0-255
+_RO _IsIt      colored ___
+_RC _Text      ioString
+            __ escape
+           ___                 // ansi esaped "string"
+_AT _ObjC      fclr
+            __ bclr ___            // NS/UIColor or 0-255
 
 - _BICOLOR_ withFG _ f ___
 - _BICOLOR_ withBG _ b ___
@@ -47,9 +77,7 @@ _RC _Text _usage ___
  //  _RO _Char** argv _ && _RO _SInt * argc ___
 
 #define MID(X,MINI,MAXI) MAX( MIN(X,MAXI), MINI )
-#define IO_MAIN int main(int argc, const char **argv
-#define －(...) ___
-#define _VD - _Void_ 
+//#define IO_MAIN int main(int argc, const char **argv
 
 
 

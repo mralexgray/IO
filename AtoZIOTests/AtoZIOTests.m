@@ -1,5 +1,5 @@
 
-@import AtoZIO;
+#import <AtoZIO/AtoZIO.h>
 
 _Case(AtoZIOTests, [@"Well Hello!"[RED] echo]; )
 
@@ -14,11 +14,31 @@ _Test(Example,
 
 _Test(TTYCharacteristics,
 
-  XCTAssert(IO.isatty, @"SHould be a tty")_
-  XCTAssert(IO.isxcode, @"SHould be xcode!")_
-  XCTAssertFalse( NSEqualRects(NSZeroRect, IO.frame), @"Need a frame!")_
+  XCTAssert(IO.env & io_TTY, @"SHould be a tty")___
+  XCTAssert(IO.env & io_XCODE, @"SHould be xcode!")___
+  XCTAssertFalse( NSEqualRects(NSZeroRect, IO.frame), @"Need a frame!")___
 
 )
+
+
+_Test(IOArgParse,
+
+  [IO test:@[@"--alex", @"santa", @"-u", @"suckcock"]];
+
+  XCTAssert( IO.getOpts.count == 2,                       @"Should have 2 keys., got %lu", IO.getOpts.count);
+  XCTAssert([IO.getOpts.allKeys containsObject:@"alex"], @"Should have alex, only had %@", IO.getOpts.allKeys);
+
+  XCTAssert(      ISA(IO.getOpts[@"alex"], List), @"Values should all be arrays.. got %@",
+   NSStringFromClass([IO.getOpts[@"alex"] class]));
+
+  [IO test:@[@"--alex", @"santa", @"fe", @"new mexico"]];
+
+  XCTAssert(IO.getOpts.count == 1, @"Should have 1 keys., got %lu", IO.getOpts.count);
+
+  XCTAssert([IO.getOpts[@"alex"]count] == 3, @"SHould accomodate args with spaces, found %lu",
+            [IO.getOpts[@"alex"]count]);
+)
+
 
 _Test(PerformanceExample, {
 

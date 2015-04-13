@@ -1,82 +1,36 @@
 
 #import "IO_.h"
 #import "scrutil.h"
+#import <termios.h>
+
+#import <AVFoundation/AVAudioPlayer.h>
 
 JREnumDefine(ConsoleColors);
 
+@Plan AtoZIO { P(_IO) runner; AVAudioPlayer *playa; } UNO(io); // AVAudioPlayerDelegate
 
-int getch(void) {
+_TT preprocess __Text_ t {
 
-	static int ch = -1, fd = 0;
-	struct termios neu, alt;
-	fd = fileno(stdin);
-	tcgetattr(fd, &alt);
-	neu = alt;
-	neu.c_lflag &= ~(ICANON | ECHO);
-	tcsetattr(fd, TCSANOW, &neu);
-	ch = getchar();
-	tcsetattr(fd, TCSANOW, &alt);
-	return ch;
+  NTBTask * task = [NTBTask.alloc initWithLaunchPath: @"/usr/bin/clang"];
+
+  task.arguments = @[ @"-w",
+                      @"-std=c11",
+                      @"-fmodules",
+                      @"-framework", @"AtoZ",
+                      @"-F/Users/localadmin/Library/Frameworks",
+                      @"-E",
+                      @"-x", @"objective-c",
+                      @"-"];
+
+  [task writeAndCloseInput:t]; return [[task waitForOutputString] copy];
+  //  id output = ; //@"".mC;  while ([task isRunning]) [output appendString:] return [output copy];
 }
 
-int kbhit(void) {
-	struct termios term, oterm;
-	int fd = 0;
-	int c = 0;
-	tcgetattr(fd, &oterm);
-	memcpy(&term, &oterm, sizeof (term));
-	term.c_lflag = term.c_lflag & (!ICANON);
-	term.c_cc[VMIN] = 0;
-	term.c_cc[VTIME] = 1;
-	tcsetattr(fd, TCSANOW, &term);
-	c = getchar();
-	tcsetattr(fd, TCSANOW, &oterm);
-	if (c != -1)
-		ungetc(c, stdin);
-	return ((c != -1) ? 1 : 0);
-}
-
-void clearConsole(void) {
-	/*char a[80];*/
-	printf("\033[2J"); /* Clear the entire screen.		*/
-	printf("\033[0;0f"); /* Move cursor to the top left hand corner */
-}
-
-void consoleGotoXY(short x, short y) { printf("\033[%i;%if", y, x); }
-
-void setConsoleColor(ConsoleColors clr)  {
-
-  const char * c =
-    clr == xBLACK ? "0;30m" :       clr == xRED ? "0;31m" :  clr == xGREEN ? "0;32m" :
-    clr == xDARK_YELLOW ? "0;33m" : clr == xBLUE ? "0;34m" :      clr == xPURPLE ? "0;35m" :
-    clr == xCYAN ? "0;36m" :        clr == xGRAY ? "0;37m" :      clr == xDARK_GRAY ? "1;30m" :
-	clr == xLIGHT_RED ? "1;31m" :   clr == xLIGHT_GREEN ? "1;32m" : clr == xYELLOW ? "1;33m" :
-	clr == xLIGHT_BLUE ? "1;34m" :   clr == xLIGHT_PURPLE ? "1;35m" : clr == xLIGHT_CYAN ? "1;36m" :
-	clr == xWHITE ? "1;37m" : ""; printf("\033[%s",c);
-}
-
-void setConsoleSize(short xsize, short ysize)   {
-	char rcmd[32];
-	sprintf(rcmd, "resize -s %i %i > /dev/null", ysize, xsize);
-	system(rcmd);
-}
-
-void getConsoleSize(short *xsize, short *ysize) {
-	FILE *pipe = popen("stty size", "r");
-	fscanf(pipe, "%hi%hi", ysize, xsize);
-	pclose(pipe);
-}
-
-
-@Plan AtoZIO { P(_IO) runner; AVAudioPlayer *playa; } UNO(___IO); // AVAudioPlayerDelegate
-
-@synthesize isxcode = _isxcode; @dynamic hideCursor, io, cursorLocation;
+@synthesize env = _env; @dynamic hideCursor, cursorLocation;
 
 #pragma mark - Console
 
 _VD setTitle:(_Text)title { printf("\033]0;%s\007", [_title = title UTF8String]); }
-
-
 
 #pragma mark - Commandline
 
@@ -93,14 +47,11 @@ _VD repl {
   [res echo];
 
 }
-_VD help {
 
-  printf("      --example       Just help a nigger out\n"
-         " 	-a, --another       Is anybody goig to eat that cake\n");
+- forwardingTargetForSelector __Meth_ s {
 
+  return [IOOpts.shared respondsToSelector:s] ? IOOpts.shared : [super forwardingTargetForSelector:s];
 }
-
-- _Dict_ getOpts { return ParseArgs(); }
 
 - (P(_IO)) dispatch:(Class<_IO>)k,... { SEL def = NULL;
 
@@ -112,28 +63,34 @@ _VD help {
   return runner;
 }
 
-
 - (_Char**) argv  { return          _NSGetArgv(); }
 - ( _SInt*) argc  { return (_SInt*) _NSGetArgc(); }
 
-- _IsIt_ isatty   { return @(isatty(STDERR_FILENO)).bV;   }
-- _IsIt_ isxcode  { return dispatch_uno(  _isxcode  =
+- (ioEnv) env  { dispatch_uno(
 
-  [[self run:$(@"ps -p %@",[self run:$(@"ps -xc -o ppid= -p %i",＄)])] containsString:@"Xcode"];
+  if(isatty(STDERR_FILENO)) _env |= io_TTY;
 
-  ), _isxcode;
+  if ([[self run:$(@"ps -p %@",
+
+      [self run:$(@"ps -xc -o ppid= -p %lu",＄)])] containsString:@"Xcode"]) _env |= io_XCODE;
+
+  if ([_PI.environment.allKeys any:^BOOL(id o) { return [o caseInsensitiveContainsString:@"XcodeColors"]; }] ||
+
+      [_PI.environment[@"TERM"] containsAnyOf:@[@"ANSI", @"ansi", @"color", @"256"]]) _env |= io_COLOR
+
+  ); return _env;
 }
+
+
 - _Void_ clearConsole           { puts("\e[2J"); }
 
 - _Void_ setHideCursor:_IsIt_ b { printf("\e[?25%c", b ? 'h' : 'l'); }
-
-- _Text_ getenv:_Text_ var {  return $(@"%s",getenv(var.UTF8String)?:""); }
 
 - _Rect_ frame { struct winsize ws; ioctl(STDOUT_FILENO, TIOCGWINSZ, &ws);
 
   return ws.ws_col ? _Rect_ {0,0,ws.ws_col ?: 100, ws.ws_row?: 80} :
 
-  ({ id r = [self getenv:@"ROWS"], c = [self getenv:@"COLUMNS"];
+  ({ id r = _PI.environment[@"ROWS"], c = _PI.environment[@"COLUMNS"];
     _Rect_ {0,0,r ? [r fV] : 66, c ? [c fV] : 11 };
   });
 }
@@ -167,9 +124,9 @@ _VD help {
   (_ObjBlk_ x)([self prompt:_ObjC_ k])___ /*  ISA(k,Text) ? [k echo] : [_List_ k */
 }
 
-- _Void_ setIo:_ObjC_ io { [io print]___ }
+- _Void_ setStream:(_ObjC)io { [io print]___ }
 
-- _ObjC_              io { return [self scan]___ }
+- _ObjC_    stream { return [self scan]___ }
 
 - _Text_ prompt:_Text_ t { return [self prompt:t c:7]___ } /* OK */
 
@@ -221,7 +178,11 @@ _VD help {
 
 - _Text_ scan {
 
-  return [Text.alloc initWithData:NSFileHandle.fileHandleWithStandardInput.availableData encoding:NSUTF8StringEncoding]; }
+//  unichar left = NSLeftArrowFunctionKey;
+
+
+  return [Text.alloc initWithData:NSFileHandle.fileHandleWithStandardInput.availableData encoding:NSUTF8StringEncoding];
+}
 
 - _Void_ fillScreen: _Colr_ c { id line = $(@"%*s",@(IO.w).charValue," ");
 
@@ -232,22 +193,27 @@ _VD help {
 
 - _Void_ notify:_Note_ note {  static IONotifier *ntfr; ntfr = ntfr ?: INIT_(IONotifier,WithNotification:note); }
 
-- _Void_ print:_List_ lines {
+_VD echo _ _Text_ fmt, ... { va_list args; va_start(args, fmt);
+
+  [[Text.alloc initWithFormat:fmt arguments:args] echo]; //  def = va_arg(args, SEL);
+  va_end(args);
+}
+_VD print:_List_ lines {
 
   [[lines reduce:@"".mC withBlock:^id(id sum, id obj) { return
 
     [sum appendString: ISA(obj,Text) ? $(@"%@%@%@",(_Text_ obj).ioString, [self resetFX], zNL)
-                     : ISA(obj,Colr) ? [[obj bgEsc]    withString:self.isxcode ? @"" : @"m"]  : @""], sum;
+                     : ISA(obj,Colr) ? [[obj bgEsc]    withString:IO.env&io_XCODE ? @"" : @"m"]  : @""], sum;
   }] print];
 }
 
-- _Text_ resetFX { AZSTATIC_OBJ(Text, r, ({ self.isxcode ? $UTF8(XC_RESET) : $UTF8(ANSI_RESET); })); return r; }
+- _Text_ resetFX { AZSTATIC_OBJ(Text, r, ({ IO.env&io_XCODE ? $UTF8(XC_RESET) : $UTF8(ANSI_RESET); })); return r; }
 
-- _Void_ fill:_Rect_ r color:_ObjC_ c { }
+_VD fill __Rect_ r color __ObjC_ c { }
 
-- _Text_ imageString:_ObjC_ pathOrImage { _Pict image; _Text name, x;
+_TT imageString __ObjC_ pathOrImage { _Pict image; _Text name, x;
 
-  ISA(pathOrImage,Pict) ? ({ image = pathOrImage; name = [pathOrImage name] ?: @"N/A"; })
+  ISA(pathOrImage,Pict) ? ({ image = pathOrImage; name = [ _Pict_ pathOrImage name] ?: @"N/A"; })
                         : ({
 
     image = [FM fileExistsAtPath:pathOrImage] ? [NSImage.alloc initWithContentsOfFile:pathOrImage] : nil;
@@ -315,6 +281,71 @@ _VD help {
 //- (struct winsize) ws { // int fd;
 
 //  return ((fd = open("/dev/tty",O_WRONLY)) < 0) ? ws : ({ ioctl(fd,TIOCGWINSZ,&ws); close(fd); ws; });
+
+
+
+
+int getch(void) {
+
+	static int ch = -1, fd = 0;
+	struct termios neu, alt;
+	fd = fileno(stdin);
+	tcgetattr(fd, &alt);
+	neu = alt;
+	neu.c_lflag &= ~(ICANON | ECHO);
+	tcsetattr(fd, TCSANOW, &neu);
+	ch = getchar();
+	tcsetattr(fd, TCSANOW, &alt);
+	return ch;
+}
+
+int kbhit(void) {
+	struct termios term, oterm;
+	int fd = 0;
+	int c = 0;
+	tcgetattr(fd, &oterm);
+	memcpy(&term, &oterm, sizeof (term));
+	term.c_lflag = term.c_lflag & (!ICANON);
+	term.c_cc[VMIN] = 0;
+	term.c_cc[VTIME] = 1;
+	tcsetattr(fd, TCSANOW, &term);
+	c = getchar();
+	tcsetattr(fd, TCSANOW, &oterm);
+	if (c != -1)
+		ungetc(c, stdin);
+	return ((c != -1) ? 1 : 0);
+}
+
+void clearConsole(void) {
+	/*char a[80];*/
+	printf("\033[2J"); /* Clear the entire screen.		*/
+	printf("\033[0;0f"); /* Move cursor to the top left hand corner */
+}
+
+void consoleGotoXY(short x, short y) { printf("\033[%i;%if", y, x); }
+
+void setConsoleColor(ConsoleColors clr)  {
+
+  const char * c =
+    clr == xBLACK ? "0;30m" :       clr == xRED ? "0;31m" :  clr == xGREEN ? "0;32m" :
+    clr == xDARK_YELLOW ? "0;33m" : clr == xBLUE ? "0;34m" :      clr == xPURPLE ? "0;35m" :
+    clr == xCYAN ? "0;36m" :        clr == xGRAY ? "0;37m" :      clr == xDARK_GRAY ? "1;30m" :
+	clr == xLIGHT_RED ? "1;31m" :   clr == xLIGHT_GREEN ? "1;32m" : clr == xYELLOW ? "1;33m" :
+	clr == xLIGHT_BLUE ? "1;34m" :   clr == xLIGHT_PURPLE ? "1;35m" : clr == xLIGHT_CYAN ? "1;36m" :
+	clr == xWHITE ? "1;37m" : ""; printf("\033[%s",c);
+}
+
+void setConsoleSize(short xsize, short ysize)   {
+	char rcmd[32];
+	sprintf(rcmd, "resize -s %i %i > /dev/null", ysize, xsize);
+	system(rcmd);
+}
+
+void getConsoleSize(short *xsize, short *ysize) {
+	FILE *pipe = popen("stty size", "r");
+	fscanf(pipe, "%hi%hi", ysize, xsize);
+	pclose(pipe);
+}
 
 
 int APConsoleLibmain()

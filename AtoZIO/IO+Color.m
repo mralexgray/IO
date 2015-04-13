@@ -12,13 +12,18 @@ static   rgb     BASIC16[] = {{  0,   0,   0}, {205, 0,   0}, { 0, 205,   0}, { 
 
 @implementation Colr (AtoZIO)
 
-- _Text_ bgEsc { return IO.isxcode  ? $(@"%sbg%@;", CSI, self.xcTuple) :
-                        IO.isatty   ? $(@"%s%s%lu", CSI, ANSI_BG, self.tty) : @"";
+- _Text_ bgEsc { return IO.env & ~io_COLOR ? @"" :
+                        IO.env &  io_XCODE ? $(@"%sbg%@;", CSI, self.xcTuple)
+                                           : $(@"%s%s%@", CSI, ANSI_BG, self.tty);
 }
 
-- _Text_ fgEsc { return IO.isxcode  ? $(@"%sfg%@;", CSI, self.xcTuple) :
-                        IO.isatty   ? $(@"%s%s%lu", CSI, ANSI_FG, self.tty) : @"";
+- _Text_ fgEsc { return IO.env & ~io_COLOR ? @"" :
+                        IO.env &  io_XCODE ? $(@"%sfg%@;", CSI, self.xcTuple)
+                                           : $(@"%s%s%@", CSI, ANSI_FG, self.tty) ;
 }
+//- _Text_ fgEsc { return IO.isxcode  ? $(@"%sfg%@;", CSI, self.xcTuple) :
+//                        IO.isatty   ? $(@"%s%s%@", CSI, ANSI_FG, self.tty) : @"";
+//}
 
 - _Flot_ component:(_UInt)rgorb {
 
@@ -45,7 +50,9 @@ static   rgb     BASIC16[] = {{  0,   0,   0}, {205, 0,   0}, { 0, 205,   0}, { 
   return MakeColor(r, g, b);
 }
 
-- _UInt_ tty { _Colr c = DEVICECLR(self);  /** Quantize RGB values to an xterm 256-color ID */
+SYNTHESIZE_ASC_OBJ_LAZY_EXP(tty, ({
+
+ _Colr c = DEVICECLR(self);  /** Quantize RGB values to an xterm 256-color ID */
 
   int r = c.r, g = c.g, b = c.b, best_m = 0, smallest_d = 1000000000, x, d;
 
@@ -55,8 +62,10 @@ static   rgb     BASIC16[] = {{  0,   0,   0}, {205, 0,   0}, { 0, 205,   0}, { 
 
       smallest_d = d; best_m = x;
     }
-  return best_m;
-}
+  @(best_m);
+  })
+)
+
 
 - _Text_ xcTuple { return [[@[@(self.r),@(self.g),@(self.b)] vFK:@"stringValue"] joinedBy:@","]; }
 

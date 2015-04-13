@@ -29,7 +29,7 @@
   ISA(self,Numb) ?  _Text_ [Colr fromTTY:(_Numb_ self).iV] : self.description; }
 
 - _Void_ echo     { printf("%s\n", self.stringRep.cChar); }
-- _Void_ print    { printf("%s",   self.stringRep.cChar); }
+- _Void_ print    { printf("%s" ,   self.stringRep.cChar); }
 - _Void_ printC:c { [self.stringRep[c] print];                        }
 
 @XtraStop()

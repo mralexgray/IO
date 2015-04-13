@@ -154,7 +154,7 @@ NSString *define(NSString*);
 #endif
 
 
-//@import Darwin;       // needed for winsize, ioctl etc
+//#import <Darwin/Darwin.h>       // needed for winsize, ioctl etc
 //#import <getopt.h>
 //#import </a2z/AtoZMacroDefines.h>
 

@@ -15,7 +15,7 @@
 typedef struct { int r; int g; int b; } rgb;
 
 #if     MAC_ONLY
-@import ScriptingBridge;
+#import <ScriptingBridge/ScriptingBridge.h>
 #define DEVICECLR(X) [X colorUsingColorSpace:NSColorSpace.deviceRGBColorSpace]
 #else
 #define DEVICECLR(X)  X
@@ -74,9 +74,8 @@ _CAT( Colr, AtoZIO,
 
   + _Colr_ fromTTY: _UInt_ c;
 
-  @prop_RO _UInt tty;
-
-  @prop_RC _Text xcTuple, bgEsc, fgEsc
+  _RO _Numb tty;
+  _RC _Text xcTuple, bgEsc, fgEsc
 )
 
 extern  int *_NSGetArgc(void);
@@ -103,32 +102,11 @@ extern char ***_NSGetArgv(void);
 //extern rgb clr_2_rgb (Clr c);
 //extern rgb tty_2_rgb (int c);
 
+@interface IOOpts : NSObject <IOOpts>
 
-NS_INLINE NSDictionary * __ParseArgs(NSArray*cmdline) { id opts = @{}.mutableCopy, flag = nil;
++ _Kind_ shared;
 
-  for (NSString *argv in cmdline) { BOOL argIsFlag = [argv hasPrefix:@"-"];
-
-    id arg = !argIsFlag ? argv : ({ id newFlag = argv.copy; while ([newFlag hasPrefix:@"-"])
-                                       newFlag = [newFlag substringFromIndex:1]; newFlag; });
-
-    flag ? ({ argIsFlag && ![opts objectForKey:flag = arg] ? ({ opts[flag] = NSNull.null; }) : ({
-
-        id existing = opts[flag]; // doesn't have - prefix ... adding or creating a value.
-
-        opts[flag] = !existing || [existing isKindOfClass: NSNull.class] ? arg :
-                                  [existing isKindOfClass:NSArray.class] ?
-                                  [existing arrayByAddingObject:arg]     : @[existing, arg]; });
-
-    }) : ({ argIsFlag && !opts[flag = arg] ? ({ opts[flag] = NSNull.null; })  // no current flag. save value.. create new flag capture.
-
-       : ({ opts[@"?"] = [opts[@"?"] ?: @[] arrayByAddingObject:arg]; flag = nil; }); // No '-', add to unnamed array.
-
-    });
-
-  }  return [opts copy];
-}
-
-NS_INLINE NSDictionary * ParseArgs() { return __ParseArgs([_PI.arguments subarrayWithRange:(NSRange){1,_PI.arguments.count-1}]); }
+@end
 
 
 #endif

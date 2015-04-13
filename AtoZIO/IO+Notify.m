@@ -409,4 +409,4 @@ For more information see https://github.com/alloy/terminal-notifier.\n\n", appNa
 //    return 0;
 //}
 
-//@import ScriptingBridge;
+//#import <ScriptingBridge/ScriptingBridge.h>

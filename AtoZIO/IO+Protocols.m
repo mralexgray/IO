@@ -1,5 +1,6 @@
 
 #import "IO_.h"
+#import <AVFoundation/AVAudioPlayer.h>
 
 @concreteprotocol(Bicolor)
 
@@ -14,12 +15,12 @@ SYNTHESIZE_ASC_OBJ_BLOCK (bclr, setBclr, ^{ MAKENORMALIZEDCOLOR }, ^{})
 
   $(@"%@%@%@",  self.fclr ? [self.fclr fgEsc] : zNIL,
                 self.bclr ? [self.bclr bgEsc] : zNIL,
-                IO.isxcode ? zNIL : @"m");
+                IO.env  ? zNIL : @"m");
 }
 
 - _Text_ ioString { return !self.colored ? self.stringRep :
 
-  $(@"%@%@%s", self.escape, self.stringRep, IO.isxcode ? XC_RESET : ANSI_RESET);
+  $(@"%@%@%s", self.escape, self.stringRep, IO.env & io_XCODE ? XC_RESET : ANSI_RESET);
 }
 
 - objectAtIndexedSubscript: _SInt_ i { [self setFclr:@(i)]; return self; }
