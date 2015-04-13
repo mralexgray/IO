@@ -1,5 +1,5 @@
 
-@import AtoZIO;
+#import <AtoZIO/AtoZIO.h>
 
 void usage(void);
 void process_args(int ac, char *av[]);

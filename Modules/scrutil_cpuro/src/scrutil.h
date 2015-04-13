@@ -5,7 +5,7 @@
 #ifndef SCRUTIL_H_INCLUDED
 #define SCRUTIL_H_INCLUDED
 
-@import AtoZUniversal;
+#import <AtoZUniversal/AtoZUniversal.h>
 
 //#include <stdbool.h>
 

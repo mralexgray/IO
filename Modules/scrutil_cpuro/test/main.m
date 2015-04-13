@@ -9,7 +9,7 @@
 
 */
 
-@import AtoZIO;
+#import <AtoZIO/AtoZIO.h>
 
 //#include <stdio.h>
 //#include "scrutil.h"
