@@ -5,7 +5,7 @@
 #import "IO_.h"
 #import "IO+Protocols.h"
 
-@implementation IOOpts { BOOL parseAgain; id specialArgs; } @synthesize getOpts = _getOpts, rules = _rules;
+@implementation IO_Opts { BOOL parseAgain; id specialArgs; } @synthesize getOpts = _getOpts, rules = _rules;
 
 SYNTHESIZE_SINGLETON_FOR_CLASS(IOOpts,shared)
 

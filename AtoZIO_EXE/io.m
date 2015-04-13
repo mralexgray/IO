@@ -4,6 +4,13 @@
 
 MAIN(
 
+  [IO getOpt:@"Run in forground. (No named pipe)", @"foreground",@"f", nil];
+
+  [IO.getOpts print];
+  
+//  !IO.wantsHelp && (u = IO.getOpts[@"username"][0] ?: ghu)
+//                && (g = IO.getOpts[@"gist"]    [0]       ) ?: ({ [IO.help echo]; return 1; });
+
   [$(@"isatty:%@ isxcode:%@ hasColor:%@\n", $B(IO.env&io_TTY), $B(IO.env&io_XCODE), $B(IO.env&io_COLOR))
                         printC:RANDOMCOLOR];
 
