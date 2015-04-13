@@ -1,18 +1,57 @@
 
 #import <AtoZIO/AtoZIO.h>
+@import Darwin;
 
 MAIN(
 
-  [$(@"isatty:%@ isxcode:%@\n", $B(IO.isatty), $B(IO.isxcode)) printC:RANDOMCOLOR];
+  [$(@"isatty:%@ isxcode:%@ hasColor:%@\n", $B(IO.env&io_TTY), $B(IO.env&io_XCODE), $B(IO.env&io_COLOR))
+                        printC:RANDOMCOLOR];
 
-  [IO.infoPlist echo];
-  
-  [IO.instanceMethodNames echo];
+  [NSFileHandle read:@"/io" toBlock:^BOOL(NSData *d) {
 
-  [[NSBundle bundleForClass:AtoZIO.class].bundlePath echo];
-  [IO repl];
+    [@"hello" echo];
+    [d.UTF8String echo]; return YES;
 
-//  objswitch
+  }];
+  [AZRUNLOOP run];
+//  [IO run];
+
+  _List toEval;
+
+  if ((toEval = IO.getOpts[@"eval"])) {
+
+    [toEval echo];
+
+
+    id k = NSClassFromString(toEval[0]) ?: toEval[0];
+    if (toEval.count == 2) return [[k performString:toEval[1]] echo], 0;
+
+    mList methodParts = @[].mC, methodArgs = @[].mC;
+    [[toEval subarrayFromIndex:1] eachWithIndex:^(id x, NSInteger i) {
+      IsEven(i) ? [methodParts addObject:x] : [methodArgs addObject:x];
+    }];
+    SEL sel = NSSelectorFromString([methodParts componentsJoinedByString:@""]);
+    id x =
+            methodArgs.count == 1  ? [k performSelectorWithoutWarnings:sel withObject:methodArgs[0]] :
+            methodArgs.count == 2  ? [k performSelectorWithoutWarnings:sel withObject:methodArgs[0] withObject:methodArgs[1]] : nil;
+
+    return [x echo], 0;
+//    id sig = [(id)k methodSignatureForSelector:];
+//    NSInvocation *i = [NSInvocation invocationWithMethodSignature:sig];
+//    [methodArgs eachWithIndex:^(id x, NSInteger i) {
+//      [i ]
+//    }]
+
+
+  }
+
+//  while (1) [IO.scan echo];
+//  [IO.infoPlist echo];
+//  [IO.instanceMethodNames echo];
+//  [[NSBundle bundleForClass:AtoZIO.class].bundlePath echo];
+//  [IO repl];
+//  objswitch(@"")
+//    objcase(@"a",
 
 // [IO help]; return 0; APConsoleLibmain();
 
