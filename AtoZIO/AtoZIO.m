@@ -5,6 +5,10 @@
 
 #import <AVFoundation/AVAudioPlayer.h>
 
+@import SystemConfiguration;
+#if MAC__ONLY
+#endif
+
 JREnumDefine(ConsoleColors);
 
 @Plan AtoZIO { P(_IO) runner; AVAudioPlayer *playa; } UNO(io); // AVAudioPlayerDelegate
@@ -26,7 +30,7 @@ _TT preprocess __Text_ t {
   //  id output = ; //@"".mC;  while ([task isRunning]) [output appendString:] return [output copy];
 }
 
-@synthesize env = _env; @dynamic hideCursor, cursorLocation;
+@synthesize user = _user, userID = _userID, env = _env; @dynamic hideCursor, cursorLocation;
 
 #pragma mark - Console
 
@@ -62,6 +66,24 @@ _VD repl {
 //  if (def && [runner respondsToSelector:def])
   return runner;
 }
+
+#if MAC_ONLY
+
+/* Adapted from QA1133:http://developer.apple.com/mac/library/qa/qa2001/qa1133.html */
+
+_VD _FetchUserInfo { dispatch_uno( uid_t _uid;
+
+    SCDynamicStoreRef store = SCDynamicStoreCreate(NULL, CFSTR("GetConsoleUser"), NULL, NULL);
+    NSAssert(store, @"oops");
+    _user = (__bridge NSS*)SCDynamicStoreCopyConsoleUser(store, &_uid, NULL);
+    _userID = _uid;
+  );
+}
+
+_UT userID { return [self _FetchUserInfo], _userID; }
+_TT user   { return [self _FetchUserInfo], _user;   }
+
+#endif
 
 - (_Char**) argv  { return          _NSGetArgv(); }
 - ( _SInt*) argc  { return (_SInt*) _NSGetArgc(); }

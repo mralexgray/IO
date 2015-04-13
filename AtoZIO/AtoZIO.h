@@ -1,4 +1,4 @@
-
+//￤
 
 #import <AtoZIO/IO+Protocols.h>
 
@@ -23,9 +23,13 @@ _AT  _IsIt hideCursor   ｜( peek-a-boo                                 )
 
 _NA  _Text title        ｜( console window title                       )
 
+#if MAC_ONLY
+_RO  _UInt userID       ｜( i.e. 501                                   )
+_RC  _Text user         ｜( i.e. localadmin                            )
+#endif
 
 _RC  _Text scan
-__         resetFX      ｜( 'needs doc'                                  )
+__         resetFX      ｜( 'needs doc'                                )
 
 _NA  _Text prompt       ｜( 'settable greeting for input' )
 
