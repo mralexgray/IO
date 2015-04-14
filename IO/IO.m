@@ -2,17 +2,24 @@
 #import "IO_.h"
 #import "scrutil.h"
 #import <termios.h>
-
-#import <AVFoundation/AVAudioPlayer.h>
-
+@import AVFoundation.AVAudioPlayer;
+#if MAC_ONLY
 @import SystemConfiguration;
-#if MAC__ONLY
 #endif
 
 JREnumDefine(ConsoleColors);
 
-@Plan AtoZIO { P(_IO) runner; AVAudioPlayer *playa; } UNO(io); // AVAudioPlayerDelegate
+@Plan _IO { P(_IO) runner; AVAudioPlayer *playa; } UNO(_io); // AVAudioPlayerDelegate
 
+_TT description {
+
+  return $(@"IO v.%@  isatty:%@ isxcode:%@ color:%@ user:%@ id:%lu",  [[Bndl bundleForClass:_IO.class].version[RED] ioString],
+                                                                      [$B(IO.env&io_TTY)[YELLOW] ioString],
+                                                                      [$B(IO.env&io_XCODE)[GREEN] ioString],
+                                                                      [$B(IO.env&io_COLOR)[BLUE] ioString],
+                                                                      [IO.user[ORANGE] ioString],
+                                                                      IO.userID);
+}
 _TT preprocess __Text_ t {
 
   NTBTask * task = [NTBTask.alloc initWithLaunchPath: @"/usr/bin/clang"];
@@ -34,7 +41,7 @@ _TT preprocess __Text_ t {
 
 #pragma mark - Console
 
-_VD setTitle:(_Text)title { printf("\033]0;%s\007", [_title = title UTF8String]); }
+_VD setTitle:(_Text)title { printf("\033]0;%s\007",(_title = title).UTF8String); }
 
 #pragma mark - Commandline
 
@@ -54,7 +61,7 @@ _VD repl {
 
 - forwardingTargetForSelector __Meth_ s {
 
-  return [IOOpts.shared respondsToSelector:s] ? IOOpts.shared : [super forwardingTargetForSelector:s];
+  return [_IO_Opts.shared respondsToSelector:s] ? _IO_Opts.shared : [super forwardingTargetForSelector:s];
 }
 
 - (P(_IO)) dispatch:(Class<_IO>)k,... { SEL def = NULL;
@@ -74,14 +81,16 @@ _VD repl {
 _VD _FetchUserInfo { dispatch_uno( uid_t _uid;
 
     SCDynamicStoreRef store = SCDynamicStoreCreate(NULL, CFSTR("GetConsoleUser"), NULL, NULL);
+
     NSAssert(store, @"oops");
-    _user = (__bridge NSS*)SCDynamicStoreCopyConsoleUser(store, &_uid, NULL);
+
+    _user = (__bridge _Text)SCDynamicStoreCopyConsoleUser(store, &_uid, NULL);
     _userID = _uid;
   );
 }
 
-_UT userID { return [self _FetchUserInfo], _userID; }
-_TT user   { return [self _FetchUserInfo], _user;   }
+_UT userID { return [self _FetchUserInfo], _userID;     }
+_TT user   { return [self _FetchUserInfo], _user.copy;  }
 
 #endif
 

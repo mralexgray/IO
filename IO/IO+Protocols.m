@@ -2,6 +2,8 @@
 #import "IO_.h"
 #import <AVFoundation/AVAudioPlayer.h>
 
+JREnumDefine(ioEnv)
+
 @concreteprotocol(Bicolor)
 
 #define MAKENORMALIZEDCOLOR  if (ISA(value,Numb)) { _UInt k = [value uIV]; while (k > 255) k -= 255; value = [Colr fromTTY:MID(k,0,255)]; }
@@ -35,7 +37,7 @@ SYNTHESIZE_ASC_OBJ_BLOCK (bclr, setBclr, ^{ MAKENORMALIZEDCOLOR }, ^{})
 
 //  id x = ((id(*)(id,SEL))objc_msgSend)((id)NSColor.class, NSSelectorFromString(@"yellowColor")); \
   if (x && [x isKindOfClass:NSColor.class]) self.fclr = _; return self; }
-
+/*
 @concreteprotocol(CLIDelegate)
 
 - _List_ _options {
@@ -62,7 +64,7 @@ SYNTHESIZE_ASC_OBJ_BLOCK (bclr, setBclr, ^{ MAKENORMALIZEDCOLOR }, ^{})
 }
 
 @end
-
+*/
 
 #if MAC_ONLY
 #include <termcap.h>

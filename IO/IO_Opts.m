@@ -1,19 +1,21 @@
 
 #import <AtoZUniversal/AtoZUniversal.h>
-#import <AtoZIO/AtoZIO.h>
+#import <IO/IO.h>
 
 #import "IO_.h"
 #import "IO+Protocols.h"
 
-@implementation IO_Opts { BOOL parseAgain; id specialArgs; } @synthesize getOpts = _getOpts, rules = _rules;
+@implementation _IO_Opts { BOOL parseAgain; id specialArgs; } @synthesize getOpts = _getOpts, rules = _rules;
 
-SYNTHESIZE_SINGLETON_FOR_CLASS(IOOpts,shared)
+SYNTHESIZE_SINGLETON_FOR_CLASS(_IO_Opts,shared)
 
-_IT wantsHelp { return [IO.args any:^BOOL(id o) { return [o containsString:@"help"]; }]; }
+_IT wantsHelp         { return [IO.args any:^BOOL(id o) { return [o containsString:@"help"]; }]; }
 
 _VD test __List_ args { NSLog(@"inside the vageen :%@", specialArgs = args); }
 
-_TT help {  return [[_rules reduce:^id(id memo, id key, id value) {
+_TT help              {
+
+  return [[_rules reduce:^id(id memo, id key, id value) {
 
   _List otherKeys = value[@"keys"];
 
@@ -21,12 +23,13 @@ _TT help {  return [[_rules reduce:^id(id memo, id key, id value) {
              otherKeys.count ? ",  -" : "",
              otherKeys.count ? [otherKeys joinedBy:@",  -"] : @"", value[@"brief"]];
 
-  } withInitialMemo:$(@"\n%@ %@\n\n", [@"Usage:"[PINK] ioString],[_PI.arguments[0][BLUE]ioString])]
-                       stringByAppendingFormat:@"\n\n%@",[self.getOpts.stringRep[ORANGE] ioString]];
+  }
+         withInitialMemo:$(@"\n%@ %@\n\n", [@"Usage:"[PINK] ioString],[_PI.arguments[0][BLUE]ioString])]
+              withFormat:@"\n\n%@",[self.getOpts.stringRep[ORANGE] ioString]];
 
 } //#ifdef DEBUG #else string]; #endif
 
-_DT getOpts { // if ((!parseAgain || !rules.count) && _getOpts) return _getOpts;
+_DT getOpts           {   // if ((!parseAgain || !rules.count) && _getOpts) return _getOpts;
 
   id opts = @{}.mutableCopy; __block id flag;
 
@@ -56,13 +59,6 @@ _DT getOpts { // if ((!parseAgain || !rules.count) && _getOpts) return _getOpts;
   return _getOpts = [opts copy];
 }
 
-/// @[@"Uasge" [optional], @"key"[required, make CAPS if opt itself is REQUIRED!], @"k", @"keeey" [optional]
-
-_VD registerOpts __List_ arrayOfOptsArrays __ ... {
-
-  [self performSelector:@selector(__registerOpt:) withObjects:arrayOfOptsArrays];
-}
-
 _VD __registerOpt __List_ opt { _rules = _rules ?: @{}.mC;
 
   NSParameterAssert(opt && opt.count);
@@ -72,6 +68,13 @@ _VD __registerOpt __List_ opt { _rules = _rules ?: @{}.mC;
   _rules[[key lowercaseString]] = @{  @"keys" : [opt subarrayFromIndex:opt.count > 1 ? 2 : 1],
                                      @"brief" : opt.count > 1 ? opt[0] : @"",
                                   @"required" : @([key isUppercase]) };
+}
+
+/// @[@"Uasge" [optional], @"key"[required, make CAPS if opt itself is REQUIRED!], @"k", @"keeey" [optional]
+
+_VD registerOpts __List_ arrayOfOptsArrays {
+
+  [self performSelector:@selector(__registerOpt:) withObjects:arrayOfOptsArrays];
 }
 
 _VD getOpt __Text_ usageThenKeyThenShortOpts __ ... {

@@ -1,20 +1,49 @@
-//￤
 
-#import <AtoZIO/IO+Protocols.h>
+#ifndef IO_H
+#define IO_H
 
-@Kind (AtoZIO) <RectLike, Subscriptable, IOOpts>
+/*          _____                   _______
+           /\    \                 /::\    \        
+          /::\    \               /::::\    \       
+          \:::\    \             /::::::\    \
+           \:::\    \           /::::::::\    \     
+            \:::\    \         /:::/~~\:::\    \    
+             \:::\    \       /:::/    \:::\    \   
+             /::::\    \     /:::/    / \:::\    \  
+    ____    /::::::\    \   /:::/____/   \:::\____\ 
+   /\   \  /:::/\:::\    \ |:::|    |     |:::|    |
+  /::\   \/:::/  \:::\____\|:::|____|     |:::|    |
+  \:::\  /:::/    \::/    / \:::\    \   /:::/    / 
+   \:::\/:::/    / \/____/   \:::\    \ /:::/    /  
+    \::::::/    /             \:::\    /:::/    /   
+     \::::/____/               \:::\__/:::/    /    
+      \:::\    \                \::::::::/    /     
+       \:::\    \                \::::::/    /      
+        \:::\    \                \::::/    /       
+         \:::\____\                \::/____/        
+          \::/    /                 ~~              
+           \/____/    
+*/
 
+#import <IO/IO+Protocols.h>
 
-_RO  _Main main         // argc + argv
+@Kind (_IO) < RectLike
+           __ Subscriptable
+           __ IO_Opts
+              >
+
+_RO  _Main main           // access to argc + argv, anywhere
 ___
-_RC  _Dict infoPlist    // embdded plist | long/short opts, parsed
+/*!  embdded plist
+ */
+_RC  _Dict infoPlist
 ___
-_RO  ioEnv env          // where we runnin at'
+_RO  ioEnv env            // where we runnin at'
 ___
-_RO  _List args         // JUST the args, maam'
-__         stdinlines   // readline?'
+_RO  _List args           // JUST the args, maam'
+__         stdinlines     // readline?'
 ___
-_NC  _ObjC stream           // stdin + stdout'
+_NC  _ObjC stream         // stdin + stdout'
 ___
 
 _TT preprocess __Text_ t ___
@@ -71,8 +100,8 @@ _TT  imageString __ObjC_ iOrP ___  // iterm
 
 - _Void_ justPlay _ path ___
 
-#define IO ((AtoZIO*)[AtoZIO io])
-+ _Kind_ io ___
+#define IO ((_IO*)[_IO _io])
++ _Kind_ _io ___
 
 // deprecate
 
@@ -95,41 +124,10 @@ int  printfc(const char * __restrict, ...) __printflike(1, 2);
 int fprintfc(FILE * __restrict, const char * __restrict, ...) __printflike(2, 3);
 
 
-/*! mkfifo @code
-
-  NSString *pipePath = @"..."
-
-  if ( mkfifo(pipePath.UTF8String, 0666) == -1 && errno !=EEXIST)	NSLog(@"Unable to open the named pipe %@", pipePath);
-	
-	int fd = open(pipePath.UTF8String, O_RDWR | O_NDELAY);
-
-	filehandleForReading = [NSFileHandle.alloc initWithFileDescriptor:fd closeOnDealloc: YES];
-
-	[NSNotificationCenter.defaultCenter     removeObserver:self];
-	[NSNotificationCenter.defaultCenter addObserverForName:NSFileHandleReadCompletionNotification
-                                                  object:filehandleForReading queue:NSOperationQueue.mainQueue
-                                              usingBlock:^(NSNotification *n) {
-
-    NSData *d = n.userInfo[NSFileHandleNotificationDataItem];
-
-    if (d.length) {
-      NSLog(@"dataReady:%lu bytes", d.length);
-      /// .... NSString * dataString = [NSString.alloc initWithData:d encoding:NSASCIIStringEncoding];
-    }
-    [filehandleForReading readInBackgroundAndNotify]; //Tell the fileHandler to asychronusly report back
-
-  }];
-
-	[filehandleForReading readInBackgroundAndNotify];
-*/
-extern int         mkfifo (const char *, mode_t);
-
 
 #define CHAR_FMT(...) [NSString stringWithFormat:@__VA_ARGS__].UTF8String
 
-
-
-@interface NSO (AtoZIO) 
+@interface NSO (IO_Nobj)
 
 _RO _Text stringRep ___
 
@@ -142,7 +140,6 @@ _RO _Text stringRep ___
 @end
 
 #define $Bx(b) [[$B(b) withFG:b?GREEN:RED]ioString]
-
 
 // -=/><\=-=/><\=-=/><\=-=/><\=-=/><\=-=/><\=-=/><\=-=/><\=-=/><\=-
 
@@ -175,61 +172,63 @@ JREnumDeclare(ConsoleColors,  xBLACK, xDARK_GRAY, xGRAY, xWHITE,
 #define ＄ (_UInt_ AZPROCINFO.processIdentifier) // Process ID (PID) of the script itself.
 #define ０ (_Text_ AZPROCINFO.arguments[0])
 
-//#define ﹗ (_UInt_ AZPROCINFO.processIdentifier) // like $!, pid of last job run in background
-//- _UInt_  _                // argc
-//- _List_ ﹫ _              // whoknows, lets make this LINES
-//- _List_ ﹡ _              // whoknows, i'm making this an array of word params
-//- _List_ － ___              // flags?  lets make it something better
-//- _SInt_ ﹖ ___              // Exit status of a command, function, or the script itself
-//- _Text_ ０ _              // EXE path
-                                                                       /*
+/*! mkfifo @code
+
+  NSString *pipePath = @"..."
+
+  if ( mkfifo(pipePath.UTF8String, 0666) == -1 && errno !=EEXIST)	NSLog(@"Unable to open the named pipe %@", pipePath);
+	
+	int fd = open(pipePath.UTF8String, O_RDWR | O_NDELAY);
+
+	filehandleForReading = [NSFileHandle.alloc initWithFileDescriptor:fd closeOnDealloc: YES];
+
+	[NSNotificationCenter.defaultCenter     removeObserver:self];
+	[NSNotificationCenter.defaultCenter addObserverForName:NSFileHandleReadCompletionNotification
+                                                  object:filehandleForReading queue:NSOperationQueue.mainQueue
+                                              usingBlock:^(NSNotification *n) {
+
+    NSData *d = n.userInfo[NSFileHandleNotificationDataItem];
+
+    if (d.length) {
+      NSLog(@"dataReady:%lu bytes", d.length);
+      /// .... NSString * dataString = [NSString.alloc initWithData:d encoding:NSASCIIStringEncoding];
+    }
+    [filehandleForReading readInBackgroundAndNotify]; //Tell the fileHandler to asychronusly report back
+
+  }];
+
+	[filehandleForReading readInBackgroundAndNotify];
+
+*/
+
+extern int         mkfifo (const char *, mode_t);
+
+/*
+
+
+#define ﹗ (_UInt_ AZPROCINFO.processIdentifier) // like $!, pid of last job run in background
+- _UInt_  _                // argc
+- _List_ ﹫ _              // whoknows, lets make this LINES
+- _List_ ﹡ _              // whoknows, i'm making this an array of word params
+- _List_ － ___              // flags?  lets make it something better
+- _SInt_ ﹖ ___              // Exit status of a command, function, or the script itself
+- _Text_ ０ _              // EXE path
+                                                                       / *
   keyget  id x = IO[@"prompt>"] (scan)
   keyset         IO[@"prompt>"] = ^(id z){ [z doSomething]; } (scan w/ block)
 
   idxget  id x = IO[244] (ie @"ANSIESC:244;")
-  idxset         IO[244] -> [IO[244] print]                              */
+  idxset         IO[244] -> [IO[244] print]                              * /
 
-//_RO  _UInt rows,
-//           cols       ___
-//_RO  _Size size,           // WIN dims
-//           pixels     _    // WIN dims
+_RO  _UInt rows,
+           cols       ___
+_RO  _Size size,           // WIN dims
+           pixels     _    // WIN dims
 
+_RO  _IsIt isatty       ￤('nothing will happen')
+        __ isxcode      ｜( 'Where we at?' )
 
-/*    ___                       ___           ___
-     /  /\          ___        /  /\         /  /\
-    /  /::\        /  /\      /  /::\       /  /::|   
-   /  /:/\:\      /  /:/     /  /:/\:\     /  /:/:|   
-  /  /:/~/::\    /  /:/     /  /:/  \:\   /  /:/|:|__ 
- /__/:/ /:/\:\  /  /::\    /__/:/ \__\:\ /__/:/ |:| /\
- \  \:\/:/__\/ /__/:/\:\   \  \:\ /  /:/ \__\/  |:|/:/
-  \  \::/      \__\/  \:\   \  \:\  /:/      |  |:/:/ 
-   \  \:\           \  \:\   \  \:\/:/       |  |::/  
-    \  \:\           \__\/    \  \::/        |  |:/   
-     \__\/                     \__\/         |__|/
-
-            _____                   _______         
-           /\    \                 /::\    \        
-          /::\    \               /::::\    \       
-          \:::\    \             /::::::\    \
-           \:::\    \           /::::::::\    \     
-            \:::\    \         /:::/~~\:::\    \    
-             \:::\    \       /:::/    \:::\    \   
-             /::::\    \     /:::/    / \:::\    \  
-    ____    /::::::\    \   /:::/____/   \:::\____\ 
-   /\   \  /:::/\:::\    \ |:::|    |     |:::|    |
-  /::\   \/:::/  \:::\____\|:::|____|     |:::|    |
-  \:::\  /:::/    \::/    / \:::\    \   /:::/    / 
-   \:::\/:::/    / \/____/   \:::\    \ /:::/    /  
-    \::::::/    /             \:::\    /:::/    /   
-     \::::/____/               \:::\__/:::/    /    
-      \:::\    \                \::::::::/    /     
-       \:::\    \                \::::::/    /      
-        \:::\    \                \::::/    /       
-         \:::\____\                \::/____/        
-          \::/    /                 ~~              
-           \/____/    
+￤
 */
 
-
-//_RO  _IsIt isatty       ￤('nothing will happen')
-//        __ isxcode      ｜( 'Where we at?' )
+#endif // IO_H

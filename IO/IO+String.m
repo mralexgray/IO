@@ -1,7 +1,7 @@
 
 #import "IO_.h"
 
-@XtraPlan(Text,AtoZIO)
+@XtraPlan(Text,IO_Text)
 
 + _Text_ withColor:_Colr_ c fmt:_Text_ fmt,... { _Text new; va_list list; va_start(list,fmt);
 
@@ -18,9 +18,9 @@
   }
 }
 
-@XtraStop(Text,AtoZIO)
+@XtraStop(Text,IO)
 
-@XtraPlan(NObj,AtoZIO)
+@XtraPlan(NObj,IO_NObj)
 
 - _Text_ stringRep { return
 
