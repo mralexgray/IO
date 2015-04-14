@@ -1,7 +1,7 @@
 
-#import <AtoZIO/AtoZIO.h>
+#import <IO/IO.h>
 
-_Case(AtoZIOTests, [@"Well Hello!"[RED] echo]; )
+_Case(IOTests, [@"Well Hello!"[RED] echo]; )
 
 _Test(Example,
 

@@ -519,7 +519,7 @@ int rgb_to_xterm(int r, int g, int b) { /** Quantize RGB values to an xterm 256-
   return best_match;
 }
 
-@implementation NSColor (AtoZIO)
+@implementation NSColor (IO)
 
 - _Void_ getRed:(CGFloat *)rPtr green:(CGFloat *)gPtr blue:(CGFloat *)bPtr {
 

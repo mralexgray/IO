@@ -1,5 +1,5 @@
 
-import AtoZIO
+import IO
 
 let test: NSString = "Boring Grey"
 
@@ -12,7 +12,7 @@ test.fclr = x
 
 (test as NSString).uppercaseString
 
-let io = AtoZIO.io()
+let io = IO.io()
 
 
 

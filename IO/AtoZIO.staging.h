@@ -41,14 +41,7 @@ nscolor
 #define MOVETO(R,C) IO.cursorPosition = (scrPosition){R,C}
 
 
-
-
-//@interface NSString (atozio)
-
-//@property FMTOptions   options;
-
-
-@interface CALayer (atozio)
+@interface CALayer (IO)
 
 @property (readonly) const char * xString;
 

@@ -1,33 +1,34 @@
 
+#ifndef IO_Protocol_h
+#define IO_Protocol_h
+
 #import <AtoZUniversal/AtoZUniversal.h>
 @class   AVAudioPlayer;
 
-// ___ @Incl Darwin ___
-
-
-@Vows          IOOpts @Optn
+@Vows          IO_Opts @Optn  // Public interface to IO options parsing methods.
 
 _RC  _Dict    getOpts ___
 _RO  _IsIt  wantsHelp ___
 _RC  _Text       help ___
 _RO  mDict      rules ___
 
-_VD getOpt __Text_ usageThenKeyThenShortOpts __ ... ___ // alternates for key
+_VD getOpt __Text_ usageThenKeyThenShortOpts __ ... ___
 
 _VD   test __List_ args ___
 
 ￭
+
 #define Ⅲ JREnumDeclare
 
-Ⅲ ( ioEnv, io_UNSET
-         __ io_TTY        = 0x00000001
-         __ io_XCODE      = 0x00000010
-         __ io_ASL        = 0x00000100
-         __ io_COLOR      = 0x00001000
-         __ io_DUMB       = 0x00010000
-         __ io_OTHER      = 0x11111111)
-//         __ io_XCODE_CLR  = io_XCODE |  io_COLOR
-//         __ io_TTY_CLR    = io_COLOR & ~io_XCODE)
+Ⅲ ( ioEnv, io_UNSET      = 0,
+            io_TTY        = 0x00000001,
+            io_XCODE      = 0x00000010,
+            io_ASL        = 0x00000100,
+            io_COLOR      = 0x00001000,
+            io_OTHER      = 0x11111111,
+
+            io_CLR_XC     = 0x00001010,
+            io_CLR_TTY    = 0x00001001    )
 
 _Type struct { _UInt  col ___ _UInt    row ___ } _Cell ___
 _Type struct { _SInt argc ___ _Char * argv ___ } _Main ___
@@ -35,8 +36,8 @@ _Type struct { _SInt argc ___ _Char * argv ___ } _Main ___
 #define _BICOLOR_ (P(Bicolor))
 #define _REAL @concrete
 
-_PRTO Bicolor < IndexSet,      // id x = @"Apple"[2];      x == @"Apple" with fg -> 2/256
-                  KeyGet >  // id x = @"Apple"[ORANGE]; x == @"Apple" with fg -> ORANGE
+_PRTO Bicolor < IndexSet,     // id x = @"Apple"[2];      x == @"Apple" with fg -> 2/256
+                  KeyGet >    // id x = @"Apple"[ORANGE]; x == @"Apple" with fg -> ORANGE
 _REAL
 _RO _IsIt      colored ___
 _RC _Text      ioString
@@ -50,33 +51,16 @@ _AT _ObjC      fclr
 
 ￭
 
-@Xtra (Text, AtoZIO) <Bicolor>
+@Xtra (Text, IO_Text) <Bicolor>
 
 - _Void_ print256 ___
-+ _Text_ withColor _ c fmt _ _Text_ fmt,... ___
++ _Text_ withColor _ c fmt __Text_ fmt,... ___
 
 ￭
-
-_PRTO CLIDelegate ____ NObj _____
-
-@Optn
--   _Text_ optForMethod _ _Meth_ s ___   // Otherwise it is the moethod's first letter.
-_RO _Meta optionClass ___     // Otherwise it's YOU!
-_RO _List optionMethods ___   // if present, will only opt out these methods.
-
-_REAL
-_RC _List _options ___
-_RC _Text _usage ___
-
-￭
-
- //  _RO _Char** argv _ && _RO _SInt * argc ___
 
 #define MID(X,MINI,MAXI) MAX( MIN(X,MAXI), MINI )
-//#define IO_MAIN int main(int argc, const char **argv
-
-
-
+/*! Documentation 
+ */
 @Kind (ProgressBar)
 
 _NA _UInt          max __
@@ -103,4 +87,27 @@ _RO _List       format ___ // E.g. |###    | has @[@"|", @"#", @"|"]
 _RO  int last_printed ___ // number of characters printed on last output
 ￭
 
-// #import <AtoZIO/GBCommandLineParser.h>     // GBCli
+#endif // IO_Protocol_h
+
+/*
+
+#define IO_MAIN int main(int argc, const char **argv
+
+_PRTO CLIDelegate ____ NObj _____
+
+@Optn
+-   _Text_ optForMethod _ _Meth_ s ___   // Otherwise it is the moethod's first letter.
+_RO _Meta optionClass ___     // Otherwise it's YOU!
+_RO _List optionMethods ___   // if present, will only opt out these methods.
+
+_REAL
+_RC _List _options ___
+_RC _Text _usage ___
+
+￭
+   _RO _Char** argv _ && _RO _SInt * argc ___
+
+ #import <IO/GBCommandLineParser.h>     // GBCli
+ ___ @Incl Darwin ___
+
+*/

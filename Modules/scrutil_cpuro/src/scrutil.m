@@ -4,7 +4,7 @@
 //#include <string.h>
 //#include <stdio.h>
 
-#import <AtoZIO/AtoZIO.h>
+#import <IO/IO.h>
 
 
 /* Detectar el sistema operativo */

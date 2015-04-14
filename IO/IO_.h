@@ -1,9 +1,15 @@
 
 
-#ifndef AtoZIO_IO_h
-#define AtoZIO_IO_h
+#ifndef IO_IO_h
+#define IO_IO_h
 
-#import <AtoZIO.h>
+#import <IO/IO.h>
+
+@interface _IO_Opts : NSObject <IO_Opts>
+
++ _Kind_ shared;
+
+@end
 
 #include <stdio.h>
 #include <sys/ioctl.h>
@@ -70,7 +76,7 @@ typedef struct { int r; int g; int b; } rgb;
 //       *CmdClearScreen = "2J";
 
 
-_CAT( Colr, AtoZIO,
+_CAT( Colr, IO_Colr,
 
   + _Colr_ fromTTY: _UInt_ c;
 
@@ -85,11 +91,18 @@ extern char ***_NSGetArgv(void);
 
 
 @Vows IONotifier <NSO> // <NSUserNotificationCenterDelegate>
-@optional - initWithNotification:(NSNOT*)n;  // IN USE in AtoZIO.m
+@optional - initWithNotification:(NSNOT*)n;  // IN USE in IO.m
 ￭
 @Kind(IONotifier,<IONotifier>) ￭
 
-//@interface NSNumber (AtoZIO)
+
+
+
+#endif
+
+
+
+//@interface NSNumber (IO)
 //+ (instancetype) scan;
 //@end
 
@@ -101,13 +114,3 @@ extern char ***_NSGetArgv(void);
 //
 //extern rgb clr_2_rgb (Clr c);
 //extern rgb tty_2_rgb (int c);
-
-@interface IOOpts : NSObject <IOOpts>
-
-+ _Kind_ shared;
-
-@end
-
-
-#endif
-

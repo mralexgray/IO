@@ -10,9 +10,10 @@ static   rgb     BASIC16[] = {{  0,   0,   0}, {205, 0,   0}, { 0, 205,   0}, { 
                               {127, 127, 127}, {255, 0,   0}, { 0, 255,   0}, { 255, 255,   0},
                               { 92,  92, 255}, {255, 0, 255}, { 0, 255, 255}, { 255, 255, 255}};
 
-@implementation Colr (AtoZIO)
+@implementation Colr (IO_Colr)
 
-- _Text_ bgEsc { return IO.env & ~io_COLOR ? @"" :
+//- jd { ioEnvByValue()
+- _Text_ bgEsc { return IO.env & io_COLOR ? @"" :
                         IO.env &  io_XCODE ? $(@"%sbg%@;", CSI, self.xcTuple)
                                            : $(@"%s%s%@", CSI, ANSI_BG, self.tty);
 }
