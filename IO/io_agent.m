@@ -1,18 +1,19 @@
+//  !IO.wantsHelp && (u = IO.getOpts[@"username"][0] ?: ghu)
+//                && (g = IO.getOpts[@"gist"]    [0]       ) ?: ({ [IO.help echo]; return 1; });
 
-#import <AtoZIO/AtoZIO.h>
+#import <IO/IO.h>
 @import Darwin;
 
 MAIN(
 
-  [IO getOpt:@"Run in forground. (No named pipe)", @"foreground",@"f", nil];
+  NSLog(@"%@", ioEnvByLabelAsHex());
 
-  [IO.getOpts print];
-  
-//  !IO.wantsHelp && (u = IO.getOpts[@"username"][0] ?: ghu)
-//                && (g = IO.getOpts[@"gist"]    [0]       ) ?: ({ [IO.help echo]; return 1; });
+  [NSStringFromRect(IO.frame) print256];
 
-  [$(@"isatty:%@ isxcode:%@ hasColor:%@\n", $B(IO.env&io_TTY), $B(IO.env&io_XCODE), $B(IO.env&io_COLOR))
-                        printC:RANDOMCOLOR];
+  [IO getOpt:@"Run in forground. (No named pipe)", @"foreground",@"f"];
+
+  [IO.getOpts echo];
+  [IO.description echo];
 
   [NSFileHandle read:@"/io" toBlock:^BOOL(NSData *d) {
 
@@ -55,7 +56,7 @@ MAIN(
 //  while (1) [IO.scan echo];
 //  [IO.infoPlist echo];
 //  [IO.instanceMethodNames echo];
-//  [[NSBundle bundleForClass:AtoZIO.class].bundlePath echo];
+//  [[NSBundle bundleForClass:IO.class].bundlePath echo];
 //  [IO repl];
 //  objswitch(@"")
 //    objcase(@"a",
