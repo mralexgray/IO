@@ -25,3 +25,7 @@
 [submodule "Modules/RunLoopController"]
 	path = Modules/RunLoopController
 	url = https://github.com/trojanfoe/RunLoopController.git
+[submodule "Modules/linenoise"]
+	path = Modules/linenoise
+	url = git@github.com:mralexgray/linenoise.git
+	branch = objc
