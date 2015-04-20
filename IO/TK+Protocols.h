@@ -1,10 +1,11 @@
 
-#ifndef IO_Protocol_h
-#define IO_Protocol_h
+#pragma once
 
-#import <AtoZUniversal/AtoZUniversal.h>
-@class   AVAudioPlayer;
+@import AtoZUniversal;
 
+@Vows IO_Helper <NObj>
++ _Kind_ shared ___
+￭
 @Vows          IO_Opts @Optn  // Public interface to IO options parsing methods.
 
 _RC  _Dict    getOpts ___
@@ -14,8 +15,27 @@ _RO  mDict      rules ___
 
 _VD getOpt __Text_ usageThenKeyThenShortOpts __ ... ___
 
+_VD finalize ___
+
 _VD   test __List_ args ___
 
+￭
+
+@Vows         IO_Edit @Optn  // Public interface to IO options parsing methods.
+
+_NA _Text historyLoadPath
+__        historySavePath
+___
+_AT _List    history ___
+
+_VD saveHistory ___
+
+_VD setCompletionHandler _ (_List(^)(_Text input))comps;
+
+_VD prompt __Text_ promt withBlock _ (_IsIt(^)(_Text line))cmd ___   /// AKA RUN!
+
+_VD clearScreen ___
+_VD printKeyCodes ___
 ￭
 
 #define Ⅲ JREnumDeclare
@@ -33,7 +53,7 @@ _VD   test __List_ args ___
 _Type struct { _UInt  col ___ _UInt    row ___ } _Cell ___
 _Type struct { _SInt argc ___ _Char * argv ___ } _Main ___
 
-#define _BICOLOR_ (P(Bicolor))
+#define _BICOLOR_ _Ｐ(Bicolor)
 #define _REAL @concrete
 
 _PRTO Bicolor < IndexSet,     // id x = @"Apple"[2];      x == @"Apple" with fg -> 2/256
@@ -57,6 +77,8 @@ _AT _ObjC      fclr
 + _Text_ withColor _ c fmt __Text_ fmt,... ___
 
 ￭
+
+@class   AVAudioPlayer;
 
 #define MID(X,MINI,MAXI) MAX( MIN(X,MAXI), MINI )
 /*! Documentation 
@@ -87,7 +109,7 @@ _RO _List       format ___ // E.g. |###    | has @[@"|", @"#", @"|"]
 _RO  int last_printed ___ // number of characters printed on last output
 ￭
 
-#endif // IO_Protocol_h
+// IO_Protocol_h
 
 /*
 

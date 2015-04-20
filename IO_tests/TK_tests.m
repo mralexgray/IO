@@ -1,5 +1,5 @@
 
-#import <IO/IO.h>
+@import ToolKit;
 
 _Case(IOTests, [@"Well Hello!"[RED] echo]; )
 

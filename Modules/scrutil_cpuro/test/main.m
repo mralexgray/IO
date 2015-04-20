@@ -1,5 +1,5 @@
 /*  
-  CDDIR="/sd/dev/AtoZIO/Modules/scrutil_cpuro/test"; \
+  CDDIR="/sd/dev/IO/Modules/scrutil_cpuro/test"; \
   clang -o "$CDDIR/test" -fmodules -F $USER_FWKS "$CDDIR/main.m" -std=c11; \
   "$CDDIR/test"
 
@@ -9,7 +9,7 @@
 
 */
 
-#import <AtoZIO/AtoZIO.h>
+#import <IO/IO.h>
 
 //#include <stdio.h>
 //#include "scrutil.h"

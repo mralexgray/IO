@@ -1,5 +1,5 @@
 
-#import "IO_.h"
+#import "TK_Private.h"
 
 Text *              _fakeBundleIdentifier = nil;
 Text * const     TerminalNotifierBundleID = @"nl.superalloy.oss.terminal-notifier",
@@ -262,14 +262,14 @@ static _IsIt InstallFakeBundleIdentifierHook() {
   return [task terminationStatus] == 0;
 }
 
-- (BOOL)        userNotificationCenter:(NSUserNotificationCenter*)center
-             shouldPresentNotification:(NSUserNotification*)userNotification {
+- (BOOL)        userNotificationCenter:(__unused uNCtr) center
+             shouldPresentNotification:(__unused uNote) userNotification {
 
   return YES;
 }
 
-- _Void_        userNotificationCenter:(NSUserNotificationCenter*)center
-                didDeliverNotification:(NSUserNotification*)userNotification {
+- _Void_        userNotificationCenter:(__unused uNCtr) center
+                didDeliverNotification:(__unused uNote) userNotification {
 
   exit(0); /// Once the notification is delivered we can exit.
 }
@@ -384,11 +384,11 @@ For more information see https://github.com/alloy/terminal-notifier.\n\n", appNa
     [self.userNotificationCenter scheduleNotification:notification];
 }
 
-- _Void_ userNotificationCenter:(NSUserNotificationCenter*)cntr didDeliverNotification:(NSUserNotification*)note {
+- _Void_ userNotificationCenter:(__unused uNCtr)cntr didDeliverNotification:(__unused uNote)note {
     NSLog(@"delivered: %@", note);
 }
 
-- _Void_ userNotificationCenter:(NSUserNotificationCenter*)cntr didActivateNotification:(NSUserNotification *)note {
+- _Void_ userNotificationCenter:(__unused uNCtr)cntr  didActivateNotification:(__unused uNote) note {
     NSLog(@"activated: %@", note);
 }
 

@@ -1,6 +1,5 @@
 
-#import <IO/IO.h>
-
+#import <ToolKit.h>
 
 void *NewBase64Decode(const char * inBuff,	size_t len,               size_t *outLen);
 char *NewBase64Encode(const void * inBuff, size_t len, bool sepLines, size_t *outLen);
@@ -14,7 +13,7 @@ static char base64EncodingTable[64] = {
 
 @implementation NSNib (XMLBase64)
 
-+ (instancetype) nibFromXMLPath:(NSString*)s owner:(id)owner topObjects:(NSArray**)objs {
++ (instancetype) nibFromXMLPath:(NSString*)s owner:(id)owner topObjects:(__autoreleasing NSArray**)objs {
 
 	NSNib *n =
 #if TARGET_OS_IPHONE

@@ -1,15 +1,14 @@
 
-#import <AtoZUniversal/AtoZUniversal.h>
-#import <IO/IO.h>
-
-#import "IO_.h"
-#import "IO+Protocols.h"
+#import <ToolKit/ToolKit.h>
+#import "TK_Private.h"
 
 @implementation _IO_Opts { BOOL parseAgain; id specialArgs; } @synthesize getOpts = _getOpts, rules = _rules;
 
 SYNTHESIZE_SINGLETON_FOR_CLASS(_IO_Opts,shared)
 
-_IT wantsHelp         { return [IO.args any:^BOOL(id o) { return [o containsString:@"help"]; }]; }
+_VD finalize          { if (!self.wantsHelp) return; [self.help echo]; exit(0); }
+
+_IT wantsHelp         { return !IO.args.count || [IO.args any:^BOOL(id o) { return [o containsString:@"help"]; }]; }
 
 _VD test __List_ args { NSLog(@"inside the vageen :%@", specialArgs = args); }
 

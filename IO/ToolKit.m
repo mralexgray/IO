@@ -1,7 +1,9 @@
 
-#import "IO_.h"
+#import <ToolKit/TK_Private.h>
 #import "scrutil.h"
-#import <termios.h>
+// #import <termios.h>
+#import <sys/termios.h>
+
 @import AVFoundation.AVAudioPlayer;
 #if MAC_ONLY
 @import SystemConfiguration;
@@ -9,11 +11,11 @@
 
 JREnumDefine(ConsoleColors);
 
-@Plan _IO { P(_IO) runner; AVAudioPlayer *playa; } UNO(_io); // AVAudioPlayerDelegate
+@Plan ToolKit { Ｐ(_IO) runner; AVAudioPlayer *playa; } UNO(sharedToolKit); // AVAudioPlayerDelegate
 
 _TT description {
 
-  return $(@"IO v.%@  isatty:%@ isxcode:%@ color:%@ user:%@ id:%lu",  [[Bndl bundleForClass:_IO.class].version[RED] ioString],
+  return $(@"ToolKit v.%@  isatty:%@ isxcode:%@ color:%@ user:%@ id:%lu",  [[Bndl bundleForClass:ToolKit.class].version[RED] ioString],
                                                                       [$B(IO.env&io_TTY)[YELLOW] ioString],
                                                                       [$B(IO.env&io_XCODE)[GREEN] ioString],
                                                                       [$B(IO.env&io_COLOR)[BLUE] ioString],
@@ -64,7 +66,7 @@ _VD repl {
   return [_IO_Opts.shared respondsToSelector:s] ? _IO_Opts.shared : [super forwardingTargetForSelector:s];
 }
 
-- (P(_IO)) dispatch:(Class<_IO>)k,... { SEL def = NULL;
+- _Ｐ(_IO) dispatch:(Class<_IO>)k,... { SEL def = NULL;
 
   runner = [k.alloc init]; va_list args; va_start(args, k); def = va_arg(args, SEL); va_end(args);
 
@@ -145,7 +147,7 @@ _TT user   { return [self _FetchUserInfo], _user.copy;  }
   t.arguments  = @[@"-c", commandToRun];
   NSPipe *p; t.standardOutput = (p = NSPipe.pipe);
   NSFileHandle *file = p.fileHandleForReading; [t launch];
-  outP = file.readDataToEndOfFile.UTF8String;
+  outP = file.readDataToEndOfFile.toUTF8String;
 #endif
   return outP;
 }
@@ -163,7 +165,7 @@ _TT user   { return [self _FetchUserInfo], _user.copy;  }
 
 - _Text_ prompt:_Text_ t c:_SInt_ c { t.fclr = @(c)___ [t print]___
 
-  return NSFileHandle.fileHandleWithStandardInput.availableData.UTF8String ___
+  return NSFileHandle.fileHandleWithStandardInput.availableData.toUTF8String ___
 }
 
 - _Void_ setCursorLocation: _Cell_ c { printf("%s%ld;%ldH", CSI, c.row + 1, c.col + 1); }
@@ -203,7 +205,7 @@ _TT user   { return [self _FetchUserInfo], _user.copy;  }
 
 - _Void_ audioPlayerDidFinishPlaying:(AVAudioPlayer*)p successfully:_IsIt_ s {
 
-  NSLog(@"finished playing");
+  NSLog(@"finished playing %@ success:%@", p, $B(s));
 //  CFRunLoopStop(CFRunLoopGetMain());
 }
 
@@ -240,7 +242,7 @@ _VD print:_List_ lines {
 
 - _Text_ resetFX { AZSTATIC_OBJ(Text, r, ({ IO.env&io_XCODE ? $UTF8(XC_RESET) : $UTF8(ANSI_RESET); })); return r; }
 
-_VD fill __Rect_ r color __ObjC_ c { }
+//_VD fill __Rect_ r color __ObjC_ c { }
 
 _TT imageString __ObjC_ pathOrImage { _Pict image; _Text name, x;
 
@@ -295,7 +297,7 @@ _TT imageString __ObjC_ pathOrImage { _Pict image; _Text name, x;
 //- _Size_ size     {
 //
 //}
-//@prop_RO  _Size size;       // WIN dims
+//_RO _Size size;       // WIN dims
                          // if (!value && self.ftty) [self setFclr:value = [NSColor fromTTY: self.ftty]]; },
                          // if (!value && self.btty) [self setBclr:value = [NSColor fromTTY: self.btty]]; },
 

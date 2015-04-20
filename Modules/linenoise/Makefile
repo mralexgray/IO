@@ -1,11 +1,15 @@
+CFLAGS := -Wall 
+TARGET  = linenoise_example
+  
+all: *.c *.h $(TARGET)
+  
+$(TARGET): *.c
+	$(CC) $(CFLAGS) -o $(TARGET) $^
 
-CC=clang
-
-linenoise_example: linenoise.h linenoise.c
-
-linenoise_example: linenoise.c example.c
-	$(CC) -Wall -W -Os -g -o linenoise_example linenoise.c example.c
-
+$(TARGET)_objc: objc/*.m linenoise.c
+	$(CC) $(CFLAGS) $^ -fobjc-arc -I$(CURDIR) -o $@
+	
+objc: $(TARGET)_objc *.h objc/*.h
+	
 clean:
-	rm -f linenoise_example
-
+	rm -rvf $(TARGET)* **.dSYM **.a **.out **.gch

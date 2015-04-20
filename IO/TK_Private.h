@@ -1,15 +1,17 @@
 
 
-#ifndef IO_IO_h
-#define IO_IO_h
+#import <ToolKit.h>
 
-#import <IO/IO.h>
+@Kind(_IO_Opts) <IO_Opts,IO_Helper> ￭
 
-@interface _IO_Opts : NSObject <IO_Opts>
+_CAT( Colr, IO_Colr,
 
-+ _Kind_ shared;
+  + _Colr_ fromTTY: _UInt_ c;
 
-@end
+  _RO _Numb tty;
+  _RC _Text xcTuple, bgEsc, fgEsc
+)
+
 
 #include <stdio.h>
 #include <sys/ioctl.h>
@@ -76,13 +78,6 @@ typedef struct { int r; int g; int b; } rgb;
 //       *CmdClearScreen = "2J";
 
 
-_CAT( Colr, IO_Colr,
-
-  + _Colr_ fromTTY: _UInt_ c;
-
-  _RO _Numb tty;
-  _RC _Text xcTuple, bgEsc, fgEsc
-)
 
 extern  int *_NSGetArgc(void);
 extern char ***_NSGetArgv(void);
@@ -95,10 +90,6 @@ extern char ***_NSGetArgv(void);
 ￭
 @Kind(IONotifier,<IONotifier>) ￭
 
-
-
-
-#endif
 
 
 

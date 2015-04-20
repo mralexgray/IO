@@ -1,18 +1,18 @@
 /*    Manejo de la consola */
 
-#include "scrutil.h"
 //#include <string.h>
 //#include <stdio.h>
 
-#import <IO/IO.h>
+#import "TK_Private.h"
+#import "scrutil.h"
 
 
 /* Detectar el sistema operativo */
-#define SO_UNIX
+//#define SO_UNIX
 // Commands
 static const short int MaxCmdBuffer = 32;
 /// Caracts. por el que empiezan todos los comandos
-static const char *CSI = "\33[",
+static const char *xCSI = "\33[",
        *CmdClearScreen = "2J";
 static char cmd[MaxCmdBuffer];
 
@@ -52,25 +52,25 @@ static void initUnixColors()
 //  sprintf(cmdUnixPaperColors[scrWhite], "%s%s", CSI, "47m");
 //  sprintf(cmdUnixPaperColors[scrUndefinedColor], "%s%s", CSI, "40m");
 
-  cmdUnixInkColors = @[ $(@"%s%s", CSI, "30m"),
-                        $(@"%s%s", CSI, "34m"),
-                        $(@"%s%s", CSI, "31m"),
-                        $(@"%s%s", CSI, "35m"),
-                        $(@"%s%s", CSI, "32m"),
-                        $(@"%s%s", CSI, "36m"),
-                        $(@"%s%s", CSI, "93m"),
-                        $(@"%s%s", CSI, "37m"),
-                        $(@"%s%s", CSI, "30m")];
+  cmdUnixInkColors = @[ $(@"%s%s", xCSI, "30m"),
+                        $(@"%s%s", xCSI, "34m"),
+                        $(@"%s%s", xCSI, "31m"),
+                        $(@"%s%s", xCSI, "35m"),
+                        $(@"%s%s", xCSI, "32m"),
+                        $(@"%s%s", xCSI, "36m"),
+                        $(@"%s%s", xCSI, "93m"),
+                        $(@"%s%s", xCSI, "37m"),
+                        $(@"%s%s", xCSI, "30m")];
 
-cmdUnixPaperColors = @[ $(@"%s%s", CSI, "40m"),
-                        $(@"%s%s", CSI, "44m"),
-                        $(@"%s%s", CSI, "41m"),
-                        $(@"%s%s", CSI, "45m"),
-                        $(@"%s%s", CSI, "42m"),
-                        $(@"%s%s", CSI, "46m"),
-                        $(@"%s%s", CSI, "103m"),
-                        $(@"%s%s", CSI, "47m"),
-                        $(@"%s%s", CSI, "40m")];
+cmdUnixPaperColors = @[ $(@"%s%s", xCSI, "40m"),
+                        $(@"%s%s", xCSI, "44m"),
+                        $(@"%s%s", xCSI, "41m"),
+                        $(@"%s%s", xCSI, "45m"),
+                        $(@"%s%s", xCSI, "42m"),
+                        $(@"%s%s", xCSI, "46m"),
+                        $(@"%s%s", xCSI, "103m"),
+                        $(@"%s%s", xCSI, "47m"),
+                        $(@"%s%s", xCSI, "40m")];
 }
 
 static scrAttributes libAttrs;
@@ -88,7 +88,7 @@ static inline void scrInit() {
 void scrClear() {
 
   scrInit();
-  strcpy(cmd, CSI);
+  strcpy(cmd, xCSI);
   strcat(cmd, CmdClearScreen);
   printf("%s", cmd);
   scrMoveCursorTo(0, 0);
@@ -116,7 +116,7 @@ void scrMoveCursorToPos(scrPosition pos) {
 void scrMoveCursorTo(NSUInteger fila, NSUInteger columna) {
   scrInit();
 
-  printf("%s%lu;%luH", CSI, fila + 1, columna + 1);
+  printf("%s%lu;%luH", xCSI, fila + 1, columna + 1);
 }
 
 scrPosition scrGetConsoleSize() {
@@ -148,4 +148,4 @@ scrPosition scrGetCursorPosition() {
   return toret;
 }
 
-void scrShowCursor(bool see) { scrInit(); printf("%s?25%c", CSI, see ? 'h' : 'l'); }
+void scrShowCursor(bool see) { scrInit(); printf("%s?25%c", xCSI, see ? 'h' : 'l'); }

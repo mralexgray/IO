@@ -4,21 +4,28 @@
 #import <IO/IO.h>
 @import Darwin;
 
+
+_Void scratch(){
+
+    _Dict x = @{};
+//    x = [x withValuesForKeys:<#(id), ...#>
+
+}
+
 MAIN(
 
-  NSLog(@"%@", ioEnvByLabelAsHex());
+//  [ioEnvByLabelAsHex() echo];
+//  [NSStringFromRect(IO.frame) print256];
 
-  [NSStringFromRect(IO.frame) print256];
+  [IO getOpt:@"Run in forground. (No named pipe)", @"foreground", @"f", nil];
 
-  [IO getOpt:@"Run in forground. (No named pipe)", @"foreground",@"f"];
-
-  [IO.getOpts echo];
+  [IO.getOpts finalize];
   [IO.description echo];
 
-  [NSFileHandle read:@"/io" toBlock:^BOOL(NSData *d) {
+  [Hndl read:@"/io" toBlock:^BOOL(NSData *d) {
 
     [@"hello" echo];
-    [d.UTF8String echo]; return YES;
+    [d.toUTF8String echo]; return YES;
 
   }];
   [AZRUNLOOP run];

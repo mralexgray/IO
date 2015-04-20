@@ -346,11 +346,11 @@ END_FUNCTION:
 
 @implementation DDEmbeddedDataReader
 
-+ (NSData *)dataFromSegment:(NSString *)segment inSection:(NSString *)section ofExecutableAtURL:(NSURL *)url error:(NSError **)error {
++ (NSData *)dataFromSegment:(NSString *)segment inSection:(NSString *)section ofExecutableAtURL:(NSURL *)url error:(__autoreleasing NSError **)error {
     return _BVMachOSection(url, (char *)[segment UTF8String], (char *)[section UTF8String], error);
 }
 
-+ (NSData *)dataFromSegment:(NSString *)segment inSection:(NSString *)section ofExecutableAtPath:(NSString *)path error:(NSError **)error {
++ (NSData *)dataFromSegment:(NSString *)segment inSection:(NSString *)section ofExecutableAtPath:(NSString *)path error:(__autoreleasing NSError **)error {
     return [self dataFromSegment:segment inSection:section ofExecutableAtURL:[NSURL fileURLWithPath:path] error:error];
 }
 
@@ -365,11 +365,11 @@ END_FUNCTION:
 }
 
 
-+ (NSData *)dataFromSection:(NSString *)section ofExecutableAtURL:(NSURL *)url error:(NSError **)error {
++ (NSData *)dataFromSection:(NSString *)section ofExecutableAtURL:(NSURL *)url error:(NSError *__autoreleasing *)error {
     return _BVMachOSection(url, "__TEXT", (char *)[section UTF8String], error);
 }
 
-+ (NSData *)dataFromSection:(NSString *)section ofExecutableAtPath:(NSString *)path error:(NSError **)error {
++ (NSData *)dataFromSection:(NSString *)section ofExecutableAtPath:(NSString *)path error:(NSError *__autoreleasing *)error {
     return [self dataFromSection:section ofExecutableAtURL:[NSURL fileURLWithPath:path] error:error];
 }
 
@@ -384,7 +384,7 @@ END_FUNCTION:
 }
 
 
-+ defaultPlistOfExecutableAtURL:(NSURL *)url error:(NSError **)error {
++ defaultPlistOfExecutableAtURL:(NSURL *)url error:(NSError *__autoreleasing *)error {
     id plist = nil;
     NSData *data = _BVMachOSection(url, "__TEXT", "__info_plist", error);
     if (data) {
@@ -397,11 +397,11 @@ END_FUNCTION:
     return plist;
 }
 
-+ defaultPlistOfExecutableAtPath:(NSString *)path error:(NSError **)error {
++ defaultPlistOfExecutableAtPath:(NSString *)path error:(NSError *__autoreleasing *)error {
     return [self defaultPlistOfExecutableAtURL:[NSURL fileURLWithPath:path] error:error];
 }
 
-+ defaultEmbeddedPlist:(NSError **)error {
++ defaultEmbeddedPlist:(NSError * __autoreleasing *)error {
     uint32_t size = MAXPATHLEN * 2;
     char ch[size];
     if (_NSGetExecutablePath(ch, &size)!=0) {

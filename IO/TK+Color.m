@@ -1,5 +1,5 @@
 
-#import "IO_.h"
+#import <ToolKit/TK_Private.h>
 
          rgb COLOR_TABLE[256];
 

@@ -1,3 +1,73 @@
+//- _UInt_ ﹗ _              // PID (process ID) of last job run in background
+//- _UInt_ ＃ _              // argc
+//- _List_ ﹫ _              // whoknows, lets make this LINES
+//- _List_ ﹡ _              // whoknows, i'm making this an array of word params
+//- _List_ － _              // flags?  lets make it something better
+//- _SInt_ ﹖ _              // Exit status of a command, function, or the script itself
+//- _Text_ ０ _              // EXE path
+//- _Numb_ ＄ _              // Process ID (PID) of the script itself.
+
+
+
+/*! mkfifo @code
+
+  NSString *pipePath = @"..."
+
+  if ( mkfifo(pipePath.UTF8String, 0666) == -1 && errno !=EEXIST)	NSLog(@"Unable to open the named pipe %@", pipePath);
+	
+	int fd = open(pipePath.UTF8String, O_RDWR | O_NDELAY);
+
+	filehandleForReading = [NSFileHandle.alloc initWithFileDescriptor:fd closeOnDealloc: YES];
+
+	[NSNotificationCenter.defaultCenter     removeObserver:self];
+	[NSNotificationCenter.defaultCenter addObserverForName:NSFileHandleReadCompletionNotification
+                                                  object:filehandleForReading queue:NSOperationQueue.mainQueue
+                                              usingBlock:^(NSNotification *n) {
+
+    NSData *d = n.userInfo[NSFileHandleNotificationDataItem];
+
+    if (d.length) {
+      NSLog(@"dataReady:%lu bytes", d.length);
+      /// .... NSString * dataString = [NSString.alloc initWithData:d encoding:NSASCIIStringEncoding];
+    }
+    [filehandleForReading readInBackgroundAndNotify]; //Tell the fileHandler to asychronusly report back
+
+  }];
+
+	[filehandleForReading readInBackgroundAndNotify];
+
+*/
+
+extern int         mkfifo (const char *, mode_t);
+
+/*
+
+
+#define ﹗ (_UInt_ AZPROCINFO.processIdentifier) // like $!, pid of last job run in background
+- _UInt_  _                // argc
+- _List_ ﹫ _              // whoknows, lets make this LINES
+- _List_ ﹡ _              // whoknows, i'm making this an array of word params
+- _List_ － ___              // flags?  lets make it something better
+- _SInt_ ﹖ ___              // Exit status of a command, function, or the script itself
+- _Text_ ０ _              // EXE path
+                                                                       / *
+  keyget  id x = IO[@"prompt>"] (scan)
+  keyset         IO[@"prompt>"] = ^(id z){ [z doSomething]; } (scan w/ block)
+
+  idxget  id x = IO[244] (ie @"ANSIESC:244;")
+  idxset         IO[244] -> [IO[244] print]                              * /
+
+_RO  _UInt rows,
+           cols       ___
+_RO  _Size size,           // WIN dims
+           pixels     _    // WIN dims
+
+_RO  _IsIt isatty       ￤('nothing will happen')
+        __ isxcode      ｜( 'Where we at?' )
+
+￤
+*/
+
 
 //+ (NSURL*) namePipe:(NSS*)path withData:(NSData*)d;
 
