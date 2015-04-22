@@ -152,64 +152,94 @@ _TT user   { return [self _FetchUserInfo], _user.copy;  }
   return outP;
 }
 
-- _Void_ setObject:_ObjC_ x forKeyedSubscript:_Copy_ k {
+_VD setObject _ x forKeyedSubscript __Ｐ(Copy) k {
 
-  (_ObjBlk_ x)([self prompt:_ObjC_ k])___ /*  ISA(k,Text) ? [k echo] : [_List_ k */
+  (_ObjBlk_ x)([self prompt __ObjC_ k])___ /*  ISA(k,Text) ? [k echo] : [_List_ k */
 }
 
-- _Void_ setStream:(_ObjC)io { [io print]___ }
+_VD setStream __ObjC_ io {
 
-- _ObjC_    stream { return [self scan]___ }
+  [io print]___
+}
 
-- _Text_ prompt:_Text_ t { return [self prompt:t c:7]___ } /* OK */
+_ID stream {
 
-- _Text_ prompt:_Text_ t c:_SInt_ c { t.fclr = @(c)___ [t print]___
+  return [self scan]___
+}
+
+_TT prompt __Text_ t {
+
+  return [self prompt _ t c _ 7]___
+
+} /* OK */
+
+_TT prompt __Text_ t c __SInt_ c {
+
+  t.fclr = @(c);
+  [t print];
 
   return NSFileHandle.fileHandleWithStandardInput.availableData.toUTF8String ___
 }
 
-- _Void_ setCursorLocation: _Cell_ c { printf("%s%ld;%ldH", CSI, c.row + 1, c.col + 1); }
+_VD setCursorLocation _ _Cell_ c {
+
+  printf("%s%ld;%ldH", CSI, c.row + 1, c.col + 1);
+}
 
 #if MAC_ONLY
-- _Void_ clearMacConsole {
+_VD clearMacConsole {
 
-  NSAppleScript *s = INIT_(NSAppleScript,WithSource:@"tell application \"System Events\" to keystroke \"k\" using command down");
-  NSDictionary *err; NSAppleEventDescriptor * x = [s executeAndReturnError:&err];
+  _Scpt s = INIT_(Scpt,WithSource:@"tell application \"System Events\" to keystroke \"k\" using command down");
+  _Dict err; _AEvD x = [s executeAndReturnError:&err];
   if (err || (x && x.stringValue)) NSLog(@"err:%@ event:%@",err, x.stringValue);
 
 } /* OK */
 #endif
 
-- _List_ args { return [_PI.arguments subarrayWithRange:(NSRange){1,_PI.arguments.count-1}]; } //  subarrayFromIndex:1]; } // .shifted; } /* OK */
+_LT args {
 
-- _Data_ section:_Text_ __TEXTsection { return [DDEmbeddedDataReader embeddedDataFromSection:__TEXTsection error:nil]; }
+  return [_PI.arguments subarrayWithRange:(NSRange){1,_PI.arguments.count-1}];
+} //  subarrayFromIndex:1]; } // .shifted; } /* OK */
 
-+ _Dict_ infoPlist: _Text_ path { return [DDEmbeddedDataReader defaultPlistOfExecutableAtPath:path error:nil]; }
+_DA section __Text_ __TEXTsection {
 
-- _Dict_ infoPlist { return [DDEmbeddedDataReader defaultEmbeddedPlist:nil]; }
+  return [DDEmbeddedDataReader embeddedDataFromSection:__TEXTsection error:nil];
+}
 
-- (AVAudioPlayer*) playerForAudio: dataOrPath { // lets create an audio player to play the audio.
+_DT infoPlistOf __Text_ path {
 
-  NSError *e = nil; AVAudioPlayer *player =
+  return [DDEmbeddedDataReader defaultPlistOfExecutableAtPath:path error:nil];
+}
 
-  ISA(dataOrPath, Data) ? INIT_(AVAudioPlayer,WithData:dataOrPath error:&e) :
+_DT infoPlist {
+
+  return [DDEmbeddedDataReader defaultEmbeddedPlist:nil];
+}
+
+_SP playerForAudio _ dataOrPath { // lets create an audio player to play the audio.
+
+  _Errr e = nil; _SndP player =
+
+  ISA(dataOrPath, Data) ? INIT_(SndP,WithData:dataOrPath error:&e) :
   ISA(dataOrPath,NSURL)||
-  ISA(dataOrPath, Text) ? INIT_(AVAudioPlayer,WithContentsOfURL:ISA(dataOrPath,NSURL) ? dataOrPath : [dataOrPath urlified] error:&e)
+  ISA(dataOrPath, Text) ? INIT_(SndP,WithContentsOfURL:ISA(dataOrPath,NSURL) ? dataOrPath : [dataOrPath urlified] error:&e)
                         : nil;
 
   return (!player || e) ? NSLog(@"problem making player: %@", e), player
                         : [player setNumberOfLoops:0], [player setDelegate:_ObjC_ self], [player prepareToPlay], player;
 }
 
-- _Void_ justPlay:path { playa = nil; [playa = [self playerForAudio:path] play]; /* CFRunLoopRun(); */ }
+_VD justPlay _ path {
 
-- _Void_ audioPlayerDidFinishPlaying:(AVAudioPlayer*)p successfully:_IsIt_ s {
-
-  NSLog(@"finished playing %@ success:%@", p, $B(s));
-//  CFRunLoopStop(CFRunLoopGetMain());
+  playa = nil; [playa = [self playerForAudio:path] play]; /* CFRunLoopRun(); */
 }
 
-- _Text_ scan {
+_VD audioPlayerDidFinishPlaying __SndP_ p successfully __IsIt_ s {
+
+  NSLog(@"finished playing %@ success:%@", p, $B(s)); //  CFRunLoopStop(CFRunLoopGetMain());
+}
+
+_TT scan {
 
 //  unichar left = NSLeftArrowFunctionKey;
 
@@ -217,21 +247,27 @@ _TT user   { return [self _FetchUserInfo], _user.copy;  }
   return [Text.alloc initWithData:NSFileHandle.fileHandleWithStandardInput.availableData encoding:NSUTF8StringEncoding];
 }
 
-- _Void_ fillScreen: _Colr_ c { id line = $(@"%*s",@(IO.w).charValue," ");
+_VD fillScreen __Colr_ c { id line = $(@"%*s",@(IO.w).charValue," ");
 
   [line setBclr:c];
 
   int h = IO.h; while (h--) [line echo];
 }
 
-- _Void_ notify:_Note_ note {  static IONotifier *ntfr; ntfr = ntfr ?: INIT_(IONotifier,WithNotification:note); }
+_VD     notify __Note_ n {
 
-_VD echo _ _Text_ fmt, ... { va_list args; va_start(args, fmt);
+  static IONotifier *ntfr; ntfr = ntfr ?: INIT_(IONotifier,WithNotification:n);
+}
+
+_VD  echo __Text_ fmt, ... {
+
+  va_list args; va_start(args, fmt);
 
   [[Text.alloc initWithFormat:fmt arguments:args] echo]; //  def = va_arg(args, SEL);
+
   va_end(args);
 }
-_VD print:_List_ lines {
+_VD print __List_ lines   {
 
   [[lines reduce:@"".mC withBlock:^id(id sum, id obj) { return
 
@@ -240,9 +276,10 @@ _VD print:_List_ lines {
   }] print];
 }
 
-- _Text_ resetFX { AZSTATIC_OBJ(Text, r, ({ IO.env&io_XCODE ? $UTF8(XC_RESET) : $UTF8(ANSI_RESET); })); return r; }
+_TT resetFX { AZSTATIC_OBJ(Text, r, ({ IO.env&io_XCODE ? $UTF8(XC_RESET) : $UTF8(ANSI_RESET); }));
 
-//_VD fill __Rect_ r color __ObjC_ c { }
+  return r;
+}
 
 _TT imageString __ObjC_ pathOrImage { _Pict image; _Text name, x;
 
@@ -266,57 +303,8 @@ _TT imageString __ObjC_ pathOrImage { _Pict image; _Text name, x;
 
   return $(@"\033]1337;File=name=%@;inline=1:%@\a\n",name.UTF8Data.base64EncodedString,image);//[Data dataWithContentsOfFile:path].base64EncodedString);
 }
+
 ￭
-
-///  \033]1337;File=name=" stringByAppendingFormat:@"%@;inline=1;%@\a\n",path.UTF8Data.base64EncodedString,
-// CGSizeMake(image.size.width * multi, image.size.height * multi)];
-//    [[ -n "$1" ]] && printf "name=$(echo -n $1 | base64)"
-//    $(base64 --version | grep GNU > /dev/null) && BASE64ARG=-d || BASE64ARG=-D
-//    echo -n "$3" | base64 $BASE64ARG | wc -c | awk '{printf "size=%d",$1}' && printf ";inline=$2:$3\a\n"
-//[[   ! -t 0 ]] && print_image "" 1 "$(cat | base64)" && exit 0
-//[[ $# -eq 0 ]] && printf  "Usage: imgcat filename ...\n   or: cat filename | imgcat\n" && exit 1
-//for fn in "$@"; do
-//  [[ -r "$fn" ]] && print_image "$fn" 1 "$(base64 < "$fn")" || printf "imgcat: $fn: No such file or directory\n" && exit 1
-
-//#endif
-//- _Void_ colorTest { for (int i = 0; i <256; i++) { [Text stringWithFormat:@"%]
-
-
-//- _List_ － { return @[] ___ }
-//- _List_ ﹫ { return @[] ___ }
-//- _SInt_ ﹖ { return 0   ___ }
-
-//- _UInt_ width    { return self.size.width;   }
-//- _UInt_ height   { return self.size.height;  }
-//- (struct winsize) _winsize { nterm = nterm ?: getenv("TERM");
-//
-//  ioctl(0, TIOCGWINSZ, &w);
-////  (strcpy(term, nterm), , _Size_{ w.ws_col, w.ws_row})
-//  return w;/// = !nterm ? _Size_{ 80, 30}
-//
-//- _Size_ size     {
-//
-//}
-//_RO _Size size;       // WIN dims
-                         // if (!value && self.ftty) [self setFclr:value = [NSColor fromTTY: self.ftty]]; },
-                         // if (!value && self.btty) [self setBclr:value = [NSColor fromTTY: self.btty]]; },
-
-
-//- _List_ ﹡ { return @[] _ }
-//- _UInt_ ﹗ { return 0   _ }
-//- _UInt_ ＃ { return 0   _ }
-
-//char term[1024] = {'a','n','s','i', 0};  /* The default terminal is ANSI */
-
-//#define GOT_TO printf("got to %i\n", __LINE__)
-
-
-//- (struct winsize) ws { // int fd;
-
-//  return ((fd = open("/dev/tty",O_WRONLY)) < 0) ? ws : ({ ioctl(fd,TIOCGWINSZ,&ws); close(fd); ws; });
-
-
-
 
 int getch(void) {
 
@@ -380,9 +368,7 @@ void getConsoleSize(short *xsize, short *ysize) {
 	pclose(pipe);
 }
 
-
-int APConsoleLibmain()
-{
+int APConsoleLibmain() {
 	int i;
 	short xsize;
 	short ysize;

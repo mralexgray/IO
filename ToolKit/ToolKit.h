@@ -1,17 +1,15 @@
 
-#import <ToolKit/TK+Protocols.h> // Public interfaces of ancillary features.
+@import AtoZUniversal;
+#import <TK+Protocols.h> // Public interfaces of ancillary features.
 
 @Kind (ToolKit) < RectLike,
                   Subscriptable,
                   IO_Opts
                 >
 
-_RO  _Main main           // access to argc + argv, anywhere
-___
-_RC  _Dict infoPlist      // embdded plist
-___
-_RO  ioEnv env            // where we runnin at'
-___
+_RO  _Main main ___           // access to argc + argv, anywhere
+_RO  ioEnv  env ___            // where we runnin at'
+
 
 #if MAC_ONLY
 _RO  _UInt userID       ｜( i.e. 501                                   )
@@ -38,14 +36,14 @@ _NA  _Text prompt       ｜( 'settable greeting for input' )
 
 
 _VD run       ___  // Runloop
--   run _ cmd ___  // Run command, get result.
+_ID run _ cmd ___  // Run command, get result.
 
 
-_VD echo _ _Text_ fmt, ... ___
+_VD echo __Text_ fmt, ... ___
 
 _VD repl ___
 
-_AT _Cell cursorLocation; /// dynamic
+_AT _Cell cursorLocation ___ /// dynamic
 
 _TT prompt __Ｐ(Bicolor) string; /*! Read to String */    //- (NSString*) prompt:(NSString*)_ c:(int)c;
 
@@ -59,7 +57,7 @@ _TT  imageString __ObjC_ iOrP ___  // iterm
 - _Void_ clearMacConsole; /*! Command-K */
 #endif
 
-- _Void_ clearConsole;    /*! COdes! */
+_VD clearConsole ___    /*! COdes! */
 
 /*! Returns a NSDictionary or nil with embbedded data for the CURRENT executable
     @param s specific SEGMENT with the |section| to get data from
@@ -79,9 +77,9 @@ _TT  imageString __ObjC_ iOrP ___  // iterm
 
 // deprecate
 
-+ _Dict_ infoPlist __Text_ path ___
+_DT infoPlistOf __Text_ path ___
 
-@end
+￭
 
 
 @Vows _IO <NObj>
@@ -161,3 +159,6 @@ JREnumDeclare(ConsoleColors,  xBLACK, xDARK_GRAY, xGRAY, xWHITE,
           \::/    /                 ~~              
            \/____/    
 */
+
+//_RC  _Dict infoPlist      // embdded plist
+//___

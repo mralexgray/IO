@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7B0C495919A956A10046167F"
-               BuildableName = "io"
-               BlueprintName = "io"
+               BlueprintIdentifier = "7B62B1BD1A99A6E3005BC6BC"
+               BuildableName = "ToolKitFundamentals"
+               BlueprintName = "ToolKitFundamentals"
                ReferencedContainer = "container:ToolKit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,9 +32,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7B0C495919A956A10046167F"
-            BuildableName = "io"
-            BlueprintName = "io"
+            BlueprintIdentifier = "7B62B1BD1A99A6E3005BC6BC"
+            BuildableName = "ToolKitFundamentals"
+            BlueprintName = "ToolKitFundamentals"
             ReferencedContainer = "container:ToolKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -51,9 +51,9 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7B0C495919A956A10046167F"
-            BuildableName = "io"
-            BlueprintName = "io"
+            BlueprintIdentifier = "7B62B1BD1A99A6E3005BC6BC"
+            BuildableName = "ToolKitFundamentals"
+            BlueprintName = "ToolKitFundamentals"
             ReferencedContainer = "container:ToolKit.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -69,9 +69,9 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7B0C495919A956A10046167F"
-            BuildableName = "io"
-            BlueprintName = "io"
+            BlueprintIdentifier = "7B62B1BD1A99A6E3005BC6BC"
+            BuildableName = "ToolKitFundamentals"
+            BlueprintName = "ToolKitFundamentals"
             ReferencedContainer = "container:ToolKit.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

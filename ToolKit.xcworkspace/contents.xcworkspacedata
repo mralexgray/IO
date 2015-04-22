@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:Modules/AQOptionParser/AQOptionParser.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Modules/CLIMac/cli.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:thisandthat">
+   </FileRef>
+   <FileRef
+      location = "group:ToolKit.xcodeproj">
+   </FileRef>
+</Workspace>

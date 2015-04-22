@@ -1,7 +1,4 @@
 
-#pragma once
-
-@import AtoZUniversal;
 
 @Vows IO_Helper <NObj>
 + _Kind_ shared ___

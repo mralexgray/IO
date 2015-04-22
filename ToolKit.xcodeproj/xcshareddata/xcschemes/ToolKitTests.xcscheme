@@ -9,14 +9,14 @@
          <BuildActionEntry
             buildForTesting = "YES"
             buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7B0C495919A956A10046167F"
-               BuildableName = "io"
-               BlueprintName = "io"
+               BlueprintIdentifier = "7B0C48CB19A9400E0046167F"
+               BuildableName = "ToolKitTests.xctest"
+               BlueprintName = "ToolKitTests"
                ReferencedContainer = "container:ToolKit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,13 +28,23 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "7B0C48CB19A9400E0046167F"
+               BuildableName = "ToolKitTests.xctest"
+               BlueprintName = "ToolKitTests"
+               ReferencedContainer = "container:ToolKit.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7B0C495919A956A10046167F"
-            BuildableName = "io"
-            BlueprintName = "io"
+            BlueprintIdentifier = "7B0C48CB19A9400E0046167F"
+            BuildableName = "ToolKitTests.xctest"
+            BlueprintName = "ToolKitTests"
             ReferencedContainer = "container:ToolKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -48,15 +58,15 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable>
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7B0C495919A956A10046167F"
-            BuildableName = "io"
-            BlueprintName = "io"
+            BlueprintIdentifier = "7B0C48CB19A9400E0046167F"
+            BuildableName = "ToolKitTests.xctest"
+            BlueprintName = "ToolKitTests"
             ReferencedContainer = "container:ToolKit.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -66,15 +76,15 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable>
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7B0C495919A956A10046167F"
-            BuildableName = "io"
-            BlueprintName = "io"
+            BlueprintIdentifier = "7B0C48CB19A9400E0046167F"
+            BuildableName = "ToolKitTests.xctest"
+            BlueprintName = "ToolKitTests"
             ReferencedContainer = "container:ToolKit.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

@@ -650,3 +650,55 @@ int rgb_to_xterm(int r, int g, int b) { /** Quantize RGB values to an xterm 256-
 
 //- _Void_ setShowCursor:(BOOL)_ {scrShowCursor(_showCursor = _); }
 
+
+
+
+///  \033]1337;File=name=" stringByAppendingFormat:@"%@;inline=1;%@\a\n",path.UTF8Data.base64EncodedString,
+// CGSizeMake(image.size.width * multi, image.size.height * multi)];
+//    [[ -n "$1" ]] && printf "name=$(echo -n $1 | base64)"
+//    $(base64 --version | grep GNU > /dev/null) && BASE64ARG=-d || BASE64ARG=-D
+//    echo -n "$3" | base64 $BASE64ARG | wc -c | awk '{printf "size=%d",$1}' && printf ";inline=$2:$3\a\n"
+//[[   ! -t 0 ]] && print_image "" 1 "$(cat | base64)" && exit 0
+//[[ $# -eq 0 ]] && printf  "Usage: imgcat filename ...\n   or: cat filename | imgcat\n" && exit 1
+//for fn in "$@"; do
+//  [[ -r "$fn" ]] && print_image "$fn" 1 "$(base64 < "$fn")" || printf "imgcat: $fn: No such file or directory\n" && exit 1
+
+//#endif
+//- _Void_ colorTest { for (int i = 0; i <256; i++) { [Text stringWithFormat:@"%]
+
+
+//- _List_ － { return @[] ___ }
+//- _List_ ﹫ { return @[] ___ }
+//- _SInt_ ﹖ { return 0   ___ }
+
+//- _UInt_ width    { return self.size.width;   }
+//- _UInt_ height   { return self.size.height;  }
+//- (struct winsize) _winsize { nterm = nterm ?: getenv("TERM");
+//
+//  ioctl(0, TIOCGWINSZ, &w);
+////  (strcpy(term, nterm), , _Size_{ w.ws_col, w.ws_row})
+//  return w;/// = !nterm ? _Size_{ 80, 30}
+//
+//- _Size_ size     {
+//
+//}
+//_RO _Size size;       // WIN dims
+                         // if (!value && self.ftty) [self setFclr:value = [NSColor fromTTY: self.ftty]]; },
+                         // if (!value && self.btty) [self setBclr:value = [NSColor fromTTY: self.btty]]; },
+
+
+//- _List_ ﹡ { return @[] _ }
+//- _UInt_ ﹗ { return 0   _ }
+//- _UInt_ ＃ { return 0   _ }
+
+//char term[1024] = {'a','n','s','i', 0};  /* The default terminal is ANSI */
+
+//#define GOT_TO printf("got to %i\n", __LINE__)
+
+
+//- (struct winsize) ws { // int fd;
+
+//  return ((fd = open("/dev/tty",O_WRONLY)) < 0) ? ws : ({ ioctl(fd,TIOCGWINSZ,&ws); close(fd); ws; });
+
+
+//_VD fill __Rect_ r color __ObjC_ c { }

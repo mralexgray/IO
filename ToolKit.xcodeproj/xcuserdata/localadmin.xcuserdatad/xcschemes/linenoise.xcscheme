@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7B0C495919A956A10046167F"
-               BuildableName = "io"
-               BlueprintName = "io"
+               BlueprintIdentifier = "7B62B28D1A9A0D50005BC6BC"
+               BuildableName = "linenoise"
+               BlueprintName = "linenoise"
                ReferencedContainer = "container:ToolKit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -29,15 +29,6 @@
       buildConfiguration = "Debug">
       <Testables>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7B0C495919A956A10046167F"
-            BuildableName = "io"
-            BlueprintName = "io"
-            ReferencedContainer = "container:ToolKit.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </TestAction>
    <LaunchAction
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
@@ -48,15 +39,15 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable>
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7B0C495919A956A10046167F"
-            BuildableName = "io"
-            BlueprintName = "io"
+            BlueprintIdentifier = "7B62B28D1A9A0D50005BC6BC"
+            BuildableName = "linenoise"
+            BlueprintName = "linenoise"
             ReferencedContainer = "container:ToolKit.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -66,15 +57,15 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable>
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7B0C495919A956A10046167F"
-            BuildableName = "io"
-            BlueprintName = "io"
+            BlueprintIdentifier = "7B62B28D1A9A0D50005BC6BC"
+            BuildableName = "linenoise"
+            BlueprintName = "linenoise"
             ReferencedContainer = "container:ToolKit.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

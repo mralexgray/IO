@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>--clean-output</key>
+	<false/>
+	<key>--create-docset</key>
+	<false/>
+	<key>--create-html</key>
+	<true/>
+	<key>--keep-intermediate-files</key>
+	<true/>
+	<key>--keep-merged-sections</key>
+	<true/>
+	<key>--keep-undocumented-members</key>
+	<true/>
+	<key>--keep-undocumented-objects</key>
+	<true/>
+	<key>--merge-categories</key>
+	<true/>
+	<key>--merge-category-comment</key>
+	<true/>
+	<key>--print-information-block-titles</key>
+	<true/>
+	<key>--project-name</key>
+	<string>ToolKit</string>
+	<key>--project-version</key>
+	<string>1.0</string>
+	<key>--repeat-first-par</key>
+	<true/>
+	<key>--search-undocumented-doc</key>
+	<true/>
+</dict>
+</plist>
