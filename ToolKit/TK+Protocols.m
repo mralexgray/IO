@@ -2,7 +2,7 @@
 #import "TK_Private.h"
 #import <AVFoundation/AVAudioPlayer.h>
 
-JREnumDefine(ioEnv)
+_EnumPlan(ioEnv)
 
 @concreteprotocol(Bicolor)
 

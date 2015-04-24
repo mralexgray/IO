@@ -29,3 +29,6 @@
 	path = Modules/linenoise
 	url = git@github.com:mralexgray/linenoise.git
 	branch = objc
+[submodule "Modules/WayWindow"]
+	path = Modules/WayWindow
+	url = git@github.com:weAreYeah/WAYWindow.git

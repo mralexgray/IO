@@ -1,6 +1,7 @@
 
-@import AtoZUniversal;
-#import <TK+Protocols.h> // Public interfaces of ancillary features.
+
+#import <ToolKit/TK+Protocols.h> // Public interfaces of ancillary features.
+
 
 @Kind (ToolKit) < RectLike,
                   Subscriptable,
@@ -125,10 +126,10 @@ int APConsoleLibmain();
 /* TODO: Background colors set (in windows just higher numbers, linux escape seq
  * "\033[4nm" where n = 0..7 */
 
-JREnumDeclare(ConsoleColors,  xBLACK, xDARK_GRAY, xGRAY, xWHITE,
-                              xRED,     xLIGHT_RED,   xYELLOW,  xDARK_YELLOW,
-                              xGREEN,   xLIGHT_GREEN, xCYAN,    xLIGHT_CYAN,
-                              xBLUE,    xLIGHT_BLUE,  xPURPLE, xLIGHT_PURPLE);
+_EnumKind(ConsoleColors,  xBLACK, xDARK_GRAY, xGRAY, xWHITE,
+                          xRED,     xLIGHT_RED,   xYELLOW,  xDARK_YELLOW,
+                          xGREEN,   xLIGHT_GREEN, xCYAN,    xLIGHT_CYAN,
+                          xBLUE,    xLIGHT_BLUE,  xPURPLE, xLIGHT_PURPLE);
 
 #define ＃ (_UInt_ IO.main.argc)  //
 #define ﹡ @[]

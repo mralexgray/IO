@@ -23,6 +23,11 @@
 			<key>orderHint</key>
 			<integer>194</integer>
 		</dict>
+		<key>ToolKit Docs.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>18</integer>
+		</dict>
 		<key>ToolKit.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
@@ -41,6 +46,11 @@
 			<false/>
 			<key>orderHint</key>
 			<integer>2</integer>
+		</dict>
+		<key>UI.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>139</integer>
 		</dict>
 		<key>io.xcscheme_^#shared#^_</key>
 		<dict>
@@ -110,6 +120,21 @@
 			<true/>
 		</dict>
 		<key>7B967DCF1ADB0D79005E09B4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7BA6C6DF1AE7F6D0001BBEDA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7BA6C6E61AE7F910001BBEDA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7BCD5A111AE890E80031A48E</key>
 		<dict>
 			<key>primary</key>
 			<true/>

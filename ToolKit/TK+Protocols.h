@@ -1,4 +1,7 @@
 
+@import AtoZUniversal;
+
+#import <ToolKit/TK+MacWindow.h>
 
 @Vows IO_Helper <NObj>
 + _Kind_ shared ___
@@ -10,7 +13,13 @@ _RO  _IsIt  wantsHelp ___
 _RC  _Text       help ___
 _RO  mDict      rules ___
 
+
+_IT hasOpt __Text_ key ___
+
 _VD getOpt __Text_ usageThenKeyThenShortOpts __ ... ___
+
+_TT opt  __Text_ firstForKey ___
+_LT opts __Text_   allForKey ___
 
 _VD finalize ___
 
@@ -35,7 +44,7 @@ _VD clearScreen ___
 _VD printKeyCodes ___
 ￭
 
-#define Ⅲ JREnumDeclare
+#define Ⅲ _EnumKind
 
 Ⅲ ( ioEnv, io_UNSET      = 0,
             io_TTY        = 0x00000001,

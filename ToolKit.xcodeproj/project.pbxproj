@@ -6,6 +6,21 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		7BA6C6E61AE7F910001BBEDA /* ToolKit Docs */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 7BA6C6E71AE7F911001BBEDA /* Build configuration list for PBXAggregateTarget "ToolKit Docs" */;
+			buildPhases = (
+				7BA6C6EA1AE7F915001BBEDA /* ShellScript */,
+			);
+			dependencies = (
+				7BA6C6EC1AE7F91A001BBEDA /* PBXTargetDependency */,
+			);
+			name = "ToolKit Docs";
+			productName = "ToolKit Docs";
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		7B0B8DEE1AAD37B100EBC53D /* TK+Notify.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B0B8DED1AAD37B100EBC53D /* TK+Notify.m */; };
 		7B3054871AAC7FF000C80492 /* ToolKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B5E62CB1A9803460001B5F3 /* ToolKit.framework */; };
@@ -35,6 +50,9 @@
 		7B9BC4E21ABA5BF800E381B4 /* TK_tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B5E62DC1A9803470001B5F3 /* TK_tests.m */; };
 		7BACF2D11AA3E82E0064F072 /* TK+Protocols.h in Headers */ = {isa = PBXBuildFile; fileRef = 7BACF2CF1AA3E82E0064F072 /* TK+Protocols.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7BACF2D21AA3E82E0064F072 /* TK+Protocols.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BACF2D01AA3E82E0064F072 /* TK+Protocols.m */; };
+		7BC203671AE829E000856E20 /* TK+MacWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 7BC203651AE829E000856E20 /* TK+MacWindow.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7BC203681AE829E000856E20 /* TK+MacWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BC203661AE829E000856E20 /* TK+MacWindow.m */; };
+		7BCD5A1B1AE891A80031A48E /* TK+UI.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BCD5A1A1AE891A80031A48E /* TK+UI.m */; };
 		7BDADDF51AB06F3800581B83 /* NSNib+XMLBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B0C48E319A9436F0046167F /* NSNib+XMLBase64.m */; };
 		7BF46B661AB1EE4D0029068F /* RunLoopController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BF46B621AB1EC0A0029068F /* RunLoopController.m */; };
 		7BF46B671AB1EE520029068F /* RunLoopController.h in Headers */ = {isa = PBXBuildFile; fileRef = 7BF46B611AB1EC0A0029068F /* RunLoopController.h */; };
@@ -42,20 +60,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		7B4ADB2D1AB8850D00CFCC91 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7B4ADB291AB884FD00CFCC91 /* AtoZUniversal.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 7B582BC41AA6A4F300C450C3;
-			remoteInfo = AtoZUniversal;
-		};
-		7B4ADB311AB8851900CFCC91 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7B4ADB291AB884FD00CFCC91 /* AtoZUniversal.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 7B582BC51AA6A4F400C450C3;
-			remoteInfo = AtoZUniversal;
-		};
 		7B6F03721AAB8C8500AB31C4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7B0C48B119A9400E0046167F /* Project object */;
@@ -77,12 +81,12 @@
 			remoteGlobalIDString = 7B5E62CA1A9803460001B5F3;
 			remoteInfo = IO;
 		};
-		7BB26C631ACE27FA003E45AD /* PBXContainerItemProxy */ = {
+		7BA6C6EB1AE7F91A001BBEDA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 7B4ADB291AB884FD00CFCC91 /* AtoZUniversal.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 7B5DC27E1AC932CA0063D701;
-			remoteInfo = "AtoZUniversal Tests";
+			containerPortal = 7B0C48B119A9400E0046167F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7B5E62CA1A9803460001B5F3;
+			remoteInfo = ToolKit;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -252,15 +256,13 @@
 		7B3BEF1C1A9BE70500A8E446 /* TK+Color.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = "TK+Color.m"; path = "ToolKit/TK+Color.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		7B3BEF1E1A9BE74200A8E446 /* AtoZIO.staging.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = AtoZIO.staging.h; path = IO/AtoZIO.staging.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		7B3BEF5A1A9BEEEF00A8E446 /* TK+String.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = "TK+String.m"; path = "ToolKit/TK+String.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		7B4ADB291AB884FD00CFCC91 /* AtoZUniversal.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AtoZUniversal.xcodeproj; path = ../../AtoZ.framework/AtoZUniversal/AtoZUniversal.xcodeproj; sourceTree = "<group>"; };
 		7B5E62CB1A9803460001B5F3 /* ToolKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ToolKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		7B5E62CE1A9803460001B5F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = AtoZIO/Info.plist; sourceTree = "<group>"; };
+		7B5E62CE1A9803460001B5F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Resources/Info.plist; sourceTree = "<group>"; };
 		7B5E62DB1A9803470001B5F3 /* ToolKitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "ToolKitTests-Info.plist"; path = "IO_tests/ToolKitTests-Info.plist"; sourceTree = "<group>"; };
 		7B5E62DC1A9803470001B5F3 /* TK_tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = TK_tests.m; path = ToolKit/TK_tests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		7B60D8681AE76AF60005120D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7B62B1BE1A99A6E3005BC6BC /* ToolKitFundamentals */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ToolKitFundamentals; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B62B1C01A99A6E4005BC6BC /* IOFundamentals.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = IOFundamentals.m; path = readlineDemo/IOFundamentals.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		7B6E16AE1A9D99C6002E51E5 /* AtoZIO.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = AtoZIO.icns; path = IO/AtoZIO.icns; sourceTree = "<group>"; };
 		7B7BCAF41ADC51A1003372FF /* CodeTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CodeTools.m; sourceTree = "<group>"; };
 		7B884F911AB8C2DD00B9AF43 /* AtoZCLI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AtoZCLI.m; sourceTree = "<group>"; };
 		7B884F921AB8C2DD00B9AF43 /* AZCLICategories.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AZCLICategories.h; sourceTree = "<group>"; wrapsLines = 1; };
@@ -286,8 +288,16 @@
 		7B967DD01ADB0D79005E09B4 /* CodeTools.io */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CodeTools.io; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B967DD31ADB0D79005E09B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7B9D7ABE1A9E79D00043B029 /* _xterm256.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = _xterm256.m; path = IO/_xterm256.m; sourceTree = "<group>"; };
+		7BA6C6E51AE7F828001BBEDA /* AppledocSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AppledocSettings.plist; path = Resources/AppledocSettings.plist; sourceTree = "<group>"; };
+		7BA6C6ED1AE80124001BBEDA /* Iconset.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Iconset.xcassets; path = Resources/Iconset.xcassets; sourceTree = "<group>"; };
+		7BA6C73D1AE805F0001BBEDA /* Icons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Icons.xcassets; path = ../../../../../Users/localadmin/Documents/Icons.xcassets; sourceTree = "<group>"; };
 		7BACF2CF1AA3E82E0064F072 /* TK+Protocols.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = "TK+Protocols.h"; path = "ToolKit/TK+Protocols.h"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		7BACF2D01AA3E82E0064F072 /* TK+Protocols.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "TK+Protocols.m"; path = "ToolKit/TK+Protocols.m"; sourceTree = "<group>"; };
+		7BC203651AE829E000856E20 /* TK+MacWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "TK+MacWindow.h"; path = "ToolKit/TK+MacWindow.h"; sourceTree = "<group>"; };
+		7BC203661AE829E000856E20 /* TK+MacWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "TK+MacWindow.m"; path = "ToolKit/TK+MacWindow.m"; sourceTree = "<group>"; };
+		7BCD5A121AE890E80031A48E /* UI.toolkit */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UI.toolkit; sourceTree = BUILT_PRODUCTS_DIR; };
+		7BCD5A151AE890E90031A48E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7BCD5A1A1AE891A80031A48E /* TK+UI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TK+UI.m"; sourceTree = "<group>"; };
 		7BD3E4A01ABD30F700552876 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		7BD69AC11A9B86E60084B75F /* ToolKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ToolKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BDADDF61AB06F9D00581B83 /* Universal.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Universal.xcconfig; path = /Volumes/2T/ServiceData/AtoZ.framework/AtoZUniversal/../xcconfigs/Base/Universal.xcconfig; sourceTree = "<absolute>"; };
@@ -349,6 +359,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7BCD5A0F1AE890E80031A48E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7BE3E4291AB810D500B4D4C7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -373,12 +390,15 @@
 				7B3BEF5A1A9BEEEF00A8E446 /* TK+String.m */,
 				7B0B8DED1AAD37B100EBC53D /* TK+Notify.m */,
 				7B5E62DC1A9803470001B5F3 /* TK_tests.m */,
+				7BC203651AE829E000856E20 /* TK+MacWindow.h */,
+				7BC203661AE829E000856E20 /* TK+MacWindow.m */,
+				7BD3E4A01ABD30F700552876 /* README.md */,
 				7B60D8681AE76AF60005120D /* Foundation.framework */,
-				7B4ADB291AB884FD00CFCC91 /* AtoZUniversal.xcodeproj */,
 				7B0C495F19A956A20046167F /* io_agent.m */,
 				7B62B1FF1A99B1D3005BC6BC /* Modules */,
-				7B3ABD121ADD8212009F92FA /* Other */,
 				7BFDEB2C1AA41B0100B62038 /* Products */,
+				7B3ABD121ADD8212009F92FA /* Other */,
+				7BCD5A131AE890E90031A48E /* UI */,
 				7BB200D119BBDDEF00816AB9 /* Support */,
 				7B967DD11ADB0D79005E09B4 /* CodeTools */,
 			);
@@ -577,21 +597,14 @@
 		7B3ABD121ADD8212009F92FA /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				7B351F851AA0EE81007D7FE7 /* sel.m */,
+				7B62B1C01A99A6E4005BC6BC /* IOFundamentals.m */,
 				7B884F901AB8C2DD00B9AF43 /* AtoZCLI */,
 				7BF46B5C1AB1EC0A0029068F /* RunLoopController */,
 				7B8D2F461A985CAF00D93D95 /* GBCli */,
 				7B62B1FD1A99B0C1005BC6BC /* LCTerminal */,
 			);
 			name = Other;
-			sourceTree = "<group>";
-		};
-		7B4ADB2A1AB884FD00CFCC91 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				7B4ADB321AB8851900CFCC91 /* AtoZUniversal.framework */,
-				7BB26C641ACE27FA003E45AD /* AtoZUniversal Tests.xctest */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		7B62B1FD1A99B0C1005BC6BC /* LCTerminal */ = {
@@ -700,18 +713,26 @@
 		7BB200D119BBDDEF00816AB9 /* Support */ = {
 			isa = PBXGroup;
 			children = (
-				7BD3E4A01ABD30F700552876 /* README.md */,
+				7BA6C73D1AE805F0001BBEDA /* Icons.xcassets */,
+				7BA6C6E51AE7F828001BBEDA /* AppledocSettings.plist */,
 				7BDADDF61AB06F9D00581B83 /* Universal.xcconfig */,
 				7B5E62CE1A9803460001B5F3 /* Info.plist */,
-				7B6E16AE1A9D99C6002E51E5 /* AtoZIO.icns */,
-				7B351F851AA0EE81007D7FE7 /* sel.m */,
 				7B3BEF1E1A9BE74200A8E446 /* AtoZIO.staging.h */,
 				7B3BEF191A9BE16700A8E446 /* AtoZIO.staging.m */,
 				7B9D7ABE1A9E79D00043B029 /* _xterm256.m */,
-				7B62B1C01A99A6E4005BC6BC /* IOFundamentals.m */,
 				7B5E62DB1A9803470001B5F3 /* ToolKitTests-Info.plist */,
+				7BA6C6ED1AE80124001BBEDA /* Iconset.xcassets */,
 			);
 			name = Support;
+			sourceTree = "<group>";
+		};
+		7BCD5A131AE890E90031A48E /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				7BCD5A151AE890E90031A48E /* Info.plist */,
+				7BCD5A1A1AE891A80031A48E /* TK+UI.m */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 		7BF46B5C1AB1EC0A0029068F /* RunLoopController */ = {
@@ -741,11 +762,12 @@
 				7B0C495A19A956A10046167F /* io */,
 				7B8D2F641A98612F00D93D95 /* GBTester */,
 				7B62B1BE1A99A6E3005BC6BC /* ToolKitFundamentals */,
+				7BCD5A121AE890E80031A48E /* UI.toolkit */,
 				7BD69AC11A9B86E60084B75F /* ToolKitTests.xctest */,
 				7B3BEEDB1A9BB99300A8E446 /* linenoise_example */,
 			);
 			name = Products;
-			sourceTree = "<group>";
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -756,6 +778,7 @@
 			files = (
 				7B62B2001A99B78F005BC6BC /* ToolKit.h in Headers */,
 				7B351F841AA0E073007D7FE7 /* scrutil.h in Headers */,
+				7BC203671AE829E000856E20 /* TK+MacWindow.h in Headers */,
 				7B3ABD081ADD7A1B009F92FA /* linenoise.h in Headers */,
 				7B62B2011A99B797005BC6BC /* LCTerminal.h in Headers */,
 				7BACF2D11AA3E82E0064F072 /* TK+Protocols.h in Headers */,
@@ -848,7 +871,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				7B4ADB2E1AB8850D00CFCC91 /* PBXTargetDependency */,
 			);
 			name = ToolKit;
 			productName = IO;
@@ -908,6 +930,23 @@
 			productReference = 7B967DD01ADB0D79005E09B4 /* CodeTools.io */;
 			productType = "com.apple.product-type.bundle";
 		};
+		7BCD5A111AE890E80031A48E /* UI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7BCD5A191AE890E90031A48E /* Build configuration list for PBXNativeTarget "UI" */;
+			buildPhases = (
+				7BCD5A0E1AE890E80031A48E /* Sources */,
+				7BCD5A0F1AE890E80031A48E /* Frameworks */,
+				7BCD5A101AE890E80031A48E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = UI;
+			productName = UI;
+			productReference = 7BCD5A121AE890E80031A48E /* UI.toolkit */;
+			productType = "com.apple.product-type.bundle";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -938,6 +977,12 @@
 					7B967DCF1ADB0D79005E09B4 = {
 						CreatedOnToolsVersion = 6.3;
 					};
+					7BA6C6E61AE7F910001BBEDA = {
+						CreatedOnToolsVersion = 6.3;
+					};
+					7BCD5A111AE890E80031A48E = {
+						CreatedOnToolsVersion = 6.3;
+					};
 				};
 			};
 			buildConfigurationList = 7B0C48B419A9400E0046167F /* Build configuration list for PBXProject "ToolKit" */;
@@ -950,15 +995,10 @@
 			mainGroup = 7B0C48B019A9400E0046167F;
 			productRefGroup = 7B0C48B019A9400E0046167F;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 7B4ADB2A1AB884FD00CFCC91 /* Products */;
-					ProjectRef = 7B4ADB291AB884FD00CFCC91 /* AtoZUniversal.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				7B5E62CA1A9803460001B5F3 /* ToolKit */,
+				7BA6C6E61AE7F910001BBEDA /* ToolKit Docs */,
 				7B0C495919A956A10046167F /* io */,
 				7B0C48CB19A9400E0046167F /* ToolKitTests */,
 				7B8D2F631A98612F00D93D95 /* GBTester */,
@@ -966,29 +1006,20 @@
 				7B62B28D1A9A0D50005BC6BC /* linenoise */,
 				7B3BEEDA1A9BB99300A8E446 /* linenoise_example */,
 				7B967DCF1ADB0D79005E09B4 /* CodeTools */,
+				7BCD5A111AE890E80031A48E /* UI */,
 			);
 		};
 /* End PBXProject section */
 
-/* Begin PBXReferenceProxy section */
-		7B4ADB321AB8851900CFCC91 /* AtoZUniversal.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = AtoZUniversal.framework;
-			remoteRef = 7B4ADB311AB8851900CFCC91 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		7BB26C641ACE27FA003E45AD /* AtoZUniversal Tests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "AtoZUniversal Tests.xctest";
-			remoteRef = 7BB26C631ACE27FA003E45AD /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
-
 /* Begin PBXResourcesBuildPhase section */
 		7B967DCE1ADB0D79005E09B4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7BCD5A101AE890E80031A48E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1011,6 +1042,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "/a2z/Scripts/INSTALL_FW_ON_DEVICE.zsh\n#xcodebuild -project \"${TARGET_NAME}.xcodeproj\" -target io -derivedDataPath \"${BUILD_ROOT}\" &";
+		};
+		7BA6C6EA1AE7F915001BBEDA /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Resources/AppledocSettings.plist",
+				"$(SRCROOT)/$(PROJECT_NAME)",
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/docs",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/zsh;
+			shellScript = "ADOC=/usr/local/bin/appledoc\n\n#mkdir -p \"${SCRIPT_OUTPUT_FILE_0}\"\n#open -R \"${SCRIPT_OUTPUT_FILE_0}\"\n\n$ADOC \"${SCRIPT_INPUT_FILE_0}\" \"${SCRIPT_INPUT_FILE_1}\"\n\n# --output \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1046,6 +1093,7 @@
 				7B3ABD091ADD7A1B009F92FA /* Interference.m in Sources */,
 				7BDADDF51AB06F3800581B83 /* NSNib+XMLBase64.m in Sources */,
 				7BF46B661AB1EE4D0029068F /* RunLoopController.m in Sources */,
+				7BC203681AE829E000856E20 /* TK+MacWindow.m in Sources */,
 				7B3BEF621A9BF72A00A8E446 /* ToolKit.m in Sources */,
 				7BACF2D21AA3E82E0064F072 /* TK+Protocols.m in Sources */,
 				7B7D96381AC2314E00F5504D /* scrutil.m in Sources */,
@@ -1082,14 +1130,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7BCD5A0E1AE890E80031A48E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7BCD5A1B1AE891A80031A48E /* TK+UI.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		7B4ADB2E1AB8850D00CFCC91 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = AtoZUniversal;
-			targetProxy = 7B4ADB2D1AB8850D00CFCC91 /* PBXContainerItemProxy */;
-		};
 		7B6F03731AAB8C8500AB31C4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 7B5E62CA1A9803460001B5F3 /* ToolKit */;
@@ -1104,6 +1155,11 @@
 			isa = PBXTargetDependency;
 			target = 7B5E62CA1A9803460001B5F3 /* ToolKit */;
 			targetProxy = 7B8D2F6C1A98616E00D93D95 /* PBXContainerItemProxy */;
+		};
+		7BA6C6EC1AE7F91A001BBEDA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7B5E62CA1A9803460001B5F3 /* ToolKit */;
+			targetProxy = 7BA6C6EB1AE7F91A001BBEDA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1253,8 +1309,6 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
-				"MACOSX_DEPLOYMENT_TARGET[sdk=macosx*]" = 10.8;
 				OTHER_LDFLAGS = (
 					"-all_load",
 					"-ObjC",
@@ -1287,7 +1341,6 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OTHER_LDFLAGS = (
 					"-all_load",
 					"-ObjC",
@@ -1484,6 +1537,103 @@
 			};
 			name = Release;
 		};
+		7BA6C6E81AE7F911001BBEDA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		7BA6C6E91AE7F911001BBEDA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		7BCD5A161AE890E90031A48E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = UI/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = toolkit;
+			};
+			name = Debug;
+		};
+		7BCD5A171AE890E90031A48E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = UI/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = toolkit;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1564,6 +1714,24 @@
 			buildConfigurations = (
 				7B967DD41ADB0D79005E09B4 /* Debug */,
 				7B967DD51ADB0D79005E09B4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		7BA6C6E71AE7F911001BBEDA /* Build configuration list for PBXAggregateTarget "ToolKit Docs" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7BA6C6E81AE7F911001BBEDA /* Debug */,
+				7BA6C6E91AE7F911001BBEDA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		7BCD5A191AE890E90031A48E /* Build configuration list for PBXNativeTarget "UI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7BCD5A161AE890E90031A48E /* Debug */,
+				7BCD5A171AE890E90031A48E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

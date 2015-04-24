@@ -2,7 +2,12 @@
 #import <ToolKit/ToolKit.h>
 #import "TK_Private.h"
 
-@implementation _IO_Opts { BOOL parseAgain; id specialArgs; } @synthesize getOpts = _getOpts, rules = _rules;
+@implementation _IO_Opts { id specialArgs; } @synthesize getOpts = _getOpts, rules = _rules;
+
+_TT opt  __Text_ k { return self.getOpts[k][0]; }
+_LT opts __Text_   k { return self.getOpts[k]; }
+
+_IT hasOpt __Text_ key { return [[self.getOpts.allKeys vFK:@"lowercaseString"] containsObject:key]; }
 
 SYNTHESIZE_SINGLETON_FOR_CLASS(_IO_Opts,shared)
 

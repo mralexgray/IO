@@ -1,5 +1,6 @@
 
-#import <ToolKit/TK_Private.h>
+#import "ToolKit.h"
+#import "TK_Private.h"
 #import "scrutil.h"
 // #import <termios.h>
 #import <sys/termios.h>
@@ -9,7 +10,7 @@
 @import SystemConfiguration;
 #endif
 
-JREnumDefine(ConsoleColors);
+_EnumPlan(ConsoleColors)
 
 @Plan ToolKit { Ｐ(_IO) runner; AVAudioPlayer *playa; } UNO(sharedToolKit); // AVAudioPlayerDelegate
 
