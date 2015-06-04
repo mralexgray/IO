@@ -1,5 +1,6 @@
 
-
+//#import <FunSize/FunSize.h>
+@import AtoZUinversal
 #import <ToolKit/TK+Protocols.h> // Public interfaces of ancillary features.
 
 
@@ -8,9 +9,10 @@
                   IO_Opts
                 >
 
-_RO  _Main main ___           // access to argc + argv, anywhere
-_RO  ioEnv  env ___            // where we runnin at'
+_RO  _Main main ___             // access to argc + argv, anywhere
+_RO  ioEnv  env ___             // where we runnin at'
 
+_NC ＾SInt signalHandler ___
 
 #if MAC_ONLY
 _RO  _UInt userID       ｜( i.e. 501                                   )
@@ -73,12 +75,12 @@ _VD clearConsole ___    /*! COdes! */
 
 - _Void_ justPlay _ path ___
 
-#define IO ((ToolKit*)[ToolKit sharedToolKit])
-+ _Kind_ sharedToolKit ___
+#define IO ((ToolKit*)[ToolKit shared])
 
 // deprecate
 
 _DT infoPlistOf __Text_ path ___
+_DT infoPlist ___
 
 ￭
 

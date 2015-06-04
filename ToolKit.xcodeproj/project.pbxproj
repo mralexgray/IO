@@ -35,7 +35,6 @@
 		7B3BEF5B1A9BEEEF00A8E446 /* TK+String.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B3BEF5A1A9BEEEF00A8E446 /* TK+String.m */; };
 		7B3BEF601A9BF71500A8E446 /* DDEmbeddedDataReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B0C48E819A944660046167F /* DDEmbeddedDataReader.m */; };
 		7B3BEF621A9BF72A00A8E446 /* ToolKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B0C48C619A9400E0046167F /* ToolKit.m */; };
-		7B60D8691AE76AF60005120D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B60D8681AE76AF60005120D /* Foundation.framework */; };
 		7B62B1C11A99A6E4005BC6BC /* IOFundamentals.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B62B1C01A99A6E4005BC6BC /* IOFundamentals.m */; };
 		7B62B2001A99B78F005BC6BC /* ToolKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 7B0C48C519A9400E0046167F /* ToolKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7B62B2011A99B797005BC6BC /* LCTerminal.h in Headers */ = {isa = PBXBuildFile; fileRef = 7BE58F4F19A97B8200EB4AB1 /* LCTerminal.h */; };
@@ -130,6 +129,7 @@
 		7B0C48E819A944660046167F /* DDEmbeddedDataReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDEmbeddedDataReader.m; sourceTree = "<group>"; };
 		7B0C495A19A956A10046167F /* io */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = io; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B0C495F19A956A20046167F /* io_agent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = io_agent.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		7B0E20921AEB9ED700C955CF /* help2man.pl */ = {isa = PBXFileReference; lastKnownFileType = text.script.perl; path = help2man.pl; sourceTree = "<group>"; };
 		7B351F111AA0E006007D7FE7 /* annotated.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = annotated.html; sourceTree = "<group>"; };
 		7B351F121AA0E006007D7FE7 /* bc_s.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bc_s.png; sourceTree = "<group>"; };
 		7B351F131AA0E006007D7FE7 /* bdwn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bdwn.png; sourceTree = "<group>"; };
@@ -260,7 +260,6 @@
 		7B5E62CE1A9803460001B5F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Resources/Info.plist; sourceTree = "<group>"; };
 		7B5E62DB1A9803470001B5F3 /* ToolKitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "ToolKitTests-Info.plist"; path = "IO_tests/ToolKitTests-Info.plist"; sourceTree = "<group>"; };
 		7B5E62DC1A9803470001B5F3 /* TK_tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = TK_tests.m; path = ToolKit/TK_tests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		7B60D8681AE76AF60005120D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7B62B1BE1A99A6E3005BC6BC /* ToolKitFundamentals */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ToolKitFundamentals; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B62B1C01A99A6E4005BC6BC /* IOFundamentals.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = IOFundamentals.m; path = readlineDemo/IOFundamentals.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		7B7BCAF41ADC51A1003372FF /* CodeTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CodeTools.m; sourceTree = "<group>"; };
@@ -318,6 +317,7 @@
 		7BF6EB271AC51C8E003E21DF /* testDispatch */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = testDispatch; sourceTree = "<group>"; };
 		7BF6EB281AC51C8E003E21DF /* testMultiTimers */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = testMultiTimers; sourceTree = "<group>"; };
 		7BF6EB291AC51C8E003E21DF /* testAsyncNetworking */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = testAsyncNetworking; sourceTree = "<group>"; };
+		7BFBD2341AFA7ED800A92C50 /* TK.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TK.pch; path = ToolKit/TK.pch; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -370,7 +370,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7B60D8691AE76AF60005120D /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -380,6 +379,7 @@
 		7B0C48B019A9400E0046167F = {
 			isa = PBXGroup;
 			children = (
+				7B0E20921AEB9ED700C955CF /* help2man.pl */,
 				7B0C48C519A9400E0046167F /* ToolKit.h */,
 				7B0C48C619A9400E0046167F /* ToolKit.m */,
 				7BACF2CF1AA3E82E0064F072 /* TK+Protocols.h */,
@@ -393,7 +393,6 @@
 				7BC203651AE829E000856E20 /* TK+MacWindow.h */,
 				7BC203661AE829E000856E20 /* TK+MacWindow.m */,
 				7BD3E4A01ABD30F700552876 /* README.md */,
-				7B60D8681AE76AF60005120D /* Foundation.framework */,
 				7B0C495F19A956A20046167F /* io_agent.m */,
 				7B62B1FF1A99B1D3005BC6BC /* Modules */,
 				7BFDEB2C1AA41B0100B62038 /* Products */,
@@ -722,6 +721,7 @@
 				7B9D7ABE1A9E79D00043B029 /* _xterm256.m */,
 				7B5E62DB1A9803470001B5F3 /* ToolKitTests-Info.plist */,
 				7BA6C6ED1AE80124001BBEDA /* Iconset.xcassets */,
+				7BFBD2341AFA7ED800A92C50 /* TK.pch */,
 			);
 			name = Support;
 			sourceTree = "<group>";
@@ -1171,7 +1171,9 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = MrGray.com;
 				GCC_C_LANGUAGE_STANDARD = c11;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -1183,6 +1185,7 @@
 				CODE_SIGN_IDENTITY = MrGray.com;
 				GCC_C_LANGUAGE_STANDARD = c11;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};
@@ -1296,65 +1299,32 @@
 		};
 		7B5E62DF1A9803470001B5F3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7BDADDF61AB06F9D00581B83 /* Universal.xcconfig */;
 			buildSettings = {
-				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_INPUT_FILETYPE = automatic;
+				FRAMEWORK_SEARCH_PATHS = "$(USER_LIBRARY_DIR)/Frameworks";
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREFIX_HEADER = ToolKit/TK.pch;
 				INFOPLIST_FILE = Resources/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path/Frameworks";
-				OTHER_LDFLAGS = (
-					"-all_load",
-					"-ObjC",
-					"-framework",
-					AtoZUniversal,
-					"-sub_umbrella",
-					AtoZUniversal,
-					"-framework",
-					AVFoundation,
-				);
 				PRODUCT_NAME = ToolKit;
-				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
 				STRIP_INSTALLED_PRODUCT = NO;
-				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};
 		7B5E62E01A9803470001B5F3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_INPUT_FILETYPE = automatic;
+				FRAMEWORK_SEARCH_PATHS = "$(USER_LIBRARY_DIR)/Frameworks";
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREFIX_HEADER = ToolKit/TK.pch;
 				INFOPLIST_FILE = Resources/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path/Frameworks";
-				OTHER_LDFLAGS = (
-					"-all_load",
-					"-ObjC",
-					"-framework",
-					AtoZUniversal,
-					"-sub_umbrella",
-					AtoZUniversal,
-					"-framework",
-					AVFoundation,
-				);
 				PRODUCT_NAME = ToolKit;
-				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
 				STRIP_INSTALLED_PRODUCT = NO;
-				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
 		};

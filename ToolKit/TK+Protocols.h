@@ -3,10 +3,7 @@
 
 #import <ToolKit/TK+MacWindow.h>
 
-@Vows IO_Helper <NObj>
-+ _Kind_ shared ___
-￭
-@Vows          IO_Opts @Optn  // Public interface to IO options parsing methods.
+🆅 IO_Opts <Solo> @Optn  // Public interface to IO options parsing methods.
 
 _RC  _Dict    getOpts ___
 _RO  _IsIt  wantsHelp ___

@@ -9,8 +9,6 @@ _LT opts __Text_   k { return self.getOpts[k]; }
 
 _IT hasOpt __Text_ key { return [[self.getOpts.allKeys vFK:@"lowercaseString"] containsObject:key]; }
 
-SYNTHESIZE_SINGLETON_FOR_CLASS(_IO_Opts,shared)
-
 _VD finalize          { if (!self.wantsHelp) return; [self.help echo]; exit(0); }
 
 _IT wantsHelp         { return !IO.args.count || [IO.args any:^BOOL(id o) { return [o containsString:@"help"]; }]; }

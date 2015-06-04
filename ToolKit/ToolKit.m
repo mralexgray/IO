@@ -10,10 +10,26 @@
 @import SystemConfiguration;
 #endif
 
-_EnumPlan(ConsoleColors)
+void signal_callback_handler(int signum) {
 
-@Plan ToolKit { Ｐ(_IO) runner; AVAudioPlayer *playa; } UNO(sharedToolKit); // AVAudioPlayerDelegate
+	printf("         TERMINATED         \n");
+  if (ToolKit.shared.signalHandler) ToolKit.shared.signalHandler(signum);
+//	setBufferedInput(true);
+	printf("\e[?25h\e[m");
+	exit(signum);
+}
 
+//Ｐ(_IO) runner;
+
+@Plan ToolKit { AVAudioPlayer *playa; } UNO(shared); // AVAudioPlayerDelegate
+
+_VD setSignalHandler:(＾SInt)signalHandler {
+
+  _signalHandler = [signalHandler copy];
+
+  // register signal handler for when ctrl-c is pressed
+	signal(SIGINT, signal_callback_handler);
+}
 _TT description {
 
   return $(@"ToolKit v.%@  isatty:%@ isxcode:%@ color:%@ user:%@ id:%lu",  [[Bndl bundleForClass:ToolKit.class].version[RED] ioString],
@@ -67,15 +83,15 @@ _VD repl {
   return [_IO_Opts.shared respondsToSelector:s] ? _IO_Opts.shared : [super forwardingTargetForSelector:s];
 }
 
-- _Ｐ(_IO) dispatch:(Class<_IO>)k,... { SEL def = NULL;
-
-  runner = [k.alloc init]; va_list args; va_start(args, k); def = va_arg(args, SEL); va_end(args);
-
-  if (!def && [runner respondsToSelector:@selector(defaultMethod)]) def = runner.defaultMethod ___
-
-//  if (def && [runner respondsToSelector:def])
-  return runner;
-}
+//- _Ｐ(_IO) dispatch:(Class<_IO>)k,... { SEL def = NULL;
+//
+//  runner = [k.alloc init]; va_list args; va_start(args, k); def = va_arg(args, SEL); va_end(args);
+//
+//  if (!def && [runner respondsToSelector:@selector(defaultMethod)]) def = runner.defaultMethod ___
+//
+////  if (def && [runner respondsToSelector:def])
+//  return runner;
+//}
 
 #if MAC_ONLY
 

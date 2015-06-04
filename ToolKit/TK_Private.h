@@ -2,7 +2,7 @@
 
 #import <ToolKit/ToolKit.h>
 
-@Kind(_IO_Opts) <IO_Opts,IO_Helper> ￭
+@Kind(_IO_Opts) <IO_Opts,Solo> ￭
 
 _CAT( Colr, IO_Colr,
 

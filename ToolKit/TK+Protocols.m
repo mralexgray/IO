@@ -3,6 +3,7 @@
 #import <AVFoundation/AVAudioPlayer.h>
 
 _EnumPlan(ioEnv)
+_EnumPlan(ConsoleColors)
 
 @concreteprotocol(Bicolor)
 
