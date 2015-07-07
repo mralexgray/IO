@@ -2,7 +2,7 @@
 
 #import <ToolKit/ToolKit.h>
 
-@Kind(_IO_Opts) <IO_Opts,Solo> ￭
+@KIND(_IO_Opts) <IO_Opts,Solo> ￭
 
 _CAT( Colr, IO_Colr,
 
@@ -88,7 +88,7 @@ extern char ***_NSGetArgv(void);
 @Vows IONotifier <NSO> // <NSUserNotificationCenterDelegate>
 @optional - initWithNotification:(NSNOT*)n;  // IN USE in IO.m
 ￭
-@Kind(IONotifier,<IONotifier>) ￭
+@KIND(IONotifier,<IONotifier>) ￭
 
 
 

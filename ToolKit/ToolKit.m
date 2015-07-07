@@ -276,6 +276,15 @@ _VD     notify __Note_ n {
   static IONotifier *ntfr; ntfr = ntfr ?: INIT_(IONotifier,WithNotification:n);
 }
 
+_VD   fmt __Text_ fmt __ ...  {
+
+  va_list args; va_start(args, fmt);
+
+  [[Text.alloc initWithFormat:fmt arguments:args] print]; //  def = va_arg(args, SEL);
+
+  va_end(args);
+}
+
 _VD  echo __Text_ fmt, ... {
 
   va_list args; va_start(args, fmt);

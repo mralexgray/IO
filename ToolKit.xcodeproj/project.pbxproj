@@ -87,6 +87,34 @@
 			remoteGlobalIDString = 7B5E62CA1A9803460001B5F3;
 			remoteInfo = ToolKit;
 		};
+		7BC70A471B2159F500D0D8A8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7BC70A3F1B2159F500D0D8A8 /* AtoZUniversal.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7B582BC51AA6A4F400C450C3;
+			remoteInfo = AtoZUniversal;
+		};
+		7BC70A491B2159F500D0D8A8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7BC70A3F1B2159F500D0D8A8 /* AtoZUniversal.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7B5DC27E1AC932CA0063D701;
+			remoteInfo = "AtoZUniversal Tests";
+		};
+		7BC70A4B1B2159F500D0D8A8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7BC70A3F1B2159F500D0D8A8 /* AtoZUniversal.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7BB3D0371B1CAB0C0001E9C3;
+			remoteInfo = Demo;
+		};
+		7BC70A4D1B2159FC00D0D8A8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7BC70A3F1B2159F500D0D8A8 /* AtoZUniversal.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 7B582BC41AA6A4F300C450C3;
+			remoteInfo = AtoZUniversal;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -294,12 +322,16 @@
 		7BACF2D01AA3E82E0064F072 /* TK+Protocols.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "TK+Protocols.m"; path = "ToolKit/TK+Protocols.m"; sourceTree = "<group>"; };
 		7BC203651AE829E000856E20 /* TK+MacWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "TK+MacWindow.h"; path = "ToolKit/TK+MacWindow.h"; sourceTree = "<group>"; };
 		7BC203661AE829E000856E20 /* TK+MacWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "TK+MacWindow.m"; path = "ToolKit/TK+MacWindow.m"; sourceTree = "<group>"; };
+		7BC70A3F1B2159F500D0D8A8 /* AtoZUniversal.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AtoZUniversal.xcodeproj; path = Modules/AtoZUniversal/AtoZUniversal.xcodeproj; sourceTree = "<group>"; };
+		7BC70A4F1B215A7A00D0D8A8 /* recursive_commit.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = recursive_commit.sh; path = Modules/AtoZUniversal/Vendor/_ObjC/Universal/recursive_commit.sh; sourceTree = "<group>"; };
+		7BC70A501B215A7A00D0D8A8 /* Universal.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Universal.xcconfig; path = Modules/AtoZUniversal/Vendor/_ObjC/Universal/Universal.xcconfig; sourceTree = "<group>"; };
+		7BC70A511B215A7A00D0D8A8 /* UniversalFW.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = UniversalFW.xcconfig; path = Modules/AtoZUniversal/Vendor/_ObjC/Universal/UniversalFW.xcconfig; sourceTree = "<group>"; };
+		7BC70A521B215A7A00D0D8A8 /* XC_Install_Helper.zsh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = XC_Install_Helper.zsh; path = Modules/AtoZUniversal/Vendor/_ObjC/Universal/XC_Install_Helper.zsh; sourceTree = "<group>"; };
 		7BCD5A121AE890E80031A48E /* UI.toolkit */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UI.toolkit; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BCD5A151AE890E90031A48E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7BCD5A1A1AE891A80031A48E /* TK+UI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TK+UI.m"; sourceTree = "<group>"; };
 		7BD3E4A01ABD30F700552876 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		7BD69AC11A9B86E60084B75F /* ToolKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ToolKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		7BDADDF61AB06F9D00581B83 /* Universal.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Universal.xcconfig; path = /Volumes/2T/ServiceData/AtoZ.framework/AtoZUniversal/../xcconfigs/Base/Universal.xcconfig; sourceTree = "<absolute>"; };
 		7BE58F4A19A97A7000EB4AB1 /* example.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = example.mm; path = Modules/NSTerminal/example.mm; sourceTree = "<group>"; };
 		7BE58F4E19A97B8200EB4AB1 /* LCTerminal.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = LCTerminal.mm; path = Modules/NSTerminal/LCTerminal.mm; sourceTree = "<group>"; };
 		7BE58F4F19A97B8200EB4AB1 /* LCTerminal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LCTerminal.h; path = Modules/NSTerminal/LCTerminal.h; sourceTree = "<group>"; };
@@ -630,6 +662,7 @@
 		7B62B1FF1A99B1D3005BC6BC /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				7BC70A3F1B2159F500D0D8A8 /* AtoZUniversal.xcodeproj */,
 				7B3ABD0C1ADD7A23009F92FA /* linenoise */,
 				7BF6EAEF1AC4C800003E21DF /* progressbar */,
 				7B351F891AA10EC9007D7FE7 /* printfc */,
@@ -712,9 +745,12 @@
 		7BB200D119BBDDEF00816AB9 /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				7BC70A4F1B215A7A00D0D8A8 /* recursive_commit.sh */,
+				7BC70A501B215A7A00D0D8A8 /* Universal.xcconfig */,
+				7BC70A511B215A7A00D0D8A8 /* UniversalFW.xcconfig */,
+				7BC70A521B215A7A00D0D8A8 /* XC_Install_Helper.zsh */,
 				7BA6C73D1AE805F0001BBEDA /* Icons.xcassets */,
 				7BA6C6E51AE7F828001BBEDA /* AppledocSettings.plist */,
-				7BDADDF61AB06F9D00581B83 /* Universal.xcconfig */,
 				7B5E62CE1A9803460001B5F3 /* Info.plist */,
 				7B3BEF1E1A9BE74200A8E446 /* AtoZIO.staging.h */,
 				7B3BEF191A9BE16700A8E446 /* AtoZIO.staging.m */,
@@ -724,6 +760,16 @@
 				7BFBD2341AFA7ED800A92C50 /* TK.pch */,
 			);
 			name = Support;
+			sourceTree = "<group>";
+		};
+		7BC70A401B2159F500D0D8A8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7BC70A481B2159F500D0D8A8 /* AtoZUniversal.framework */,
+				7BC70A4A1B2159F500D0D8A8 /* AtoZUniversal Tests.xctest */,
+				7BC70A4C1B2159F500D0D8A8 /* Demo */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		7BCD5A131AE890E90031A48E /* UI */ = {
@@ -871,6 +917,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				7BC70A4E1B2159FC00D0D8A8 /* PBXTargetDependency */,
 			);
 			name = ToolKit;
 			productName = IO;
@@ -953,7 +1000,7 @@
 		7B0C48B119A9400E0046167F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0630;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Alex Gray";
 				TargetAttributes = {
 					7B0C48CB19A9400E0046167F = {
@@ -995,6 +1042,12 @@
 			mainGroup = 7B0C48B019A9400E0046167F;
 			productRefGroup = 7B0C48B019A9400E0046167F;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 7BC70A401B2159F500D0D8A8 /* Products */;
+					ProjectRef = 7BC70A3F1B2159F500D0D8A8 /* AtoZUniversal.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				7B5E62CA1A9803460001B5F3 /* ToolKit */,
@@ -1010,6 +1063,30 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		7BC70A481B2159F500D0D8A8 /* AtoZUniversal.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = AtoZUniversal.framework;
+			remoteRef = 7BC70A471B2159F500D0D8A8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7BC70A4A1B2159F500D0D8A8 /* AtoZUniversal Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "AtoZUniversal Tests.xctest";
+			remoteRef = 7BC70A491B2159F500D0D8A8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7BC70A4C1B2159F500D0D8A8 /* Demo */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = Demo;
+			remoteRef = 7BC70A4B1B2159F500D0D8A8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		7B967DCE1ADB0D79005E09B4 /* Resources */ = {
@@ -1161,15 +1238,22 @@
 			target = 7B5E62CA1A9803460001B5F3 /* ToolKit */;
 			targetProxy = 7BA6C6EB1AE7F91A001BBEDA /* PBXContainerItemProxy */;
 		};
+		7BC70A4E1B2159FC00D0D8A8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = AtoZUniversal;
+			targetProxy = 7BC70A4D1B2159FC00D0D8A8 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		7B0C48DB19A9400E0046167F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7BC70A501B215A7A00D0D8A8 /* Universal.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = MrGray.com;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = c11;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1179,6 +1263,7 @@
 		};
 		7B0C48DC19A9400E0046167F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7BC70A501B215A7A00D0D8A8 /* Universal.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -1205,6 +1290,7 @@
 					"-framework",
 					IO,
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mrgray.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = ToolKitTests;
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -1222,6 +1308,7 @@
 					"-framework",
 					IO,
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mrgray.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = ToolKitTests;
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -1299,15 +1386,17 @@
 		};
 		7B5E62DF1A9803470001B5F3 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7BDADDF61AB06F9D00581B83 /* Universal.xcconfig */;
+			baseConfigurationReference = 7BC70A511B215A7A00D0D8A8 /* UniversalFW.xcconfig */;
 			buildSettings = {
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(USER_LIBRARY_DIR)/Frameworks";
+				FRAMEWORK_SEARCH_PATHS = " ";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREFIX_HEADER = ToolKit/TK.pch;
 				INFOPLIST_FILE = Resources/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mrgray.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = ToolKit;
 				STRIP_INSTALLED_PRODUCT = NO;
 			};
@@ -1315,14 +1404,17 @@
 		};
 		7B5E62E01A9803470001B5F3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7BC70A511B215A7A00D0D8A8 /* UniversalFW.xcconfig */;
 			buildSettings = {
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(USER_LIBRARY_DIR)/Frameworks";
+				FRAMEWORK_SEARCH_PATHS = " ";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREFIX_HEADER = ToolKit/TK.pch;
 				INFOPLIST_FILE = Resources/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mrgray.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = ToolKit;
 				STRIP_INSTALLED_PRODUCT = NO;
 			};
@@ -1464,6 +1556,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mrgray.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = io;
@@ -1501,6 +1594,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mrgray.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = io;
@@ -1559,6 +1653,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mrgray.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -1597,6 +1692,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mrgray.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;

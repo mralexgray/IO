@@ -1,8 +1,7 @@
 //  !IO.wantsHelp && (u = IO.getOpts[@"username"][0] ?: ghu)
 //                && (g = IO.getOpts[@"gist"]    [0]       ) ?: ({ [IO.help echo]; return 1; });
 
-#import <IO/IO.h>
-@import Darwin;
+@import ToolKit;
 
 
 _Void scratch(){

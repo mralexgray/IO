@@ -86,7 +86,7 @@ _AT _ObjC      fclr
 #define MID(X,MINI,MAXI) MAX( MIN(X,MAXI), MINI )
 /*! Documentation 
  */
-@Kind (ProgressBar)
+@KIND(ProgressBar)
 
 _NA _UInt          max __
                  value __

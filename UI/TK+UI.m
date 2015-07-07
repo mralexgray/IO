@@ -105,7 +105,7 @@ int main(int argc, char **argv, char **envp) {
 	flags |= kCFUserNotificationPlainAlertLevel;
 	
 	//Make important
-	CFDictionaryAddValue( dict, kCFUserNotificationAlertTopMostKey, kCFBooleanTrue );
+	CFDictionaryAddValue( dict,kCFUserNotificationStopAlertLevel,kCFBooleanTrue);// kCFUserNotificationAlertTopMostKey, kCFBooleanTrue );
 
 	//Setup notification
 	CFNotificationCenterPostNotificationWithOptions( CFNotificationCenterGetDarwinNotifyCenter(), CFSTR("test"),  NULL, NULL, kCFNotificationDeliverImmediately );
@@ -122,17 +122,15 @@ int main(int argc, char **argv, char **envp) {
 	CFDictionaryRef result = CFUserNotificationGetResponseDictionary(notif);
 	
 	//Setup autoreleasepool
-	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-	
-	NSDictionary * powerDic = (NSDictionary *) result;
-	
-	NSString * aValue = [powerDic objectForKey:@"TextFieldValues"];
-	
-	if( aValue.length > 0 ){
-		printf( "%s\n", [aValue UTF8String] );
-	}
-	
-	[pool drain];
+	@autoreleasepool {
+
+    NSDictionary * powerDic = (__bridge NSDictionary *) result;
+    
+    NSString * aValue = [powerDic objectForKey:@"TextFieldValues"];
+    
+    if( aValue.length > 0 ) printf( "%s\n", [aValue UTF8String] );
+    
+  }
 	
 	if((int) error == 0){
 		exit((int) options);

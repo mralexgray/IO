@@ -10,7 +10,7 @@
 
 _Enum(CardinalDirection, North, NorthEast, East, SouthEast, South, SouthWest, West, NorthWest)
 
-@Kind(CardinalDirectionHelper)
+@KIND(CardinalDirectionHelper)
 - initWithRect __Rect_ r cornerInset __Flot_ c sideInset __Flot_ s;
 - (CardinalDirection) directionForPoint __Cord_ p;
 _RT rectForDirection:(CardinalDirection)direction;

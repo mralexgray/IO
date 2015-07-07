@@ -1,34 +1,48 @@
 [submodule "Modules/StaticLibraryXIB"]
 	path = Modules/StaticLibraryXIB
 	url = git@github.com:mralexgray/StaticLibraryXIB.git
+	
 [submodule "Modules/AQOptionParser"]
 	path = Modules/AQOptionParser
 	url = git@github.com:mralexgray/AQOptionParser.git
+
 [submodule "Modules/Objective-C-RegEx-Categories"]
 	path = Modules/Objective-C-RegEx-Categories
 	url = https://github.com/mralexgray/Objective-C-RegEx-Categories.git
+
 [submodule "Modules/NSTerminal"]
 	path = Modules/NSTerminal
 	url = https://github.com/mralexgray/NSTerminal.git
+
 [submodule "Modules/CLIMac"]
 	path = Modules/CLIMac
 	url = https://github.com/mralexgray/CLIMac.git
+
 [submodule "Modules/GBCli"]
 	path = Modules/GBCli
 	url = git@github.com:mralexgray/GBCli.git
+
 [submodule "Modules/DProperty"]
 	path = Modules/DProperty
 	url = git@github.com:kissrobber/DProperty.git
+
 [submodule "Modules/printfc"]
 	path = Modules/printfc
 	url = https://github.com/dasmithii/printfc.git
+
 [submodule "Modules/RunLoopController"]
 	path = Modules/RunLoopController
 	url = https://github.com/trojanfoe/RunLoopController.git
+
 [submodule "Modules/linenoise"]
 	path = Modules/linenoise
 	url = git@github.com:mralexgray/linenoise.git
 	branch = objc
+
 [submodule "Modules/WayWindow"]
 	path = Modules/WayWindow
 	url = git@github.com:weAreYeah/WAYWindow.git
+
+[submodule "Modules/AtoZUniversal"]
+	path = Modules/AtoZUniversal
+	url = https://github.com/mralexgray/AtoZUniversal.git

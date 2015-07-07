@@ -1,13 +1,11 @@
 
-//#import <FunSize/FunSize.h>
-@import AtoZUinversal
+@import AtoZUniversal;
+@import Darwin;
 #import <ToolKit/TK+Protocols.h> // Public interfaces of ancillary features.
 
-
-@Kind (ToolKit) < RectLike,
+@KIND (ToolKit) < RectLike,
                   Subscriptable,
-                  IO_Opts
-                >
+                  IO_Opts >
 
 _RO  _Main main ___             // access to argc + argv, anywhere
 _RO  ioEnv  env ___             // where we runnin at'
@@ -42,7 +40,8 @@ _VD run       ___  // Runloop
 _ID run _ cmd ___  // Run command, get result.
 
 
-_VD echo __Text_ fmt, ... ___
+_VD   fmt __Text_ fmt __ ... ___
+_VD  echo __Text_ fmt __ ... ___
 
 _VD repl ___
 
