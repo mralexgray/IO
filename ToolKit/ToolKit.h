@@ -54,7 +54,6 @@ _VD       notify __Note_ note ___
 _VD        print __List_ lins ___
 _TT  imageString __ObjC_ iOrP ___  // iterm
 
-
 #if MAC_ONLY
 - _Void_ clearMacConsole; /*! Command-K */
 #endif
@@ -101,7 +100,7 @@ int fprintfc(FILE * __restrict, const char * __restrict, ...) __printflike(2, 3)
 
 #define CHAR_FMT(...) [NSString stringWithFormat:@__VA_ARGS__].UTF8String
 
-@interface NSO (IO_Nobj)
+@Xtra(NObj,IO_Nobj)
 
 _RO _Text stringRep ___
 

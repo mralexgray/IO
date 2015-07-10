@@ -36,9 +36,9 @@ SYNTHESIZE_ASC_OBJ_BLOCK (bclr, setBclr, ^{ MAKENORMALIZEDCOLOR }, ^{})
 
 @end
 
-//  id x = ((id(*)(id,SEL))objc_msgSend)((id)NSColor.class, NSSelectorFromString(@"yellowColor")); \
+/*  id x = ((id(*)(id,SEL))objc_msgSend)((id)NSColor.class, NSSelectorFromString(@"yellowColor"));
   if (x && [x isKindOfClass:NSColor.class]) self.fclr = _; return self; }
-/*
+
 @concreteprotocol(CLIDelegate)
 
 - _List_ _options {

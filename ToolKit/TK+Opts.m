@@ -4,20 +4,18 @@
 
 @Plan _IO_Opts { id specialArgs; } @synthesize getOpts = _getOpts, rules = _rules;
 
-_TT opt  __Text_ k { return self.getOpts[k][0]; }
-_LT opts __Text_   k { return self.getOpts[k]; }
+_TT    opt __Text_ k { return self.getOpts[k][0]; }
+_LT   opts __Text_ k { return self.getOpts[k]; }
 
-_IT hasOpt __Text_ key { return [[self.getOpts.allKeys vFK:@"lowercaseString"] containsObject:key]; }
+_IT hasOpt __Text_ k { return [[self.getOpts.allKeys vFK:@"lowercaseString"] containsObject:k]; }
 
-_VD finalize          { if (!self.wantsHelp) return; [self.help echo]; exit(0); }
+_VD finish { if (!self.wantsHelp) return; [self.help echo]; exit(0); }
 
-_IT wantsHelp         { return !IO.args.count || [IO.args any:^BOOL(id o) { return [o containsString:@"help"]; }]; }
+_IT wantsHelp { return !IO.args.count || [IO.args any:^BOOL(id o) { return [o containsString:@"help"]; }]; }
 
 _VD test __List_ args { NSLog(@"inside the vageen :%@", specialArgs = args); }
 
-_TT help              {
-
-  return [[_rules reduce:^id(id memo, id key, id value) {
+_TT help { return [[_rules reduce:^id(id memo, id key, id value) {
 
   _List otherKeys = value[@"keys"];
 
@@ -25,15 +23,14 @@ _TT help              {
              otherKeys.count ? ",  -" : "",
              otherKeys.count ? [otherKeys joinedBy:@",  -"] : @"", value[@"brief"]];
 
-  }
-         withInitialMemo:$(@"\n%@ %@\n\n", [@"Usage:"[PINK] ioString],[_PI.arguments[0][BLUE]ioString])]
-              withFormat:@"\n\n%@",[self.getOpts.stringRep[ORANGE] ioString]];
+  } withInitialMemo:$(@"\n%@ %@\n\n", [@"Usage:"[PINK] ioString],[_PI.arguments[0][BLUE]ioString])]
+         withFormat:@"\n\n%@",[self.getOpts.stringRep[ORANGE] ioString]];
 
 } //#ifdef DEBUG #else string]; #endif
 
-_DT getOpts           {   // if ((!parseAgain || !rules.count) && _getOpts) return _getOpts;
+_DT getOpts {   // if ((!parseAgain || !rules.count) && _getOpts) return _getOpts;
 
-  id opts = @{}.mutableCopy; __block id flag;
+  id opts = @{}.mutableCopy ___  __block id flag;
 
   if (specialArgs) NSLog(@"evaluating: %@", specialArgs);
 

@@ -20,10 +20,10 @@ Text * const     TerminalNotifierBundleID = @"nl.superalloy.oss.terminal-notifie
 
 - _Text_ clinotifier__bundleIdentifier {
   
-//  since this app doesn't use NSApplication we cannot pass any arbitary app id, \
-  we only can pass some existing app id otherwise notifications will be send to daemon, \
-  but not presented to the user radar://11956694. \
-  after swizzling original method will have the same name as current
+/*!  since this app doesn't use NSApplication we cannot pass any arbitary app id,
+  we only can pass some existing app id otherwise notifications will be send to daemon,
+  but not presented to the user radar://11956694.
+  after swizzling original method will have the same name as current */
 
   return self == NSBundle.mainBundle ? @"com.apple.finder" : self.clinotifier__bundleIdentifier;
 }
@@ -53,10 +53,10 @@ static _IsIt InstallFakeBundleIdentifierHook() {
 
 + _Void_ load { Class class = objc_getClass("NSBundle");
 
-// it turns out that NSUserNotificationCenter doesn't want to work with CLI Foundation apps, \
-  and the only reason for this is the app identifier. I haven't found a way to 'fake' Info.plist, \
-  pass a dictionary directly to NSBundle construction so I just swizzled \
-  -[NSBundle bundleIdentifier] method for [NSBundle mainBundle]
+/*! it turns out that NSUserNotificationCenter doesn't want to work with CLI Foundation apps,
+  and the only reason for this is the app identifier. I haven't found a way to 'fake' Info.plist,
+  pass a dictionary directly to NSBundle construction so I just swizzled
+  -[NSBundle bundleIdentifier] method for [NSBundle mainBundle] */
 
     method_exchangeImplementations(class_getInstanceMethod(class, @selector(bundleIdentifier)),
                                    class_getInstanceMethod(class, @selector(clinotifier__bundleIdentifier)));

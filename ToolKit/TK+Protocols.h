@@ -18,7 +18,7 @@ _VD getOpt __Text_ usageThenKeyThenShortOpts __ ... ___
 _TT opt  __Text_ firstForKey ___
 _LT opts __Text_   allForKey ___
 
-_VD finalize ___
+_VD finish ___
 
 _VD   test __List_ args ___
 
@@ -76,9 +76,8 @@ _AT _ObjC      fclr
 
 @Xtra (Text, IO_Text) <Bicolor>
 
-- _Void_ print256 ___
 + _Text_ withColor _ c fmt __Text_ fmt,... ___
-
+_VD print256 ___
 ￭
 
 @class   AVAudioPlayer;

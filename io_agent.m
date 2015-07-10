@@ -16,10 +16,18 @@ MAIN(
 //  [ioEnvByLabelAsHex() echo];
 //  [NSStringFromRect(IO.frame) print256];
 
+   [IO getOpt:@"Option One",@"one",@"1",nil];
+   [IO getOpt:@"Option Two",@"two",@"3",nil];
+
+    
+   [IO.getOpts print];
+
   [IO getOpt:@"Run in forground. (No named pipe)", @"foreground", @"f", nil];
 
-  [IO.getOpts finalize];
+  [IO finish];
   [IO.description echo];
+
+  /*! while runnning in foreground, we can read from a named pipe! */
 
   [Hndl read:@"/io" toBlock:^BOOL(NSData *d) {
 
@@ -27,8 +35,9 @@ MAIN(
     [d.toUTF8String echo]; return YES;
 
   }];
-  [AZRUNLOOP run];
-//  [IO run];
+
+//  [AZRUNLOOP run];
+  [IO run];
 
   _List toEval;
 
