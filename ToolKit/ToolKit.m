@@ -23,6 +23,16 @@ void signal_callback_handler(int signum) {
 
 @Plan ToolKit { AVAudioPlayer *playa; } UNO(shared); // AVAudioPlayerDelegate
 
+_ID runBundleFromStdin {
+
+  NSAssert(self.args.count >= 2, @"needs two args, yo!");
+
+  _Text path = $(@"%@/Library/Bundles/%@.%@", NSHomeDirectory(), self.args[0], TK_BUNDLE_EXTENSION);
+  _Bndl bndl = [Bndl bundleWithPath:path];
+
+  
+
+}
 _VD setSignalHandler:(＾SInt)signalHandler {
 
   _signalHandler = [signalHandler copy];
@@ -33,9 +43,9 @@ _VD setSignalHandler:(＾SInt)signalHandler {
 _TT description {
 
   return $(@"ToolKit v.%@  isatty:%@ isxcode:%@ color:%@ user:%@ id:%lu",  [[Bndl bundleForClass:ToolKit.class].version[RED] ioString],
-                                                                      [$B(IO.env&io_TTY)[YELLOW] ioString],
-                                                                      [$B(IO.env&io_XCODE)[GREEN] ioString],
-                                                                      [$B(IO.env&io_COLOR)[BLUE] ioString],
+                                                                      [$B(IO.env&_Ptty_TTY)[YELLOW] ioString],
+                                                                      [$B(IO.env&_Ptty_XCODE)[GREEN] ioString],
+                                                                      [$B(IO.env&_Ptty_COLOR)[BLUE] ioString],
                                                                       [IO.user[ORANGE] ioString],
                                                                       IO.userID);
 }
@@ -116,17 +126,17 @@ _TT user   { return [self _FetchUserInfo], _user.copy;  }
 - (_Char**) argv  { return          _NSGetArgv(); }
 - ( _SInt*) argc  { return (_SInt*) _NSGetArgc(); }
 
-- (ioEnv) env  { dispatch_uno(
+- (_Ptty) env  { dispatch_uno(
 
-  if(isatty(STDERR_FILENO)) _env |= io_TTY;
+  if(isatty(STDERR_FILENO)) _env |= _Ptty_TTY;
 
   if ([[self run:$(@"ps -p %@",
 
-      [self run:$(@"ps -xc -o ppid= -p %lu",＄)])] containsString:@"Xcode"]) _env |= io_XCODE;
+      [self run:$(@"ps -xc -o ppid= -p %lu",＄)])] containsString:@"Xcode"]) _env |= _Ptty_XCODE;
 
   if ([_PI.environment.allKeys any:^BOOL(id o) { return [o caseInsensitiveContainsString:@"XcodeColors"]; }] ||
 
-      [_PI.environment[@"TERM"] containsAnyOf:@[@"ANSI", @"ansi", @"color", @"256"]]) _env |= io_COLOR
+      [_PI.environment[@"TERM"] containsAnyOf:@[@"ANSI", @"ansi", @"color", @"256"]]) _env |= _Ptty_COLOR
 
   ); return _env;
 }
@@ -298,11 +308,11 @@ _VD print __List_ lines   {
   [[lines reduce:@"".mC withBlock:^id(id sum, id obj) { return
 
     [sum appendString: ISA(obj,Text) ? $(@"%@%@%@",(_Text_ obj).ioString, [self resetFX], zNL)
-                     : ISA(obj,Colr) ? [[obj bgEsc]    withString:IO.env&io_XCODE ? @"" : @"m"]  : @""], sum;
+                     : ISA(obj,Colr) ? [[obj bgEsc]    withString:IO.env&_Ptty_XCODE ? @"" : @"m"]  : @""], sum;
   }] print];
 }
 
-_TT resetFX { AZSTATIC_OBJ(Text, r, ({ IO.env&io_XCODE ? $UTF8(XC_RESET) : $UTF8(ANSI_RESET); }));
+_TT resetFX { AZSTATIC_OBJ(Text, r, ({ IO.env&_Ptty_XCODE ? $UTF8(XC_RESET) : $UTF8(ANSI_RESET); }));
 
   return r;
 }

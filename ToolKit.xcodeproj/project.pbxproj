@@ -35,6 +35,7 @@
 		7B3BEF5B1A9BEEEF00A8E446 /* TK+String.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B3BEF5A1A9BEEEF00A8E446 /* TK+String.m */; };
 		7B3BEF601A9BF71500A8E446 /* DDEmbeddedDataReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B0C48E819A944660046167F /* DDEmbeddedDataReader.m */; };
 		7B3BEF621A9BF72A00A8E446 /* ToolKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B0C48C619A9400E0046167F /* ToolKit.m */; };
+		7B48423318DBE6CF00FC138D /* ToolKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B5E62CB1A9803460001B5F3 /* ToolKit.framework */; };
 		7B62B1C11A99A6E4005BC6BC /* IOFundamentals.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B62B1C01A99A6E4005BC6BC /* IOFundamentals.m */; };
 		7B62B2001A99B78F005BC6BC /* ToolKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 7B0C48C519A9400E0046167F /* ToolKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7B62B2011A99B797005BC6BC /* LCTerminal.h in Headers */ = {isa = PBXBuildFile; fileRef = 7BE58F4F19A97B8200EB4AB1 /* LCTerminal.h */; };
@@ -60,13 +61,6 @@
 
 /* Begin PBXContainerItemProxy section */
 		7B6F03721AAB8C8500AB31C4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7B0C48B119A9400E0046167F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 7B5E62CA1A9803460001B5F3;
-			remoteInfo = IO;
-		};
-		7B8D2F271A98467900D93D95 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7B0C48B119A9400E0046167F /* Project object */;
 			proxyType = 1;
@@ -107,13 +101,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = 7BB3D0371B1CAB0C0001E9C3;
 			remoteInfo = Demo;
-		};
-		7BC70A4D1B2159FC00D0D8A8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7BC70A3F1B2159F500D0D8A8 /* AtoZUniversal.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 7B582BC41AA6A4F300C450C3;
-			remoteInfo = AtoZUniversal;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -291,6 +278,8 @@
 		7B62B1BE1A99A6E3005BC6BC /* ToolKitFundamentals */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ToolKitFundamentals; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B62B1C01A99A6E4005BC6BC /* IOFundamentals.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = IOFundamentals.m; path = readlineDemo/IOFundamentals.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		7B7BCAF41ADC51A1003372FF /* CodeTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CodeTools.m; sourceTree = "<group>"; };
+		7B805A5B1B5AA91A00FB5330 /* simpletun.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = simpletun.c; path = simpletun/simpletun.c; sourceTree = "<group>"; };
+		7B805A5C1B5AA91A00FB5330 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = README; path = simpletun/README; sourceTree = "<group>"; };
 		7B884F911AB8C2DD00B9AF43 /* AtoZCLI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AtoZCLI.m; sourceTree = "<group>"; };
 		7B884F921AB8C2DD00B9AF43 /* AZCLICategories.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AZCLICategories.h; sourceTree = "<group>"; wrapsLines = 1; };
 		7B884F931AB8C2DD00B9AF43 /* AZCLICategories.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AZCLICategories.m; sourceTree = "<group>"; };
@@ -312,7 +301,7 @@
 		7B8D2F521A985CAF00D93D95 /* Readme.markdown */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = Readme.markdown; path = ../Readme.markdown; sourceTree = "<group>"; };
 		7B8D2F551A985D4C00D93D95 /* GBPrint.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = GBPrint.m; path = src/GBPrint.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		7B8D2F641A98612F00D93D95 /* GBTester */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = GBTester; sourceTree = BUILT_PRODUCTS_DIR; };
-		7B967DD01ADB0D79005E09B4 /* CodeTools.io */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CodeTools.io; sourceTree = BUILT_PRODUCTS_DIR; };
+		7B967DD01ADB0D79005E09B4 /* CodeTools.tool */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CodeTools.tool; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B967DD31ADB0D79005E09B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7B9D7ABE1A9E79D00043B029 /* _xterm256.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = _xterm256.m; path = IO/_xterm256.m; sourceTree = "<group>"; };
 		7BA6C6E51AE7F828001BBEDA /* AppledocSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AppledocSettings.plist; path = Resources/AppledocSettings.plist; sourceTree = "<group>"; };
@@ -388,6 +377,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B48423318DBE6CF00FC138D /* ToolKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -662,6 +652,8 @@
 		7B62B1FF1A99B1D3005BC6BC /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				7B805A5B1B5AA91A00FB5330 /* simpletun.c */,
+				7B805A5C1B5AA91A00FB5330 /* README */,
 				7BC70A3F1B2159F500D0D8A8 /* AtoZUniversal.xcodeproj */,
 				7B3ABD0C1ADD7A23009F92FA /* linenoise */,
 				7BF6EAEF1AC4C800003E21DF /* progressbar */,
@@ -736,7 +728,7 @@
 		7B967DD21ADB0D79005E09B4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				7B967DD01ADB0D79005E09B4 /* CodeTools.io */,
+				7B967DD01ADB0D79005E09B4 /* CodeTools.tool */,
 				7B967DD31ADB0D79005E09B4 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -881,7 +873,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				7B8D2F281A98467900D93D95 /* PBXTargetDependency */,
 			);
 			name = io;
 			productName = io_agent;
@@ -917,7 +908,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				7BC70A4E1B2159FC00D0D8A8 /* PBXTargetDependency */,
 			);
 			name = ToolKit;
 			productName = IO;
@@ -974,7 +964,7 @@
 			);
 			name = CodeTools;
 			productName = CodeTools;
-			productReference = 7B967DD01ADB0D79005E09B4 /* CodeTools.io */;
+			productReference = 7B967DD01ADB0D79005E09B4 /* CodeTools.tool */;
 			productType = "com.apple.product-type.bundle";
 		};
 		7BCD5A111AE890E80031A48E /* UI */ = {
@@ -1068,7 +1058,7 @@
 		7BC70A481B2159F500D0D8A8 /* AtoZUniversal.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
-			path = AtoZUniversal.framework;
+			path = .framework;
 			remoteRef = 7BC70A471B2159F500D0D8A8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -1223,11 +1213,6 @@
 			target = 7B5E62CA1A9803460001B5F3 /* ToolKit */;
 			targetProxy = 7B6F03721AAB8C8500AB31C4 /* PBXContainerItemProxy */;
 		};
-		7B8D2F281A98467900D93D95 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 7B5E62CA1A9803460001B5F3 /* ToolKit */;
-			targetProxy = 7B8D2F271A98467900D93D95 /* PBXContainerItemProxy */;
-		};
 		7B8D2F6D1A98616E00D93D95 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 7B5E62CA1A9803460001B5F3 /* ToolKit */;
@@ -1237,11 +1222,6 @@
 			isa = PBXTargetDependency;
 			target = 7B5E62CA1A9803460001B5F3 /* ToolKit */;
 			targetProxy = 7BA6C6EB1AE7F91A001BBEDA /* PBXContainerItemProxy */;
-		};
-		7BC70A4E1B2159FC00D0D8A8 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = AtoZUniversal;
-			targetProxy = 7BC70A4D1B2159FC00D0D8A8 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1390,16 +1370,16 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7BC70A511B215A7A00D0D8A8 /* UniversalFW.xcconfig */;
 			buildSettings = {
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				FRAMEWORK_SEARCH_PATHS = " ";
-				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREFIX_HEADER = ToolKit/TK.pch;
+				HEADER_SEARCH_PATHS = (
+					/sd/local/include,
+					"$(inherited)",
+					"/Volumes/Bay2.R_2000_4X4/Applications_4x4/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
+				);
 				INFOPLIST_FILE = Resources/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mrgray.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = ToolKit;
 				STRIP_INSTALLED_PRODUCT = NO;
 			};
 			name = Debug;
@@ -1408,16 +1388,16 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7BC70A511B215A7A00D0D8A8 /* UniversalFW.xcconfig */;
 			buildSettings = {
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				FRAMEWORK_SEARCH_PATHS = " ";
-				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREFIX_HEADER = ToolKit/TK.pch;
+				HEADER_SEARCH_PATHS = (
+					/sd/local/include,
+					"$(inherited)",
+					"/Volumes/Bay2.R_2000_4X4/Applications_4x4/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
+				);
 				INFOPLIST_FILE = Resources/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mrgray.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = ToolKit;
 				STRIP_INSTALLED_PRODUCT = NO;
 			};
 			name = Release;
@@ -1522,6 +1502,7 @@
 		};
 		7B967DD41ADB0D79005E09B4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7BC70A501B215A7A00D0D8A8 /* Universal.xcconfig */;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -1535,10 +1516,9 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COMBINE_HIDPI_IMAGES = YES;
-				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DSTROOT = "$(HOME)";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1560,13 +1540,13 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mrgray.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				WRAPPER_EXTENSION = io;
+				WRAPPER_EXTENSION = tool;
 			};
 			name = Debug;
 		};
 		7B967DD51ADB0D79005E09B4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7BC70A501B215A7A00D0D8A8 /* Universal.xcconfig */;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -1580,11 +1560,10 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COMBINE_HIDPI_IMAGES = YES;
-				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DSTROOT = "$(HOME)";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -1598,8 +1577,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mrgray.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				WRAPPER_EXTENSION = io;
+				WRAPPER_EXTENSION = tool;
 			};
 			name = Release;
 		};

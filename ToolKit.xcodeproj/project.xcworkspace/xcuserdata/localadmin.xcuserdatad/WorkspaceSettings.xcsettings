@@ -15,7 +15,7 @@
 	<key>LiveSourceIssuesEnabled</key>
 	<true/>
 	<key>SnapshotAutomaticallyBeforeSignificantChanges</key>
-	<true/>
+	<false/>
 	<key>SnapshotLocationStyle</key>
 	<string>Default</string>
 </dict>

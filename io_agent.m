@@ -13,6 +13,21 @@ _Void scratch(){
 
 MAIN(
 
+
+  id x = [IO imageString:@"/Volumes/Bay3.2_2000_2T/ServiceData/localadmin/Desktop/Screen Shot 2015-07-10 at 12.40.59 AM (2).png"];
+
+  [x copyToClipboard];
+  
+  NSLog(@"%@", [x letters].joinedWithSpaces);
+
+    [x echo];
+
+
+    _Bndl z = BundlesFromStdin()[0];
+    [z print];
+
+    id p = [NSClassFromString(@"LoadedBundle") new];
+    
 //  [ioEnvByLabelAsHex() echo];
 //  [NSStringFromRect(IO.frame) print256];
 

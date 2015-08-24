@@ -2,7 +2,7 @@
 #import "TK_Private.h"
 #import <AVFoundation/AVAudioPlayer.h>
 
-_EnumPlan(ioEnv)
+_EnumPlan(_Ptty)
 _EnumPlan(ConsoleColors)
 
 @concreteprotocol(Bicolor)
@@ -12,21 +12,21 @@ _EnumPlan(ConsoleColors)
 SYNTHESIZE_ASC_OBJ_BLOCK (fclr, setFclr, ^{ MAKENORMALIZEDCOLOR }, ^{})
 SYNTHESIZE_ASC_OBJ_BLOCK (bclr, setBclr, ^{ MAKENORMALIZEDCOLOR }, ^{})
 
-- _IsIt_ colored { return self.bclr || self.fclr; }
+_IT colored { return self.bclr || self.fclr; }
 
-- _Text_  escape { return !self.colored ? @"" :
+_TT  escape { return !self.colored ? @"" :
 
   $(@"%@%@%@",  self.fclr ? [self.fclr fgEsc] : zNIL,
                 self.bclr ? [self.bclr bgEsc] : zNIL,
                 IO.env  ? zNIL : @"m");
 }
 
-- _Text_ ioString { return !self.colored ? self.stringRep :
+_TT ioString { return !self.colored ? self.stringRep :
 
-  $(@"%@%@%s", self.escape, self.stringRep, IO.env & io_XCODE ? XC_RESET : ANSI_RESET);
+  $(@"%@%@%s", self.escape, self.stringRep, IO.env & _Ptty_XCODE ? XC_RESET : ANSI_RESET);
 }
 
-- objectAtIndexedSubscript: _SInt_ i { [self setFclr:@(i)]; return self; }
+- objectAtIndexedSubscript __SInt_ i { [self setFclr:@(i)]; return self; }
 
 -  objectForKeyedSubscript: _Copy_ k  { return [self withFG:_ObjC_ k]; }
 

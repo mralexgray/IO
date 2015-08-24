@@ -1,5 +1,6 @@
 
-@import AtoZUniversal;
+@import         AtoZUniversal;        // Sexy syntaxes.
+@Incl                  Darwin;        // IO fundamentals.
 
 #import <ToolKit/TK+MacWindow.h>
 
@@ -10,10 +11,15 @@ _RO  _IsIt  wantsHelp ___
 _RC  _Text       help ___
 _RO  mDict      rules ___
 
+_IT            hasOpt __Text_
+                  key ___
 
-_IT hasOpt __Text_ key ___
+/// Use to set options for command line use.. @c [IO getOpt: @"Options description", @"shortOptionName", @"s"];
 
+_VD getOpt __Text_ o longOpt __Text_ l shortOpt  __Text_ s ___
 _VD getOpt __Text_ usageThenKeyThenShortOpts __ ... ___
+
+//_VD getOpt __Text_ usageThenKeyThenShortOpts __ ... ___
 
 _TT opt  __Text_ firstForKey ___
 _LT opts __Text_   allForKey ___
@@ -43,15 +49,12 @@ _VD printKeyCodes ___
 
 #define Ⅲ _EnumKind
 
-Ⅲ ( ioEnv, io_UNSET      = 0,
-            io_TTY        = 0x00000001,
-            io_XCODE      = 0x00000010,
-            io_ASL        = 0x00000100,
-            io_COLOR      = 0x00001000,
-            io_OTHER      = 0x11111111,
-
-            io_CLR_XC     = 0x00001010,
-            io_CLR_TTY    = 0x00001001    )
+Ⅲ ( _Ptty, _Ptty_UNSET      = 0X00000000,
+            _Ptty_TTY        = 0x00000001,  _Ptty_COLOR      = 0x00001000,
+            _Ptty_XCODE      = 0x00000010,  _Ptty_CLR_XC     = 0x00001010,
+            _Ptty_ASL        = 0x00000100,  _Ptty_CLR_TTY    = 0x00001001,
+            _Ptty_OTHER      = 0x11111111
+)
 
 _Type struct { _UInt  col ___ _UInt    row ___ } _Cell ___
 _Type struct { _SInt argc ___ _Char * argv ___ } _Main ___

@@ -1,5 +1,5 @@
 
-#import <ToolKit.h>
+#import <ToolKit/ToolKit.h>
 
 void *NewBase64Decode(const char * inBuff,	size_t len,               size_t *outLen);
 char *NewBase64Encode(const void * inBuff, size_t len, bool sepLines, size_t *outLen);

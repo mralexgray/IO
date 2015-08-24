@@ -1,47 +1,41 @@
 
 #import <ToolKit/TK_Private.h>
 
-         rgb COLOR_TABLE[256];
+         rgb COLOR_TABLE[256] ___
 
-static _UInt  CUBE_STEPS[] =  { 0x00, 0x5F, 0x87, 0xAF, 0xD7, 0xFF };
+static _UInt  CUBE_STEPS[   ] =  { 0x00, 0x5F, 0x87, 0xAF, 0xD7, 0xFF } ___
 
-static   rgb     BASIC16[] = {{  0,   0,   0}, {205, 0,   0}, { 0, 205,   0}, { 205, 205,   0},
-                              {  0,   0, 238}, {205, 0, 205}, { 0, 205, 205}, { 229, 229, 229},
-                              {127, 127, 127}, {255, 0,   0}, { 0, 255,   0}, { 255, 255,   0},
-                              { 92,  92, 255}, {255, 0, 255}, { 0, 255, 255}, { 255, 255, 255}};
+static   rgb     BASIC16[   ] = { {  0,   0,   0} __ {205, 0,   0} __ { 0, 205,   0} __ { 205, 205,   0}   __
+                                  {  0,   0, 238} __ {205, 0, 205} __ { 0, 205, 205} __ { 229, 229, 229}   __
+                                  {127, 127, 127} __ {255, 0,   0} __ { 0, 255,   0} __ { 255, 255,   0}   __
+                                  { 92,  92, 255} __ {255, 0, 255} __ { 0, 255, 255} __ { 255, 255, 255}} ___
 
-@implementation Colr (IO_Colr)
+@XtraPlan(Colr,IO_Colr)
 
-//- jd { ioEnvByValue()
-- _Text_ bgEsc { return IO.env & io_COLOR ? @"" :
-                        IO.env &  io_XCODE ? $(@"%sbg%@;", CSI, self.xcTuple)
-                                           : $(@"%s%s%@", CSI, ANSI_BG, self.tty);
-}
+_TT bgEsc { return  IO.env & _Ptty_COLOR ? @""
+                  : IO.env & _Ptty_XCODE ? $(@"%sbg%@;", CSI, self.xcTuple)
+                                         : $(@"%s%s%@", CSI, ANSI_BG, self.tty)___ }
 
-- _Text_ fgEsc { return IO.env & ~io_COLOR ? @"" :
-                        IO.env &  io_XCODE ? $(@"%sfg%@;", CSI, self.xcTuple)
-                                           : $(@"%s%s%@", CSI, ANSI_FG, self.tty) ;
-}
-//- _Text_ fgEsc { return IO.isxcode  ? $(@"%sfg%@;", CSI, self.xcTuple) :
-//                        IO.isatty   ? $(@"%s%s%@", CSI, ANSI_FG, self.tty) : @"";
-//}
+_TT fgEsc { return IO.env & ~_Ptty_COLOR ? @""
+                 : IO.env &  _Ptty_XCODE ? $(@"%sfg%@;", CSI, self.xcTuple)
+                                         : $(@"%s%s%@", CSI, ANSI_FG, self.tty)___ }
 
-- _Flot_ component:(_UInt)rgorb {
+_FT component __UInt_ rgorb {
 
 #if IOS_ONLY
-  CGColorRef tmpColor = self.CGColor; _Flot newComponents[4] = {};
-  memcpy(newComponents, CGColorGetComponents(tmpColor), sizeof(newComponents));  // now newComponents is filled with tmpColor rgba data
+  CGColorRef tmpC = self.CGColor; _Flot newComponents[4] = {};
+  memcpy(newComponents, CGColorGetComponents(tmpC), sizeof(newComponents));  // now newComponents is filled w/ tmpC rgba data
   return newComponents[rgorb];
 #else
   return !rgorb ? self.redComponent : rgorb == 1 ? self.greenComponent : self.blueComponent;
 #endif
 }
 
-- _UInt_ r { return [DEVICECLR(self) component:0] * 255; }
-- _UInt_ g { return [DEVICECLR(self) component:1] * 255; }
-- _UInt_ b { return [DEVICECLR(self) component:2] * 255; }
+_UT r { return [DEVICECLR(self) component:0] * 255 ___ }
+_UT g { return [DEVICECLR(self) component:1] * 255 ___ }
+_UT b { return [DEVICECLR(self) component:2] * 255 ___ }
 
-+ _Colr_ fromTTY:_UInt_ x { _UInt r = 0, g = 0, b = 0;  // else is (RgbColor){0, 0, 0};
++ _Colr_ fromTTY:_UInt_ x { _UInt r = 0 __ g = 0 __ b = 0 ___  // else is (RgbColor){0, 0, 0};
 
                x < 16 ? ({  rgb basic = BASIC16[x]; r = basic.r; g = basic.g; b = basic.b; }) :
  232 <= x && x <= 255 ? ({ _UInt calc = 8 + (x - 232) * 0x0A; r = g = b = calc; }) :
@@ -91,3 +85,7 @@ __attribute__((constructor)) static _Void init() { for (int c = 0; c < 256; c++)
   //  objc_setAssociatedObject(self, _cmd, x, OBJC_ASSOCIATION_RETAIN_NONATOMIC);  x; }) intValue];
   //}
 
+
+//- _Text_ fgEsc { return IO.isxcode  ? $(@"%sfg%@;", CSI, self.xcTuple) :
+//                        IO.isatty   ? $(@"%s%s%@", CSI, ANSI_FG, self.tty) : @"";
+//}

@@ -1,62 +1,48 @@
 
-@import AtoZUniversal;
-@import Darwin;
-#import <ToolKit/TK+Protocols.h> // Public interfaces of ancillary features.
+#import <ToolKit/TK+Protocols.h>  // Public interfaces of ancillary features.
 
-@KIND (ToolKit) < RectLike,
-                  Subscriptable,
-                  IO_Opts >
+@KIND(ToolKit) < IO_Opts,         // Unique protocol handles all IO, option parsing.
+                 RectLike,        // Inherits tons of funvtions that allow it to be treated like an NSRect.
+                 Subscriptable >  // Protocol declares indexed and keyed subscription.
 
-_RO  _Main main ___             // access to argc + argv, anywhere
-_RO  ioEnv  env ___             // where we runnin at'
+#define IO ((ToolKit*)[ToolKit shared])
 
+_RO  _Main          main          ｜( 'struct with argc + argv, get it anywhere!' )
+_RO  _Ptty           env          ｜( 'where we runnin at? color, xcode vs tty, etc' )
 _NC ＾SInt signalHandler ___
 
-#if MAC_ONLY
-_RO  _UInt userID       ｜( i.e. 501                                   )
-_RC  _Text user         ｜( i.e. localadmin                            )
-#endif
+_RO _List args              ￤( 'JUST the args, maam'  )
+__        stdinlines        ｜( 'readline?'            )
 
-_RO  _List args           // JUST the args, maam'
-__         stdinlines     // readline?'
-___
-_NC  _ObjC stream         // stdin + stdout'
-___
+_NC _ObjC stream            ｜( 'stdin + stdout'       )
 
-_TT preprocess __Text_ t ___
-
-_AT  _IsIt hideCursor   ｜( peek-a-boo                                 )
-
-_NA  _Text title        ｜( console window title                       )
+_NA _IsIt hideCursor        ｜( 'peek-a-boo'           )
 
 
-_RC  _Text scan
-__         resetFX      ｜( 'needs doc'                                )
+_NC _Text title             ｜( 'console window title'                       )
 
-_NA  _Text prompt       ｜( 'settable greeting for input' )
+_RC _Text scan
+__        resetFX           ｜( 'needs doc'                                )
 
+_NA _Text prompt           ｜( 'settable greeting for input' )
 
-_VD run       ___  // Runloop
-_ID run _ cmd ___  // Run command, get result.
+_VD  run                     ｜( 'Runloop' )
+_ID  run _ cmnd              ｜( 'Run command, get result' )
 
+_VD  fmt __Text_ fmt, ...  ｜( '...' )
+_VD echo __Text_ fmt, ...  ｜( '...' )
 
-_VD   fmt __Text_ fmt __ ... ___
-_VD  echo __Text_ fmt __ ... ___
+_VD repl                    ｜( '...' )
 
-_VD repl ___
-
-_AT _Cell cursorLocation ___ /// dynamic
+_AT _Cell cursorLocation    ｜( 'dynamic' )
 
 _TT prompt __Ｐ(Bicolor) string; /*! Read to String */    //- (NSString*) prompt:(NSString*)_ c:(int)c;
 
-_VD   fillScreen __Colr_ colr ___
-_VD       notify __Note_ note ___
-_VD        print __List_ lins ___
-_TT  imageString __ObjC_ iOrP ___  // iterm
+_VD   fillScreen __Colr_ colr  ｜( '...' )
+_VD       notify __Note_ note  ｜( '...' )
+_VD        print __List_ lins  ｜( '...' )
+_TT  imageString __ObjC_ iOrP  ｜( 'iterm' )
 
-#if MAC_ONLY
-- _Void_ clearMacConsole; /*! Command-K */
-#endif
 
 _VD clearConsole ___    /*! COdes! */
 
@@ -73,12 +59,25 @@ _VD clearConsole ___    /*! COdes! */
 
 - _Void_ justPlay _ path ___
 
-#define IO ((ToolKit*)[ToolKit shared])
+#if MAC_ONLY
+
+_RO _UInt userID            ｜( 'i.e. 501 ' )
+_RC _Text user              ｜( 'i.e. localadmin ' )
+
+_VD clearMacConsole         ｜( ' Command-K ' )
+
+_TT preprocess __Text_ text ｜( 'peek-a-boo' )
+
+#endif
 
 // deprecate
 
 _DT infoPlistOf __Text_ path ___
 _DT infoPlist ___
+
+#define TK_BUNDLE_EXTENSION @"tkbundle"
+
+_ID runBundleFromStdin;
 
 ￭
 
