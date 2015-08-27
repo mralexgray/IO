@@ -418,6 +418,7 @@
 				7B0C495F19A956A20046167F /* io_agent.m */,
 				7B62B1FF1A99B1D3005BC6BC /* Modules */,
 				7BFDEB2C1AA41B0100B62038 /* Products */,
+				7B62B1FE1A99B0EE005BC6BC /* EmbeddedData */,
 				7B3ABD121ADD8212009F92FA /* Other */,
 				7BCD5A131AE890E90031A48E /* UI */,
 				7BB200D119BBDDEF00816AB9 /* Support */,
@@ -659,7 +660,6 @@
 				7BF6EAEF1AC4C800003E21DF /* progressbar */,
 				7B351F891AA10EC9007D7FE7 /* printfc */,
 				7B351F0E1AA0E006007D7FE7 /* scrutil_cpuro */,
-				7B62B1FE1A99B0EE005BC6BC /* EmbeddedData */,
 			);
 			name = Modules;
 			sourceTree = "<group>";
@@ -757,7 +757,7 @@
 		7BC70A401B2159F500D0D8A8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7BC70A481B2159F500D0D8A8 /* AtoZUniversal.framework */,
+				7BC70A481B2159F500D0D8A8 /* .framework */,
 				7BC70A4A1B2159F500D0D8A8 /* AtoZUniversal Tests.xctest */,
 				7BC70A4C1B2159F500D0D8A8 /* Demo */,
 			);
@@ -1055,10 +1055,10 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		7BC70A481B2159F500D0D8A8 /* AtoZUniversal.framework */ = {
+		7BC70A481B2159F500D0D8A8 /* .framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
-			path = .framework;
+			path = AtoZUniversal.framework;
 			remoteRef = 7BC70A471B2159F500D0D8A8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
