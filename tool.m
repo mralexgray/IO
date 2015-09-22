@@ -1,58 +1,58 @@
-//  !IO.wantsHelp && (u = IO.getOpts[@"username"][0] ?: ghu)
-//                && (g = IO.getOpts[@"gist"]    [0]       ) ?: ({ [IO.help echo]; return 1; });
 
-@import ToolKit;
+@import ToolKit; MAIN(
 
+  [ _Text_ [@"alex"withFG:RED] echo];//C:PURPLE];
 
-_Void scratch(){
-
-    _Dict x = @{};
-//    x = [x withValuesForKeys:<#(id), ...#>
-
-}
-
-MAIN(
+  [IO.description printC:BLUE];
 
 
-  id x = [IO imageString:@"/Volumes/Bay3.2_2000_2T/ServiceData/localadmin/Desktop/Screen Shot 2015-07-10 at 12.40.59 AM (2).png"];
+
+////  id x = [IO imageString:@"/sd/localadmin/Desktop/test.png"];
+
+
+/*
+  @"/gd/Dictionaries/Dictionary Development Kit/project_templates/OtherResources/Images/dictionary.png"];
+ "@"/Volumes/Bay3.2_2000_2T/ServiceData/localadmin/Desktop/Screen Shot 2015-07-10 at 12.40.59 AM (2).png"];
 
   [x copyToClipboard];
-  
-  NSLog(@"%@", [x letters].joinedWithSpaces);
 
-    [x echo];
+  NSLog(@"%@", [[x split:@";"] joinedBy:@" and then "]);
+    printf("%s", [x ASCIIString]);
 
+  [x echo];
+*/
 
-    _Bndl z = BundlesFromStdin()[0];
-    [z print];
+//    _Bndl z = BundlesFromStdin()[0];
+//    [z print];
+//
+//    id p = [NSClassFromString(@"LoadedBundle") new];
 
-    id p = [NSClassFromString(@"LoadedBundle") new];
-    
-//  [ioEnvByLabelAsHex() echo];
-//  [NSStringFromRect(IO.frame) print256];
-
-   [IO getOpt:@"Option One",@"one",@"1",nil];
-   [IO getOpt:@"Option Two",@"two",@"3",nil];
-
-    
-   [IO.getOpts print];
-
-  [IO getOpt:@"Run in forground. (No named pipe)", @"foreground", @"f", nil];
-
-  [IO finish];
-  [IO.description echo];
+/*  [ioEnvByLabelAsHex() echo];
+    [NSStringFromRect(IO.frame) print256];
+*/
+//   [IO getOpt:@"Option One",@"one",@"1",nil];
+//   [IO getOpt:@"Option Two",@"two",@"3",nil];
+//
+//    
+//   [IO.getOpts print];
+//
+//  [IO getOpt:@"Run in forground. (No named pipe)", @"foreground", @"f", nil];
+//
+//  [IO finish];
+//  [IO.description echo];
 
   /*! while runnning in foreground, we can read from a named pipe! */
 
-  [Hndl read:@"/io" toBlock:^BOOL(NSData *d) {
+//  [Hndl read:@"/io" toBlock:^BOOL(NSData *d) {
+//
+//    [@"hello" echo];
+//    [d.toUTF8String echo]; return YES;
+//
+//  }];
 
-    [@"hello" echo];
-    [d.toUTF8String echo]; return YES;
+/////  [AZRUNLOOP run];
 
-  }];
-
-//  [AZRUNLOOP run];
-  [IO run];
+/*  [IO run];
 
   _List toEval;
 
@@ -82,6 +82,7 @@ MAIN(
 
 
   }
+*/
 
 //  while (1) [IO.scan echo];
 //  [IO.infoPlist echo];
@@ -93,6 +94,7 @@ MAIN(
 
 // [IO help]; return 0; APConsoleLibmain();
 
+/*
   if (IO.args.count == 1 && [IO respondsToString:IO.args[0]]) { [IO performString:IO.args[1]]; return 0; }
 
   struct winsize w;
@@ -114,6 +116,7 @@ MAIN(
     [a increment]; usleep(400000);
 
   }
+  */
 )
 
 /*
@@ -1099,4 +1102,18 @@ void(^scrDemo)() = ^{
   scrSetColors( scrWhite, scrBlack );
  */
 
+
+
+//  !IO.wantsHelp && (u = IO.getOpts[@"username"][0] ?: ghu)
+//                && (g = IO.getOpts[@"gist"]    [0]       ) ?: ({ [IO.help echo]; return 1; });
+
+
+
+
+_Void scratch(){
+
+    _Dict x = @{};
+//    x = [x withValuesForKeys:<#(id), ...#>
+
+}
 

@@ -1,9 +1,9 @@
 
 @import ToolKit;
 
-_Case(IOTests, [@"Well Hello!"[RED] echo]; )
+_Case(IOTests,[@"Well Hello!"[RED] echo])
 
-_Test(Example,
+_XCTest(Example,
 
   id z = IO.args; [z printC:RANDOMCOLOR];
 
@@ -12,16 +12,16 @@ _Test(Example,
 
 )
 
-_Test(TTYCharacteristics,
+_XCTest(TTYCharacteristics,
 
-  XCTAssert(IO.env & io_TTY, @"SHould be a tty")___
-  XCTAssert(IO.env & io_XCODE, @"SHould be xcode!")___
-  XCTAssertFalse( NSEqualRects(NSZeroRect, IO.frame), @"Need a frame!")___
+  XCTAssert(IO.env & _Ptty_TTY,   @"SHould be a tty"  ) ___
+  XCTAssert(IO.env & _Ptty_XCODE, @"SHould be xcode!" ) ___
+  XCTAssertFalse( NSEqualRects(NSZeroRect, IO.frame), @"Need a frame!") ___
 
 )
 
 
-_Test(IOArgParse,
+_XCTest(IOArgParse,
 
   [IO test:@[@"--alex", @"santa", @"-u", @"suckcock"]];
 
@@ -40,7 +40,7 @@ _Test(IOArgParse,
 )
 
 
-_Test(PerformanceExample, {
+_XCTest(PerformanceExample, {
 
     // This is an example of a performance test case.
     [self measureBlock:^{

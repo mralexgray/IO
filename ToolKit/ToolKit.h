@@ -18,7 +18,7 @@ _NC _ObjC stream            ｜( 'stdin + stdout'       )
 
 _NA _IsIt hideCursor        ｜( 'peek-a-boo'           )
 
-
+_RO _IsIt debugging         ｜( 'running in debugger?'                       )
 _NC _Text title             ｜( 'console window title'                       )
 
 _RC _Text scan

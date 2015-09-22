@@ -50,9 +50,13 @@ _VD printKeyCodes ___
 #define Ⅲ _EnumKind
 
 Ⅲ ( _Ptty, _Ptty_UNSET      = 0X00000000,
-            _Ptty_TTY        = 0x00000001,  _Ptty_COLOR      = 0x00001000,
-            _Ptty_XCODE      = 0x00000010,  _Ptty_CLR_XC     = 0x00001010,
-            _Ptty_ASL        = 0x00000100,  _Ptty_CLR_TTY    = 0x00001001,
+            _Ptty_TTY        = 0x00000001,
+            _Ptty_COLOR      = 0x00001000,
+            _Ptty_XCODE      = 0x00000010,
+            _Ptty_CLR_XC     = 0x00001010,
+            _Ptty_ASL        = 0x00000100,
+            _Ptty_CLR_TTY    = 0x00001001,
+            _Ptty_ITERM      = 0x00011001,
             _Ptty_OTHER      = 0x11111111
 )
 
@@ -75,12 +79,14 @@ _AT _ObjC      fclr
 - _BICOLOR_ withFG _ f ___
 - _BICOLOR_ withBG _ b ___
 
++ _Text_ withColor _ c fmt __Text_ fmt,... ___
+
+_VD print256 ___
+
 ￭
 
 @Xtra (Text, IO_Text) <Bicolor>
 
-+ _Text_ withColor _ c fmt __Text_ fmt,... ___
-_VD print256 ___
 ￭
 
 @class   AVAudioPlayer;

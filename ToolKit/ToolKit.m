@@ -23,16 +23,25 @@ void signal_callback_handler(int signum) {
 
 @Plan ToolKit { AVAudioPlayer *playa; } UNO(shared); // AVAudioPlayerDelegate
 
+_TT description {
+
+  return $(@"ToolKit v.%@ isatty:%@ isxcode:%@ color:%@ user:%@ id:%lu",
+    [[Bndl bundleForClass:self.class].version[RED] ioString],
+    [$B(IO.env&_Ptty_TTY)[YELLOW] ioString],
+    [$B(IO.env&_Ptty_XCODE)[GREEN] ioString],
+    [$B(IO.env&_Ptty_COLOR)[BLUE] ioString],
+    [IO.user[ORANGE] ioString],
+    IO.userID);
+}
+
 _ID runBundleFromStdin {
 
   NSAssert(self.args.count >= 2, @"needs two args, yo!");
 
   _Text path = $(@"%@/Library/Bundles/%@.%@", NSHomeDirectory(), self.args[0], TK_BUNDLE_EXTENSION);
   _Bndl bndl = [Bndl bundleWithPath:path];
-
-  
-
 }
+
 _VD setSignalHandler:(＾SInt)signalHandler {
 
   _signalHandler = [signalHandler copy];
@@ -40,15 +49,8 @@ _VD setSignalHandler:(＾SInt)signalHandler {
   // register signal handler for when ctrl-c is pressed
 	signal(SIGINT, signal_callback_handler);
 }
-_TT description {
 
-  return $(@"ToolKit v.%@  isatty:%@ isxcode:%@ color:%@ user:%@ id:%lu",  [[Bndl bundleForClass:ToolKit.class].version[RED] ioString],
-                                                                      [$B(IO.env&_Ptty_TTY)[YELLOW] ioString],
-                                                                      [$B(IO.env&_Ptty_XCODE)[GREEN] ioString],
-                                                                      [$B(IO.env&_Ptty_COLOR)[BLUE] ioString],
-                                                                      [IO.user[ORANGE] ioString],
-                                                                      IO.userID);
-}
+
 _TT preprocess __Text_ t {
 
   NTBTask * task = [NTBTask.alloc initWithLaunchPath: @"/usr/bin/clang"];
@@ -70,7 +72,10 @@ _TT preprocess __Text_ t {
 
 #pragma mark - Console
 
-_VD setTitle:(_Text)title { printf("\033]0;%s\007",(_title = title).UTF8String); }
+_VD setTitle:(_Text)title {
+
+  printf("\033]0;%s\007",(_title = title).UTF8String);
+}
 
 #pragma mark - Commandline
 
@@ -130,9 +135,10 @@ _TT user   { return [self _FetchUserInfo], _user.copy;  }
 
   if(isatty(STDERR_FILENO)) _env |= _Ptty_TTY;
 
-  if ([[self run:$(@"ps -p %@",
+  id appname = [self run:$(@"ps -p %@", [self run:$(@"ps -xc -o ppid= -p %lu",＄)])];
 
-      [self run:$(@"ps -xc -o ppid= -p %lu",＄)])] containsString:@"Xcode"]) _env |= _Ptty_XCODE;
+  [appname containsString:@"Xcode"] ? ({ _env |= _Ptty_XCODE; }) :
+  [appname containsString:@"iTerm"] ? ({ _env |= _Ptty_ITERM; }) : (void)nil;
 
   if ([_PI.environment.allKeys any:^BOOL(id o) { return [o caseInsensitiveContainsString:@"XcodeColors"]; }] ||
 
@@ -140,7 +146,40 @@ _TT user   { return [self _FetchUserInfo], _user.copy;  }
 
   ); return _env;
 }
+/**
+ * Check if the debugger is attached
+ *
+ * Taken from https://github.com/plausiblelabs/plcrashreporter/blob/2dd862ce049e6f43feb355308dfc710f3af54c4d/Source/Crash%20Demo/main.m#L96
+ *
+ * @return `YES` if the debugger is attached to the current process, `NO` otherwise
+ */
 
+_IT debugging {
+
+  static BOOL debuggerIsAttached = NO;
+
+  dispatch_uno(
+
+    struct kinfo_proc info;
+    size_t info_size = sizeof(info);
+    int name[4];
+
+    name[0] = CTL_KERN;
+    name[1] = KERN_PROC;
+    name[2] = KERN_PROC_PID;
+    name[3] = getpid();
+
+    if (sysctl(name, 4, &info, &info_size, NULL, 0) == -1) {
+      NSLog(@"[HockeySDK] ERROR: Checking for a running debugger via sysctl() failed: %s", strerror(errno));
+      debuggerIsAttached = false;
+    }
+
+    if (!debuggerIsAttached && (info.kp_proc.p_flag & P_TRACED) != 0)
+      debuggerIsAttached = true;
+  );
+
+  return debuggerIsAttached;
+}
 
 - _Void_ clearConsole           { puts("\e[2J"); }
 
@@ -317,15 +356,16 @@ _TT resetFX { AZSTATIC_OBJ(Text, r, ({ IO.env&_Ptty_XCODE ? $UTF8(XC_RESET) : $U
   return r;
 }
 
+//printf '\033]1337;File=inline=1;width=100%%;height=1;preserveAspectRatio=0'
+//printf ":"
+//base64 < "$1"
+//printf '\a\n'
+
 _TT imageString __ObjC_ pathOrImage { _Pict image; _Text name, x;
 
-  ISA(pathOrImage,Pict) ? ({ image = pathOrImage; name = [ _Pict_ pathOrImage name] ?: @"N/A"; })
-                        : ({
-
-    image = [FM fileExistsAtPath:pathOrImage] ? [NSImage.alloc initWithContentsOfFile:pathOrImage] : nil;
-    name = pathOrImage;
-  });
-
+  if (self.env != _Ptty_ITERM) return @"";
+  
+  ISA(pathOrImage,Pict)  ? ({
 #if MAC_ONLY
     _Rect r = NSScreen.mainScreen.frame;
     CGFloat multi = MAX(image.size.width, r.size.width / 2.) / image.size.width;
@@ -336,9 +376,37 @@ _TT imageString __ObjC_ pathOrImage { _Pict image; _Text name, x;
 //    id s = [UIImagePNGRepresentation(image) base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
     x = [UIImagePNGRepresentation(image) base64EncodedStringWithOptions:0];
 #endif
+  }) : ({
+    x = ![FM fileExistsAtPath:[pathOrImage normalizedPath]] ? @"" :
+        [[NSData dataWithContentsOfFile:[pathOrImage normalizedPath] options:0 error:nil]
+          base64EncodedDataWithOptions:0].toUTF8String;
 
-  return $(@"\033]1337;File=name=%@;inline=1:%@\a\n",name.UTF8Data.base64EncodedString,image);//[Data dataWithContentsOfFile:path].base64EncodedString);
+  });
+
+  return $(@"\033]1337;File=inline=1:%@\a\n",x);
 }
+
+//  image = ISA(pathOrImage,Pict) ? pathOrImage :
+//  [FM fileExistsAtPath:pathOrImage] ? [NSImage.alloc initWithContentsOfFile:pathOrImage] : nil;
+//  name = [_Pict_ pathOrImage name] ?: @"N/A";
+//                        : ({
+//    image = [FM fileExistsAtPath:pathOrImage] ? [NSImage.alloc initWithContentsOfFile:pathOrImage] : nil;
+//    name = pathOrImage;
+//  });
+
+//  ISA(pathOrImage,Pict) ? ({ image = pathOrImage; name = [ _Pict_ pathOrImage name] ?: @"N/A"; })
+//                        : ({
+//
+//    image = [FM fileExistsAtPath:pathOrImage] ? [NSImage.alloc initWithContentsOfFile:pathOrImage] : nil;
+//    name = pathOrImage;
+//  });
+//      [Text stringWithContentsOfFile:[pathOrImage normalizedPath] encoding:NSUTF8StringEncoding error:nil].base64EncodedString;
+//        [[_Data dataWithContentsOfFile:pathOrImage.normalizedPath].ut;
+//          NSLog(@"using the path %@", [pathOrImage normalizedPath]);
+//          base64EncodedString];
+//           ? [NSImage.alloc initWithContentsOfFile:pathOrImage] : nil;
+//  name.UTF8Data.base64EncodedString [Data dataWithContentsOfFile:path].base64EncodedString);
+//  ;File=name=%@;inline=1:%@\a\n",name.UTF8Data.base64EncodedString,image);//[Data dataWithContentsOfFile:path].base64EncodedString);
 
 ￭
 

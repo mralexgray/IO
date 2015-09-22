@@ -2,6 +2,10 @@
 
 #import <ToolKit/ToolKit.h>
 
+#define NSSTDOUT  NSFileHandle.fileHandleWithStandardOutput
+#define NSSTDIN   NSFileHandle.fileHandleWithStandardInput
+#define NSSTDERR  NSFileHandle.fileHandleWithStandardError
+
 @KIND(_IO_Opts) <IO_Opts,Solo> ￭
 
 _CAT( Colr, IO_Colr,

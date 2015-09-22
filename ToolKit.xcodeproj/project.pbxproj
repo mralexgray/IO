@@ -25,7 +25,7 @@
 		7B0B8DEE1AAD37B100EBC53D /* TK+Notify.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B0B8DED1AAD37B100EBC53D /* TK+Notify.m */; };
 		7B3054871AAC7FF000C80492 /* ToolKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B5E62CB1A9803460001B5F3 /* ToolKit.framework */; };
 		7B351F841AA0E073007D7FE7 /* scrutil.h in Headers */ = {isa = PBXBuildFile; fileRef = 7B351F7F1AA0E007007D7FE7 /* scrutil.h */; };
-		7B351F881AA105AA007D7FE7 /* io_agent.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B0C495F19A956A20046167F /* io_agent.m */; };
+		7B351F881AA105AA007D7FE7 /* tool.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B0C495F19A956A20046167F /* tool.m */; };
 		7B3ABD081ADD7A1B009F92FA /* linenoise.h in Headers */ = {isa = PBXBuildFile; fileRef = 7B3ABD041ADD7A1B009F92FA /* linenoise.h */; };
 		7B3ABD091ADD7A1B009F92FA /* Interference.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B3ABD051ADD7A1B009F92FA /* Interference.m */; settings = {COMPILER_FLAGS = "-fno-modules"; }; };
 		7B3ABD0A1ADD7A1B009F92FA /* Interference.h in Headers */ = {isa = PBXBuildFile; fileRef = 7B3ABD061ADD7A1B009F92FA /* Interference.h */; };
@@ -60,6 +60,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		7B580BA81B8F41FE00FAE222 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7BC70A3F1B2159F500D0D8A8 /* AtoZUniversal.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 7B582BC41AA6A4F300C450C3;
+			remoteInfo = AtoZUniversal;
+		};
 		7B6F03721AAB8C8500AB31C4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7B0C48B119A9400E0046167F /* Project object */;
@@ -73,6 +80,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 7B5E62CA1A9803460001B5F3;
 			remoteInfo = IO;
+		};
+		7BA67EDD1B8E9E0E00998F41 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7B0C48B119A9400E0046167F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7B5E62CA1A9803460001B5F3;
+			remoteInfo = ToolKit;
 		};
 		7BA6C6EB1AE7F91A001BBEDA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -142,8 +156,8 @@
 		7B0C48E419A9436F0046167F /* NSNib+XMLBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNib+XMLBase64.h"; sourceTree = "<group>"; };
 		7B0C48E719A944660046167F /* DDEmbeddedDataReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDEmbeddedDataReader.h; sourceTree = "<group>"; };
 		7B0C48E819A944660046167F /* DDEmbeddedDataReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDEmbeddedDataReader.m; sourceTree = "<group>"; };
-		7B0C495A19A956A10046167F /* io */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = io; sourceTree = BUILT_PRODUCTS_DIR; };
-		7B0C495F19A956A20046167F /* io_agent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = io_agent.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		7B0C495A19A956A10046167F /* tool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = tool; sourceTree = BUILT_PRODUCTS_DIR; };
+		7B0C495F19A956A20046167F /* tool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = tool.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		7B0E20921AEB9ED700C955CF /* help2man.pl */ = {isa = PBXFileReference; lastKnownFileType = text.script.perl; path = help2man.pl; sourceTree = "<group>"; };
 		7B351F111AA0E006007D7FE7 /* annotated.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = annotated.html; sourceTree = "<group>"; };
 		7B351F121AA0E006007D7FE7 /* bc_s.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bc_s.png; sourceTree = "<group>"; };
@@ -388,13 +402,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7BE3E4291AB810D500B4D4C7 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -403,10 +410,10 @@
 			children = (
 				7B0E20921AEB9ED700C955CF /* help2man.pl */,
 				7B0C48C519A9400E0046167F /* ToolKit.h */,
-				7B0C48C619A9400E0046167F /* ToolKit.m */,
 				7BACF2CF1AA3E82E0064F072 /* TK+Protocols.h */,
-				7BACF2D01AA3E82E0064F072 /* TK+Protocols.m */,
 				7B3BEF1A1A9BE1EF00A8E446 /* TK_Private.h */,
+				7B0C48C619A9400E0046167F /* ToolKit.m */,
+				7BACF2D01AA3E82E0064F072 /* TK+Protocols.m */,
 				7BF5AC851AD701D100F0E3FD /* TK+Opts.m */,
 				7B3BEF1C1A9BE70500A8E446 /* TK+Color.m */,
 				7B3BEF5A1A9BEEEF00A8E446 /* TK+String.m */,
@@ -415,7 +422,7 @@
 				7BC203651AE829E000856E20 /* TK+MacWindow.h */,
 				7BC203661AE829E000856E20 /* TK+MacWindow.m */,
 				7BD3E4A01ABD30F700552876 /* README.md */,
-				7B0C495F19A956A20046167F /* io_agent.m */,
+				7B0C495F19A956A20046167F /* tool.m */,
 				7B62B1FF1A99B1D3005BC6BC /* Modules */,
 				7BFDEB2C1AA41B0100B62038 /* Products */,
 				7B62B1FE1A99B0EE005BC6BC /* EmbeddedData */,
@@ -757,7 +764,7 @@
 		7BC70A401B2159F500D0D8A8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7BC70A481B2159F500D0D8A8 /* .framework */,
+				7BC70A481B2159F500D0D8A8 /* AtoZUniversal.framework */,
 				7BC70A4A1B2159F500D0D8A8 /* AtoZUniversal Tests.xctest */,
 				7BC70A4C1B2159F500D0D8A8 /* Demo */,
 			);
@@ -797,7 +804,7 @@
 			isa = PBXGroup;
 			children = (
 				7B5E62CB1A9803460001B5F3 /* ToolKit.framework */,
-				7B0C495A19A956A10046167F /* io */,
+				7B0C495A19A956A10046167F /* tool */,
 				7B8D2F641A98612F00D93D95 /* GBTester */,
 				7B62B1BE1A99A6E3005BC6BC /* ToolKitFundamentals */,
 				7BCD5A121AE890E80031A48E /* UI.toolkit */,
@@ -863,9 +870,9 @@
 			productReference = 7BD69AC11A9B86E60084B75F /* ToolKitTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		7B0C495919A956A10046167F /* io */ = {
+		7B0C495919A956A10046167F /* tool */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7B0C496519A956A20046167F /* Build configuration list for PBXNativeTarget "io" */;
+			buildConfigurationList = 7B0C496519A956A20046167F /* Build configuration list for PBXNativeTarget "tool" */;
 			buildPhases = (
 				7B0C495619A956A10046167F /* Sources */,
 				7B6B5B7B1AD5877A003CDF53 /* Frameworks */,
@@ -873,10 +880,11 @@
 			buildRules = (
 			);
 			dependencies = (
+				7BA67EDE1B8E9E0E00998F41 /* PBXTargetDependency */,
 			);
-			name = io;
+			name = tool;
 			productName = io_agent;
-			productReference = 7B0C495A19A956A10046167F /* io */;
+			productReference = 7B0C495A19A956A10046167F /* tool */;
 			productType = "com.apple.product-type.tool";
 		};
 		7B3BEEDA1A9BB99300A8E446 /* linenoise_example */ = {
@@ -902,12 +910,12 @@
 			buildPhases = (
 				7B5E62C61A9803460001B5F3 /* Sources */,
 				7B5E62C81A9803460001B5F3 /* Headers */,
-				7BE3E4291AB810D500B4D4C7 /* Frameworks */,
 				7B2EF3F81AB03CDF00382535 /* INSTALL_FW_ON_DEVICE.zsh */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				7B580BA91B8F41FE00FAE222 /* PBXTargetDependency */,
 			);
 			name = ToolKit;
 			productName = IO;
@@ -1042,7 +1050,7 @@
 			targets = (
 				7B5E62CA1A9803460001B5F3 /* ToolKit */,
 				7BA6C6E61AE7F910001BBEDA /* ToolKit Docs */,
-				7B0C495919A956A10046167F /* io */,
+				7B0C495919A956A10046167F /* tool */,
 				7B0C48CB19A9400E0046167F /* ToolKitTests */,
 				7B8D2F631A98612F00D93D95 /* GBTester */,
 				7B62B1BD1A99A6E3005BC6BC /* ToolKitFundamentals */,
@@ -1055,7 +1063,7 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		7BC70A481B2159F500D0D8A8 /* .framework */ = {
+		7BC70A481B2159F500D0D8A8 /* AtoZUniversal.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = AtoZUniversal.framework;
@@ -1141,7 +1149,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7B351F881AA105AA007D7FE7 /* io_agent.m in Sources */,
+				7B351F881AA105AA007D7FE7 /* tool.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1208,6 +1216,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		7B580BA91B8F41FE00FAE222 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = AtoZUniversal;
+			targetProxy = 7B580BA81B8F41FE00FAE222 /* PBXContainerItemProxy */;
+		};
 		7B6F03731AAB8C8500AB31C4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 7B5E62CA1A9803460001B5F3 /* ToolKit */;
@@ -1217,6 +1230,11 @@
 			isa = PBXTargetDependency;
 			target = 7B5E62CA1A9803460001B5F3 /* ToolKit */;
 			targetProxy = 7B8D2F6C1A98616E00D93D95 /* PBXContainerItemProxy */;
+		};
+		7BA67EDE1B8E9E0E00998F41 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7B5E62CA1A9803460001B5F3 /* ToolKit */;
+			targetProxy = 7BA67EDD1B8E9E0E00998F41 /* PBXContainerItemProxy */;
 		};
 		7BA6C6EC1AE7F91A001BBEDA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1270,7 +1288,9 @@
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-framework",
-					IO,
+					XCTest,
+					"-framework",
+					ToolKit,
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mrgray.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = ToolKitTests;
@@ -1288,7 +1308,9 @@
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-framework",
-					IO,
+					XCTest,
+					"-framework",
+					ToolKit,
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mrgray.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = ToolKitTests;
@@ -1701,7 +1723,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		7B0C496519A956A20046167F /* Build configuration list for PBXNativeTarget "io" */ = {
+		7B0C496519A956A20046167F /* Build configuration list for PBXNativeTarget "tool" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7B0C496619A956A20046167F /* Debug */,

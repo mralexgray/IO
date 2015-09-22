@@ -16,8 +16,9 @@ _TT bgEsc { return  IO.env & _Ptty_COLOR ? @""
                   : IO.env & _Ptty_XCODE ? $(@"%sbg%@;", CSI, self.xcTuple)
                                          : $(@"%s%s%@", CSI, ANSI_BG, self.tty)___ }
 
-_TT fgEsc { return IO.env & ~_Ptty_COLOR ? @""
-                 : IO.env &  _Ptty_XCODE ? $(@"%sfg%@;", CSI, self.xcTuple)
+//_TT fgEsc { return IO.env & ~_Ptty_COLOR ? @""
+_TT fgEsc { return IO.env & _Ptty_COLOR ? @""
+                 : IO.env & _Ptty_XCODE ? $(@"%sfg%@;", CSI, self.xcTuple)
                                          : $(@"%s%s%@", CSI, ANSI_FG, self.tty)___ }
 
 _FT component __UInt_ rgorb {

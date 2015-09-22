@@ -7,14 +7,15 @@ _EnumPlan(ConsoleColors)
 
 @concreteprotocol(Bicolor)
 
-#define MAKENORMALIZEDCOLOR  if (ISA(value,Numb)) { _UInt k = [value uIV]; while (k > 255) k -= 255; value = [Colr fromTTY:MID(k,0,255)]; }
+#define MAKENORMALIZEDCOLOR  if (ISA(value,Numb)) { _UInt k = [value uIV]; \
+  while (k > 255) k -= 255; value = [Colr fromTTY:MID(k,0,255)]; }
 
 SYNTHESIZE_ASC_OBJ_BLOCK (fclr, setFclr, ^{ MAKENORMALIZEDCOLOR }, ^{})
 SYNTHESIZE_ASC_OBJ_BLOCK (bclr, setBclr, ^{ MAKENORMALIZEDCOLOR }, ^{})
 
-_IT colored { return self.bclr || self.fclr; }
+_IT colored { return (self.bclr != nil || self.fclr != nil); }
 
-_TT  escape { return !self.colored ? @"" :
+_TT  _escape { return !self.colored ? @"" : // No escape if not colored.
 
   $(@"%@%@%@",  self.fclr ? [self.fclr fgEsc] : zNIL,
                 self.bclr ? [self.bclr bgEsc] : zNIL,

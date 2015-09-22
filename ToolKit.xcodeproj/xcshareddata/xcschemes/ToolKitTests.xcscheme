@@ -1,53 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
    LastUpgradeVersion = "0700"
-   version = "1.8">
+   version = "1.3">
    <BuildAction
-      parallelizeBuildables = "NO"
-      buildImplicitDependencies = "NO">
+      parallelizeBuildables = "YES"
+      buildImplicitDependencies = "YES">
       <BuildActionEntries>
          <BuildActionEntry
             buildForTesting = "YES"
             buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7B5E62CA1A9803460001B5F3"
-               BuildableName = "ToolKit.framework"
-               BlueprintName = "ToolKit"
+               BlueprintIdentifier = "7B0C48CB19A9400E0046167F"
+               BuildableName = "ToolKitTests.xctest"
+               BlueprintName = "ToolKitTests"
                ReferencedContainer = "container:ToolKit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
+      buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES"
-      buildConfiguration = "Debug">
+      shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7B9B40321AC14EB6002EDD01"
-               BuildableName = "_ObjC_Tests.xctest"
-               BlueprintName = "_ObjC_Tests"
-               ReferencedContainer = "container:../../AtoZ.framework/AtoZUniversal/Vendor/_ObjC/_ObjC.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7B5DC27D1AC932CA0063D701"
-               BuildableName = "AtoZUniversal Tests.xctest"
-               BlueprintName = "AtoZUniversal Tests"
-               ReferencedContainer = "container:Modules/AtoZUniversal/AtoZUniversal.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
          <TestableReference
             skipped = "NO">
             <BuildableReference
@@ -62,9 +42,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7B5E62CA1A9803460001B5F3"
-            BuildableName = "ToolKit.framework"
-            BlueprintName = "ToolKit"
+            BlueprintIdentifier = "7B0C48CB19A9400E0046167F"
+            BuildableName = "ToolKitTests.xctest"
+            BlueprintName = "ToolKitTests"
             ReferencedContainer = "container:ToolKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -72,11 +52,11 @@
       </AdditionalOptions>
    </TestAction>
    <LaunchAction
+      buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
-      buildConfiguration = "Debug"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
@@ -84,9 +64,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7B5E62CA1A9803460001B5F3"
-            BuildableName = "ToolKit.framework"
-            BlueprintName = "ToolKit"
+            BlueprintIdentifier = "7B0C48CB19A9400E0046167F"
+            BuildableName = "ToolKitTests.xctest"
+            BlueprintName = "ToolKitTests"
             ReferencedContainer = "container:ToolKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -94,17 +74,17 @@
       </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
+      buildConfiguration = "Release"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
-      buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7B5E62CA1A9803460001B5F3"
-            BuildableName = "ToolKit.framework"
-            BlueprintName = "ToolKit"
+            BlueprintIdentifier = "7B0C48CB19A9400E0046167F"
+            BuildableName = "ToolKitTests.xctest"
+            BlueprintName = "ToolKitTests"
             ReferencedContainer = "container:ToolKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
