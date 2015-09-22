@@ -1,6 +1,14 @@
 
 @import ToolKit; MAIN(
 
+  [$(@"env: %@" __ _Ptty2Text(IO.env)) echo] ___
+
+  [_PttyxVal() each _ ^(id k __ id v) {
+
+      [$(@"Value: %@ Label: %@  Env:%@", [k hexString], v, StringFromBOOL(IO.env & [v iV])) echo];
+
+  }];
+
   [ _Text_ [@"alex"withFG:RED] echo];//C:PURPLE];
 
   [IO.description printC:BLUE];

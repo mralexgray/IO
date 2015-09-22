@@ -6,7 +6,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             scope = "0"
@@ -16,7 +16,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../AtoZ.framework/AtoZUniversal/Vendor/_ObjC/_ObjC/_ObjC_Tests.m"
@@ -25,6 +25,53 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "4"
             endingLineNumber = "4">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[KindaXCTest testIfDefs]"
+                  moduleName = "_ObjC_Tests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/Bay3.2_2000_2T/ServiceData/AtoZ.framework/AtoZUniversal/Vendor/_ObjC/_ObjC/_ObjC_Tests.m"
+                  timestampString = "464647433.840654"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[KindaXCTest testIfDefs]"
+                  moduleName = "_ObjC_Tests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/Bay3.2_2000_2T/ServiceData/AtoZ.framework/AtoZUniversal/Vendor/_ObjC/_ObjC/_ObjC_Tests.m"
+                  timestampString = "464647433.841298"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "428">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[KindaXCTest testIfDefs]"
+                  moduleName = "_ObjC_Tests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/Bay3.2_2000_2T/ServiceData/AtoZ.framework/AtoZUniversal/Vendor/_ObjC/_ObjC/_ObjC_Tests.m"
+                  timestampString = "464647433.841768"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "550">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
