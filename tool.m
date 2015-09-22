@@ -5,6 +5,7 @@
 
   [IO.description printC:BLUE];
 
+)
 
 
 ////  id x = [IO imageString:@"/sd/localadmin/Desktop/test.png"];
@@ -117,7 +118,8 @@
 
   }
   */
-)
+
+//)
 
 /*
    id img = [NSIMG contactSheetWith:

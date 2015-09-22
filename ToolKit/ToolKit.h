@@ -1,25 +1,25 @@
 
-#import <ToolKit/TK+Protocols.h>  // Public interfaces of ancillary features.
+#import "TK+Protocols.h"          // Public interfaces of ancillary features.
 
 @KIND(ToolKit) < IO_Opts,         // Unique protocol handles all IO, option parsing.
-                 RectLike,        // Inherits tons of funvtions that allow it to be treated like an NSRect.
+                 RectLike,        // Inherits tons of functions that allow it to be treated like an NSRect.
                  Subscriptable >  // Protocol declares indexed and keyed subscription.
 
 #define IO ((ToolKit*)[ToolKit shared])
 
-_RO  _Main          main          ｜( 'struct with argc + argv, get it anywhere!' )
-_RO  _Ptty           env          ｜( 'where we runnin at? color, xcode vs tty, etc' )
-_NC ＾SInt signalHandler ___
+_RO  _Main          main          ｜( 'struct with argc + argv, get it anywhere!'        )
+_RO  _Ptty           env          ｜( 'where we runnin at? color, xcode vs tty, etc'     )
+_NC ＾SInt signalHandler          ｜( 'Trap signals in a block'                          )
 
-_RO _List args              ￤( 'JUST the args, maam'  )
-__        stdinlines        ｜( 'readline?'            )
+_RO _List           args          ￤( 'JUST the args, maam'                              )
+__            stdinlines          ｜( 'readline?'                                        )
 
-_NC _ObjC stream            ｜( 'stdin + stdout'       )
+_NC _ObjC         stream          ｜( 'stdin + stdout'                                   )
 
-_NA _IsIt hideCursor        ｜( 'peek-a-boo'           )
+_NA _IsIt     hideCursor          ｜( 'peek-a-boo, says the cursoe'                      )
 
-_RO _IsIt debugging         ｜( 'running in debugger?'                       )
-_NC _Text title             ｜( 'console window title'                       )
+_RO _IsIt debugging               ｜( 'running in debugger?'                       )
+_NC _Text title                   ｜( 'console window title'                       )
 
 _RC _Text scan
 __        resetFX           ｜( 'needs doc'                                )

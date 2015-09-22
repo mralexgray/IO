@@ -7,6 +7,14 @@ _EnumPlan(ConsoleColors)
 
 @concreteprotocol(Bicolor)
 
+// corform to IndexSet, for example  id x = @"Apple"[2];      x == @"Apple" with fg -> 2/256
+
+- objectAtIndexedSubscript __SInt_ i { return [self setFclr _ @(i)] __ self ___ }
+
+// corform to KeyGet, for example id x = @"Apple"[ORANGE]; x == @"Apple" with fg -> ORANGE
+
+-  objectForKeyedSubscript __Copy_ k  { return [self withFG __ObjC_ k] __ self ___ }
+
 #define MAKENORMALIZEDCOLOR  if (ISA(value,Numb)) { _UInt k = [value uIV]; \
   while (k > 255) k -= 255; value = [Colr fromTTY:MID(k,0,255)]; }
 
@@ -18,18 +26,13 @@ _IT colored { return (self.bclr != nil || self.fclr != nil); }
 _TT  _escape { return !self.colored ? @"" : // No escape if not colored.
 
   $(@"%@%@%@",  self.fclr ? [self.fclr fgEsc] : zNIL,
-                self.bclr ? [self.bclr bgEsc] : zNIL,
-                IO.env  ? zNIL : @"m");
+                self.bclr ? [self.bclr bgEsc] : zNIL, IO.env  ? zNIL : @"m");
 }
 
 _TT ioString { return !self.colored ? self.stringRep :
 
-  $(@"%@%@%s", self.escape, self.stringRep, IO.env & _Ptty_XCODE ? XC_RESET : ANSI_RESET);
+  $(@"%@%@%s", self._escape, self.stringRep, IO.env & _Ptty_XCODE ? XC_RESET : ANSI_RESET);
 }
-
-- objectAtIndexedSubscript __SInt_ i { [self setFclr:@(i)]; return self; }
-
--  objectForKeyedSubscript: _Copy_ k  { return [self withFG:_ObjC_ k]; }
 
 - _BICOLOR_ withFG:_ObjC_ fg { self.fclr = fg; return self ; }
 

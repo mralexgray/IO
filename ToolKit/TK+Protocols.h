@@ -66,28 +66,26 @@ _Type struct { _SInt argc ___ _Char * argv ___ } _Main ___
 #define _BICOLOR_ _Ｐ(Bicolor)
 #define _REAL @concrete
 
-_PRTO Bicolor < IndexSet,     // id x = @"Apple"[2];      x == @"Apple" with fg -> 2/256
-                  KeyGet >    // id x = @"Apple"[ORANGE]; x == @"Apple" with fg -> ORANGE
+_PRTO Bicolor < IndexSet,       // id x = @"Apple"[2];      x == @"Apple" with fg -> 2/256
+                  KeyGet >      // id x = @"Apple"[ORANGE]; x == @"Apple" with fg -> ORANGE
 _REAL
-_RO _IsIt      colored ___
-_RC _Text      ioString
-            __ escape
-           ___                 // ansi esaped "string"
-_AT _ObjC      fclr
-            __ bclr ___            // NS/UIColor or 0-255
+
+_RO _IsIt       colored ___     // Am I colorful?
+_RC _Text      ioString ___     // ansi esaped "string"
+
+_AT _ObjC          fclr
+__                 bclr ___            // NS/UIColor or 0-255
 
 - _BICOLOR_ withFG _ f ___
 - _BICOLOR_ withBG _ b ___
 
-+ _Text_ withColor _ c fmt __Text_ fmt,... ___
++ _BICOLOR_ withColor _ c fmt __Text_ fmt,... ___
 
 _VD print256 ___
 
 ￭
 
-@Xtra (Text, IO_Text) <Bicolor>
-
-￭
+@Xtra (Text, IO_Text) <Bicolor> ￭
 
 @class   AVAudioPlayer;
 

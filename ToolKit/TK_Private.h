@@ -1,21 +1,21 @@
 
 
-#import <ToolKit/ToolKit.h>
+#import "ToolKit.h"
 
-#define NSSTDOUT  NSFileHandle.fileHandleWithStandardOutput
-#define NSSTDIN   NSFileHandle.fileHandleWithStandardInput
-#define NSSTDERR  NSFileHandle.fileHandleWithStandardError
+#define NSSTDOUT  File.fileHandleWithStandardOutput
+#define NSSTDIN   File.fileHandleWithStandardInput
+#define NSSTDERR  File.fileHandleWithStandardError
 
 @KIND(_IO_Opts) <IO_Opts,Solo> ￭
 
 _CAT( Colr, IO_Colr,
 
-  + _Colr_ fromTTY: _UInt_ c;
+  + _Colr_ fromTTY __UInt_ c ___
 
-  _RO _Numb tty;
+  _RO _Numb tty ___
   _RC _Text xcTuple, bgEsc, fgEsc
-)
 
+)
 
 #include <stdio.h>
 #include <sys/ioctl.h>
