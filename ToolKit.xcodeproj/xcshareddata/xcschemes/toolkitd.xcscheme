@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0700"
+   LastUpgradeVersion = "0730"
    version = "1.3">
    <BuildAction
-      parallelizeBuildables = "YES"
+      parallelizeBuildables = "NO"
       buildImplicitDependencies = "YES">
       <BuildActionEntries>
          <BuildActionEntry
@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7BA6C6E61AE7F910001BBEDA"
-               BuildableName = "ToolKit Docs"
-               BlueprintName = "ToolKit Docs"
+               BlueprintIdentifier = "7B0C495919A956A10046167F"
+               BuildableName = "toolkitd"
+               BlueprintName = "toolkitd"
                ReferencedContainer = "container:ToolKit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -29,6 +29,15 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "7B0C495919A956A10046167F"
+            BuildableName = "toolkitd"
+            BlueprintName = "toolkitd"
+            ReferencedContainer = "container:ToolKit.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -42,33 +51,36 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7BA6C6E61AE7F910001BBEDA"
-            BuildableName = "ToolKit Docs"
-            BlueprintName = "ToolKit Docs"
+            BlueprintIdentifier = "7B0C495919A956A10046167F"
+            BuildableName = "toolkitd"
+            BlueprintName = "toolkitd"
             ReferencedContainer = "container:ToolKit.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
-      buildConfiguration = "Release"
+      buildConfiguration = "Debug"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
-      debugDocumentVersioning = "YES">
-      <MacroExpansion>
+      ignoresPersistentStateOnLaunch = "YES"
+      debugDocumentVersioning = "NO">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7BA6C6E61AE7F910001BBEDA"
-            BuildableName = "ToolKit Docs"
-            BlueprintName = "ToolKit Docs"
+            BlueprintIdentifier = "7B0C495919A956A10046167F"
+            BuildableName = "toolkitd"
+            BlueprintName = "toolkitd"
             ReferencedContainer = "container:ToolKit.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

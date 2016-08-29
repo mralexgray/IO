@@ -1,40 +1,47 @@
 
-#import "TK+Protocols.h"          // Public interfaces of ancillary features.
+#pragma once
 
-@KIND(ToolKit) < IO_Opts,         // Unique protocol handles all IO, option parsing.
-                 RectLike,        // Inherits tons of functions that allow it to be treated like an NSRect.
-                 Subscriptable >  // Protocol declares indexed and keyed subscription.
+#import "TK+Protocols.h"	// Public interfaces of ancillary features.
 
-#define IO ((ToolKit*)[ToolKit shared])
+@KIND(ToolKit) <TK_Opts,	// Unique protocol handles all IO, option parsing.
+                TK_Edit,  // front for editline
+							 RectLike,	// Tons of functions that allow it to be treated like an NSRect.
+					Subscriptable>  // Protocol declares indexed and keyed subscription.
 
-_RO  _Main          main          ｜( 'struct with argc + argv, get it anywhere!'        )
-_RO  _Ptty           env          ｜( 'where we runnin at? color, xcode vs tty, etc'     )
-_NC ＾SInt signalHandler          ｜( 'Trap signals in a block'                          )
+#define TK ToolKit.shared
 
-_RO _List           args          ￤( 'JUST the args, maam'                              )
-__            stdinlines          ｜( 'readline?'                                        )
+_RO  _Main main             ｜( 'struct with argc + argv, get it anywhere!'        )
+_RO  _Ptty env              ｜( 'where we runnin at? color, xcode vs tty, etc'     )
+_NC ＾SInt signalHandler    ｜( 'Trap signals in a block'                          )
 
-_NC _ObjC         stream          ｜( 'stdin + stdout'                                   )
+_RO _List args              ￤( 'JUST the args, maam'                              )
+__        stdinlines        ｜( 'readline?'                                        )
 
-_NA _IsIt     hideCursor          ｜( 'peek-a-boo, says the cursoe'                      )
+_VD reguireArgs __UInt_ ct err __Text_ warn ｜( 'Require some args, fail otherwise')
 
-_RO _IsIt debugging               ｜( 'running in debugger?'                       )
-_NC _Text title                   ｜( 'console window title'                       )
+_NA _IsIt hideCursor        ｜( 'peek-a-boo, says the cursoe'                      )
+
+_RO _IsIt debugging         ｜( 'running in debugger?'                             )
+_NC _Text title             ｜( 'console window title'                             )
+
+_NC _ObjC stream            ｜( 'stdin + stdout'                                   )
 
 _RC _Text scan
-__        resetFX           ｜( 'needs doc'                                )
+__        resetFX           ｜( 'needs doc'                                        )
 
-_NA _Text prompt           ｜( 'settable greeting for input' )
+_NA _Text prompt            ｜( 'settable greeting for input'                      )
 
-_VD  run                     ｜( 'Runloop' )
-_ID  run _ cmnd              ｜( 'Run command, get result' )
+_RO _Wind window						｜( 'Just, a window'                                   )
+_VD  run                    ｜( 'Runloop'                                          )
+_ID  run _ cmnd             ｜( 'Run command, get result'                          )
+_TT  argOr __UInt_ x, ...  	｜( 'Args at index x, or va-arg'                       )
 
-_VD  fmt __Text_ fmt, ...  ｜( '...' )
-_VD echo __Text_ fmt, ...  ｜( '...' )
+_VD  fmt __Text_ fmt, ...   ｜( '...' )
+_VD echo __Text_ fmt, ...   ｜( '...' )
 
 _VD repl                    ｜( '...' )
 
-_AT _Cell cursorLocation    ｜( 'dynamic' )
+_PR _Cell cursorLocation    ｜( 'dynamic' )
 
 _TT prompt __Ｐ(Bicolor) string; /*! Read to String */    //- (NSString*) prompt:(NSString*)_ c:(int)c;
 
@@ -42,6 +49,7 @@ _VD   fillScreen __Colr_ colr  ｜( '...' )
 _VD       notify __Note_ note  ｜( '...' )
 _VD        print __List_ lins  ｜( '...' )
 _TT  imageString __ObjC_ iOrP  ｜( 'iterm' )
+
 
 
 _VD clearConsole ___    /*! COdes! */
@@ -70,11 +78,12 @@ _TT preprocess __Text_ text ｜( 'peek-a-boo' )
 
 #endif
 
-// deprecate
+#pragma mark - DEPRECATED
 
 _DT infoPlistOf __Text_ path ___
 _DT infoPlist ___
 
+#define IO TK
 #define TK_BUNDLE_EXTENSION @"tkbundle"
 
 _ID runBundleFromStdin;

@@ -15,15 +15,15 @@ _EnumPlan(ConsoleColors)
 
 -  objectForKeyedSubscript __Copy_ k  { return [self withFG __ObjC_ k] __ self ___ }
 
-#define MAKENORMALIZEDCOLOR  if (ISA(value,Numb)) { _UInt k = [value uIV]; \
-  while (k > 255) k -= 255; value = [Colr fromTTY:MID(k,0,255)]; }
+#define MAKENORMALIZEDCOLOR if (!ISA(value,Numb)) return; \
+  _UInt k = [value uIV]; while (k > 255) k -= 255; value = [Colr fromTTY:MID(k,0,255)];
 
 SYNTHESIZE_ASC_OBJ_BLOCK (fclr, setFclr, ^{ MAKENORMALIZEDCOLOR }, ^{})
 SYNTHESIZE_ASC_OBJ_BLOCK (bclr, setBclr, ^{ MAKENORMALIZEDCOLOR }, ^{})
 
-_IT colored { return (self.bclr != nil || self.fclr != nil); }
+_IT colored { return self.bclr || self.fclr; }
 
-_TT  _escape { return !self.colored ? @"" : // No escape if not colored.
+_TT _escape { return !self.colored ? @"" : // No escape if not colored.
 
   $(@"%@%@%@",  self.fclr ? [self.fclr fgEsc] : zNIL,
                 self.bclr ? [self.bclr bgEsc] : zNIL, IO.env  ? zNIL : @"m");
@@ -212,3 +212,87 @@ _TT ioString { return !self.colored ? self.stringRep :
 // if (!value && self.ftty) self.fclr = value = [Colr fromTTY:self.ftty]; },
 // if(value) self.ftty = [value tty]; })
 // if(value) self.btty = [value tty]; }) // if (!value && self.ftty) self.fclr = value = [Colr fromTTY:self.ftty]; },// }, // if (!value && self.btty) self.bclr = (value = [Colr fromTTY:self.btty]);},
+
+
+//
+//  Prompt.m
+//  swift-libedit
+//
+//  Created by Neil Pankey on 6/10/14.
+//  Copyright (c) 2014 Neil Pankey. All rights reserved.
+//
+
+#import <histedit.h>
+
+#import <editline/readline.h>
+
+char* prompt(EditLine *e) { return (char*)TK.prompt.UTF8String; }
+
+@concreteprotocol(TK_Edit)
+
+EditLine* _el;
+History* _hist;
+HistEvent _ev;
+
+//- (void) dealloc {
+//    if (_hist != NULL) {
+//        history_end(_hist);
+//        _hist = NULL;
+//    }
+//    
+//    if (_el != NULL) {
+//        el_end(_el);
+//        _el = NULL;
+//    }
+//}
+
+SYNTHESIZE_ASC_OBJ_DEFAULT(historyPath, setHistoryPath,[Bndl.applicationSupportFolder withPath:TK.user])
+
+_VD saveHistory {
+
+  if (_el) {
+    [self.historyPath log];
+//  [FM touch:self.historyPath];
+    history(_hist, &_ev, H_SAVE, self.historyPath.UTF8String);
+  }
+}
+- (NSString*) gets {
+
+  dispatch_uno(
+    // Setup the editor
+    _el = el_init(TK.main.argv[0], stdin, stdout, stderr);
+    el_set(_el, EL_PROMPT, &prompt);
+    el_set(_el, EL_EDITOR, "emacs");
+        
+        // With support for history
+    _hist = history_init();
+    history(_hist, &_ev, H_SETSIZE, 800);
+    history(_hist, &_ev, H_LOAD, self.historyPath.UTF8String);
+
+    el_set(_el, EL_HIST, history, _hist);
+
+    );
+
+    // line includes the trailing newline
+    int count;
+    const char* line = el_gets(_el, &count);
+    
+    if (count > 0) {
+        history(_hist, &_ev, H_ENTER, line);
+        
+        return [NSString stringWithCString:line encoding:NSUTF8StringEncoding];
+    }
+    return nil;
+}
+
+_LT history {
+
+  mList hist;
+  for (int i = 1; i < history_length; i++) {
+
+    id x = [Text stringWithUTF8String:history_get(i)->line];
+    if (!!x && [x length]) [hist addObject:x];
+  }
+  return hist.copy;
+}
+@end

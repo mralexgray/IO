@@ -1,28 +1,34 @@
 
-#import <IO/IO.h>
+@import ToolKit;
 
-void usage(void);
-void process_args(int ac, char *av[]);
-int menu_main();
+_Void usage _Void_ ___
+_Void process_args_getopt(_Main m) ___
+int   menu_main() ___
+int superSimple() ___
+int readline_main(_Main m);
+int ledit_main(_Main m);
 
-MAIN({
+MAIN(
 
 //  process_args(argc, argv);
   [@"hello" print];
 
-  menu_main();
+//  menu_main();
+  ledit_main(TK.main);
+  superSimple();
 
 
-})
+)
 
 
-// http://www.cs.swarthmore.edu/~newhall/unixhelp/C_cool_utils.html
+// 
 
-/*  getopt: parse command line options */
-/* `getopt` is very useful for writing programs that take optional and/or required command line options.
-    It can be used to parse command line arguments of the form:
+/*!  getopt: parse command line options http://www.cs.swarthmore.edu/~newhall/unixhelp/C_cool_utils.html
 
-  -o opt_arg  -o  ...
+  @c getopt is very useful for writing programs that take optional and/or required command line options.
+  It can be used to parse command line arguments of the form:
+
+  @c -o opt_arg  -o  ...
 
   the man page for getopt has an example (man 3 getopt), 
   also here is an example from one of my programs (it shows one way of handling required command line options):
@@ -40,7 +46,7 @@ void usage(void){
                   "       -n secs:  how often damon sends its info to peers (default 5)\n\n");
 }
 
-void process_args(int ac, char *av[]){
+void process_args_getopt(_Main m){
 
 /*  parse command line arguments ac: argc value passed into main av: argv value passed into main
     this function may set the value of global vars based on what command line options are present
@@ -50,7 +56,7 @@ void process_args(int ac, char *av[]){
   char * port_num;
 
   while(1){
-    c = getopt(ac, av, "p:chf:n:");   // "p:"  p option has an arg  "c"  does not
+    c = getopt(m.argc,m.argv, "p:chf:n:");   // "p:"  p option has an arg  "c"  does not
 
     switch(c){
       case 'h': usage(); exit(0); break;
@@ -77,12 +83,10 @@ void process_args(int ac, char *av[]){
   }
 }
 
-/*   readline */
-/*
+/*   readline
 
-int main(int argc, char *argv[]) {
-
-  process_args(argc, argv);
+int readline_main(_Main m) {
+  process_args(m,argc, m.argv);
   ...
   An example command line (assuming server is name of executable file):
   $ ./server -p 1288 -c
@@ -96,13 +100,13 @@ int main(int argc, char *argv[]) {
       $ gcc -o myprog  myprog.c -lreadline
       Here is a very simple example program:
 */
-/*
+
 //#include <stdlib.h>
 //#include <stdio.h>
 #include <readline/readline.h>
 #include <readline/history.h>
 
-int main(){
+int readline_main(){
 
   char* line;
 
@@ -122,7 +126,6 @@ int main(){
 //  CNTRL-k   kill the string from the curser to the end of the line
 //  CNTRL-l   clear the screen and re-print the prompt and input string at the top
 
-*/
 
 /* ncurses */
 /*
@@ -171,39 +174,35 @@ int main(int argc, const char * argv[]) {
 */
 
 
-/* libedit or editline */
-/*
+/* libedit or editline
   libedit is a replacement or alternative to the GNU readline commandline editing functionality. libedit is released under a BSD style licence, so you can use it in your proprietary code.
 
-I found it difficult to get information on libedit, so I decided to write this page to have a central location for all the information I've found.
+  I found it difficult to get information on libedit, so I decided to write this page to have a central location for all the information I've found.
 
-Where to get it
+  Where to get it
 
-The main web site that has the latest version can be found at http://www.thrysoee.dk/editline. This seems to be the location of the most recent version (2.10), though I haven't tested anything past version 2.6. I also found versions at sourceforge (http://sourceforge.net/projects/libedit/ ), but this version is 0.3 and it appears the maintainer simply posted the version and hasn't done any work to update it. I have also found a 1.12 version at http://packages.qa.debian.org/e/editline.htmlwhich implements the readline function, but I haven't been able to compile it (it was made for a 2001 debian system).
+  The main web site that has the latest version can be found at http://www.thrysoee.dk/editline. This seems to be the location of the most recent version (2.10), though I haven't tested anything past version 2.6. I also found versions at sourceforge (http://sourceforge.net/projects/libedit/ ), but this version is 0.3 and it appears the maintainer simply posted the version and hasn't done any work to update it. I have also found a 1.12 version at http://packages.qa.debian.org/e/editline.htmlwhich implements the readline function, but I haven't been able to compile it (it was made for a 2001 debian system).
 
-libedit vs editline
+  libedit vs editline
 
-Editline appears to be the decendent of libedit. In the sourceforge version I've found an implementation of the readline function to provide compatibility with the readline library. Newer versions of libedit don't implement this interface, but still provide much of the same functionality. The man page for libedit is however still referred to as editline.
+  Editline appears to be the decendent of libedit. In the sourceforge version I've found an implementation of the readline function to provide compatibility with the readline library. Newer versions of libedit don't implement this interface, but still provide much of the same functionality. The man page for libedit is however still referred to as editline.
 
-How to Use libedit
+  How to Use libedit
 
-The only documentation comes in a man page without being very informative to how to use it. I was able to piece together a simple program using this man page and code from a package which was developed to use libedit called eltclsh. Most of what I wanted was a history with emacs line editing functionality. Below you will find simple code that sits in a loop and echos the command you entered.
+  The only documentation comes in a man page without being very informative to how to use it. I was able to piece together a simple program using this man page and code from a package which was developed to use libedit called eltclsh. Most of what I wanted was a history with emacs line editing functionality. Below you will find simple code that sits in a loop and echos the command you entered.
+
+  @c cc -g test.c -o test -ledit -ltermcap
+
+  This will include all our libedit functions.  If you use C++ don't forget to use the C++ extern "C" to get it to compile.
 */
 
-/*
- // cc -g test.c -o test -ledit -ltermcap
-
- // This will include all our libedit functions.  If you use C++ don't forget to use the C++ extern "C" to get it to compile.
 #include <histedit.h>
-
 
 // To print out the prompt you need to use a function.  This could be made to do something special, but I opt to just have a static prompt.
 
-char * prompt(EditLine *e) {
-  return "test> ";
-}
+char * prompt(EditLine *e) { return "test> "; }
 
-int main(int argc, char *argv[]) {
+int ledit_main(_Main m) {
 
    HistEvent   ev;            // Temp variables
   const char * line;
@@ -212,7 +211,7 @@ int main(int argc, char *argv[]) {
 
 //  This holds all the state for our line editor Initialize the EditLine state to use our prompt function and emacs style editing.
 
-  EditLine * el = el_init(argv[0], stdin, stdout, stderr);
+  EditLine * el = el_init(m.argv[0], stdin, stdout, stderr);
 
   el_set(el, EL_PROMPT, &prompt);
   el_set(el, EL_EDITOR, "emacs");
@@ -241,8 +240,6 @@ int main(int argc, char *argv[]) {
 
   return 0;
 }
-
-*/
 
 
 /*
@@ -455,19 +452,17 @@ int menu_main() {
 }
 
 
+#pragma mark - Super Simple
 
+//char *choices[] = {
+//  "Choice 1",
+//  "Choice 2",
+//  "Choice 3",
+//  "Choice 4",
+//  "Exit",
+//};
 
-/*
-char *choices[] = {
-  "Choice 1",
-  "Choice 2",
-  "Choice 3",
-  "Choice 4",
-  "Exit",
-};
-
-int main()
-{
+int superSimple () {
 
    int i, c;   ITEM __unused *cur_item;
 
@@ -498,6 +493,5 @@ int main()
   free_menu(my_menu);
   endwin();
 }
-*//// supers simple
 
 // END MENU BASICS

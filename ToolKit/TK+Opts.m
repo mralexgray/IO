@@ -2,16 +2,17 @@
 #import <ToolKit/ToolKit.h>
 #import "TK_Private.h"
 
-@Plan _IO_Opts { id specialArgs; } @synthesize getOpts = _getOpts, rules = _rules;
+@concreteprotocol(TK_Opts)
 
-_TT    opt __Text_ k { return self.getOpts[k][0]; }
-_LT   opts __Text_ k { return self.getOpts[k]; }
+static id specialArgs,  _getOpts, _rules;
 
-_IT hasOpt __Text_ k { return [[self.getOpts.allKeys vFK:@"lowercaseString"] containsObject:k]; }
+_TT    opt __Text_ k { return _getOpts[k][0]; }
+_LT   opts __Text_ k { return _getOpts[k];    }
+_IT hasOpt __Text_ k { return [[[_getOpts allKeys] vFK:@"lowercaseString"] containsObject:k]; }
 
 _VD finish { if (!self.wantsHelp) return; [self.help echo]; exit(0); }
 
-_IT wantsHelp { return !IO.args.count || [IO.args any:^BOOL(id o) { return [o containsString:@"help"]; }]; }
+_IT wantsHelp { return !TK.args.count || [TK.args any:^BOOL(id o) { return [o containsString:@"help"]; }]; }
 
 _VD test __List_ args { NSLog(@"inside the vageen :%@", specialArgs = args); }
 
@@ -79,6 +80,11 @@ _VD registerOpts __List_ arrayOfOptsArrays {
 _VD getOpt __Text_ usageThenKeyThenShortOpts __ ... {
 
   azva_list_to_nsarray(usageThenKeyThenShortOpts,opts); [self __registerOpt:opts];
+}
+
+_VD getOpt __Text_ desc longOpt __Text_ l shortOpt  __Text_ s {
+
+  return [self getOpt:desc, l, s, nil];
 }
 
 @end

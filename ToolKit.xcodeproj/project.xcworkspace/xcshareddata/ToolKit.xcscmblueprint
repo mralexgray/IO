@@ -1,170 +1,324 @@
 {
-  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "62C10784746387693C1780CD262CE32E40C96940+++0A561C3",
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "62C10784746387693C1780CD262CE32E40C96940+++A9E0ECE",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
 
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
-    "313A1CF110017155666C381ECD4872BF3FF2F71D+++B4F818F" : 0,
-    "4266DEEFC09AD0207F56162EDDF01EF9575CAC1A+++3E97CEB" : 0,
-    "47764829B8C525FDB6FB3F07AD8CE94DCFB82C85+++2E86831" : 0,
-    "62C10784746387693C1780CD262CE32E40C96940+++0A561C3" : 0,
-    "F61398B22A2C611A7A9BB130ED6F27E3CEBF66F4+++D7579B0" : 0,
-    "4266DEEFC09AD0207F56162EDDF01EF9575CAC1A+++3BEE506" : 0,
-    "4266DEEFC09AD0207F56162EDDF01EF9575CAC1A+++5200AE2" : 0,
-    "D6662A7F3B4176FF6B3C44F8856E4734D45C616D+++67BA212" : 0,
-    "2FCDFC4CB879D25579845F6015C0216332F1C912+++F1FF7C9" : 0,
-    "4C81E697E801E622E5E8D7DB87EABC7043B2EA15+++0A032FF" : 0,
-    "3E693DFE0DB29DB806AC6EBFF8C446A045454092+++257AB4D" : 0,
-    "E442C8E0BC25456537E7E8CB9EB3893106F5AE72+++CEFA776" : 0,
-    "48FC0FDCAAE7C447973DC64E6E99A9B4DE1DBCC9+++3B5DB50" : 0,
-    "1D74423EF5BDEBCAD402591A9ACEE99A6405E439+++9734DDB" : 0,
-    "43CC97A09591B8B59BDB5B93BBF5185246275418+++E328B12" : 0,
-    "CA3D82ED40157CBC7EEFE801C063CCE15DC64406+++F64F602" : 0,
-    "C792C8E49A610038D179F4F58A48E7C155D41988+++E890A13" : 0,
-    "B2616A2BA9629FC081525332C5F69741666E8D4C+++31238ED" : 0,
-    "EB5145046A8826C2669ED7FC356C38D229BE0C66+++FFF4718" : 0,
-    "5D9F807DC3E3C6A6457F974A4CB22174AABBCDC1+++F881D97" : 0,
-    "A643D14CD909F7026A7D72A21E11EFB7FBB3478D+++4F80FD5" : 0,
-    "374CEE1191055548D9EA0190CC077BC3720213B9+++1F7C23F" : 0
+    "47764829B8C525FDB6FB3F07AD8CE94DCFB82C85+++15D65B2" : 0,
+    "260E98AAB463F06FA9AE6B1A0D4E6477C2CD0A1A+++0DE40A1" : 0,
+    "F61398B22A2C611A7A9BB130ED6F27E3CEBF66F4+++ECCDC0D" : 0,
+    "1D74423EF5BDEBCAD402591A9ACEE99A6405E439+++B70572D" : 0,
+    "BD8019281B611F5A6680099218311C911DE50EC0+++2D43FC8" : 0,
+    "4C81E697E801E622E5E8D7DB87EABC7043B2EA15+++A3835F5" : 0,
+    "5D9F807DC3E3C6A6457F974A4CB22174AABBCDC1+++8F75E93" : 0,
+    "C792C8E49A610038D179F4F58A48E7C155D41988+++AFFC0B2" : 0,
+    "4266DEEFC09AD0207F56162EDDF01EF9575CAC1A+++66B713D" : 0,
+    "48FC0FDCAAE7C447973DC64E6E99A9B4DE1DBCC9+++5C70F63" : 0,
+    "4266DEEFC09AD0207F56162EDDF01EF9575CAC1A+++AE5C9F6" : 0,
+    "48FC0FDCAAE7C447973DC64E6E99A9B4DE1DBCC9+++7FA8E4C" : 0,
+    "B2616A2BA9629FC081525332C5F69741666E8D4C+++5E32083" : 0,
+    "A643D14CD909F7026A7D72A21E11EFB7FBB3478D+++009169F" : 0,
+    "D6662A7F3B4176FF6B3C44F8856E4734D45C616D+++66903B6" : 0,
+    "5D9F807DC3E3C6A6457F974A4CB22174AABBCDC1+++AF9FCB4" : 0,
+    "313A1CF110017155666C381ECD4872BF3FF2F71D+++779C5FF" : 0,
+    "1392F0C6957F9679482DB0C39D75D1041951C973+++2252E35" : 0,
+    "3E693DFE0DB29DB806AC6EBFF8C446A045454092+++8F98ACA" : 0,
+    "313A1CF110017155666C381ECD4872BF3FF2F71D+++6B60AFE" : 0,
+    "E442C8E0BC25456537E7E8CB9EB3893106F5AE72+++1CC046C" : 0,
+    "4266DEEFC09AD0207F56162EDDF01EF9575CAC1A+++77E23FF" : 0,
+    "3E693DFE0DB29DB806AC6EBFF8C446A045454092+++452C6D7" : 0,
+    "1392F0C6957F9679482DB0C39D75D1041951C973+++852B7A4" : 0,
+    "D6662A7F3B4176FF6B3C44F8856E4734D45C616D+++6D04560" : 0,
+    "7D7B814A8D1C5820E5970A47164780DD8AB37FE5+++FB305FE" : 0,
+    "C792C8E49A610038D179F4F58A48E7C155D41988+++D5194EC" : 0,
+    "1D74423EF5BDEBCAD402591A9ACEE99A6405E439+++0164210" : 0,
+    "B2616A2BA9629FC081525332C5F69741666E8D4C+++D4A4523" : 0,
+    "59AEED15D38305D2036962AD331372DCF0AC0F20+++F71203B" : 0,
+    "4266DEEFC09AD0207F56162EDDF01EF9575CAC1A+++EB5CD17" : 0,
+    "62C10784746387693C1780CD262CE32E40C96940+++A9E0ECE" : 0,
+    "4C9BB207E30042BFCF812CFBD2AB81617A173705+++6F2DF37" : 0,
+    "374CEE1191055548D9EA0190CC077BC3720213B9+++01CA04D" : 0,
+    "2FCDFC4CB879D25579845F6015C0216332F1C912+++DA823D7" : 0,
+    "47764829B8C525FDB6FB3F07AD8CE94DCFB82C85+++22146B6" : 0,
+    "43CC97A09591B8B59BDB5B93BBF5185246275418+++E4EC892" : 0,
+    "E442C8E0BC25456537E7E8CB9EB3893106F5AE72+++0CDF977" : 0,
+    "43CC97A09591B8B59BDB5B93BBF5185246275418+++7807431" : 0,
+    "2FCDFC4CB879D25579845F6015C0216332F1C912+++73E07DB" : 0,
+    "EB5145046A8826C2669ED7FC356C38D229BE0C66+++C02C5FD" : 0,
+    "EB5145046A8826C2669ED7FC356C38D229BE0C66+++C05192E" : 0,
+    "B136DD98B7FCAFA2F47F66DA4384FCF4150EFD4A+++DBC48CF" : 0,
+    "CA3D82ED40157CBC7EEFE801C063CCE15DC64406+++000EC6D" : 0
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "DEAE61CF-E299-4C23-A06F-362D41942B23",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
-    "313A1CF110017155666C381ECD4872BF3FF2F71D+++B4F818F" : "..\/AtoZ.framework\/AtoZUniversal",
-    "4266DEEFC09AD0207F56162EDDF01EF9575CAC1A+++3E97CEB" : "..\/AtoZ.framework\/AtoZ\/AtoZCLI\/NSTerminal",
-    "47764829B8C525FDB6FB3F07AD8CE94DCFB82C85+++2E86831" : "..\/AtoZ.framework\/AtoZUniversal\/Vendor\/BaseModel",
-    "62C10784746387693C1780CD262CE32E40C96940+++0A561C3" : "ToolKit\/",
-    "F61398B22A2C611A7A9BB130ED6F27E3CEBF66F4+++D7579B0" : "ToolKit\/Modules\/printfc\/",
-    "4266DEEFC09AD0207F56162EDDF01EF9575CAC1A+++3BEE506" : "ToolKit\/Modules\/NSTerminal\/",
-    "4266DEEFC09AD0207F56162EDDF01EF9575CAC1A+++5200AE2" : "..\/AtoZ.framework\/AtoZ\/AtoZCLI\/NSTerminal",
-    "D6662A7F3B4176FF6B3C44F8856E4734D45C616D+++67BA212" : "..\/AtoZ.framework\/AtoZUniversal\/Vendor\/DatabaseStorage",
-    "2FCDFC4CB879D25579845F6015C0216332F1C912+++F1FF7C9" : "..\/AtoZ.framework\/AtoZUniversal\/Vendor\/THObserversAndBinders",
-    "4C81E697E801E622E5E8D7DB87EABC7043B2EA15+++0A032FF" : "ToolKit\/Modules\/GBCli\/",
-    "3E693DFE0DB29DB806AC6EBFF8C446A045454092+++257AB4D" : "..\/AtoZ.framework\/AtoZUniversal\/Vendor\/ObjectMatcher",
-    "E442C8E0BC25456537E7E8CB9EB3893106F5AE72+++CEFA776" : "..\/AtoZ.framework\/AtoZUniversal\/Vendor\/ObjcAssociatedObjectHelpers",
-    "48FC0FDCAAE7C447973DC64E6E99A9B4DE1DBCC9+++3B5DB50" : "..\/AtoZ.framework\/AtoZUniversal\/Vendor\/Functional",
-    "1D74423EF5BDEBCAD402591A9ACEE99A6405E439+++9734DDB" : "..\/AtoZ.framework\/AtoZUniversal\/Vendor\/FunSize",
-    "43CC97A09591B8B59BDB5B93BBF5185246275418+++E328B12" : "..\/AtoZ.framework\/AtoZUniversal\/Vendor\/_ObjC\/Universal",
-    "CA3D82ED40157CBC7EEFE801C063CCE15DC64406+++F64F602" : "..\/git\/progressbar",
-    "C792C8E49A610038D179F4F58A48E7C155D41988+++E890A13" : "..\/AtoZ.framework\/AtoZUniversal\/Vendor\/OrderedDictionary",
-    "B2616A2BA9629FC081525332C5F69741666E8D4C+++31238ED" : "..\/AtoZ.framework\/AtoZUniversal\/Vendor\/NTBTask",
-    "EB5145046A8826C2669ED7FC356C38D229BE0C66+++FFF4718" : "..\/AtoZ.framework",
-    "5D9F807DC3E3C6A6457F974A4CB22174AABBCDC1+++F881D97" : "..\/AtoZ.framework\/AtoZUniversal\/Vendor\/_ObjC",
-    "A643D14CD909F7026A7D72A21E11EFB7FBB3478D+++4F80FD5" : "ToolKit\/Modules\/RunLoopController\/",
-    "374CEE1191055548D9EA0190CC077BC3720213B9+++1F7C23F" : "linenoise\/"
+    "47764829B8C525FDB6FB3F07AD8CE94DCFB82C85+++15D65B2" : "..\/AtoZ.framework\/AtoZUniversal\/Vendor\/BaseModel",
+    "260E98AAB463F06FA9AE6B1A0D4E6477C2CD0A1A+++0DE40A1" : "..\/node\/atoz\/resistor-color.aside",
+    "F61398B22A2C611A7A9BB130ED6F27E3CEBF66F4+++ECCDC0D" : "ToolKit\/Modules\/printfc\/",
+    "1D74423EF5BDEBCAD402591A9ACEE99A6405E439+++B70572D" : "..\/AtoZ.framework\/AtoZUniversal\/Vendor\/FunSize",
+    "BD8019281B611F5A6680099218311C911DE50EC0+++2D43FC8" : "..\/AtoZ_framework\/AtoZUniversal\/Vendor\/Block-KVO",
+    "4C81E697E801E622E5E8D7DB87EABC7043B2EA15+++A3835F5" : "ToolKit\/Modules\/GBCli\/",
+    "5D9F807DC3E3C6A6457F974A4CB22174AABBCDC1+++8F75E93" : "..\/AtoZ.framework\/AtoZUniversal\/Vendor\/_ObjC",
+    "C792C8E49A610038D179F4F58A48E7C155D41988+++AFFC0B2" : "..\/AtoZ.framework\/AtoZUniversal\/Vendor\/OrderedDictionary",
+    "4266DEEFC09AD0207F56162EDDF01EF9575CAC1A+++66B713D" : "ToolKit\/Modules\/NSTerminal\/",
+    "48FC0FDCAAE7C447973DC64E6E99A9B4DE1DBCC9+++5C70F63" : "..\/AtoZ_framework\/AtoZUniversal\/Vendor\/Functional",
+    "4266DEEFC09AD0207F56162EDDF01EF9575CAC1A+++AE5C9F6" : "..\/AtoZ.framework\/AtoZ\/AtoZCLI\/NSTerminal",
+    "48FC0FDCAAE7C447973DC64E6E99A9B4DE1DBCC9+++7FA8E4C" : "..\/AtoZ.framework\/AtoZUniversal\/Vendor\/Functional",
+    "B2616A2BA9629FC081525332C5F69741666E8D4C+++5E32083" : "..\/AtoZ_framework\/AtoZUniversal\/Vendor\/NTBTask",
+    "A643D14CD909F7026A7D72A21E11EFB7FBB3478D+++009169F" : "ToolKit\/Modules\/RunLoopController\/",
+    "D6662A7F3B4176FF6B3C44F8856E4734D45C616D+++66903B6" : "..\/AtoZ_framework\/AtoZUniversal\/Vendor\/DatabaseStorage",
+    "5D9F807DC3E3C6A6457F974A4CB22174AABBCDC1+++AF9FCB4" : "..\/AtoZ_framework\/AtoZUniversal\/Vendor\/_ObjC",
+    "313A1CF110017155666C381ECD4872BF3FF2F71D+++779C5FF" : "..\/AtoZ.framework\/AtoZUniversal",
+    "1392F0C6957F9679482DB0C39D75D1041951C973+++2252E35" : "..\/AtoZ.framework\/AtoZUniversal\/Vendor\/_ObjC\/ClangKit",
+    "3E693DFE0DB29DB806AC6EBFF8C446A045454092+++8F98ACA" : "..\/AtoZ_framework\/AtoZUniversal\/Vendor\/ObjectMatcher",
+    "313A1CF110017155666C381ECD4872BF3FF2F71D+++6B60AFE" : "..\/AtoZ_framework\/AtoZUniversal",
+    "E442C8E0BC25456537E7E8CB9EB3893106F5AE72+++1CC046C" : "..\/AtoZ_framework\/AtoZUniversal\/Vendor\/ObjcAssociatedObjectHelpers",
+    "4266DEEFC09AD0207F56162EDDF01EF9575CAC1A+++77E23FF" : "..\/AtoZ.framework\/AtoZ\/AtoZCLI\/NSTerminal",
+    "3E693DFE0DB29DB806AC6EBFF8C446A045454092+++452C6D7" : "..\/AtoZ.framework\/AtoZUniversal\/Vendor\/ObjectMatcher",
+    "1392F0C6957F9679482DB0C39D75D1041951C973+++852B7A4" : "..\/AtoZ_framework\/AtoZUniversal\/Vendor\/_ObjC\/ClangKit",
+    "D6662A7F3B4176FF6B3C44F8856E4734D45C616D+++6D04560" : "..\/AtoZ.framework\/AtoZUniversal\/Vendor\/DatabaseStorage",
+    "7D7B814A8D1C5820E5970A47164780DD8AB37FE5+++FB305FE" : "..\/node\/atoz",
+    "C792C8E49A610038D179F4F58A48E7C155D41988+++D5194EC" : "..\/AtoZ_framework\/AtoZUniversal\/Vendor\/OrderedDictionary",
+    "1D74423EF5BDEBCAD402591A9ACEE99A6405E439+++0164210" : "..\/AtoZ_framework\/AtoZUniversal\/Vendor\/FunSize",
+    "B2616A2BA9629FC081525332C5F69741666E8D4C+++D4A4523" : "..\/AtoZ.framework\/AtoZUniversal\/Vendor\/NTBTask",
+    "59AEED15D38305D2036962AD331372DCF0AC0F20+++F71203B" : "..\/node\/foldersize",
+    "4266DEEFC09AD0207F56162EDDF01EF9575CAC1A+++EB5CD17" : "..\/AtoZ_framework\/AtoZ\/AtoZCLI\/NSTerminal",
+    "62C10784746387693C1780CD262CE32E40C96940+++A9E0ECE" : "ToolKit\/",
+    "4C9BB207E30042BFCF812CFBD2AB81617A173705+++6F2DF37" : "..\/dotfiles\/interfacer\/libtuntap",
+    "374CEE1191055548D9EA0190CC077BC3720213B9+++01CA04D" : "linenoise\/",
+    "2FCDFC4CB879D25579845F6015C0216332F1C912+++DA823D7" : "..\/AtoZ_framework\/AtoZUniversal\/Vendor\/THObserversAndBinders",
+    "47764829B8C525FDB6FB3F07AD8CE94DCFB82C85+++22146B6" : "..\/AtoZ_framework\/AtoZUniversal\/Vendor\/BaseModel",
+    "43CC97A09591B8B59BDB5B93BBF5185246275418+++E4EC892" : "..\/AtoZ_framework\/AtoZUniversal\/Vendor\/_ObjC\/Universal",
+    "E442C8E0BC25456537E7E8CB9EB3893106F5AE72+++0CDF977" : "..\/AtoZ.framework\/AtoZUniversal\/Vendor\/ObjcAssociatedObjectHelpers",
+    "43CC97A09591B8B59BDB5B93BBF5185246275418+++7807431" : "..\/AtoZ.framework\/AtoZUniversal\/Vendor\/_ObjC\/Universal",
+    "2FCDFC4CB879D25579845F6015C0216332F1C912+++73E07DB" : "..\/AtoZ.framework\/AtoZUniversal\/Vendor\/THObserversAndBinders",
+    "EB5145046A8826C2669ED7FC356C38D229BE0C66+++C02C5FD" : "..\/AtoZ.framework",
+    "EB5145046A8826C2669ED7FC356C38D229BE0C66+++C05192E" : "..\/AtoZ_framework",
+    "B136DD98B7FCAFA2F47F66DA4384FCF4150EFD4A+++DBC48CF" : "..\/dotfiles",
+    "CA3D82ED40157CBC7EEFE801C063CCE15DC64406+++000EC6D" : "..\/git\/progressbar"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "ToolKit",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
   "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "ToolKit.xcodeproj",
   "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
     {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/mralexgray\/ClangKit.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "1392F0C6957F9679482DB0C39D75D1041951C973+++2252E35"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/mralexgray\/ClangKit.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "1392F0C6957F9679482DB0C39D75D1041951C973+++852B7A4"
+    },
+    {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/mralexgray\/FunSize.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "1D74423EF5BDEBCAD402591A9ACEE99A6405E439+++9734DDB"
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "1D74423EF5BDEBCAD402591A9ACEE99A6405E439+++0164210"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/mralexgray\/FunSize.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "1D74423EF5BDEBCAD402591A9ACEE99A6405E439+++B70572D"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "git:\/\/github.com\/cosmosgenius\/resistor-color.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "260E98AAB463F06FA9AE6B1A0D4E6477C2CD0A1A+++0DE40A1"
     },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/mralexgray\/THObserversAndBinders.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "2FCDFC4CB879D25579845F6015C0216332F1C912+++F1FF7C9"
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "2FCDFC4CB879D25579845F6015C0216332F1C912+++73E07DB"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/mralexgray\/THObserversAndBinders.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "2FCDFC4CB879D25579845F6015C0216332F1C912+++DA823D7"
     },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/mralexgray\/AtoZUniversal.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "313A1CF110017155666C381ECD4872BF3FF2F71D+++B4F818F"
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "313A1CF110017155666C381ECD4872BF3FF2F71D+++6B60AFE"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/mralexgray\/AtoZUniversal.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "313A1CF110017155666C381ECD4872BF3FF2F71D+++779C5FF"
     },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:mralexgray\/linenoise.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "374CEE1191055548D9EA0190CC077BC3720213B9+++1F7C23F"
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "374CEE1191055548D9EA0190CC077BC3720213B9+++01CA04D"
     },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/mralexgray\/ObjectMatcher.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "3E693DFE0DB29DB806AC6EBFF8C446A045454092+++257AB4D"
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "3E693DFE0DB29DB806AC6EBFF8C446A045454092+++452C6D7"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/mralexgray\/ObjectMatcher.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "3E693DFE0DB29DB806AC6EBFF8C446A045454092+++8F98ACA"
     },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/mralexgray\/NSTerminal.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "4266DEEFC09AD0207F56162EDDF01EF9575CAC1A+++3BEE506"
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "4266DEEFC09AD0207F56162EDDF01EF9575CAC1A+++66B713D"
     },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/mralexgray\/NSTerminal.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "4266DEEFC09AD0207F56162EDDF01EF9575CAC1A+++3E97CEB"
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "4266DEEFC09AD0207F56162EDDF01EF9575CAC1A+++77E23FF"
     },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/mralexgray\/NSTerminal.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "4266DEEFC09AD0207F56162EDDF01EF9575CAC1A+++5200AE2"
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "4266DEEFC09AD0207F56162EDDF01EF9575CAC1A+++AE5C9F6"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/mralexgray\/NSTerminal.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "4266DEEFC09AD0207F56162EDDF01EF9575CAC1A+++EB5CD17"
     },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/mralexgray\/Universal.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "43CC97A09591B8B59BDB5B93BBF5185246275418+++E328B12"
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "43CC97A09591B8B59BDB5B93BBF5185246275418+++7807431"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/mralexgray\/Universal.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "43CC97A09591B8B59BDB5B93BBF5185246275418+++E4EC892"
     },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/mralexgray\/BaseModel.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "47764829B8C525FDB6FB3F07AD8CE94DCFB82C85+++2E86831"
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "47764829B8C525FDB6FB3F07AD8CE94DCFB82C85+++15D65B2"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/mralexgray\/BaseModel.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "47764829B8C525FDB6FB3F07AD8CE94DCFB82C85+++22146B6"
     },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/mralexgray\/Functional.m.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "48FC0FDCAAE7C447973DC64E6E99A9B4DE1DBCC9+++3B5DB50"
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "48FC0FDCAAE7C447973DC64E6E99A9B4DE1DBCC9+++5C70F63"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/mralexgray\/Functional.m.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "48FC0FDCAAE7C447973DC64E6E99A9B4DE1DBCC9+++7FA8E4C"
     },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:mralexgray\/GBCli.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "4C81E697E801E622E5E8D7DB87EABC7043B2EA15+++0A032FF"
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "4C81E697E801E622E5E8D7DB87EABC7043B2EA15+++A3835F5"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/LaKabane\/libtuntap.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "4C9BB207E30042BFCF812CFBD2AB81617A173705+++6F2DF37"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/git.fury.io\/mralexgray\/foldersize.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "59AEED15D38305D2036962AD331372DCF0AC0F20+++F71203B"
     },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/mralexgray\/_ObjC.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "5D9F807DC3E3C6A6457F974A4CB22174AABBCDC1+++F881D97"
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "5D9F807DC3E3C6A6457F974A4CB22174AABBCDC1+++8F75E93"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/mralexgray\/_ObjC.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "5D9F807DC3E3C6A6457F974A4CB22174AABBCDC1+++AF9FCB4"
     },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:mralexgray\/IO.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "62C10784746387693C1780CD262CE32E40C96940+++0A561C3"
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "62C10784746387693C1780CD262CE32E40C96940+++A9E0ECE"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:mralexgray\/atoz.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "7D7B814A8D1C5820E5970A47164780DD8AB37FE5+++FB305FE"
     },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/trojanfoe\/RunLoopController.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "A643D14CD909F7026A7D72A21E11EFB7FBB3478D+++4F80FD5"
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "A643D14CD909F7026A7D72A21E11EFB7FBB3478D+++009169F"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "bitbucket.org:mralexgray\/dotfiles.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "B136DD98B7FCAFA2F47F66DA4384FCF4150EFD4A+++DBC48CF"
     },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/mralexgray\/NTBTask.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "B2616A2BA9629FC081525332C5F69741666E8D4C+++31238ED"
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "B2616A2BA9629FC081525332C5F69741666E8D4C+++5E32083"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/mralexgray\/NTBTask.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "B2616A2BA9629FC081525332C5F69741666E8D4C+++D4A4523"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/Tricertops\/Block-KVO.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "BD8019281B611F5A6680099218311C911DE50EC0+++2D43FC8"
     },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/nicklockwood\/OrderedDictionary.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "C792C8E49A610038D179F4F58A48E7C155D41988+++E890A13"
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "C792C8E49A610038D179F4F58A48E7C155D41988+++AFFC0B2"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:mralexgray\/OrderedDictionary.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "C792C8E49A610038D179F4F58A48E7C155D41988+++D5194EC"
     },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/doches\/progressbar.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "CA3D82ED40157CBC7EEFE801C063CCE15DC64406+++F64F602"
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "CA3D82ED40157CBC7EEFE801C063CCE15DC64406+++000EC6D"
     },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/mralexgray\/DatabaseStorage.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "D6662A7F3B4176FF6B3C44F8856E4734D45C616D+++67BA212"
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "D6662A7F3B4176FF6B3C44F8856E4734D45C616D+++66903B6"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/mralexgray\/DatabaseStorage.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "D6662A7F3B4176FF6B3C44F8856E4734D45C616D+++6D04560"
     },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/mralexgray\/ObjcAssociatedObjectHelpers.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "E442C8E0BC25456537E7E8CB9EB3893106F5AE72+++CEFA776"
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "E442C8E0BC25456537E7E8CB9EB3893106F5AE72+++0CDF977"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/mralexgray\/ObjcAssociatedObjectHelpers.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "E442C8E0BC25456537E7E8CB9EB3893106F5AE72+++1CC046C"
     },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/mralexgray\/AtoZ.framework.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "EB5145046A8826C2669ED7FC356C38D229BE0C66+++FFF4718"
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "EB5145046A8826C2669ED7FC356C38D229BE0C66+++C02C5FD"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/mralexgray\/AtoZ.framework.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "EB5145046A8826C2669ED7FC356C38D229BE0C66+++C05192E"
     },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/dasmithii\/printfc.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "F61398B22A2C611A7A9BB130ED6F27E3CEBF66F4+++D7579B0"
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "F61398B22A2C611A7A9BB130ED6F27E3CEBF66F4+++ECCDC0D"
     }
   ]
 }

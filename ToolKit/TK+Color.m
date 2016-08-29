@@ -12,14 +12,14 @@ static   rgb     BASIC16[   ] = { {  0,   0,   0} __ {205, 0,   0} __ { 0, 205, 
 
 @XtraPlan(Colr,IO_Colr)
 
-_TT bgEsc { return  IO.env & _Ptty_COLOR ? @""
-                  : IO.env & _Ptty_XCODE ? $(@"%sbg%@;", CSI, self.xcTuple)
-                                         : $(@"%s%s%@", CSI, ANSI_BG, self.tty)___ }
+_TT bgEsc { return !_PttyContains(_Ptty_COLOR,TK.env)  ? zNIL
+                   : TK.env & _Ptty_XCODE ? $(@"%sbg%@;", CSI, self.xcTuple)
+                                          : $(@"%s%s%@", CSI, ANSI_BG, self.tty)___ }
 
 //_TT fgEsc { return IO.env & ~_Ptty_COLOR ? @""
-_TT fgEsc { return IO.env & _Ptty_COLOR ? @""
-                 : IO.env & _Ptty_XCODE ? $(@"%sfg%@;", CSI, self.xcTuple)
-                                         : $(@"%s%s%@", CSI, ANSI_FG, self.tty)___ }
+_TT fgEsc { return !_PttyContains(_Ptty_COLOR,TK.env) ? zNIL // TK.env ^ _Ptty_COLOR ? zNIL
+                 : TK.env & _Ptty_XCODE ? $(@"%sfg%@;", CSI, self.xcTuple)
+                                        : $(@"%s%s%@", CSI, ANSI_FG, self.tty)___ }
 
 _FT component __UInt_ rgorb {
 

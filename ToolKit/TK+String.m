@@ -13,7 +13,7 @@
 - _Void_ print256 {
 
   int c = 24;
-  for (id x in [self componentsSeparatedByString:@" "]) {
+  for (id x in [self split:@" "]) {
     [[x stringByAppendingString:@" "] printC:[Colr fromTTY:c]]; c = c < 255 ? (c + 1) : 24;
   }
 }

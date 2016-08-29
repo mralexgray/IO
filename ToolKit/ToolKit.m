@@ -1,9 +1,10 @@
 
-#import "ToolKit.h"
 #import "TK_Private.h"
 #import "scrutil.h"
 // #import <termios.h>
-#import <sys/termios.h>
+// #import <sys/termios.h>
+
+#include <sys/sysctl.h> // for CTL_KERN etc
 
 @import AVFoundation.AVAudioPlayer;
 #if MAC_ONLY
@@ -13,7 +14,7 @@
 void signal_callback_handler(int signum) {
 
 	printf("         TERMINATED         \n");
-  if (ToolKit.shared.signalHandler) ToolKit.shared.signalHandler(signum);
+  !TK.signalHandler ?: TK.signalHandler(signum);
 //	setBufferedInput(true);
 	printf("\e[?25h\e[m");
 	exit(signum);
@@ -30,8 +31,11 @@ _TT description {
     [$B(IO.env&_Ptty_TTY)[YELLOW] ioString],
     [$B(IO.env&_Ptty_XCODE)[GREEN] ioString],
     [$B(IO.env&_Ptty_COLOR)[BLUE] ioString],
-    [IO.user[ORANGE] ioString],
-    IO.userID);
+    #if MAC_ONLY
+    [IO.user[ORANGE] ioString], IO.userID);
+    #else
+    @"N/A on iphone", _UInt_ 0);
+    #endif
 }
 
 _ID runBundleFromStdin {
@@ -50,7 +54,7 @@ _VD setSignalHandler:(＾SInt)signalHandler {
 	signal(SIGINT, signal_callback_handler);
 }
 
-
+#if MAC_ONLY
 _TT preprocess __Text_ t {
 
   NTBTask * task = [NTBTask.alloc initWithLaunchPath: @"/usr/bin/clang"];
@@ -58,8 +62,7 @@ _TT preprocess __Text_ t {
   task.arguments = @[ @"-w",
                       @"-std=c11",
                       @"-fmodules",
-                      @"-framework", @"AtoZ",
-                      @"-F/Users/localadmin/Library/Frameworks",
+                      $(@"-F%@", @"~/Library/Frameworks".stringByExpandingTildeInPath),
                       @"-E",
                       @"-x", @"objective-c",
                       @"-"];
@@ -68,7 +71,9 @@ _TT preprocess __Text_ t {
   //  id output = ; //@"".mC;  while ([task isRunning]) [output appendString:] return [output copy];
 }
 
-@synthesize user = _user, userID = _userID, env = _env; @dynamic hideCursor, cursorLocation;
+@synthesize user = _user, userID = _userID, window = _window;
+#endif
+@synthesize env = _env; @dynamic hideCursor, cursorLocation;
 
 #pragma mark - Console
 
@@ -81,22 +86,32 @@ _VD setTitle:(_Text)title {
 
 _VD repl {
 
-  id class = [self prompt:@"Create instance of class:"];
-  Class k = NSClassFromString(class);
-  if (!k) return [$(@"can't create class \"%@\"!", k) echo];
-  id method = [self prompt:@"Via method:"];
-  id x = [(id)k performString:method];
-  id act = [self prompt:@"No what:"];
-  id res = [x performString:act];
+#if MAC_ONLY
+  __block BOOL escape = NO;
 
-  [res echo];
+  [Evnt addGlobalMonitorForEventsMatchingMask:NSKeyUpMask handler:^(NSEvent *e) {
+    [@(e.keyCode) log];
+    escape = e.keyCode == 53;
+  }];
 
+  while (!escape) {
+
+    id class, k, method, x, act, res;
+    class = [self preprocess:[self prompt:@"Create instance of class:"]];
+
+    if (!(k = NSClassFromString(class))) return [$(@"can't create class \"%@\"!", class) echo];
+    method = [self prompt:@"Via method:"];
+    x = [k performString:method];
+    act = [self prompt:@"No what:"];
+    res = [x performString:act];
+
+    [res echo];
+  }
+
+#endif
 }
 
-- forwardingTargetForSelector __Meth_ s {
-
-  return [_IO_Opts.shared respondsToSelector:s] ? _IO_Opts.shared : [super forwardingTargetForSelector:s];
-}
+- forwardingTargetForSelector __Meth_ s { FORWARD_IF(TK) ___ }
 
 //- _Ｐ(_IO) dispatch:(Class<_IO>)k,... { SEL def = NULL;
 //
@@ -128,24 +143,35 @@ _TT user   { return [self _FetchUserInfo], _user.copy;  }
 
 #endif
 
+- (_Main) main { return (_Main){ self.argc, *self.argv }; }
+
 - (_Char**) argv  { return          _NSGetArgv(); }
 - ( _SInt*) argc  { return (_SInt*) _NSGetArgc(); }
 
-- (_Ptty) env  { dispatch_uno(
+- (_Ptty) env  { return
 
-  if(isatty(STDERR_FILENO)) _env |= _Ptty_TTY;
+  _env = _env ?: ({
 
-  id appname = [self run:$(@"ps -p %@", [self run:$(@"ps -xc -o ppid= -p %lu",＄)])];
 
-  [appname containsString:@"Xcode"] ? ({ _env |= _Ptty_XCODE; }) :
-  [appname containsString:@"iTerm"] ? ({ _env |= _Ptty_ITERM; }) : (void)nil;
+    if(isatty(STDERR_FILENO)) _env |= _Ptty_TTY;
 
-  if ([_PI.environment.allKeys any:^BOOL(id o) { return [o caseInsensitiveContainsString:@"XcodeColors"]; }] ||
+    id appname = [self run:$(@"ps -p %@", [self run:$(@"ps -xc -o ppid= -p %lu",＄)])];
 
-      [_PI.environment[@"TERM"] containsAnyOf:@[@"ANSI", @"ansi", @"color", @"256"]]) _env |= _Ptty_COLOR
+    [appname containsString:@"Xcode"] ? ({ _env |= _Ptty_XCODE; _env &= ~_Ptty_TTY; }) :
+    [appname containsString:@"iTerm"] ? ({ _env |= _Ptty_ITERM; }) : (void)nil;
 
-  ); return _env;
+    BOOL xccolor = NO;
+
+    if ((xccolor = [_PI.environment.allKeys any:^BOOL(id o) { return [o caseInsensitiveContainsString:@"XcodeColors"]; }]) ||
+
+        [_PI.environment[@"TERM"] containsAnyOf:@[@"ANSI", @"ansi", @"color", @"256"]]) _env |= _Ptty_COLOR;
+
+    if (xccolor) _env |= _Ptty_XCCLR;
+
+    _env; });
 }
+
+
 /**
  * Check if the debugger is attached
  *
@@ -218,35 +244,61 @@ _IT debugging {
   return outP;
 }
 
+
+_TT  argOr __UInt_ x, ... {
+
+//	Errr e;
+
+	return self.args.count > x ? self.args[x] : ({ va_list args ___ va_start(args, x)___  id def = va_arg(args, id); va_end(args); def; });
+
+}
+
 _VD setObject _ x forKeyedSubscript __Ｐ(Copy) k {
 
-  (_ObjBlk_ x)([self prompt __ObjC_ k])___ /*  ISA(k,Text) ? [k echo] : [_List_ k */
+  ( _＾ObjC x)([self prompt __ObjC_ k])___ /*  ISA(k,Text) ? [k echo] : [_List_ k */
 }
 
-_VD setStream __ObjC_ io {
+_VD setStream __ObjC_ io { [io print]___ }
 
-  [io print]___
-}
+_ID stream { return [self scan]___ }
 
-_ID stream {
+_TT prompt { return _prompt = _prompt ?: @"❯"; }
 
-  return [self scan]___
-}
-
-_TT prompt __Text_ t {
-
-  return [self prompt _ t c _ 7]___
-
-} /* OK */
+_TT prompt __Text_ t { return [self prompt _ t c _ 7]___ } /* OK */
 
 _TT prompt __Text_ t c __SInt_ c {
 
   t.fclr = @(c);
   [t print];
 
-  return NSFileHandle.fileHandleWithStandardInput.availableData.toUTF8String ___
+  return self.stream;//NSFileHandle.fileHandleWithStandardInput.availableData.toUTF8String ___
 }
 
+_VD prompt __Text_ p withBlock : (_Text(^)(_Text line, _IsIt *stop))cmd {
+
+  BOOL s = NO; id pr = p;
+
+  while (!s) { pr = cmd([self prompt:pr], &s) ?: pr; }
+}
+
+- _Wind_ window { return _window = _window ?: ({
+
+		[AZSHAREDAPP setActivationPolicy:NSApplicationActivationPolicyRegular];
+		id w = INIT_(Wind,WithContentRect:/*wRect */ AZScreenFrame() styleMask:
+		//NSBorderlessWindowMask | NSNonactivatingPanelMask |
+			NSResizableWindowMask|NSTitledWindowMask backing:NSBackingStoreBuffered defer:NO);
+		//		[w setFrame:centerRectInRect(wRect, screenRect) display:YES];
+		[w setBackgroundColor:RED];
+		[w setOpaque:YES];
+		[w setLevel:NSFloatingWindowLevel];
+		[w setFrame:AZCenterRectInRect(AZRectFromDim(200), AZScreenFrame()) display:NO];
+//		[w setdoe
+		[AZSHAREDAPP activateIgnoringOtherApps:YES];
+		[w makeKeyAndOrderFront:nil];
+		w;
+	});
+
+}
 _VD setCursorLocation _ _Cell_ c {
 
   printf("%s%ld;%ldH", CSI, c.row + 1, c.col + 1);
@@ -262,6 +314,12 @@ _VD clearMacConsole {
 } /* OK */
 #endif
 
+_VD reguireArgs __UInt_ ct err __Text_ warn {
+
+  if (TK.args.count == ct) return ___
+  if (warn) [warn printC:RED];
+  exit(-1);
+}
 _LT args {
 
   return [_PI.arguments subarrayWithRange:(NSRange){1,_PI.arguments.count-1}];
@@ -310,7 +368,7 @@ _TT scan {
 //  unichar left = NSLeftArrowFunctionKey;
 
 
-  return [Text.alloc initWithData:NSFileHandle.fileHandleWithStandardInput.availableData encoding:NSUTF8StringEncoding];
+  return [[Text stringWithData:NSSTDIN.availableData encoding:NSUTF8StringEncoding] stringByRemovingSuffix:@"\n"];
 }
 
 _VD fillScreen __Colr_ c { id line = $(@"%*s",@(IO.w).charValue," ");
@@ -325,7 +383,7 @@ _VD     notify __Note_ n {
   static IONotifier *ntfr; ntfr = ntfr ?: INIT_(IONotifier,WithNotification:n);
 }
 
-_VD   fmt __Text_ fmt __ ...  {
+_VD fmt __Text_ fmt __ ... {
 
   va_list args; va_start(args, fmt);
 
@@ -334,15 +392,16 @@ _VD   fmt __Text_ fmt __ ...  {
   va_end(args);
 }
 
-_VD  echo __Text_ fmt, ... {
+_VD echo __Text_ fmt __ ... {
 
-  va_list args; va_start(args, fmt);
+  va_list args ___ va_start(args, fmt)___
 
-  [[Text.alloc initWithFormat:fmt arguments:args] echo]; //  def = va_arg(args, SEL);
+  [[Text.alloc initWithFormat:fmt arguments:args] echo]___ //  def = va_arg(args, SEL);
 
-  va_end(args);
+  va_end(args)___
 }
-_VD print __List_ lines   {
+
+_VD print __List_ lines {
 
   [[lines reduce:@"".mC withBlock:^id(id sum, id obj) { return
 
@@ -351,7 +410,9 @@ _VD print __List_ lines   {
   }] print];
 }
 
-_TT resetFX { AZSTATIC_OBJ(Text, r, ({ IO.env&_Ptty_XCODE ? $UTF8(XC_RESET) : $UTF8(ANSI_RESET); }));
+_TT resetFX {
+
+  AZSTATIC_OBJ(Text, r, ({ IO.env&_Ptty_XCODE ? $UTF8(XC_RESET) : $UTF8(ANSI_RESET); })) ___
 
   return r;
 }
@@ -410,6 +471,7 @@ _TT imageString __ObjC_ pathOrImage { _Pict image; _Text name, x;
 
 ￭
 
+/*
 int getch(void) {
 
 	static int ch = -1, fd = 0;
@@ -440,6 +502,7 @@ int kbhit(void) {
 		ungetc(c, stdin);
 	return ((c != -1) ? 1 : 0);
 }
+*/
 
 void clearConsole(void) {
 	/*char a[80];*/
@@ -472,6 +535,7 @@ void getConsoleSize(short *xsize, short *ysize) {
 	pclose(pipe);
 }
 
+/*
 int APConsoleLibmain() {
 	int i;
 	short xsize;
@@ -508,3 +572,4 @@ int APConsoleLibmain() {
 	scanf("%i", &ix);
 	return 0;
 }
+*/

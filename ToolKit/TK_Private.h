@@ -6,7 +6,7 @@
 #define NSSTDIN   File.fileHandleWithStandardInput
 #define NSSTDERR  File.fileHandleWithStandardError
 
-@KIND(_IO_Opts) <IO_Opts,Solo> ￭
+//@KIND(_TK_Opts) <TK_Opts> ￭
 
 _CAT( Colr, IO_Colr,
 

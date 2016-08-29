@@ -1,6 +1,7 @@
 
 @import AtoZUniversal;
 
+#if MAC_ONLY
 @Kind_(CleanFrameWindow,Wind)
 _NA _Colr //shadowColor, backgroundColor,
           strokeColor;
@@ -8,3 +9,5 @@ _NA _Colr //shadowColor, backgroundColor,
 
 @end
 
+
+#endif

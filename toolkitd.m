@@ -1,17 +1,70 @@
 
-@import ToolKit; MAIN(
+@import ToolKit;
+
+_Void demo _Void_ {
 
   [$(@"env: %@" __ _Ptty2Text(IO.env)) echo] ___
 
-  [_PttyxVal() each _ ^(id k __ id v) {
+  [_PttyxVal() each _ ^(_ObjC k, _ObjC v) {
 
-      [$(@"Value: %@ Label: %@  Env:%@", [k hexString], v, StringFromBOOL(IO.env & [v iV])) echo];
+    [$(@"Value: %@ Label: %@  Env:%@", [k hexString],
+                                        v, $B(_PttyContains([k iV],TK.env))) echo];
 
   }];
 
-  [ _Text_ [@"alex"withFG:RED] echo];//C:PURPLE];
+  [_PttyMatchingKeys(TK.env) log];
 
-  [IO.description printC:BLUE];
+//  [ _Text_ [@"alex"withFG:RED] echo];//C:PURPLE];
+
+//  [IO.description printC:BLUE];
+}
+
+MAIN(
+
+  
+	demo();
+
+  [TK setSignalHandler: ^(_SInt h) {
+
+    [TK saveHistory];
+    [$(@"got signal: %@", @(h)) log];
+
+  }];
+
+  [０ log];
+
+  [TK prompt:@"What? ... " withBlock:^_Text(_Text line, BOOL *s) {
+    [$(@"you typed: %@", line) log];
+    *s = SameString(line.strip, @"x");
+    return nil;
+  }];
+
+  [TK.history log];
+  [TK saveHistory];
+
+//  [TK fillScreen:ORANGE];
+//  return 0;
+/*
+  id x = @"hello"[RED];
+
+  [$(@"TERM (%@ - %@) has color: %@. '%@' has color %@ (%@)", @(TK.env).hexString,_Ptty2Text(TK.env),$B(TK.env & _Ptty_COLOR),[x ioString], $B([x colored]), [x fclr]) log];
+
+  [$(@"TK.env ^ _Ptty_COLOR, %@\nTK.env | _Ptty_COLOR:%@\nTK.env & _Ptty_COLOR:%@", $B(TK.env ^ _Ptty_COLOR), $B(TK.env | _Ptty_COLOR), $B(TK.env & _Ptty_COLOR)) print256];
+
+  [@"alex" printC:RED];
+//  [TK print];
+  [TK.methodNames do:^(_ObjC x) {
+    SIG * sig = [TK methodSignatureForSelector:NSSelectorFromString(x)];
+    if (sig.numberOfArguments == 2 ||
+        SameChar([sig getArgumentTypeAtIndex:2],@encode(NSString*)))
+        
+      [TK getOpt:x longOpt:x shortOpt:[x firstLetter]];
+  }];
+//  [TK finish];
+
+//  [TK repl];
+//  [TK fillScreen:RED];
+*/
 
 )
 

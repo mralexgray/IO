@@ -14,16 +14,19 @@ _Enum(CardinalDirection, North, NorthEast, East, SouthEast, South, SouthWest, We
 - initWithRect __Rect_ r cornerInset __Flot_ c sideInset __Flot_ s;
 - (CardinalDirection) directionForPoint __Cord_ p;
 _RT rectForDirection:(CardinalDirection)direction;
-_AT _Rect rect;
-_AT _Flot cornerInset, sideInset;
+_PR _Rect rect;
+_PR _Flot cornerInset, sideInset;
 @end
 
 @Kind_(CleanFrameView,View)
-
+#if MAC_ONLY
 _RO NSCursor * northWestSouthEastCursor, *northeastsouthwestCursor, *eastWestCursor, *northSouthCursor;
+#endif
 _NA _Colr shadowColor, backgroundColor, strokeColor;
 _NA _Flot cornerRadius, shadowBlurRadius, strokeLineWidth, resizeInsetSideWidth, resizeInsetCornerWidth;
 @end
+
+#if MAC_ONLY
 
 @Plan CleanFrameWindow @dynamic strokeColor; //shadowColor, backgroundColor, , cornerRadius, shadowBlurRadius, strokeLineWidth, resizeInsetSideWidth, resizeInsetCornerWidth;
 
@@ -319,6 +322,7 @@ _VD resetCursorRects {
 }
 
 @end
+#endif
 
 /*
 
@@ -356,7 +360,7 @@ _VD resetCursorRects {
 }
 - (CardinalDirection) directionForPoint __Cord_ p  {
 
-  return [[CardinalDirectionAll() filterOne:^BOOL(id direction) {
+  return [[CardinalDirectionxVal().allKeys filterOne:^BOOL(id direction) {
 
     return NSPointInRect(p, [self rectForDirection:[direction intValue]]);
   }] intValue];
